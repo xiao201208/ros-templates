@@ -25,7 +25,7 @@ Metadata:
         Label:
           default: SLB
     TemplateTags:
-      - acs:technical-solution:network:ECS:电商行业业务及数据库上云
+      - acs:technical-solution:ECS:电商行业业务及数据库上云
 Parameters:
   ECS_ZoneId_1:
     Type: String
@@ -137,13 +137,11 @@ Parameters:
     Type: String
     AssociationProperty: ALIYUN::NLB::Zone::ZoneId
     Label:
-      zh-cn: SLB主可用区
-      en: Master availability zone
+      zh-cn: SLB可用区
+      en: Availability zone
     Description:
-      en: The master availability zone to create for the SLB instance, <font color='red'><b>ensure that the current
-        region has at least two different availability zones to choose from</b>. If there are no two availability zones,
-        please change other parameters or switch to another region and check again.
-      zh-cn: 创建SLB实例的主可用区，<font color='red'><b>请确保当前地域有至少两个不同的可用区可供选择</b></font>。若无双可用区，请修改其他参数或切换至其他地域后重新查看。
+      en: The master availability zone to create for the SLB instance.
+      zh-cn: 创建SLB实例的可用区。
 Resources:
   Vpc:
     Type: ALIYUN::ECS::VPC
