@@ -308,11 +308,8 @@ Resources:
             export DASHSCOPE_API_KEY=${AppApiKey}
             export ROS_DEPLOY=true
             EOF
-
             source ~/.bash_profile
-
             curl -fsSL https://help-static-aliyun-doc.aliyuncs.com/install-script/docmind-rag/install.sh|bash
-
             # 执行成功回调WaitCondition结束waitCondition的等待
             ${CurlCli} -d "{\"Data\" : \"Success\", \"status\" : \"SUCCESS\"}"
           - CurlCli:
@@ -377,3 +374,4 @@ Outputs:
               - Fn::GetAtt:
                  - EcsInstanceGroup
                  - PublicIps
+                 
