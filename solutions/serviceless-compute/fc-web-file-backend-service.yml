@@ -1,7 +1,7 @@
 ROSTemplateFormatVersion: '2015-09-01'
 Description:
   zh-cn: 搭建Serverless Web文件处理服务，自动压缩/解压、获取MD5与元信息，通过API、SDK或控制台上传至OSS触发。
-  en: Build a Serverless Web file processing service, automatically compress/decompress, obtain MD5 and meta information, and upload it to OSS for triggering through API, SDK or console.
+  en: Build a Serverless Web file processing service that automatically compresses/decompresses files, obtains MD5 and metadata, and uploads them to OSS, triggered via API, SDK, or console.
 Parameters:
   BucketName:
     Type: String
@@ -23,11 +23,7 @@ Parameters:
       en: Access Control List
       zh-cn: 读写权限
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[private：<font
-        color=''green''>All access to the file requires authentication</font>]<br>[public-read：<font
-        color=''green''>File writes need to be authenticated；Files can be read anonymously</font>]<br>[public-read-write：<font
-        color=''green''>Anyone (including anonymous visitors) can perform read and
-        write operators on the files in the bucket</font>]'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[private: <font color='green'>All access to the file requires authentication</font>]<br>[public-read: <font color='green'>File writes need to be authenticated;Files can be read anonymously</font>]<br>[public-read-write: <font color='green'>Anyone (including anonymous visitors) can perform read and write operators on the files in the bucket</font>]"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[private：<font color=''green''>对文件的所有访问操作需要进行身份验证</font>]<br>[public-read：<font
         color=''green''>对文件写操作需要进行身份验证；可以对文件进行匿名读</font>]<br>[public-read-write：<font
         color=''green''>所有人都可以对文件进行读写操作</font>]'
@@ -61,10 +57,7 @@ Parameters:
       en: Project Name
       zh-cn: 项目名称
     Description:
-      en: 'Logging service project name; Supports only lowercase letters, numbers,
-        hyphens (-), and underscores, and must begin and end with lowercase letters
-        and numbers, with names 3-63 characters in length.<br><b>note: <font color=''blue''>project
-        name global unique</b></font>'
+      en: "Logging service project name; supports only lowercase letters, numbers, hyphens (-), and underscores, and must begin and end with lowercase letters or numbers, with names 3 to 63 characters in length.<br><b>Note:</b> <font color='blue'>Project name must be globally unique</font>"
       zh-cn: 日志服务项目名称；只支持小写字母、数字、连字符(-)和下划线(_)，必须以小写字母和数字开头和结尾，名称长度为3-63个字符。<br><b>注：<font
         color='blue'>项目名称全局唯一</b></font>
     Default: sls-fc-storfiles
@@ -96,9 +89,6 @@ Resources:
       DeletionForce:
         Ref: BucketDeletionForce
       StorageClass: Standard
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: cd35e0ea-fbac-48f7-a205-e867bc370b6a
   RamRole:
     Type: ALIYUN::RAM::Role
     Properties:
@@ -141,18 +131,12 @@ Resources:
         - '-'
         - - StackId
           - Ref: ALIYUN::StackId
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: bb33f21c-5dbd-4ff3-aa81-5ab14ac89ca8
   SlsProject:
     Type: ALIYUN::SLS::Project
     Properties:
       Description: 创建函数计算服务FC-storfiles的日志服务
       Name:
         Ref: SlsProjectName
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 12798b6b-6b44-4437-8fc5-66f03dc075ea
   SlsLogStore:
     Type: ALIYUN::SLS::Logstore
     Properties:
@@ -167,9 +151,6 @@ Resources:
         Ref: SlsProjectName
       ShardCount: 2
     DependsOn: SlsProject
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: d05046bc-840b-460e-94fd-515a8186106f
   FcService:
     Type: ALIYUN::FC::Service
     Properties:
@@ -190,9 +171,6 @@ Resources:
     - RamRole
     - SlsLogStore
     - SlsProject
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 29a76ead-b4c2-4642-921f-1a8740121524
   FcCompress:
     Type: ALIYUN::FC::Function
     Properties:
@@ -242,9 +220,6 @@ Resources:
         - ServiceName
     DependsOn:
     - FcService
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 7809ddc6-a6ea-4397-bd40-4dfc4001059c
   FcCompressTrigger:
     Type: ALIYUN::FC::Trigger
     Properties:
@@ -289,9 +264,6 @@ Resources:
     - FcCompress
     - OssBucket
     - RamRole
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: bb9818cb-2d78-49a3-9911-8248c6754a2e
   FcNewFolder:
     Type: ALIYUN::FC::Function
     Properties:
@@ -320,9 +292,6 @@ Resources:
         - FcService
         - ServiceName
     DependsOn: FcService
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 019ef910-6e16-48e0-a43a-7477e1d9b622
   FcNewFolderInvoker:
     Type: ALIYUN::FC::FunctionInvoker
     Properties:
@@ -338,9 +307,6 @@ Resources:
     DependsOn:
     - FcNewFolder
     - FcService
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 023bdf89-e20e-404a-8300-7ced3ea4f0fd
 Outputs:
   FcServiceName:
     Description:
@@ -407,130 +373,186 @@ Metadata:
         default: SLS
     TemplateTags:
     - acs:solution:无服务计算:基于函数计算搭建网站文件处理
-  ALIYUN::ROS::Designer:
-    019ef910-6e16-48e0-a43a-7477e1d9b622:
-      position:
-        x: 396
-        y: 530
-      size:
-        height: 60
-        width: 60
-      z: 0
-    023bdf89-e20e-404a-8300-7ced3ea4f0fd:
-      position:
-        x: 245
-        y: 530
-      size:
-        height: 60
-        width: 60
-      z: 0
-    12798b6b-6b44-4437-8fc5-66f03dc075ea:
-      position:
-        x: 935
-        y: 402
-      size:
-        height: 60
-        width: 60
-      z: 0
-    24a0a4b8-c819-412b-aeb9-2c05d41ef484:
-      source:
-        id: 023bdf89-e20e-404a-8300-7ced3ea4f0fd
-      target:
-        id: 019ef910-6e16-48e0-a43a-7477e1d9b622
-      z: 1
-    29a76ead-b4c2-4642-921f-1a8740121524:
-      position:
-        x: 635
-        y: 402
-      size:
-        height: 60
-        width: 60
-      z: 0
-    3e5caf58-3785-4f0c-976c-94ee9364495b:
-      source:
-        id: 29a76ead-b4c2-4642-921f-1a8740121524
-      target:
-        id: d05046bc-840b-460e-94fd-515a8186106f
-      z: 1
-    7809ddc6-a6ea-4397-bd40-4dfc4001059c:
-      position:
-        x: 397
-        y: 402
-      size:
-        height: 60
-        width: 60
-      z: 0
-    83a43e4f-a44f-47ae-8293-bdcc0e7cca91:
-      source:
-        id: 7809ddc6-a6ea-4397-bd40-4dfc4001059c
-      target:
-        id: 29a76ead-b4c2-4642-921f-1a8740121524
-      z: 1
-    88ad4e7a-41dd-43a9-aa12-5d25a39087a5:
-      source:
-        id: 019ef910-6e16-48e0-a43a-7477e1d9b622
-      target:
-        id: 29a76ead-b4c2-4642-921f-1a8740121524
-      z: 1
-    9daedbeb-076d-4be5-a981-2aa3de9618e2:
-      source:
-        id: bb9818cb-2d78-49a3-9911-8248c6754a2e
-      target:
-        id: bb33f21c-5dbd-4ff3-aa81-5ab14ac89ca8
-      z: 1
-    a02d37c9-1734-4b7e-bb5c-9e676758a2cf:
-      source:
-        id: bb9818cb-2d78-49a3-9911-8248c6754a2e
-      target:
-        id: cd35e0ea-fbac-48f7-a205-e867bc370b6a
-      z: 1
-    b434c954-c17b-4fb6-ad9b-23d5d65685f0:
-      source:
-        id: bb9818cb-2d78-49a3-9911-8248c6754a2e
-      target:
-        id: 7809ddc6-a6ea-4397-bd40-4dfc4001059c
-      z: 1
-    bb33f21c-5dbd-4ff3-aa81-5ab14ac89ca8:
-      position:
-        x: 433
-        y: 185
-      size:
-        height: 60
-        width: 60
-      z: 0
-    bb9818cb-2d78-49a3-9911-8248c6754a2e:
-      position:
-        x: 249
-        y: 402
-      size:
-        height: 60
-        width: 60
-      z: 0
-    bdf84bb3-8038-4d17-b4fc-0e8aff323fb4:
-      source:
-        id: d05046bc-840b-460e-94fd-515a8186106f
-      target:
-        id: 12798b6b-6b44-4437-8fc5-66f03dc075ea
-      z: 1
-    bf665e33-9ab8-4f2e-87bc-94500c197635:
-      source:
-        id: 29a76ead-b4c2-4642-921f-1a8740121524
-      target:
-        id: bb33f21c-5dbd-4ff3-aa81-5ab14ac89ca8
-      z: 1
-    cd35e0ea-fbac-48f7-a205-e867bc370b6a:
-      position:
-        x: 80
-        y: 402
-      size:
-        height: 60
-        width: 60
-      z: 0
-    d05046bc-840b-460e-94fd-515a8186106f:
-      position:
-        x: 780
-        y: 402
-      size:
-        height: 60
-        width: 60
-      z: 0
+    - acs:public_template:Solution:fc-web-file-backend-service
+  ALIYUN::ROS::Composer:
+    4adcd37e:
+      Rect:
+        - 698
+        - 542
+        - -25
+        - -16
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    09b5c7c9:
+      Parent: 4adcd37e
+      Rect:
+        - 636
+        - 455
+        - 6
+        - 28
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    b05ba315:
+      Res:
+        - FcCompressTrigger
+      Parent: 09b5c7c9
+      Rect:
+        - 40
+        - 40
+        - 35
+        - 257
+        - 3
+        - 0
+      Hidden: true
+    b2cfcf16:
+      Res:
+        - RamRole
+      Parent: 09b5c7c9
+      Rect:
+        - 40
+        - 40
+        - 569
+        - 242
+        - 3
+        - 0
+      Hidden: true
+    13663a16:
+      Res:
+        - OssBucket
+      Parent: 09b5c7c9
+      Rect:
+        - 40
+        - 40
+        - 87
+        - 148
+        - 3
+        - 0
+    ee06c798:
+      Res:
+        - SlsProject
+      Parent: 09b5c7c9
+      Rect:
+        - 40
+        - 40
+        - 283
+        - 68
+        - 3
+        - 0
+    b04e4e8e:
+      Res:
+        - SlsLogStore
+      Parent: 09b5c7c9
+      Rect:
+        - 40
+        - 40
+        - 178
+        - 68
+        - 3
+        - 0
+    08a51a51:
+      Res:
+        - FcService
+      Parent: 09b5c7c9
+      Rect:
+        - 40
+        - 40
+        - 453
+        - 242
+        - 3
+        - 0
+    c88b510a:
+      Res:
+        - FcCompress
+      Parent: 09b5c7c9
+      Rect:
+        - 40
+        - 40
+        - 231
+        - 332
+        - 3
+        - 0
+    9f6e4cfc:
+      Res:
+        - FcNewFolder
+      Parent: 09b5c7c9
+      Rect:
+        - 40
+        - 40
+        - 231
+        - 148
+        - 3
+        - 0
+    255f1975:
+      Res:
+        - FcNewFolderInvoker
+      Parent: 09b5c7c9
+      Rect:
+        - 40
+        - 40
+        - 35
+        - 68
+        - 3
+        - 0
+      Hidden: true
+    10738f53:
+      Parent: 09b5c7c9
+      Edge:
+        - 08a51a51
+        - b2cfcf16
+      Line: 0:0:0:gray:0
+    8c1d3b55:
+      Parent: 09b5c7c9
+      Edge:
+        - c88b510a
+        - 08a51a51
+      Line: 0:0:0:gray:0
+    bf99a5e6:
+      Parent: 09b5c7c9
+      Edge:
+        - b05ba315
+        - c88b510a
+      Line: 0:0:0:gray:0
+    b40dc1fe:
+      Parent: 09b5c7c9
+      Edge:
+        - b05ba315
+        - b2cfcf16
+      Line: 0:0:0:gray:0
+    f9ee337b:
+      Parent: 09b5c7c9
+      Edge:
+        - b05ba315
+        - 08a51a51
+      Line: 0:0:0:gray:0
+    98105e4f:
+      Parent: 09b5c7c9
+      Edge:
+        - b05ba315
+        - 13663a16
+      Line: 0:0:0:gray:0
+    f4477307:
+      Parent: 09b5c7c9
+      Edge:
+        - 9f6e4cfc
+        - 13663a16
+      Line: 0:0:0:gray:0
+    860f4c98:
+      Parent: 09b5c7c9
+      Edge:
+        - 9f6e4cfc
+        - 08a51a51
+      Line: 0:0:0:gray:0
+    023bad5f:
+      Parent: 09b5c7c9
+      Edge:
+        - 255f1975
+        - 9f6e4cfc
+      Line: 0:0:0:gray:0
+    31975fa3:
+      Parent: 09b5c7c9
+      Edge:
+        - 255f1975
+        - 08a51a51
+      Line: 0:0:0:gray:0

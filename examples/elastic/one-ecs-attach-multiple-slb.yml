@@ -11,9 +11,7 @@ Parameters:
       en: Amount
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>You can use
-        the following IP address ranges and their subnets: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in CIDR block format. You can use the following IP address ranges and their subnets: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: VPC的IP地址范围；<br>您可以使用以下IP地址范围及其子网：<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0/16]</font>
     Default: 192.168.0.0/16
@@ -34,7 +32,7 @@ Parameters:
       en: VSwitch CIDR block
       zh-cn: 交换机子网网段
     Description:
-      en: CIDR Block of created VSwitch,It must belong to itself VPC CIDR Block.
+      en: CIDR block of the created VSwitch. It must belong to the VPC's CIDR block.
       zh-cn: 创建的虚拟交换机的子网，它必须属于自己的VPC网段内
     Default: 192.168.1.0/24
   LoadBalancerAddressType:
@@ -143,9 +141,7 @@ Parameters:
       en: Data Disk Category
       zh-cn: 数据盘大小
     Description:
-      en: 'The size of the first volume, unit in GB.Value range: cloud: [5,2000],
-        cloud_efficiency: [20,32768], cloud_ssd: [20,32768], ephemeral_ssd: [5,800].The
-        value should be equal to or greater than the specific snapshot.'
+      en: "The size of the first volume, in GB. Value range: cloud: [5,2000], cloud_efficiency: [20,32768], cloud_ssd: [20,32768], ephemeral_ssd: [5,800]. The value should be equal to or greater than the specific snapshot."
       zh-cn: 第一个数据盘的大小，单位为GB。值范围：cloud:[5,2000]、cloud_efficiency:[20,32768]、cloud_ssd:[20,32768]、ephemeral_ssd:[5,800]。该值应等于或大于特定快照。
     Default: 40
   Password:
@@ -158,8 +154,7 @@ Parameters:
         letter and number. <br> special characters include（）'~！@#$%^&*_-+=|{}[]:;'<>,.?/.
       zh-cn: 长度8-30，必须包含大写字母、小写字母、数字、特殊符号三个；<br>特殊字符包括：（）'~！@#$%^&*_-+=|{}[]:;'<>,.?/
     ConstraintDescription:
-      en: 'Length 8-30, must contain upper case letters, lower case letters, Numbers,
-        special symbols three; special characters include: ()`~!@#$%^&*_-+=|{}[]:;''<>,.?/'
+      en: "Length 8-30 characters. Must contain uppercase letters, lowercase letters, numbers, and special symbols. Special characters include: ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/"
       zh-cn: 长度8-30，必须包含大写字母、小写字母、数字、特殊符号三种；特殊字符包括：()`~!@#$%^&*_-+=|{}[]:;' <>,.?/
     AllowedPattern: '[a-zA-Z0-9-\(\)\`\~\!@\#\$%\^&\*-+=\|\{\}\[\]\:\;\‘\,\.\?\/]*'
     MinLength: 8
@@ -371,3 +366,124 @@ Metadata:
         default: ECS
     TemplateTags:
     - acs:example:网络:创建ECS加入多个SLB并在/etc/hosts中绑定IP和机器名
+    - acs:public_template:Example:one-ecs-attach-multiple-slb
+  ALIYUN::ROS::Composer:
+    17d4647a:
+      Rect:
+        - 520
+        - 440
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    b9b787e8:
+      Parent: 17d4647a
+      Rect:
+        - 480
+        - 380
+        - 60
+        - 140
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    9c6b96f6:
+      Res:
+        - Vpc
+      Parent: b9b787e8
+      Rect:
+        - 440
+        - 320
+        - 80
+        - 180
+        - 3
+        - 0
+    038e910e:
+      Res:
+        - VSwitch
+      Parent: 9c6b96f6
+      Rect:
+        - 400
+        - 260
+        - 100
+        - 220
+        - 4
+        - 0
+    654379bd:
+      Res:
+        - FirstSLB
+        - AttachmentECSToFirstSLB
+      Parent: 038e910e
+      Rect:
+        - 40
+        - 40
+        - 386
+        - 340
+        - 5
+        - 0
+    dd1300ca:
+      Res:
+        - SecondSLB
+        - AttachmentECSToSecondSLB
+      Parent: 038e910e
+      Rect:
+        - 40
+        - 40
+        - 386
+        - 416
+        - 5
+        - 0
+    8820db12:
+      Res:
+        - ThirdSLB
+        - AttachmentECSToThirdSLB
+      Parent: 038e910e
+      Rect:
+        - 40
+        - 40
+        - 386
+        - 260
+        - 5
+        - 0
+    8c77d62b:
+      Res:
+        - SecurityGroup
+      Parent: 9c6b96f6
+      Rect:
+        - 102
+        - 140
+        - 113
+        - 296
+        - 9
+        - 0
+    8ddd35ad:
+      Parent: 038e910e
+      Edge:
+        - 654379bd
+        - c119238f
+      Line: 0:0:0:gray:0
+    d40e126f:
+      Parent: 038e910e
+      Edge:
+        - dd1300ca
+        - c119238f
+      Line: 0:0:0:gray:0
+    18a9f4f3:
+      Parent: 038e910e
+      Edge:
+        - 8820db12
+        - c119238f
+      Line: 0:0:0:gray:0
+    c119238f:
+      Res:
+        - ECSInstanceGroup
+      Parent: 038e910e
+      Rect:
+        - 40
+        - 40
+        - 140
+        - 340
+        - 11
+        - 0
+      Layer:
+        - 8c77d62b

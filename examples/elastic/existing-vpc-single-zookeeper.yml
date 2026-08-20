@@ -23,7 +23,7 @@ Parameters:
       en: Existing VPC Instance ID
       zh-cn: 现有VPC的实例ID
     Description:
-      en: Please search the ID starts with (vpc-xxx)from console-Virtual Private Cloud
+      en: Please search for an ID starting with (vpc-xxx) in the console > Virtual Private Cloud
       zh-cn: 现有虚拟专有网络的实例ID,控制台-VPC-专有网络下查询
     AssociationProperty: ALIYUN::ECS::VPC::VPCId
   VSwitch:
@@ -107,13 +107,14 @@ Parameters:
       en: Zookeeper Web Admin Password
       zh-cn: Zookeeper Web Admin用户登录密码
     Description:
-      en: Zookeeper Web Admin Password, Length 8-30。
+      en: Zookeeper Web Admin Password, Length 8-30.
       zh-cn: Zookeeper Web Admin用户登录密码,长度8-30。
     MinLength: 8
     MaxLength: 30
     NoEcho: true
   Password:
     Type: String
+    NoEcho: true
     Label:
       en: Instance Password
       zh-cn: 实例密码
@@ -126,10 +127,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
 Resources:
   WaitConditionHandle:
     Type: ALIYUN::ROS::WaitConditionHandle
@@ -350,6 +348,7 @@ Metadata:
           zh-cn: Zookeeper 配置（必填）
     TemplateTags:
     - acs:example:弹性计算:Zookeeper单机版(已有VPC)
+    - acs:public_template:Example:existing-vpc-single-zookeeper
   ALIYUN::ROS::Designer:
     3dfacfd9-5ba8-4793-a755-ce7d9668cffb:
       position:

@@ -19,7 +19,7 @@ Parameters:
           en: Create New Instance
         UseExisted:
           zh-cn: 选择已有实例
-          en: Select Existed Instance
+          en: Select Existing Instance
   ZoneId:
     Type: String
     Default: null
@@ -108,7 +108,7 @@ Parameters:
       zh-cn: ECS实例ID
     Description:
       zh-cn: 创建ECS实例时，ECS实例ID。<br><b>注： <font color='blue'>该一键部署脚本仅支持Alibaba Cloud Linux 3，请勿选择其他操作系统的实例。</font></b>
-      en: ECS instance ID,<br><b>note： <font color='blue'>This one click deployment script only supports Alibaba Cloud Linux 3, please do not select instances of other operating systems</font></b>
+      en: "ECS instance ID,<br><b>note: <font color='blue'>This one click deployment script only supports Alibaba Cloud Linux 3, please do not select instances of other operating systems</font></b>"
     AssociationProperty: ALIYUN::ECS::Instance::InstanceId
     AssociationPropertyMetadata:
       Status: Running
@@ -157,9 +157,6 @@ Resources:
       SecurityGroupName:
         Fn::Sub: ${CommonName}-sg
       SecurityGroupIngress:
-        - PortRange: 22/22
-          SourceCidrIp: 0.0.0.0/0
-          IpProtocol: tcp
         - PortRange: 80/80
           SourceCidrIp: 0.0.0.0/0
           IpProtocol: tcp
@@ -311,21 +308,6 @@ Resources:
             - UseExistedInstance
             - Ref: EcsInstanceId
             - Ref: EcsInstance
-  SecurityGroupIngress_22:
-    Type: ALIYUN::ECS::SecurityGroupIngress
-    Condition: UseExistedInstance
-    Properties:
-      SecurityGroupId:
-        Fn::Jq:
-          - First
-          - .[0].SecurityGroupIds[0]
-          - Fn::GetAtt:
-              - DsEcs
-              - Instances
-      SourceCidrIp: 0.0.0.0/0
-      IpProtocol: tcp
-      NicType: intranet
-      PortRange: 22/22
   SecurityGroupIngress_80:
     Type: ALIYUN::ECS::SecurityGroupIngress
     Condition: UseExistedInstance
@@ -344,7 +326,7 @@ Resources:
 Outputs:
   EcsLoginAddress:
     Description:
-      en: Ecs login address.
+      en: ECS login address
       zh-cn: ECS登录地址。
     Value:
       Fn::Sub:
@@ -356,7 +338,7 @@ Outputs:
               - Ref: EcsInstance
   Console@DjangoUrl:
     Description:
-      en: Django Service address.
+      en: Django service address
       zh-cn: Django服务访问地址。
     Value:
       Fn::Sub:
@@ -382,3 +364,132 @@ Metadata:
       - CommonName
     TemplateTags:
       - acs:document-help:ecs:部署Django环境
+      - acs:public_template:Example:django-on-ecs
+  ALIYUN::ROS::Composer:
+    3cee5262:
+      Rect:
+        - 732
+        - 543
+        - -72
+        - 97
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    eee84933:
+      Parent: 3cee5262
+      Rect:
+        - 695
+        - 466
+        - -53
+        - 137
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    d79b1927:
+      Res:
+        - DeployDjango
+      Parent: eee84933
+      Rect:
+        - 40
+        - 40
+        - -11
+        - 438
+        - 3
+        - 0
+    5a08a593:
+      Res:
+        - Vpc
+      Parent: eee84933
+      Rect:
+        - 480
+        - 340
+        - 81
+        - 243
+        - 3
+        - 0
+    c43e595f:
+      Res:
+        - SecurityGroupIngress_80
+      Parent: eee84933
+      Rect:
+        - 40
+        - 40
+        - 462
+        - 171
+        - 3
+        - 0
+    ae00b9b8:
+      Parent: eee84933
+      Rect:
+        - 40
+        - 40
+        - 301
+        - 171
+        - 3
+        - 0
+      ResT: DATASOURCE::ECS::Instances
+    c8b7ecd5:
+      Res:
+        - ZoneId
+      Parent: 5a08a593
+      Rect:
+        - 440
+        - 270
+        - 101
+        - 293
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    c2a3d65d:
+      Res:
+        - VSwitch
+      Parent: c8b7ecd5
+      Rect:
+        - 400
+        - 200
+        - 121
+        - 343
+        - 5
+        - 0
+    c634dff3:
+      Res:
+        - SecurityGroup
+      Parent: 5a08a593
+      Rect:
+        - 228
+        - 130
+        - 207
+        - 393
+        - 10
+        - 0
+    9e949ab1:
+      Parent: eee84933
+      Edge:
+        - d79b1927
+        - 9fa67b59
+      Line: 0:0:0:gray:0
+    0b5862a2:
+      Parent: eee84933
+      Edge:
+        - ae00b9b8
+        - 9fa67b59
+      Line: 0:0:0:gray:0
+    9b833243:
+      Parent: eee84933
+      Edge:
+        - c43e595f
+        - ae00b9b8
+      Line: 0:0:0:gray:0
+    9fa67b59:
+      Res:
+        - EcsInstance
+      Parent: c2a3d65d
+      Rect:
+        - 40
+        - 40
+        - 301
+        - 438
+        - 11
+        - 0
+      Layer:
+        - c634dff3

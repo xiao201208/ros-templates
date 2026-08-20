@@ -7,9 +7,11 @@ Description:
 Parameters:
   BaiLianApiKey:
     Type: String
+    NoEcho: true
     Label:
-      en: BaiLian API-KEY
+      en: BaiLian API Key
       zh-cn: 百炼 API-KEY
+    AssociationProperty: ALIYUN::Bailian::API Key::API KeyInfo
     Description:
       zh-cn: >-
         开通百炼模型服务，并获得 API-KEY，请参考：
@@ -21,10 +23,11 @@ Parameters:
         target="_blank">Get API-KEY</a>.
   DashVectorApiKey:
     Type: String
+    NoEcho: true
     AssociationProperty: 'ALIYUN::DashVector::ApiKey'
     Label:
-      en: DashVector API-KEY
-      zh-cn: DashVector API-KEY
+      en: DashVector API Key
+      zh-cn: DashVector API Key
     Description:
       zh-cn: >-
         开通DashVector向量检索服务，并获得 API-KEY，请参考：
@@ -49,7 +52,7 @@ Parameters:
           min: 1
     ConstraintDescription:
       zh-cn: 由大小写字母、数字、下划线(_)、中划线(-)组成，长度[3, 32]。
-      en: It consists of uppercase and lowercase letters, numbers, underline (_), and dash (-). The length is [3, 32]
+      en: It must consist of uppercase letters, lowercase letters, numbers, underscores (_), and hyphens (-). The length must be between 3 and 32 characters.
     Description:
       zh-cn: 本方案会创建一个免费版的集群，如果您账号下已经创建好了免费版的集群，请输入免费版集群的名称。
       en: >- 
@@ -163,36 +166,42 @@ Resources:
       Sync: true
       Timeout: 3600
       CommandContent:
-        Fn::Sub: |-
-          #!/bin/bash
-          
-          # script exit code:
-          # 0 - success
-          # 1 - unsupported system
-          # 2 - network not available
-          # 3 - failed to git clone
-          # 4 - failed to init python environment
-          # 5 - failed to embedding data
-          # 6 - failed to init git
-          # 7 - failed to run flask app
-          
-          # 环境变量配置
-           # 环境变量配置
-          cat << EOF >> ~/.bash_profile
-          export PATH=/usr/local/bin:$PATH
-          export BAILIAN_API_KEY=${BaiLianApiKey}
-          export DASHVECTOR_API_KEY=${DashVectorApiKey}
-          export DASHVECTOR_CLUSTER_ENDPOINT=${DashVectorCluster.Endpoint}
-          export ROS_DEPLOY=true
-          EOF
-          source ~/.bash_profile
-
-          curl -fsSL https://help-static-aliyun-doc.aliyuncs.com/install-script/dashvector/install.sh|bash
+        Fn::Sub:
+          - |
+            #!/bin/bash
+            
+            # script exit code:
+            # 0 - success
+            # 1 - unsupported system
+            # 2 - network not available
+            # 3 - failed to git clone
+            # 4 - failed to init python environment
+            # 5 - failed to embedding data
+            # 6 - failed to init git
+            # 7 - failed to run flask app
+            
+            # 环境变量配置
+             # 环境变量配置
+            cat << EOF >> ~/.bash_profile
+            export PATH=/usr/local/bin:$PATH
+            export BAILIAN_API_KEY=${ApiKey}
+            export DASHVECTOR_API_KEY=${DashVectorApiKey}
+            export DASHVECTOR_CLUSTER_ENDPOINT=${DashVectorCluster.Endpoint}
+            export ROS_DEPLOY=true
+            EOF
+            source ~/.bash_profile
+  
+            curl -fsSL https://help-static-aliyun-doc.aliyuncs.com/install-script/dashvector/install.sh|bash
+          - ApiKey:
+              Fn::Jq:
+                - First
+                - .ApiKeyValue
+                - Ref: BaiLianApiKey
 Outputs:
   WebUrl:
     Description:
       zh-cn: Web 访问地址。
-      en: The Addresses of Web.
+      en: Web Address
     Value:
       'Fn::Sub':
         - 'http://${ServerAddress}'
@@ -205,7 +214,7 @@ Outputs:
   EcsLoginAddress:
     Description:
       zh-cn: ECS登录地址。
-      en: Ecs login address.
+      en: ECS login address
     Value:
       'Fn::Sub':
         - >-
@@ -235,7 +244,116 @@ Metadata:
           - InstancePassword
         Label:
           default:
-            en: Ecs Instance
+            en: ECS Instance
             zh-cn: ECS实例配置
     TemplateTags:
       - acs:technical-solution:ai:向量检索与通义千问搭建专属问答服务-tech_solu_109
+      - acs:public_template:Solution:exclusive-qa-service
+  ALIYUN::ROS::Composer:
+    052f5b74:
+      Rect:
+        - 585
+        - 476
+        - -11
+        - 167
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    5613735d:
+      Parent: 052f5b74
+      Rect:
+        - 519
+        - 401
+        - 22
+        - 207
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    a3250e5c:
+      Res:
+        - Vpc
+      Parent: 5613735d
+      Rect:
+        - 321
+        - 323
+        - 62
+        - 247
+        - 3
+        - 0
+    012f51ce:
+      Res:
+        - RunCommand
+      Parent: 5613735d
+      Rect:
+        - 40
+        - 40
+        - 447
+        - 415
+        - 3
+        - 0
+    '272e4013':
+      Res:
+        - DashVectorCluster
+      Parent: 5613735d
+      Rect:
+        - 40
+        - 40
+        - 447
+        - 333
+        - 3
+        - 0
+      Label: DashVector Cluster
+    2e3a45b2:
+      Res:
+        - ZoneId
+      Parent: a3250e5c
+      Rect:
+        - 247
+        - 266
+        - 99
+        - 287
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    5768f778:
+      Res:
+        - VSwitch
+      Parent: 2e3a45b2
+      Rect:
+        - 192
+        - 204
+        - 126
+        - 333
+        - 5
+        - 0
+    7d0f484e:
+      Res:
+        - SecurityGroup
+      Parent: a3250e5c
+      Rect:
+        - 111
+        - 110
+        - 160
+        - 387
+        - 9
+        - 0
+    475a30d3:
+      Res:
+        - EcsInstance
+      Parent: 5768f778
+      Rect:
+        - 40
+        - 40
+        - 196
+        - 415
+        - 10
+        - 0
+      Layer:
+        - 7d0f484e
+    aaaadaa0:
+      Parent: 5613735d
+      Edge:
+        - 012f51ce
+        - 475a30d3
+      Line: 0:0:0:gray:0
+

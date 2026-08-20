@@ -1,8 +1,7 @@
 ROSTemplateFormatVersion: '2015-09-01'
 Description:
   zh-cn: 克隆负载均衡并挂载ECS实例：通过指定源SLB ID，创建新SLB并挂载原有ECS实例。
-  en: 'Clone Load Balancer and Attach ECS Instances: Create a new Load Balancer by
-    specifying the source SLB ID, and attach the existing ECS instances to it.'
+  en: "Clone Load Balancer and Attach ECS Instances: Create a new load balancer by specifying the source SLB ID, and attach existing ECS instances to it."
 Parameters:
   Name:
     Type: String
@@ -10,11 +9,11 @@ Parameters:
       en: SLB Name
       zh-cn: SLB名称
     Description:
-      en: The name of SLB to be created, [2, 128] English or Chinese characters, must
+      en: The name of SLB to be created, 2 to 128 characters, must
         start with a letter or Chinese in size, can contain numbers, '_' or '.', '-'.
       zh-cn: 新建SLB的名称，[2，128]英文或中文字符，必须以字母或中文开头，可以包含数字、下划线或“.”、“-”。
     ConstraintDescription:
-      en: '[2, 128] English or Chinese characters'
+      en: '2 to 128 characters'
       zh-cn: '[2, 128] 英文或中文字符'
     Default: TestSLB
     MinLength: 2
@@ -25,7 +24,7 @@ Parameters:
       en: Source SLB ID
       zh-cn: 源负载均衡 ID
     Description:
-      en: The source SLB instance ID
+      en: The source SLB instance ID.
       zh-cn: 需要被克隆的SLB实例ID
 Resources:
   NewSLB:
@@ -51,3 +50,35 @@ Metadata:
         default: SLB
     TemplateTags:
     - acs:example:网络:指定SourceLoadBalancerId将源负载均衡挂载的实例挂载到一个新的负载均衡上
+    - acs:public_template:Example:slb-clone
+  ALIYUN::ROS::Composer:
+    2e77a1d5:
+      Rect:
+        - 348
+        - 202
+        - -355
+        - -46
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    7a454e52:
+      Parent: 2e77a1d5
+      Rect:
+        - 268
+        - 127
+        - -315
+        - -6
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    dda8459e:
+      Res:
+        - NewSLB
+      Parent: 7a454e52
+      Rect:
+        - 40
+        - 40
+        - -201
+        - 37
+        - 3
+        - 0

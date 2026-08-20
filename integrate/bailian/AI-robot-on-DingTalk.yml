@@ -16,10 +16,10 @@ Parameters:
         查看应用 ID。
   BailianApiKey:
     Type: String
-    NoEcho: true
     Label:
       en: Bailian API-Key
       zh-cn: 百炼 API-KEY
+    AssociationProperty: ALIYUN::Bailian::ApiKey::ApiKeyInfo
     Description:
       en: >-
         Visit the Bailian platform to view the API Key.
@@ -97,7 +97,10 @@ Resources:
         Fn::Sub: 'bailian-${ALIYUN::StackId}'
       AuthConfig:
         apiKey:
-          Ref: BailianApiKey
+          Fn::Jq:
+            - First
+            - .ApiKeyValue
+            - Ref: BailianApiKey
   Flow:
     Type: ALIYUN::AppFlow::Flow
     Properties:

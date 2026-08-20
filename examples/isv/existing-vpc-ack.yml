@@ -91,7 +91,7 @@ Parameters:
     Type: Number
     Label:
       zh-cn: Worker节点数
-      en: Number of Worker instances
+      en: Number of Worker Instances
     Default: 3
   PodCidr:
     Type: String
@@ -101,10 +101,7 @@ Parameters:
     Description:
       zh-cn: 请填写有效的私有网段，即以下网段及其子网：10.0.0.0/8，172.16-31.0.0/12-16，192.168.0.0/16<br>不能与
         VPC 及 VPC 内已有 Kubernetes 集群使用的网段重复。<font color='blue'><b>创建成功后不能修改</b></font>
-      en: 'Please fill in a valid private segment, i.e. the following segments and
-        their subnets: 10.0.0.0/8, 172.16-31.0.0/12-16, 192.168.0.0/16<br> which cannot
-        duplicate the network segments already used by clusters in VPC and VPC Kunetberes.
-        <font color=''blue''><b>Cannot be modified after successful creation</b></font>'
+      en: "Please fill in a valid private segment, i.e., the following segments and their subnets: 10.0.0.0/8, 172.16-31.0.0/12-16, 192.168.0.0/16<br>which cannot duplicate the network segments already used by clusters in VPC and VPC Kubernetes. <font color='blue'><b>Cannot be modified after successful creation</b></font>"
     AssociationProperty: ALIYUN::CS::ManagedKubernetesCluster::PodCidr
     Default: 172.20.0.0/16
   ServiceCidr:
@@ -115,9 +112,7 @@ Parameters:
     Description:
       zh-cn: 可选范围：10.0.0.0/16-24，172.16-31.0.0/16-24，192.168.0.0/16-24<br>不能与 VPC
         及 VPC 内已有 Kubernetes 集群使用的网段重复。<font color='blue'><b>创建成功后不能修改</b></font>
-      en: 'Optional range: 10.0.0.0/16-24, 172.16-31.0.0/16-24, 192.168.0.0/16-24<br>
-        cannot duplicate segments already used by existing Kubernetes clusters in
-        VPC and VPC.<font color=''blue''><b>Cannot be modified after successful creation</b></font>'
+      en: "Optional range: 10.0.0.0/16-24, 172.16-31.0.0/16-24, 192.168.0.0/16-24<br>cannot duplicate segments already used by existing Kubernetes clusters in VPC.<font color='blue'><b>Cannot be modified after successful creation</b></font>"
     AssociationProperty: ALIYUN::CS::ManagedKubernetesCluster::ServiceCidr
     Default: 172.21.0.0/20
   SnatEntry:
@@ -151,28 +146,20 @@ Parameters:
     Type: Boolean
     Label:
       zh-cn: 监控插件
-      en: Monitor Plug-in
+      en: Monitor Plugin
     Description:
       zh-cn: 在 ECS 节点上安装云监控插件
-      en: Install the cloud monitoring plug-in on the ECS node .
+      en: Install the cloud monitoring plugin on the ECS node.
     Default: true
   WorkerInstanceTypes:
-    Type: Json
+    Type: CommaDelimitedList
+    AssociationProperty: 'ALIYUN::ECS::Instance::InstanceType'
+    AssociationPropertyMetadata:
+      InstanceChargeType: ${PayPeriod}
+      ZoneId: ${ZoneId}
     Label:
-      en: Worker Instance Type
-      zh-cn: Worker节点实例类型
-    Description:
-      zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.g6.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
-        href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
-        color='blue'>实例规格族</font></a></b>
-      en: 'Fill in specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.g6.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
-    Default:
-    - ecs.g6.large
-    - ecs.g6.xlarge
-    - ecs.g7.large
+      en: Instance Type
+      zh-cn: 实例规格
   WorkerSystemDiskSize:
     Type: Number
     Label:
@@ -180,7 +167,7 @@ Parameters:
       en: Worker System Disk Space
     Description:
       zh-cn: 系统盘大小, 取值范围：[40, 500], 单位：GB。
-      en: 'System disk size, range of values: 40-500, units: GB.'
+      en: 'System disk size, range: 40–500 GB.'
     Default: 40
     MinValue: 40
     MaxValue: 500
@@ -198,6 +185,7 @@ Parameters:
     - cloud_essd
   LoginPassword:
     Type: String
+    NoEcho: true
     Label:
       en: Instance Password
       zh-cn: 实例密码
@@ -209,11 +197,41 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
 Resources:
+  NodePools:
+    Type: 'ALIYUN::CS::ClusterNodePool'
+    Properties:
+      ClusterId:
+        Ref: ManagedKubernetesCluster
+      NodePoolInfo:
+        Name: default-nodepool
+      ScalingGroup:
+        Period:
+          Ref: PayPeriod
+        PeriodUnit:
+          Ref: PayPeriodUnit
+        InstanceChargeType:
+          Ref: PayType
+        VSwitchIds:
+          - Ref: VSwitchId
+        ZoneIds:
+          - Ref: ZoneId
+        SystemDiskCategory:
+          Ref: WorkerSystemDiskCategory
+        SystemDiskSize:
+          Ref: WorkerSystemDiskSize
+        InstanceTypes:
+          Ref: WorkerInstanceTypes
+        LoginPassword:
+          Ref: LoginPassword
+        Platform: AliyunLinux
+        ImageId: aliyun_3_9_x64_20G_alibase_20231219.vhd
+      KubernetesConfig:
+        Runtime: containerd
+        RuntimeVersion: 1.6.28
+      Count:
+        Ref: NumOfNodes
   ManagedKubernetesCluster:
     Type: ALIYUN::CS::ManagedKubernetesCluster
     Properties:
@@ -223,27 +241,13 @@ Resources:
       - Ref: VSwitchId
       SecurityGroupId:
         Ref: SecurityGroupId
-      ChargeType:
-        Ref: PayType
-      Period:
-        Ref: PayPeriod
-      PeriodUnit:
-        Ref: PayPeriodUnit
       ZoneIds:
       - Ref: ZoneId
-      WorkerInstanceTypes:
-        Ref: WorkerInstanceTypes
-      NumOfNodes:
-        Ref: NumOfNodes
       ClusterSpec: ack.pro.small
       ContainerCidr:
         Ref: PodCidr
       ServiceCidr:
         Ref: ServiceCidr
-      WorkerSystemDiskCategory:
-        Ref: WorkerSystemDiskCategory
-      WorkerSystemDiskSize:
-        Ref: WorkerSystemDiskSize
       LoginPassword:
         Ref: LoginPassword
       SnatEntry:
@@ -254,7 +258,6 @@ Resources:
       CloudMonitorFlags:
         Ref: CloudMonitorFlag
       ProxyMode: IPVS
-      DisableRollback: true
       EndpointPublicAccess:
         Ref: EndpointPublicAccess
       Name:
@@ -312,3 +315,60 @@ Metadata:
           en: Kubernetes Basic Configuration
     TemplateTags:
     - acs:example:ISV软件部署:创建Kubernetes专有版集群(已VPC)
+    - acs:public_template:Example:existing-vpc-ack
+  ALIYUN::ROS::Composer:
+    0d7b0abf:
+      Rect:
+        - 520
+        - 410
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    cfdf2d0f:
+      Parent: 0d7b0abf
+      Rect:
+        - 480
+        - 340
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    c9f6486f:
+      Res:
+        - VpcId
+      Parent: cfdf2d0f
+      Rect:
+        - 440
+        - 270
+        - 80
+        - 200
+        - 3
+        - 0
+      ResT: ALIYUN::ECS::VPC
+    62cecd40:
+      Res:
+        - VSwitchId
+      Parent: c9f6486f
+      Rect:
+        - 400
+        - 200
+        - 100
+        - 250
+        - 4
+        - 0
+      ResT: ALIYUN::ECS::VSwitch
+    143c5765:
+      Res:
+        - ManagedKubernetesCluster
+      Parent: 62cecd40
+      Rect:
+        - 40
+        - 40
+        - 280
+        - 330
+        - 5
+        - 0
+

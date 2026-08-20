@@ -150,3 +150,4 @@ Metadata:
   ALIYUN::ROS::Interface:
     TemplateTags:
     - acs:document-help:ecs:使用基于英特尔CPU的c8i实例部署ChatGLM2-6B
+    - acs:public_template:Example:tf-chat-glm2-6b

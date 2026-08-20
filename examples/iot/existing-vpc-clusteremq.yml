@@ -130,6 +130,7 @@ Parameters:
     Default: 40
   Password:
     Type: String
+    NoEcho: true
     Label:
       zh-cn: 实例密码
       en: Instance Password
@@ -142,10 +143,7 @@ Parameters:
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
   AdminPassword:
     Type: String
     Label:

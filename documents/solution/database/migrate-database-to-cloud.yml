@@ -1,9 +1,7 @@
 ROSTemplateFormatVersion: '2015-09-01'
 Description:
-  zh-cn: 创建ECS与RDS实例，配置安全组与网络，安装WordPress及自建数据库，准备迁移至RDS MySQL 8.0。
-  en: Create ECS and RDS instances, configure security groups and networking, install
-    WordPress along with a self-built database, and prepare for migration to RDS MySQL
-    8.0.
+  zh-cn: 创建ECS与RDS实例，配置安全组与网络，自建MySQL数据库，准备迁移至RDS MySQL 8.0。
+  en: Create ECS and RDS instances, configure security groups and networking, and prepare for migration to RDS MySQL 8.0.
 Parameters:
   Zone:
     AssociationProperty: ALIYUN::ECS::Instance::ZoneId
@@ -17,8 +15,8 @@ Parameters:
   EcsInstanceType:
     Type: String
     Description:
-      zh-cn: 运行Wordpress及自建数据库的ECS实例类型。
-      en: ECS instance which runs WordPress and on-premises database.
+      zh-cn: 自建数据库的ECS实例类型。
+      en: ECS instance for on-premises database
     Label:
       zh-cn: ECS实例类型
       en: ECS instance type.
@@ -39,8 +37,8 @@ Parameters:
         服务器登录密码,长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/
         中的特殊符号）
     Label:
-      en: Instance Password
-      zh-cn: 实例密码
+      en: ECS Instance Password
+      zh-cn: ECS 实例密码
     ConstraintDescription:
       en: >-
         Length 8-30, must contain three(Capital letters, lowercase letters,
@@ -74,13 +72,10 @@ Parameters:
       Category: Basic
       CommodityCode: bards
     Default: mysql.n2e.small.1
-  DBUserName:
+  RDSUserDTSUsername:
     Type: String
-    Description:
-      en: Username of RDS database
-      zh-cn: RDS数据库账号
     ConstraintDescription:
-      en: Consist of 2 to 16 characters of lowercase letters, underline. Must begin with a letter and be end with an alphanumeric character
+      en: Consist of 2 to 16 characters, lowercase letters and underscores. Must begin with a letter and end with an alphanumeric character.
       zh-cn: 由 2 到 16 个小写字母组成，下划线。必须以字母开头，以字母数字字符结尾
     Label:
       zh-cn: RDS数据库账号
@@ -88,25 +83,49 @@ Parameters:
     Default: dbuser
     MaxLength: 16
     MinLength: 2
-  DBPassword:
+  RDSUserDTSPassword:
     Type: String
-    Description:
-      en: >-
-        RDS user password, Length 8-30, must contain three(Capital letters,
-        lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special
-        symbol in)
-      zh-cn: >-
-        数据库账号密码，长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/
-        中的特殊符号）
+    NoEcho: true
     Label:
-      en: RDS Instance Password
       zh-cn: RDS数据库密码
-    ConstraintDescription:
-      en: >-
-        Length 8-30, must contain three(Capital letters, lowercase letters,
-        numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in)
-      zh-cn: '必须包含三种及以上类型：大写字母、小写字母、数字、特殊符号。长度为8～32位。特殊字符包括!@#$%^&*()_+-='
+      en: RDS database password
     AssociationProperty: 'ALIYUN::RDS::Instance::AccountPassword'
+  WPUserForSQLUsername:
+    Type: String
+    ConstraintDescription:
+      en: Consist of 2 to 16 characters, lowercase letters and underscores. Must begin with a letter and end with an alphanumeric character.
+      zh-cn: 由 2 到 16 个小写字母组成，下划线。必须以字母开头，以字母数字字符结尾
+    Label:
+      zh-cn: ECS 自建 MySQL 数据库账号 (SQL)
+      en: ECS creates its own MySQL database account (SQL).
+    Description:
+      zh-cn: ECS 自建 MySQL 数据库账号，该账号用于数据库 SQL 操作。
+      en: ECS creates its own MySQL database account, which is used for database SQL operations.
+    Default: dbuser
+    MaxLength: 16
+    MinLength: 2
+  WPUserForSQLPassword:
+    Type: String
+    Label:
+      zh-cn: ECS 自建 MySQL 数据库密码 (SQL)
+      en: ECS creates its own MySQL database password (SQL).
+    AllowedPattern: ^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=]).{8,32}$
+    NoEcho: true
+    Description:
+      en: |-
+        The password must be 8 to 32 characters in length. <br>
+        It must contain the following character types: uppercase letters, lowercase letters, digits, and special characters. <br> 
+        Special characters include <span style="background:#E7E9EB;"><b>!@#$%^&*()_+-=</b></span>.<br>
+        <b>If you repeatedly provision in this tutorial on the same ECS instance, make sure that the MySQL database password is exactly the same as the password set when the template was executed for the first time. Otherwise, the result of provisioning is unavailable.</b>
+      zh-cn: |-
+        长度为8~32位，需包含大写字母、小写字母、特殊字符和数字，允许的特殊字符包括<span style="background:#E7E9EB;"><b>!@#$%^&*()_+-=</b></span>。
+    ConstraintDescription:
+      en: |-
+        The password must be 8 to 32 characters in length. <br>
+        It must contain the following character types: uppercase letters, lowercase letters, digits, and special characters. <br> 
+        Special characters include <span style="background:#E7E9EB;"><b>!@#$%^&*()_+-=</b></span>.<br>
+        <b>If you repeatedly provision in this tutorial on the same ECS instance, make sure that the MySQL database password is exactly the same as the password set when the template was executed for the first time. Otherwise, the result of provisioning is unavailable.</b>
+      zh-cn: 长度为8~32位，需包含四项大写字母、小写字母、特殊字符和数字，允许的特殊字符包括<span style="background:#E7E9EB;"><b>!@#$%^&*()_+-=</b></span>。
 Resources:
   RosWaitCondition:
     Type: ALIYUN::ROS::WaitCondition
@@ -147,7 +166,7 @@ Resources:
         Ref: DBInstanceClass
       ZoneId:
         Ref: Zone
-      DBInstanceDescription: Test for database migration
+      DBInstanceDescription: mysqltords
       DBInstanceStorage: 20
       Category: Basic
       DBInstanceStorageType: cloud_essd
@@ -164,18 +183,37 @@ Resources:
           - WebServer
           - PrivateIp
       MasterUsername:
-        Ref: DBUserName
+        Ref: RDSUserDTSUsername
       MasterUserPassword:
-        Ref: DBPassword
+        Ref: RDSUserDTSPassword
       MasterUserType: Super
-  SecurityGroupIngress:
+  SecurityGroupIngress_80:
     Type: ALIYUN::ECS::SecurityGroupIngress
     Properties:
       SourceCidrIp: 0.0.0.0/0
       SecurityGroupId:
         Ref: SecurityGroup
-      IpProtocol: all
-      PortRange: '-1/-1'
+      IpProtocol: tcp
+      NicType: intranet
+      PortRange: 80/80
+  SecurityGroupIngress_3306:
+    Type: ALIYUN::ECS::SecurityGroupIngress
+    Properties:
+      SourceCidrIp: 0.0.0.0/0
+      SecurityGroupId:
+        Ref: SecurityGroup
+      IpProtocol: tcp
+      NicType: intranet
+      PortRange: 3306/3306
+  SecurityGroupIngress_22:
+    Type: ALIYUN::ECS::SecurityGroupIngress
+    Properties:
+      SourceCidrIp: 0.0.0.0/0
+      SecurityGroupId:
+        Ref: SecurityGroup
+      IpProtocol: tcp
+      NicType: intranet
+      PortRange: 22/22
   WebServer:
     Type: ALIYUN::ECS::Instance
     Properties:
@@ -205,104 +243,341 @@ Resources:
       Sync: true
       Timeout: 3600
       CommandContent:
-        'Fn::Sub':
-          - |
-            #!/bin/sh
-            DatabaseUser='wordpressuser'
-            DatabasePwd='password'
-            DatabaseName='wordpressdb'
-            DatabaseHost='localhost'
-            yum update -y
-            yum install -y unzip zip
-            yum install -y mysql-server
-            systemctl start mysqld    
-            systemctl enable mysqld
-            mysql -e "CREATE DATABASE wordpressdb;"
-            mysql -e "CREATE USER 'wordpressuser'@'localhost' IDENTIFIED BY 'password';"
-            mysql -e "GRANT ALL PRIVILEGES ON wordpressdb.* TO 'wordpressuser'@'localhost';"
-            mysql -e "FLUSH PRIVILEGES;"
-            mysql -e "CREATE USER dtssync1 IDENTIFIED BY 'P@ssw0rd';"
-            mysql -e "GRANT ALL ON *.* TO 'dtssync1'@'%';"
-            mysql -e "FLUSH PRIVILEGES;"
-            mysql -e "SET GLOBAL binlog_format = 'ROW';"
-            yum install -y nginx
-            systemctl start nginx
-            systemctl enable nginx
-            yum install -y php php-fpm php-mysqlnd
-            systemctl start php-fpm
-            systemctl enable php-fpm
-            cd /usr/share/nginx/html
-            wget https://help-static-aliyun-doc.aliyuncs.com/file-manage-files/zh-CN/20240726/hhvpuw/wordpress-6.6.1.tar
-            tar -xvf wordpress-6.6.1.tar
-            cp -R wordpress/* .
-            rm -R wordpress
-            cp wp-config-sample.php wp-config.php
-            sed -i "s/database_name_here/$DatabaseName/" wp-config.php
-            sed -i "s/username_here/$DatabaseUser/" wp-config.php
-            sed -i "s/password_here/$DatabasePwd/" wp-config.php
-            sed -i "s/localhost/$DatabaseHost/" wp-config.php
-            systemctl restart nginx
-            systemctl restart php-fpm
-            ${CurlCli} --data-binary '{"status": "SUCCESS"}'
-          - CurlCli:
-              Fn::GetAtt:
-                - RosWaitConditionHandle
-                - CurlCli
+        Fn::Sub: |-
+          #!/bin/bash
+          cat << EOF >> ~/.bash_profile
+          export MYSQL_USER=${WPUserForSQLUsername}
+          export MYSQL_PWD=${WPUserForSQLPassword}
+          export ROS_DEPLOY=true
+          EOF
+          source ~/.bash_profile
+          curl -fsSL https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/install-script/mysql-rds/install.sh|sh
+          ${RosWaitConditionHandle.CurlCli} --data-binary '{"status": "SUCCESS"}'
     DependsOn:
-      - SecurityGroupIngress
+      - SecurityGroupIngress_80
+      - SecurityGroupIngress_3306
+      - SecurityGroupIngress_22
+  DtsInstance:
+    Type: ALIYUN::DTS::Instance
+    Properties:
+      JobId:
+        Fn::GetAtt:
+          - MigrationJob
+          - DtsJobId
+      InstanceClass: micro
+      PayType: PostPaid
+      AutoStart: false
+      Type: SYNC
+      SourceRegion:
+        Ref: ALIYUN::Region
+      DestinationRegion:
+        Ref: ALIYUN::Region
+      SourceEndpointEngineName: MySQL
+      DestinationEndpointEngineName: MySQL
+  MigrationJob:
+    Type: ALIYUN::DTS::SynchronizationJob2
+    Properties:
+      DtsJobName: ecs_mysql_2_cloud_dts
+      SourceEndpoint:
+        InstanceType: ECS
+        InstanceID:
+          Ref: WebServer
+        EngineName: MYSQL
+        Port: '3306'
+        Region:
+          Ref: ALIYUN::Region
+        UserName:
+          Ref: WPUserForSQLUsername
+        Password:
+          Ref: WPUserForSQLPassword
+      DestinationEndpoint:
+        InstanceType: RDS
+        InstanceID:
+          Ref: Database
+        EngineName: MYSQL
+        Region:
+          Ref: ALIYUN::Region
+        UserName:
+          Ref: RDSUserDTSUsername
+        Password:
+          Ref: RDSUserDTSPassword
+      StructureInitialization: true
+      DataInitialization: true
+      DataSynchronization: true
+      DataCheckConfigure:
+        fullCheckRatio: 100
+        incrementalDataCheck: true
+        fullCheckValidFailNotice: false
+        fullCheckReferEndpoint: all
+        incrementalCheckDelayNotice: false
+        fullCheckFixData: false
+        fullCheckModel: 1
+        fullCheckErrorNotice: false
+        fullDataCheck: true
+        fullCheckNoticeValue: 1
+        incrementalCheckValidFailNotice: false
+        incrementalCheckErrorNotice: false
+        dataCheckDbList: '{"dtstestdb":{"name":"dtstestdb","all":true}}'
+      DbList:
+        dtstestdb:
+          name: dtstestdb
+          all: true
 Outputs:
-  ECSInstanceUser:
-    Description: Username and password for logging in to ECS instance
+  ECSInstanceUsername:
+    Description:
+      en: ECS instance login account.
+      zh-cn: ECS 实例登录账号。
+    Value: root
+  ECSInstancePassword:
+    Description:
+      en: Login password for the ECS instance.
+      zh-cn: ECS 实例登录密码。
+    NoEcho: true
     Value:
-      Fn::Join:
-        - ''
-        - - 'USERNAME: root ; PASSWORD: '
-          - Ref: InstancePassword
-  WPUserForSQL:
-    Description: ECS-hosted database username and password for executing SQL
-    Value: 'USERNAME: wordpressuser ; PASSWORD: password'
-  WPUserForDTS:
-    Description: ECS-hosted database username and password for connecting to DTS
-    Value: 'USERNAME: dtssync1 ; PASSWORD: P@ssw0rd'
-  RDSUserDTS:
-    Description: RDS username and password for connecting to DTS
+      Ref: InstancePassword
+  WPUserForSQLUsername:
+    Description:
+      en: ECS creates its own MySQL database account, which is used for SQL operations in the database.
+      zh-cn: ECS 自建 MySQL 数据库账号，该账号用于数据库 SQL 操作。
     Value:
-      Fn::Join:
-        - ''
-        - - 'USERNAME: '
-          - Ref: DBUserName
-          - ' '
-          - 'PASSWORD: '
-          - Ref: DBPassword
-  ECSWordPressUrl:
-    Description: WordPress default address.
+      Ref: WPUserForSQLUsername
+  WPUserForSQLPassword:
+    Description:
+      en: ECS creates its own MySQL database password, which is used for SQL operations in the database.
+      zh-cn: ECS 自建 MySQL 数据库账号密码，该账号用于数据库 SQL 操作。
+    NoEcho: true
     Value:
-      Fn::Join:
-        - ''
-        - - http://
-          - Fn::GetAtt:
-              - WebServer
-              - PublicIp
+      Ref: WPUserForSQLPassword
+  RDSUserDTSUsername:
+    Description:
+      en: High-privilege account for RDS database.
+      zh-cn: RDS 数据库高权限账号。
+    Value:
+      Ref: RDSUserDTSUsername
+  RDSUserDTSPassword:
+    Description:
+      en: High-privilege account password for RDS database.
+      zh-cn: RDS 数据库高权限账号密码。
+    NoEcho: true
+    Value:
+      Ref: RDSUserDTSPassword
   RDSInternalAddress:
-    Description: RDS internal network address.
+    Description:
+      en: The internal network connection address of the RDS instance.
+      zh-cn: RDS 实例内网连接地址。
     Value:
       Fn::GetAtt:
         - Database
         - InnerConnectionString
+  DTSInstanceAddress:
+    Description:
+      en: DTS Sync task address.
+      zh-cn: DTS同步任务访问地址。
+    Value:
+      'Fn::Sub':
+        - 'https://dtsnew.console.aliyun.com/sync/detail/manager/${MigrationJob}?regionId=${Region}'
+        - MigrationJob:
+            Fn::GetAtt:
+              - MigrationJob
+              - DtsJobId
+          Region:
+            Ref: ALIYUN::Region
+  RDSInstanceAddress:
+    Description:
+      en: RDS Instance address.
+      zh-cn: RDS实例访问地址。
+    Value:
+      Fn::Sub: https://rdsnext.console.aliyun.com/detail/${Database}/basicInfo?region=${ALIYUN::Region}
+  EcsLoginAddress:
+    Description:
+      en: ECS Login Address
+      zh-cn: ECS登录地址。
+    Value:
+      Fn::Sub: https://ecs-workbench.aliyun.com/?from=EcsConsole&instanceType=ecs&regionId=${ALIYUN::Region}&instanceId=${WebServer}
 Metadata:
   ALIYUN::ROS::Interface:
+    Outputs:
+      - ECSInstanceUsername
+      - ECSInstancePassword
+      - WPUserForSQLUsername
+      - WPUserForSQLPassword
+      - RDSUserDTSUsername
+      - RDSUserDTSPassword
+      - RDSInternalAddress
     ParameterGroups:
       - Parameters:
           - EcsInstanceType
           - InstancePassword
+          - WPUserForSQLUsername
+          - WPUserForSQLPassword
         Label:
           default: ECS
       - Parameters:
           - DBInstanceEngineAndVersion
           - DBInstanceClass
-          - DBUserName
-          - DBPassword
+          - RDSUserDTSUsername
+          - RDSUserDTSPassword
         Label:
           default: RDS
     TemplateTags:
       - acs:technical-solution:database:自建数据库迁移到云数据库-tech_solu_112
+      - acs:public_template:Solution:migrate-database-to-cloud
+  ALIYUN::ROS::Composer:
+    '34727653':
+      Res:
+        - VSwitch
+      Parent: 35402af3
+      Rect:
+        - 400
+        - 200
+        - 240
+        - 300
+        - 5
+        - 0
+    b7d6960a:
+      Rect:
+        - 815
+        - 602
+        - 40
+        - 80
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    afa6b141:
+      Parent: b7d6960a
+      Rect:
+        - 754
+        - 534
+        - 60
+        - 120
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    6abd97cd:
+      Res:
+        - RosWaitCondition
+      Parent: afa6b141
+      Rect:
+        - 40
+        - 40
+        - 320
+        - 560
+        - 3
+        - 0
+    2c041fd0:
+      Res:
+        - RosWaitConditionHandle
+      Parent: afa6b141
+      Rect:
+        - 40
+        - 40
+        - 452
+        - 560
+        - 3
+        - 0
+    520dd1f3:
+      Res:
+        - Vpc
+      Parent: afa6b141
+      Rect:
+        - 487
+        - 383
+        - 200
+        - 160
+        - 3
+        - 0
+    455ea1e7:
+      Res:
+        - RunCommand
+      Parent: afa6b141
+      Rect:
+        - 40
+        - 40
+        - 125
+        - 390
+        - 3
+        - 0
+    19a061fb:
+      Res:
+        - SecurityGroupIngress
+      Parent: afa6b141
+      Rect:
+        - 40
+        - 40
+        - 745
+        - 350
+        - 3
+        - 0
+    35402af3:
+      Res:
+        - Zone
+      Parent: 520dd1f3
+      Rect:
+        - 440
+        - 270
+        - 220
+        - 250
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    65b719fd:
+      Res:
+        - SecurityGroup
+      Parent: 520dd1f3
+      Rect:
+        - 455
+        - 315
+        - 216
+        - 212
+        - 10
+        - 0
+    2a615dbe:
+      Parent: afa6b141
+      Edge:
+        - 6abd97cd
+        - 2c041fd0
+      Line: 0:0:0:gray:0
+    387f6f5d:
+      Parent: '34727653'
+      Edge:
+        - b6edc058
+        - f0baedae
+      Line: 0:0:0:gray:0
+    90756bef:
+      Parent: afa6b141
+      Edge:
+        - 19a061fb
+        - 65b719fd
+      Line: 0:0:0:gray:0
+    e99e0aa4:
+      Parent: afa6b141
+      Edge:
+        - 455ea1e7
+        - f0baedae
+      Line: 0:0:0:gray:0
+    f0baedae:
+      Res:
+        - WebServer
+      Parent: '34727653'
+      Rect:
+        - 40
+        - 40
+        - 337
+        - 390
+        - 11
+        - 0
+      Layer:
+        - 65b719fd
+    b6edc058:
+      Res:
+        - Database
+      Parent: '34727653'
+      Rect:
+        - 40
+        - 40
+        - 475
+        - 390
+        - 11
+        - 0
+      Layer:
+        - 65b719fd

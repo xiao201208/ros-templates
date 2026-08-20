@@ -95,9 +95,7 @@ Parameters:
     Description:
       zh-cn: VPC的ip地址段范围，<br>您可以使用以下的ip地址段或其子网:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
-      en: 'The ip address range of the VPC in the CidrBlock form; <br>You can use
-        the following ip address ranges and their subnets: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in CIDR block format; <br>You can use the following IP address ranges and their subnets: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
     AssociationProperty: ALIYUN::VPC::VPC::CidrBlock
     AssociationPropertyMetadata:
       Visible:
@@ -153,6 +151,7 @@ Parameters:
     Default: ''
   InstancePassword:
     Type: String
+    NoEcho: true
     Label:
       en: Instance Password
       zh-cn: 实例密码
@@ -166,10 +165,6 @@ Parameters:
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in)
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）
     AssociationProperty: ALIYUN::ECS::Instance::Password
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
   SystemDiskCategory:
     Type: String
     Label:
@@ -206,7 +201,7 @@ Parameters:
       en: Data disk space
     Description:
       zh-cn: ECS实例数据盘大小，单位为GiB。取值范围：20~32768
-      en: 'ECS Instance disk size, range of values: 20-32768, units: GB'
+      en: 'ECS Instance disk size, range: 20-32768 GB'
     Default: 200
     MinValue: 20
     MaxValue: 32768
@@ -214,16 +209,16 @@ Parameters:
     Type: Boolean
     Label:
       zh-cn: 开启公网IP
-      en: allocate public ip
+      en: Allocate public IP
     Default: true
   InternetMaxBandwidthOut:
     Type: Number
     Label:
       zh-cn: 流量公网带宽
-      en: Internet Max Bandwidth Out
+      en: Internet Max Bandwidth Out (Mbps)
     Description:
       zh-cn: 取值范围0-100, 0为不开公网ip
-      en: no public ip if zero
+      en: No public IP if value is zero
     AssociationPropertyMetadata:
       Visible:
         Condition:
@@ -413,6 +408,9 @@ Resources:
 #                  - PublicIps
 Metadata:
   ALIYUN::ROS::Interface:
+    TemplateTags:
+      - acs:public_template:Example:custom-image-ecs-datadisk
+      - acs:example:ISV软件部署:单实例自定义镜像部署带数据盘公网IP可选
 ## 参数组的顺序会确定用户创建服务实例页面的参数排列顺序
 ## The order of the parameter groups determines the order in which the parameters are arranged on the user creation service instance page
 ## 如果绝大部分实例规格都适用，比如x86架构，可以按注释中将可用区放在前面选择
@@ -498,5 +496,129 @@ Metadata:
         default:
           en: Instance
           zh-cn: ECS实例详细配置
-    TemplateTags:
-    - acs:example:ISV软件部署:单实例自定义镜像部署带数据盘公网IP可选
+  ALIYUN::ROS::Composer:
+    c15a35c7:
+      Rect:
+        - 903
+        - 520
+        - -41
+        - 95
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    5ea6d191:
+      Parent: c15a35c7
+      Rect:
+        - 835
+        - 440
+        - -7
+        - 135
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    1dbef61a:
+      Res:
+        - InstanceRunCommand
+      Parent: 5ea6d191
+      Rect:
+        - 40
+        - 40
+        - 30
+        - 375
+        - 3
+        - 0
+    a07f13c4:
+      Res:
+        - VpcId
+      Parent: 5ea6d191
+      Rect:
+        - 561
+        - 345
+        - 110
+        - 185
+        - 3
+        - 0
+      ResT: ALIYUN::ECS::VPC
+    afda8266:
+      Res:
+        - WaitCondition
+      Parent: 5ea6d191
+      Rect:
+        - 40
+        - 40
+        - 730
+        - 235
+        - 3
+        - 0
+    e56a22ae:
+      Res:
+        - WaitConditionHandle
+      Parent: 5ea6d191
+      Rect:
+        - 40
+        - 40
+        - 730
+        - 445
+        - 3
+        - 0
+    11ca083c:
+      Res:
+        - ZoneId
+      Parent: a07f13c4
+      Rect:
+        - 505
+        - 271
+        - 130
+        - 235
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    61fdd70d:
+      Res:
+        - VSwitchId
+      Parent: 11ca083c
+      Rect:
+        - 400
+        - 200
+        - 189
+        - 285
+        - 5
+        - 0
+      ResT: ALIYUN::ECS::VSwitch
+    ab03d73b:
+      Res:
+        - EcsSecurityGroup
+      Parent: a07f13c4
+      Rect:
+        - 192
+        - 116
+        - 275
+        - 337
+        - 10
+        - 0
+    aebfdd2a:
+      Parent: 5ea6d191
+      Edge:
+        - afda8266
+        - e56a22ae
+      Line: 0:0:0:gray:0
+    1f48a947:
+      Parent: 5ea6d191
+      Edge:
+        - 1dbef61a
+        - affca448
+      Line: 0:0:0:gray:0
+    affca448:
+      Res:
+        - EcsInstanceGroup
+      Parent: 61fdd70d
+      Rect:
+        - 40
+        - 40
+        - 351
+        - 375
+        - 11
+        - 0
+      Layer:
+        - ab03d73b
+

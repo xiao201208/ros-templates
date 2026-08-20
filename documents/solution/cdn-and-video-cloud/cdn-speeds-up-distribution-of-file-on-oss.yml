@@ -33,7 +33,7 @@ Parameters:
       en: Bucket Name
       zh-cn: 存储空间名称
     Description:
-      en: The name must be 3 to 63 bytes in length, The name must start and end with a lowercase letter or digit.The name can contain only lowercase letters, digits, and hyphens (-).;<br><b>note：<font color='blue'>A bucket name must be globally unique within OSS. Bucket names cannot be changed after the bucket is created.</b></font>
+      en: "The name must be 3 to 63 bytes in length, The name must start and end with a lowercase letter or digit.The name can contain only lowercase letters, digits, and hyphens (-).;<br><b>note: <font color='blue'>A bucket name must be globally unique within OSS. Bucket names cannot be changed after the bucket is created.</b></font>"
       zh-cn: 长度为3~63个字符，必须以小写字母或数字开头和结尾，可以包含小写字母、数字和连字符(-);<br><b>注：<font color='blue'>需要全网唯一性，已经存在的不能在创建。</b></font>
     AssociationProperty: AutoCompleteInput
     AssociationPropertyMetadata:
@@ -150,3 +150,92 @@ Metadata:
           - BucketName
     TemplateTags:
       - acs:technical-solution:cdn-and-video-cloud:文件下载加速及成本优化-tech_solu_38
+      - acs:public_template:Solution:cdn-speeds-up-distribution-of-file-on-oss
+  ALIYUN::ROS::Composer:
+    b8628779:
+      Rect:
+        - 434
+        - 351
+        - 40
+        - 92
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    6da7ac01:
+      Parent: b8628779
+      Rect:
+        - 345
+        - 258
+        - 84
+        - 139
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    bff7e1dc:
+      Res:
+        - OssBucket
+      Parent: 6da7ac01
+      Rect:
+        - 40
+        - 40
+        - 143
+        - 198
+        - 3
+        - 0
+    6395c0df:
+      Res:
+        - AutoEnableCDN
+      Parent: 6da7ac01
+      Rect:
+        - 40
+        - 40
+        - 183
+        - 288
+        - 3
+        - 0
+    '01070144':
+      Res:
+        - AutoEnableOSS
+      Parent: 6da7ac01
+      Rect:
+        - 40
+        - 40
+        - 295
+        - 288
+        - 3
+        - 0
+    86d83e39:
+      Res:
+        - Domain
+      Parent: 6da7ac01
+      Rect:
+        - 40
+        - 40
+        - 237
+        - 198
+        - 3
+        - 0
+    436d56d5:
+      Res:
+        - DomainConfig
+      Parent: 6da7ac01
+      Rect:
+        - 40
+        - 40
+        - 335
+        - 198
+        - 3
+        - 0
+    e4a306ed:
+      Parent: 6da7ac01
+      Edge:
+        - 86d83e39
+        - bff7e1dc
+      Line: 0:0:0:gray:0
+    81c3b159:
+      Parent: 6da7ac01
+      Edge:
+        - 436d56d5
+        - 86d83e39
+      Line: 0:0:0:gray:0
+

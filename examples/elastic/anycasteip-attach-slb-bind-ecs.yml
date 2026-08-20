@@ -11,9 +11,7 @@ Parameters:
       en: VPC CIDR IPv4 Block
       zh-cn: 专有网络IPv4网段
     Description:
-      en: 'The ip address range of the VPC in the CidrBlock form; <br>You can use
-        the following ip address ranges and their subnets: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in CIDR block format; <br>You can use the following IP address ranges and their subnets: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: VPC的ip地址段范围，<br>您可以使用以下的ip地址段或其子网:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -64,7 +62,7 @@ Parameters:
       en: Address Type
       zh-cn: 地址类型
     Description:
-      en: The address type of the load balancer. "intranet" or "internet".
+      en: "The address type of the load balancer. Valid values: 'intranet' or 'internet'."
       zh-cn: '负载均衡器的地址类型。intranet: 内网， internet: 外网。'
     Default: intranet
   LoadBalancerSpec:
@@ -154,11 +152,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -173,9 +167,7 @@ Parameters:
       en: Instance Charge Type
       zh-cn: 实例的付费方式
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[PostPaid: <font
-        color=''green''>Pay as you go.</font>]<br> [PrePaid: <font color=''green''>Prepaid,
-        monthly subscription.</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[PostPaid: <font color='green'>Pay as you go.</font>]<br>[PrePaid: <font color='green'>Prepaid, monthly subscription.</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[PostPaid: <font color=''green''>按量付费。</font>]<br>[PrePaid:
         <font color=''green''>预付费，包年包月。</font>]'
     AssociationProperty: ChargeType
@@ -209,6 +201,7 @@ Parameters:
     MaxValue: 140
   ECSPassword:
     Type: String
+    NoEcho: true
     Label:
       en: Instance Password
       zh-cn: 实例密码
@@ -222,10 +215,7 @@ Parameters:
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
     Default: null
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: 'ALIYUN::ECS::Instance::Password'
   KeyPairName:
     Type: String
     Label:
@@ -467,3 +457,101 @@ Metadata:
           zh-cn: 云服务器
     TemplateTags:
     - acs:example:弹性计算:创建AnycastEIP绑定新建的SLB挂载新建ECS(新建VPC)
+    - acs:public_template:Example:anycasteip-attach-slb-bind-ecs
+  ALIYUN::ROS::Composer:
+    3a5c0469:
+      Rect:
+        - 580
+        - 473
+        - 40
+        - 41
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    f90ee0a5:
+      Parent: 3a5c0469
+      Rect:
+        - 494
+        - 416
+        - 83
+        - 81
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    295151c5:
+      Res:
+        - EcsVpc
+      Parent: f90ee0a5
+      Rect:
+        - 408
+        - 278
+        - 126
+        - 199
+        - 3
+        - 0
+    f5a07a8f:
+      Res:
+        - AnycastEip
+      Parent: f90ee0a5
+      Rect:
+        - 40
+        - 40
+        - 379
+        - 121
+        - 3
+        - 0
+    eca7b571:
+      Res:
+        - EcsVSwitch
+      Parent: 295151c5
+      Rect:
+        - 365
+        - 197
+        - 146
+        - 249
+        - 4
+        - 0
+    88ec4dec:
+      Res:
+        - SlbLoadBalancer
+        - ECSAttachmentSlb
+        - Listener
+      Parent: eca7b571
+      Rect:
+        - 40
+        - 40
+        - 379
+        - 342
+        - 5
+        - 0
+    244a20bb:
+      Res:
+        - EcsSecurityGroup
+      Parent: 295151c5
+      Rect:
+        - 124
+        - 125
+        - 166
+        - 299
+        - 10
+        - 0
+    261b6aea:
+      Parent: eca7b571
+      Edge:
+        - 88ec4dec
+        - ff5f3629
+      Line: 0:0:0:gray:0
+    ff5f3629:
+      Res:
+        - ECSInstanceGroup
+      Parent: eca7b571
+      Rect:
+        - 40
+        - 40
+        - 208
+        - 342
+        - 11
+        - 0
+      Layer:
+        - 244a20bb
+

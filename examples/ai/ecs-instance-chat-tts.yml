@@ -35,6 +35,7 @@ Parameters:
     Default: cloud_essd
   InstancePassword:
     Type: String
+    NoEcho: true
     Label:
       en: Instance Password
       zh-cn: 实例密码
@@ -54,10 +55,7 @@ Parameters:
           - ${SelectInstance}
           - false
     Default:
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
 Resources:
   Vpc:
     Type: ALIYUN::ECS::VPC

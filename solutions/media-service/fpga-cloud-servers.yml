@@ -23,9 +23,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>you can use
-        the following IP address ranges: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in CIDR notation;<br>you can use the following IP address ranges:<br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -63,11 +61,7 @@ Parameters:
       en: Specifications
       zh-cn: 规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>recommended specifications：<font color=''red''><b>ecs.f3-c16f1.4xlarge</b></font><br>note:
-        a few zones do not support the specifications, please select other compute-optimized
-        instance<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>recommended specifications: <font color='red'><b>ecs.f3-c16f1.4xlarge</b></font><br>note: a few zones do not support the specifications, please select other compute-optimized instance<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>推荐规格：<font color='red'><b>ecs.f3-c16f1.4xlarge</b></font><br>注：可用区可能不支持该规格，可使用其它计算型规格替代<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -80,8 +74,7 @@ Parameters:
       en: Max Amount
       zh-cn: 最大个数
     Description:
-      en: 'The maximum number of ECS instances created at one time,value range: [1,
-        100].'
+      en: "The maximum number of ECS instances created at one time. Value range: [1, 100]."
       zh-cn: '一次性创建ECS实例的最大个数，取值范围: [1, 100]。'
     Default: 1
     MinValue: 1
@@ -92,11 +85,7 @@ Parameters:
       en: Disk Type
       zh-cn: 磁盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -133,10 +122,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=| {}[]:;' <>,.? / Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
   BucketName:
     Type: String
     Label:
@@ -155,11 +141,7 @@ Parameters:
       en: Access Control
       zh-cn: 读写权限
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[private：<font
-        color=''green''>All access to the file requires authentication</font>]<br>[public-read：<font
-        color=''green''>File writes need to be authenticated；Files can be read anonymously</font>]<br>[public-read-write：<font
-        color=''green''>Anyone (including anonymous visitors) can perform read and
-        write operators on the files in the bucket</font>]'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[private: <font color='green'>All access to the file requires authentication</font>]<br>[public-read: <font color='green'>File writes need to be authenticated;Files can be read anonymously</font>]<br>[public-read-write: <font color='green'>Anyone (including anonymous visitors) can perform read and write operators on the files in the bucket</font>]"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[private：<font color=''green''>对文件的所有访问操作需要进行身份验证</font>]<br>[public-read：<font
         color=''green''>对文件写操作需要进行身份验证；可以对文件进行匿名读</font>]<br>[public-read-write：<font
         color=''green''>所有人都可以对文件进行读写操作</font>]'
@@ -174,10 +156,7 @@ Parameters:
       en: Storage Type
       zh-cn: 存储类型
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[Standard：<font
-        color=''green''>Standard storage type</font>]<br>[IA：<font color=''green''>Low
-        frequency access storage type</font>]<br>[Archive：<font color=''green''>Archive
-        storage type</font>]'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[Standard: <font color='green'>Standard storage type</font>]<br>[IA: <font color='green'>Low frequency access storage type</font>]<br>[Archive: <font color='green'>Archive storage type</font>]"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[Standard：<font color=''green''>标准存储类型</font>]<br>[IA：<font
         color=''green''>低频访问存储类型</font>]<br>[Archive：<font color=''green''>归档存储类型</font>]'
     Default: Standard
@@ -205,9 +184,6 @@ Resources:
         - '-'
         - - StackId
           - Ref: ALIYUN::StackId
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: dbe3ba70-d7cc-40c9-8e61-d91fd5585913
   EcsSecurityGroup:
     Type: ALIYUN::ECS::SecurityGroup
     Properties:
@@ -227,9 +203,6 @@ Resources:
       Tags:
       - Key: best_practice
         Value: 090
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 6a465382-1162-46f0-9815-4f4eab516383
   EcsVSwitch:
     Type: ALIYUN::ECS::VSwitch
     Properties:
@@ -245,9 +218,6 @@ Resources:
         - - VSwitch
           - StackId
           - Ref: ALIYUN::StackId
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 86b352af-fc5e-4ac5-8222-65817ba2d6a2
   FPGAServer:
     Type: ALIYUN::ECS::InstanceGroup
     Properties:
@@ -273,9 +243,6 @@ Resources:
       Tags:
       - Key: best_practice
         Value: 090
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: e1efd9ea-fd88-45ea-bb98-89ef7c9349f6
   OssBucket:
     Type: ALIYUN::OSS::Bucket
     Properties:
@@ -290,9 +257,6 @@ Resources:
       Tags:
         Key: best_practice
         Value: 090
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 733a9245-61b1-41e8-aef7-95b295a1fe8e
 Metadata:
   ALIYUN::ROS::Interface:
     ParameterGroups:
@@ -320,55 +284,81 @@ Metadata:
         default: OSS
     TemplateTags:
     - acs:solution:媒体服务:FPGA云服务器加速图片和视频转码
-  ALIYUN::ROS::Designer:
-    6a465382-1162-46f0-9815-4f4eab516383:
-      position:
-        x: 418
-        y: 160
-      size:
-        height: 60
-        width: 60
-      z: 1
-    733a9245-61b1-41e8-aef7-95b295a1fe8e:
-      position:
-        x: 102
-        y: 162
-      size:
-        height: 60
-        width: 60
-      z: 0
-    86b352af-fc5e-4ac5-8222-65817ba2d6a2:
-      embeds:
-      - e1efd9ea-fd88-45ea-bb98-89ef7c9349f6
-      position:
-        x: 235
-        y: 120
-      size:
-        height: 140
-        width: 120
-      z: 1
-    ae1f017f-7c28-4d90-a904-51a567001d7a:
-      source:
-        id: e1efd9ea-fd88-45ea-bb98-89ef7c9349f6
-      target:
-        id: 6a465382-1162-46f0-9815-4f4eab516383
-      z: 1
-    dbe3ba70-d7cc-40c9-8e61-d91fd5585913:
-      embeds:
-      - 6a465382-1162-46f0-9815-4f4eab516383
-      - 86b352af-fc5e-4ac5-8222-65817ba2d6a2
-      position:
-        x: 191
-        y: 50
-      size:
-        height: 288
-        width: 317.0537109375
-      z: 0
-    e1efd9ea-fd88-45ea-bb98-89ef7c9349f6:
-      position:
-        x: 274
-        y: 160
-      size:
-        height: 60
-        width: 60
-      z: 2
+    - acs:public_template:Solution:fpga-cloud-servers
+  ALIYUN::ROS::Composer:
+    a1542f32:
+      Rect:
+        - 580
+        - 410
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    b9d9625e:
+      Parent: a1542f32
+      Rect:
+        - 540
+        - 340
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    fb75359c:
+      Res:
+        - EcsVpc
+      Parent: b9d9625e
+      Rect:
+        - 440
+        - 270
+        - 80
+        - 200
+        - 3
+        - 0
+    243cf94b:
+      Res:
+        - OssBucket
+      Parent: b9d9625e
+      Rect:
+        - 40
+        - 40
+        - 540
+        - 330
+        - 3
+        - 0
+    88847f47:
+      Res:
+        - EcsVSwitch
+      Parent: fb75359c
+      Rect:
+        - 400
+        - 200
+        - 100
+        - 250
+        - 4
+        - 0
+    e02c7f32:
+      Res:
+        - EcsSecurityGroup
+      Parent: fb75359c
+      Rect:
+        - 172
+        - 92
+        - 210
+        - 310
+        - 7
+        - 0
+    eadcc59e:
+      Res:
+        - FPGAServer
+      Parent: 88847f47
+      Rect:
+        - 40
+        - 40
+        - 269
+        - 330
+        - 8
+        - 0
+      Layer:
+        - e02c7f32

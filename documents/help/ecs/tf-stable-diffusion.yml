@@ -184,3 +184,4 @@ Metadata:
   ALIYUN::ROS::Interface:
     TemplateTags:
     - acs:document-help:ecs:使用AMD CPU实例部署Stable Diffusion
+    - acs:public_template:Example:tf-stable-diffusion

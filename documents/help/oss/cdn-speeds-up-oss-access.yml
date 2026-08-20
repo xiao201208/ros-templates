@@ -7,12 +7,12 @@ Conditions:
   CreateBucketConditions:
     Fn::Equals:
     - true
-    - Ref: WhetherCreateBucket
+    - Ref: Whether to create bucket
 Parameters:
-  WhetherCreateBucket:
+  Whether to create bucket:
     Type: Boolean
     Label:
-      en: WhetherCreateBucket
+      en: Whether to create bucket
       zh-cn: 是否新建OSS Bucket
     Default: true
   NewBucketName:
@@ -36,13 +36,13 @@ Parameters:
       Visible:
         Condition:
           Fn::Equals:
-          - ${WhetherCreateBucket}
+          - ${Whether to create bucket}
           - true
     AllowedPattern: ^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$
   ExistBucketName:
     Type: String
     Label:
-      en: Exist BucketName
+      en: Existing bucket name
       zh-cn: 选择已有OSS Bucket
     AssociationProperty: ALIYUN::OSS::Bucket::BucketName
     AssociationPropertyMetadata:
@@ -50,7 +50,7 @@ Parameters:
       Visible:
         Condition:
           Fn::Equals:
-          - ${WhetherCreateBucket}
+          - ${Whether to create bucket}
           - false
     Default: ''
   Scope:
@@ -60,7 +60,7 @@ Parameters:
       en: Region
     Description:
       zh-cn: 加速区域含中国内地时（domestic或global），加速域名必须备案，且账号必须实名认证。
-      en: When the acceleration region includes mainland China（domestic or global）, the accelerated domain must be registered (ICP license), and the account must be verified (real-name authentication).
+      en: When the acceleration region includes mainland China(domestic or global), the accelerated domain must be registered (ICP license), and the account must be verified (real-name authentication).
     Default: domestic
     AllowedValues:
       - domestic
@@ -73,7 +73,7 @@ Parameters:
       en: Accelerated domain name
     Description:
       zh-cn: 加速域名是指接入CDN，用于加速源站的域名。该示例为oss.example.com。
-      en: Accelerated domain name refers to the domain name of the access CDN used to accelerate the source site. The example is oss.example.com.
+      en: "Accelerated domain name refers to the domain name used for CDN access to accelerate the source site. Example: oss.example.com."
     Default: oss.example.com
 Resources:
   OSSBucket:
@@ -170,7 +170,7 @@ Outputs:
       en: Bucket
     Description:
       zh-cn: 文件上传到的bucket控制台页面。可访问该链接查看上传情况。
-      en: Bucket console page, view upload status.
+      en: "Bucket console page: view upload status."
     Value: 
       Fn::If:
         - CreateBucketConditions
@@ -183,3 +183,75 @@ Metadata:
           - DomainName
     TemplateTags:
       - acs:document-help:oss:使用CDN加速OSS访问
+      - acs:public_template:Example:cdn-speeds-up-oss-access
+  ALIYUN::ROS::Composer:
+    a7cb6936:
+      Rect:
+        - 390
+        - 319
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    1113f126:
+      Parent: a7cb6936
+      Rect:
+        - 334
+        - 227
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    6b412ff1:
+      Res:
+        - OSSBucket
+      Parent: 1113f126
+      Rect:
+        - 40
+        - 40
+        - 278
+        - 200
+        - 3
+        - 0
+    7a0d945e:
+      Res:
+        - DomainConfig
+      Parent: 1113f126
+      Rect:
+        - 40
+        - 40
+        - 149
+        - 283
+        - 3
+        - 0
+    ec16a36d:
+      Res:
+        - OpenCdnService
+      Parent: 1113f126
+      Rect:
+        - 40
+        - 40
+        - 278
+        - 283
+        - 3
+        - 0
+    3df61045:
+      Res:
+        - Domain
+      Parent: 1113f126
+      Rect:
+        - 40
+        - 40
+        - 149
+        - 200
+        - 3
+        - 0
+    6aa413b8-e03b-4c78-8799-df969079752e:
+      Parent: 1113f126
+      Edge:
+        - 3df61045
+        - 6b412ff1
+      Line: 0:1:0:#969696:0
+

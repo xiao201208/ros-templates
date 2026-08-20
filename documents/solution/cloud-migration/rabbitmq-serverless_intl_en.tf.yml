@@ -1,0 +1,232 @@
+ROSTemplateFormatVersion: '2015-09-01'
+Transform: Aliyun::Terraform-v1.5
+Metadata:
+  ALIYUN::ROS::Interface:
+    TemplateTags:
+      - acs:technical-solution:cloud-migration:Advantages and best practices of ApsaraMQ for RabbitMQ Serverless Edition-tech_solu_122
+Workspace:
+  variable.tf: |-
+    # ------------------------------------------------------------------------------
+    # Module Input Variables
+    #
+    # This file defines all configurable input variables for this Terraform module.
+    # Each variable includes a detailed description to explain its purpose, format, and default value logic.
+    # Refer to these descriptions to properly configure the module.
+    # ------------------------------------------------------------------------------
+
+  main.tf: |-
+    # ------------------------------------------------------------------------------
+    # Main Resource Definitions
+    #
+    # This file contains the core infrastructure resources for the module.
+    # It is responsible for creating and configuring all cloud resources based on the input variables.
+    # ------------------------------------------------------------------------------
+
+    # Pin alicloud provider version: alicloud_amqp_instance requires vpc_id / vswitch_ids / security_group_id
+    # since v1.274.0. Older providers silently drop these fields and the API call fails with MissingVswitchIds.
+    terraform {
+      required_providers {
+        alicloud = {
+          source  = "hashicorp/alicloud"
+          version = ">= 1.274.0"
+        }
+      }
+    }
+
+    # Configure the Alibaba Cloud provider
+    provider "alicloud" {
+      region = "ap-southeast-1"
+    }
+
+    # Query the current deployment region
+    data "alicloud_regions" "current_region_ds" {
+      current = true
+    }
+
+    # Create a random ID to generate a unique resource name suffix to avoid naming conflicts
+    resource "random_string" "suffix" {
+      length  = 8
+      lower   = true
+      upper   = false
+      numeric = false
+      special = false
+    }
+
+    # Define a local variable to use the random ID as a common name suffix
+    locals {
+      common_name = random_string.suffix.id
+      region = data.alicloud_regions.current_region_ds.regions.0.id
+    }
+
+    # Query NLB-supported zones in the current region.
+    # RabbitMQ Serverless uses PrivateLink + NLB internally, so VSwitch zones must be a subset of NLB-supported zones.
+    data "alicloud_nlb_zones" "default" {}
+
+    # Create a VPC (RabbitMQ Serverless instance requires an associated VPC)
+    resource "alicloud_vpc" "default" {
+      vpc_name   = "vpc-rabbitmq-${local.common_name}"
+      cidr_block = "172.16.0.0/16"
+    }
+
+    # Create two VSwitches in different NLB-supported zones (alicloud_amqp_instance requires exactly 2 vswitch_ids)
+    resource "alicloud_vswitch" "vsw1" {
+      vpc_id       = alicloud_vpc.default.id
+      cidr_block   = "172.16.1.0/24"
+      zone_id      = data.alicloud_nlb_zones.default.zones.0.zone_id
+      vswitch_name = "vsw-rabbitmq-1-${local.common_name}"
+    }
+
+    resource "alicloud_vswitch" "vsw2" {
+      vpc_id       = alicloud_vpc.default.id
+      cidr_block   = "172.16.2.0/24"
+      zone_id      = data.alicloud_nlb_zones.default.zones.1.zone_id
+      vswitch_name = "vsw-rabbitmq-2-${local.common_name}"
+    }
+
+    # Create a security group
+    resource "alicloud_security_group" "default" {
+      name   = "sg-rabbitmq-${local.common_name}"
+      vpc_id = alicloud_vpc.default.id
+    }
+
+    # Create RabbitMQ service-linked roles:
+    # - AliyunServiceRoleForAmqpNetwork: required when the instance accesses the VPC via PrivateLink
+    # - AliyunServiceRoleForAmqpMonitoring: required when support_tracing=true enables monitoring/Dashboard
+    # When a brand-new account creates an AMQP instance for the first time without these SLRs,
+    # the AMQP backend returns "the role doesn't exist (please create the service-linked role first)".
+    # The data sources probe whether the roles already exist (case-insensitive, because the actual
+    # role name may be AliyunServiceRoleForAMQPNetwork while docs use Amqp), so re-runs do not
+    # fail with EntityAlreadyExists.Role.
+
+    # Activate the PrivateLink service: RabbitMQ Serverless accesses the VPC via PrivateLink,
+    # and the AMQP backend returns "user doesn't activate pvl product" when the account has not
+    # activated PrivateLink. This data source idempotently opens the service; if it is already
+    # opened, it simply returns the existing status.
+    data "alicloud_privatelink_service" "open" {
+      enable = "On"
+    }
+
+    data "alicloud_ram_roles" "amqp_network_check" {
+      name_regex = "(?i)^AliyunServiceRoleForAmqpNetwork$"
+    }
+
+    data "alicloud_ram_roles" "amqp_monitoring_check" {
+      name_regex = "(?i)^AliyunServiceRoleForAmqpMonitoring$"
+    }
+
+    resource "alicloud_resource_manager_service_linked_role" "amqp_network" {
+      count        = length(data.alicloud_ram_roles.amqp_network_check.roles) == 0 ? 1 : 0
+      service_name = "network.amqp.aliyuncs.com"
+    }
+
+    resource "alicloud_resource_manager_service_linked_role" "amqp_monitoring" {
+      count        = length(data.alicloud_ram_roles.amqp_monitoring_check.roles) == 0 ? 1 : 0
+      service_name = "monitoring.amqp.aliyuncs.com"
+    }
+
+    # Create a RAM user
+    resource "alicloud_ram_user" "ram_user" {
+      name = "create-by-solution-${local.common_name}"
+    }
+
+    # Generate an AccessKey pair for the RAM user created above
+    resource "alicloud_ram_access_key" "ramak" {
+      user_name = alicloud_ram_user.ram_user.name
+    }
+
+    # Create a RAM policy
+    resource "alicloud_ram_policy" "policy" {
+      policy_name     = "ram-policy-${local.common_name}"
+      policy_document = <<EOF
+      {
+        "Version": "1",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Action": [
+              "amqp:*",
+              "amqp-open:*"
+            ],
+            "Resource": "*"
+          }
+        ]
+      }
+      EOF
+      description     = "allow all amqp operations"
+    }
+
+    # Attach the RAM policy to the RAM user
+    resource "alicloud_ram_user_policy_attachment" "attach_policy_to_user" {
+      user_name   = alicloud_ram_user.ram_user.name
+      policy_type = "Custom"
+      policy_name = alicloud_ram_policy.policy.policy_name
+    }
+
+    # Create a RabbitMQ instance
+    resource "alicloud_amqp_instance" "default" {
+      instance_name          = "test-instance-${local.common_name}"
+      payment_type           = "PayAsYouGo"
+      serverless_charge_type = "onDemand"
+      support_eip            = true
+      support_tracing        = true
+      vpc_id                 = alicloud_vpc.default.id
+      vswitch_ids            = [alicloud_vswitch.vsw1.id, alicloud_vswitch.vsw2.id]
+      security_group_id      = alicloud_security_group.default.id
+
+      depends_on = [
+        data.alicloud_privatelink_service.open,
+        data.alicloud_ram_roles.amqp_network_check,
+        data.alicloud_ram_roles.amqp_monitoring_check,
+        alicloud_resource_manager_service_linked_role.amqp_network,
+        alicloud_resource_manager_service_linked_role.amqp_monitoring,
+      ]
+    }
+
+    resource "alicloud_amqp_static_account" "default" {
+      instance_id = alicloud_amqp_instance.default.id
+      access_key  = alicloud_ram_access_key.ramak.id
+      secret_key  = alicloud_ram_access_key.ramak.secret
+    }
+
+    resource "alicloud_amqp_virtual_host" "default" {
+      instance_id       = alicloud_amqp_instance.default.id
+      virtual_host_name = "test-vhost"
+    }
+
+    resource "alicloud_amqp_exchange" "default" {
+      virtual_host_name = alicloud_amqp_virtual_host.default.virtual_host_name
+      instance_id       = alicloud_amqp_instance.default.id
+      internal          = false
+      auto_delete_state = false
+      exchange_name     = "test-exchange"
+      exchange_type     = "DIRECT"
+    }
+
+    resource "alicloud_amqp_queue" "default" {
+      instance_id       = alicloud_amqp_instance.default.id
+      queue_name        = "test-queue"
+      virtual_host_name = alicloud_amqp_virtual_host.default.virtual_host_name
+      auto_delete_state = false
+    }
+
+    resource "alicloud_amqp_binding" "default" {
+      binding_key       = "test-routing-key"
+      binding_type      = "QUEUE"
+      destination_name  = alicloud_amqp_queue.default.queue_name
+      instance_id       = alicloud_amqp_instance.default.id
+      source_exchange   = alicloud_amqp_exchange.default.exchange_name
+      virtual_host_name = alicloud_amqp_virtual_host.default.virtual_host_name
+    }
+
+  output.tf: |-
+    # ------------------------------------------------------------------------------
+    # Module Outputs
+    #
+    # This file defines the values returned to the caller after the module execution is successful.
+    # These outputs can be referenced by other Terraform configurations, or displayed to users after the apply command completes.
+    # ------------------------------------------------------------------------------
+
+    output "rabbitmq_detail_address" {
+      description = "The details page of the RabbitMQ instance."
+      value       = format("https://amqp.console.aliyun.com/region/%s/instance/%s/instance-detail", local.region, alicloud_amqp_instance.default.id)
+    }

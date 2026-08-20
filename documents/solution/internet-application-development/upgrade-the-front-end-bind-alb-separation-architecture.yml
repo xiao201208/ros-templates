@@ -1,0 +1,996 @@
+ROSTemplateFormatVersion: '2015-09-01'
+Description:
+  zh-cn: 10分钟完成前后端分离架构升级。
+  en: Complete front-end separation architecture upgrade in 10 minutes.
+Parameters:
+  CommonName:
+    Type: String
+    Default: front-end-separation-architecture
+  ZoneId1:
+    AssociationProperty: ALIYUN::ECS::Instance::ZoneId
+    AssociationPropertyMetadata:
+      ExclusiveTo:
+        - ZoneId2
+    Type: String
+    Description:
+      zh-cn: 可用区ID。<br><b>注： <font color='blue'>选择可用区前请确认该可用区是否支持创建ECS资源的规格</font></b>
+      en: Availability Zone ID,<br><b>note： <font color='blue'>Before selecting, please confirm that the Availability Zone supports the specification of creating ECS resources</font></b>
+    Label:
+      zh-cn: 可用区ID
+      en: Available Zone ID
+  ZoneId2:
+    AssociationProperty: ALIYUN::ECS::Instance::ZoneId
+    AssociationPropertyMetadata:
+      ExclusiveTo:
+        - ZoneId1
+    Type: String
+    Description:
+      zh-cn: 可用区ID。<br><b>注： <font color='blue'>选择可用区前请确认该可用区是否支持创建ECS资源的规格</font></b>
+      en: Availability Zone ID,<br><b>note： <font color='blue'>Before selecting, please confirm that the Availability Zone supports the specification of creating ECS resources</font></b>
+    Label:
+      zh-cn: 可用区ID
+      en: Available Zone ID
+  InstanceType1:
+    Type: String
+    AssociationProperty: 'ALIYUN::ECS::Instance::InstanceType'
+    AssociationPropertyMetadata:
+      InstanceChargeType: PostPaid
+      SystemDiskCategory: cloud_essd
+      ZoneId: ${ZoneId1}
+    Label:
+      en: ECS Instance Type
+      zh-cn: ECS 的实例规格
+    Default: ecs.e-c1m2.large
+  InstanceType2:
+    Type: String
+    AssociationProperty: 'ALIYUN::ECS::Instance::InstanceType'
+    AssociationPropertyMetadata:
+      InstanceChargeType: PostPaid
+      SystemDiskCategory: cloud_essd
+      ZoneId: ${ZoneId2}
+    Label:
+      en: ECS Instance Type
+      zh-cn: ECS的实例规格
+    Default: ecs.e-c1m2.large
+  InstancePassword:
+    Type: String
+    Description:
+      en: Server login password, Length 8-30, must contain three(Capital letters, lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in). <br><b>note： <font color='blue'>This password is used for all ECS instance configurations.</font></b>
+      zh-cn: 服务器登录密码,长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/中的特殊符号。<br><b>注： <font color='blue'>此密码同时用于四台ECS实例配置。</font></b>
+    Label:
+      en: ECS Instance Password
+      zh-cn: ECS实例密码
+    ConstraintDescription:
+      en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in)
+      zh-cn: '长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;''<>,.?/ 中的特殊符号）'
+    AssociationProperty: 'ALIYUN::ECS::Instance::Password'
+    NoEcho: true
+  BackendLoadBalancerName:
+    Type: String
+    Label:
+      en: Private network type ALB instance name
+      zh-cn: 私网类型ALB实例名称
+    Description:
+      en: The name of the load balancing ALB instance, [2, 128] English or Chinese characters, must
+        start with a letter or Chinese in size, can contain numbers, '_' or '.', '-'.
+      zh-cn: 后端服务私网负载均衡 ALB 实例的名称，长度为1~80个字符。可包含英文字母、数字、短划线（-）、正斜线（/）、半角句号（.）和下划线（_）。
+    ConstraintDescription:
+      en: 'The length is 1 to 80 characters. It can contain English letters, numbers, hyphens (-), vertical and diagonal lines (/), and half-width full stops (.) And the underline (_).'
+      zh-cn: '长度为1~80个字符。可包含英文字母、数字、短划线（-）、正斜线（/）、半角句号（.）和下划线（_）。'
+    AllowedPattern: '^[A-Za-z0-9\/._-]{1,80}$'
+    Default: backend_alb
+    MinLength: 1
+    MaxLength: 80
+  FrontendBalancerName:
+    Type: String
+    Label:
+      en: Internet network type ALB instance name
+      zh-cn: 公网类型ALB实例名称
+    Description:
+      en: The name of the front-end service internet network load balancing ALB instance, [2, 128] English or Chinese characters, must
+        start with a letter or Chinese in size, can contain numbers, '_' or '.', '-'.
+      zh-cn: 前端服务公网负载均衡 ALB 实例的名称，长度为1~80个字符。可包含英文字母、数字、短划线（-）、正斜线（/）、半角句号（.）和下划线（_）。
+    ConstraintDescription:
+      en: 'The length is 1 to 80 characters. It can contain English letters, numbers, hyphens (-), vertical and diagonal lines (/), and half-width full stops (.) And the underline (_).'
+      zh-cn: '长度为1~80个字符。可包含英文字母、数字、短划线（-）、正斜线（/）、半角句号（.）和下划线（_）。'
+    AllowedPattern: '^[A-Za-z0-9\/._-]{1,80}$'
+    Default: frontend_alb
+    MinLength: 1
+    MaxLength: 80
+Resources:
+  Vpc:
+    Type: 'ALIYUN::ECS::VPC'
+    Properties:
+      CidrBlock: 192.168.0.0/16
+      VpcName:
+        Fn::Sub: ${CommonName}-VPC_HZ
+  VSwitch1:
+    Type: ALIYUN::ECS::VSwitch
+    Properties:
+      VpcId:
+        Ref: Vpc
+      CidrBlock: 192.168.1.0/24
+      ZoneId:
+        Ref: ZoneId1
+      VSwitchName: vsw_001
+  VSwitch2:
+    Type: ALIYUN::ECS::VSwitch
+    Properties:
+      VpcId:
+        Ref: Vpc
+      CidrBlock: 192.168.2.0/24
+      ZoneId:
+        Ref: ZoneId1
+      VSwitchName: vsw_002
+  VSwitch3:
+    Type: ALIYUN::ECS::VSwitch
+    Properties:
+      VpcId:
+        Ref: Vpc
+      CidrBlock: 192.168.3.0/24
+      ZoneId:
+        Ref: ZoneId2
+      VSwitchName: vsw_003
+  VSwitch4:
+    Type: ALIYUN::ECS::VSwitch
+    Properties:
+      VpcId:
+        Ref: Vpc
+      CidrBlock: 192.168.4.0/24
+      ZoneId:
+        Ref: ZoneId2
+      VSwitchName: vsw_004
+  SecurityGroup1:
+    Type: 'ALIYUN::ECS::SecurityGroup'
+    Properties:
+      VpcId:
+        Ref: Vpc
+      SecurityGroupName:
+        Fn::Sub: ${CommonName}-SecurityGroup_1
+  SecurityGroup2:
+    Type: 'ALIYUN::ECS::SecurityGroup'
+    Properties:
+      VpcId:
+        Ref: Vpc
+      SecurityGroupName:
+        Fn::Sub: ${CommonName}-SecurityGroup_2
+  EcsInstance1:
+    Type: 'ALIYUN::ECS::InstanceGroup'
+    Properties:
+      VpcId:
+        Ref: Vpc
+      ZoneId:
+        Ref: ZoneId1
+      VSwitchId:
+        Ref: VSwitch1
+      SecurityGroupId:
+        Ref: SecurityGroup1
+      ImageId: aliyun_3_9_x64_20G_alibase_
+      InstanceName:
+        Fn::Sub: ${CommonName}-ecs
+      InstanceType:
+        Ref: InstanceType1
+      SystemDiskCategory: cloud_essd
+      MaxAmount: 1
+      InternetMaxBandwidthOut: 5
+      SystemDiskSize: 40
+      Password:
+        Ref: InstancePassword
+  EcsInstance2:
+    Type: 'ALIYUN::ECS::InstanceGroup'
+    Properties:
+      VpcId:
+        Ref: Vpc
+      ZoneId:
+        Ref: ZoneId1
+      VSwitchId:
+        Ref: VSwitch2
+      SecurityGroupId:
+        Ref: SecurityGroup1
+      ImageId: aliyun_3_9_x64_20G_alibase_
+      InstanceName:
+        Fn::Sub: ${CommonName}-ecs
+      InstanceType:
+        Ref: InstanceType1
+      SystemDiskCategory: cloud_essd
+      MaxAmount: 1
+      InternetMaxBandwidthOut: 5
+      SystemDiskSize: 40
+      Password:
+        Ref: InstancePassword
+  EcsInstance3:
+    Type: 'ALIYUN::ECS::InstanceGroup'
+    Properties:
+      VpcId:
+        Ref: Vpc
+      ZoneId:
+        Ref: ZoneId2
+      VSwitchId:
+        Ref: VSwitch3
+      SecurityGroupId:
+        Ref: SecurityGroup1
+      ImageId: aliyun_3_9_x64_20G_alibase_
+      InstanceName:
+        Fn::Sub: ${CommonName}-ecs
+      InstanceType:
+        Ref: InstanceType2
+      SystemDiskCategory: cloud_essd
+      MaxAmount: 1
+      InternetMaxBandwidthOut: 5
+      SystemDiskSize: 40
+      Password:
+        Ref: InstancePassword
+  EcsInstance4:
+    Type: 'ALIYUN::ECS::InstanceGroup'
+    Properties:
+      VpcId:
+        Ref: Vpc
+      ZoneId:
+        Ref: ZoneId2
+      VSwitchId:
+        Ref: VSwitch4
+      SecurityGroupId:
+        Ref: SecurityGroup1
+      ImageId: aliyun_3_9_x64_20G_alibase_
+      InstanceName:
+        Fn::Sub: ${CommonName}-ecs
+      InstanceType:
+        Ref: InstanceType2
+      SystemDiskCategory: cloud_essd
+      MaxAmount: 1
+      InternetMaxBandwidthOut: 5
+      SystemDiskSize: 40
+      Password:
+        Ref: InstancePassword
+  WaitConditionHandle:
+    Type: 'ALIYUN::ROS::WaitConditionHandle'
+    Properties: { }
+  RosWaitCondition:
+    Type: 'ALIYUN::ROS::WaitCondition'
+    Properties:
+      Count: 2
+      Handle:
+        Ref: WaitConditionHandle
+      Timeout: 3600
+  RunCommand2:
+    Type: 'ALIYUN::ECS::RunCommand'
+    DependsOn:
+      - RunCommand1
+      - RunCommand3
+    Properties:
+      InstanceIds:
+        Fn::GetAtt:
+          - EcsInstance2
+          - InstanceIds
+      Type: RunShellScript
+      Sync: true
+      Timeout: 3600
+      CommandContent:
+        Fn::Sub: |
+            #!/bin/bash
+            export ROS_DEPLOY=true
+
+            curl -fsSL https://help-static-aliyun-doc.aliyuncs.com/install-script/frontend-backend-separation-architecture/java.sh | bash
+
+            curl -I http://localhost:8080/api/getEcsReleaseNotes
+  RunCommand4:
+    Type: 'ALIYUN::ECS::RunCommand'
+    DependsOn:
+      - RunCommand1
+      - RunCommand3
+    Properties:
+      InstanceIds:
+        Fn::GetAtt:
+          - EcsInstance4
+          - InstanceIds
+      Type: RunShellScript
+      Sync: true
+      Timeout: 3600
+      CommandContent:
+        Fn::Sub: |
+          #!/bin/bash
+          export ROS_DEPLOY=true
+          
+          curl -fsSL https://help-static-aliyun-doc.aliyuncs.com/install-script/frontend-backend-separation-architecture/java.sh | bash
+          
+          curl -I http://localhost:8080/api/getEcsReleaseNotes
+
+  RunCommand1:
+    Type: 'ALIYUN::ECS::RunCommand'
+    Properties:
+      InstanceIds:
+        Fn::GetAtt:
+          - EcsInstance1
+          - InstanceIds
+      Type: RunShellScript
+      Sync: true
+      Timeout: 3600
+      CommandContent:
+        Fn::Sub:
+          - |
+            #!/bin/bash
+            export ROS_DEPLOY=true
+            
+            sudo yum install -y nginx
+            sudo yum install -y unzip
+            sudo wget -O $HOME/pages.zip https://help-static-aliyun-doc.aliyuncs.com/install-script/frontend-backend-separation-architecture/pages.zip
+            sudo unzip -o $HOME/pages.zip
+            sudo chmod -R a+rx $HOME/dist/
+            sudo cp -r $HOME/dist/* /usr/share/nginx/html
+            
+            sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
+            cat << "EOF" > /etc/nginx/nginx.conf
+            user nginx;
+            worker_processes auto;
+            error_log /var/log/nginx/error.log;
+            pid /run/nginx.pid;
+            
+            # Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
+            include /usr/share/nginx/modules/*.conf;
+            
+            events {
+                worker_connections 1024;
+            }
+            
+            http {
+                log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                                  '$status $body_bytes_sent "$http_referer" '
+                                  '"$http_user_agent" "$http_x_forwarded_for"';
+            
+                access_log  /var/log/nginx/access.log  main;
+            
+                sendfile            on;
+                tcp_nopush          on;
+                tcp_nodelay         on;
+                keepalive_timeout   65;
+                types_hash_max_size 4096;
+            
+                include             /etc/nginx/mime.types;
+                default_type        application/octet-stream;
+            
+                # Load modular configuration files from the /etc/nginx/conf.d directory.
+                # See http://nginx.org/en/docs/ngx_core_module.html#include
+                # for more information.
+                include /etc/nginx/conf.d/*.conf;
+            
+                server {
+                    listen       80 default_server;
+                    listen       [::]:80;
+                    server_name  _;
+                    root         /usr/share/nginx/html;
+            
+                    # Load configuration files for the default server block.
+                    include /etc/nginx/default.d/*.conf;
+            
+                    location / {
+                      root /usr/share/nginx/html;
+                      index index.html;
+                    }
+                    
+                    location /api/{
+                      proxy_pass  http://${PrivateIp}:8080/api/; 
+                    }
+            
+                    error_page 404 /error.html;
+                    location = /error.html {
+                        root /usr/share/nginx/html;
+                    }
+            
+                    error_page 500 502 503 504 /50x.html;
+                        location = /50x.html {
+                    }
+                }
+            }    
+            EOF
+            
+            sudo systemctl start nginx
+            sudo systemctl enable nginx
+            
+            ${WaitConditionHandle.CurlCli} --data-binary '{"status": "SUCCESS"}'
+          - PrivateIp:
+              Fn::GetAtt:
+                - BackendALB
+                - DNSName
+  RunCommand3:
+    Type: 'ALIYUN::ECS::RunCommand'
+    Properties:
+      InstanceIds:
+        Fn::GetAtt:
+          - EcsInstance3
+          - InstanceIds
+      Type: RunShellScript
+      Sync: true
+      Timeout: 3600
+      CommandContent:
+        Fn::Sub:
+          - |
+            #!/bin/bash
+            export ROS_DEPLOY=true
+            
+            sudo yum install -y nginx
+            sudo yum install -y unzip
+            sudo wget -O $HOME/pages.zip https://help-static-aliyun-doc.aliyuncs.com/install-script/frontend-backend-separation-architecture/pages.zip
+            sudo unzip -o $HOME/pages.zip
+            sudo chmod -R a+rx $HOME/dist/
+            sudo cp -r $HOME/dist/* /usr/share/nginx/html
+            
+            sudo mv /etc/nginx/nginx.conf /etc/nginx/nginx.conf.bak
+            cat << "EOF" > /etc/nginx/nginx.conf
+            user nginx;
+            worker_processes auto;
+            error_log /var/log/nginx/error.log;
+            pid /run/nginx.pid;
+            
+            # Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
+            include /usr/share/nginx/modules/*.conf;
+            
+            events {
+                worker_connections 1024;
+            }
+            
+            http {
+                log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                                  '$status $body_bytes_sent "$http_referer" '
+                                  '"$http_user_agent" "$http_x_forwarded_for"';
+            
+                access_log  /var/log/nginx/access.log  main;
+            
+                sendfile            on;
+                tcp_nopush          on;
+                tcp_nodelay         on;
+                keepalive_timeout   65;
+                types_hash_max_size 4096;
+            
+                include             /etc/nginx/mime.types;
+                default_type        application/octet-stream;
+            
+                # Load modular configuration files from the /etc/nginx/conf.d directory.
+                # See http://nginx.org/en/docs/ngx_core_module.html#include
+                # for more information.
+                include /etc/nginx/conf.d/*.conf;
+            
+                server {
+                    listen       80 default_server;
+                    listen       [::]:80;
+                    server_name  _;
+                    root         /usr/share/nginx/html;
+            
+                    # Load configuration files for the default server block.
+                    include /etc/nginx/default.d/*.conf;
+            
+                    location / {
+                      root /usr/share/nginx/html;
+                      index index.html;
+                    }
+                    
+                    location /api/{
+                      proxy_pass  http://${PrivateIp}:8080/api/; 
+                    }
+            
+                    error_page 404 /error.html;
+                    location = /error.html {
+                        root /usr/share/nginx/html;
+                    }
+            
+                    error_page 500 502 503 504 /50x.html;
+                        location = /50x.html {
+                    }
+                }
+            }    
+            EOF
+            
+            sudo systemctl start nginx
+            sudo systemctl enable nginx
+            
+            ${WaitConditionHandle.CurlCli} --data-binary '{"status": "SUCCESS"}'
+          - PrivateIp:
+              Fn::GetAtt:
+                - BackendALB
+                - DNSName
+  BackendALB:
+    Type: 'ALIYUN::ALB::LoadBalancer'
+    Properties:
+      LoadBalancerName:
+        Ref: BackendLoadBalancerName
+      LoadBalancerEdition: Basic
+      VpcId:
+        Ref: Vpc
+      LoadBalancerBillingConfig:
+        PayType: PostPay
+      AddressType: Intranet
+      ZoneMappings:
+        - ZoneId:
+            Ref: ZoneId1
+          VSwitchId:
+            Ref: VSwitch2
+        - ZoneId:
+            Ref: ZoneId2
+          VSwitchId:
+            Ref: VSwitch4
+  BackendAlbServerGroup:
+    Type: 'ALIYUN::ALB::ServerGroup'
+    Properties:
+      VpcId:
+        Ref: Vpc
+      ServerGroupType: Instance
+      ServerGroupName: backend-alb-server-group
+      HealthCheckConfig:
+        HealthCheckConnectPort: 8080
+        HealthCheckCodes:
+          - http_2xx
+          - http_3xx
+        HealthCheckProtocol: HTTP
+        HealthCheckEnabled: true
+        HealthCheckPath: /
+      StickySessionConfig:
+        StickySessionEnabled: false
+  BackendAlbBackendServerAttachment:
+    Type: 'ALIYUN::ALB::BackendServerAttachment'
+    Properties:
+      ServerGroupId:
+        Ref: BackendAlbServerGroup
+      Servers:
+        - ServerType: Ecs
+          ServerId:
+            Ref: EcsInstance2
+          Port: 8080
+        - ServerType: Ecs
+          ServerId:
+            Ref: EcsInstance4
+          Port: 8080
+  BackendAlbListener:
+    Type: 'ALIYUN::ALB::Listener'
+    Properties:
+      ListenerPort: 8080
+      DefaultActions:
+        - Type: ForwardGroup
+          ForwardGroupConfig:
+            ServerGroupTuples:
+              - ServerGroupId:
+                  Ref: BackendAlbServerGroup
+      LoadBalancerId:
+        Ref: BackendALB
+      ListenerProtocol: HTTP
+  FrontendALB:
+    Type: 'ALIYUN::ALB::LoadBalancer'
+    Properties:
+      LoadBalancerName:
+        Ref: FrontendBalancerName
+      LoadBalancerEdition: Basic
+      VpcId:
+        Ref: Vpc
+      LoadBalancerBillingConfig:
+        PayType: PostPay
+      AddressType: Internet
+      ZoneMappings:
+        - ZoneId:
+            Ref: ZoneId1
+          VSwitchId:
+            Ref: VSwitch1
+        - ZoneId:
+            Ref: ZoneId2
+          VSwitchId:
+            Ref: VSwitch3
+  FrontendAlbServerGroup:
+    Type: 'ALIYUN::ALB::ServerGroup'
+    Properties:
+      VpcId:
+        Ref: Vpc
+      ServerGroupType: Instance
+      ServerGroupName: frontend-alb-server-group
+      HealthCheckConfig:
+        HealthCheckConnectPort: 80
+        HealthCheckCodes:
+          - http_2xx
+          - http_3xx
+        HealthCheckProtocol: HTTP
+        HealthCheckEnabled: true
+        HealthCheckPath: /
+      StickySessionConfig:
+        StickySessionEnabled: false
+  FrontendAlbBackendServerAttachment:
+    Type: 'ALIYUN::ALB::BackendServerAttachment'
+    Properties:
+      ServerGroupId:
+        Ref: FrontendAlbServerGroup
+      Servers:
+        - ServerType: Ecs
+          ServerId:
+            Ref: EcsInstance1
+          Port: 80
+        - ServerType: Ecs
+          ServerId:
+            Ref: EcsInstance3
+          Port: 80
+  FrontendAlbListener:
+    Type: 'ALIYUN::ALB::Listener'
+    Properties:
+      ListenerPort: 80
+      DefaultActions:
+        - Type: ForwardGroup
+          ForwardGroupConfig:
+            ServerGroupTuples:
+              - ServerGroupId:
+                  Ref: FrontendAlbServerGroup
+      LoadBalancerId:
+        Ref: FrontendALB
+      ListenerProtocol: HTTP
+Outputs:
+  WebUrl:
+    Description:
+      zh-cn: 示例网站地址。
+      en: Sample website address.
+    Value:
+      Fn::Sub:
+        - http://${IP}
+        - IP:
+            Fn::Jq:
+              - First
+              - .[0].LoadBalancerAddresses[0].Address
+              - Fn::GetAtt:
+                  - FrontendALB
+                  - ZoneMappings
+Metadata:
+  'ALIYUN::ROS::Interface':
+    ParameterGroups:
+      - Parameters:
+          - ZoneId1
+          - InstanceType1
+        Label:
+          en: Configuration of ECS instance in Availability Zone 1
+          zh-cn: 可用区 1 ECS 实例配置
+      - Parameters:
+          - ZoneId2
+          - InstanceType2
+        Label:
+          en: Configuration of ECS instance in Availability Zone 2
+          zh-cn: 可用区 2 ECS 实例配置
+      - Parameters:
+          - InstancePassword
+      - Parameters:
+          - BackendLoadBalancerName
+          - FrontendBalancerName
+        Label:
+          en: ALB Configuration
+          zh-cn: 负载均衡 ALB 实例配置
+    TemplateTags:
+      - acs:technical-solution:internet-application-development:10分钟完成前后端分离架构升级
+    Hidden:
+      - CommonName
+  ALIYUN::ROS::Composer:
+    55e63ddc:
+      Rect:
+        - 1363
+        - 873
+        - -18
+        - 13
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    bef5db50:
+      Parent: 55e63ddc
+      Rect:
+        - 1240
+        - 756
+        - 51
+        - 97
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    44d0a81f:
+      Res:
+        - Vpc
+      Parent: bef5db50
+      Rect:
+        - 1169
+        - 632
+        - 75
+        - 178
+        - 3
+        - 0
+    c072a7e9:
+      Res:
+        - WaitConditionHandle
+      Parent: bef5db50
+      Rect:
+        - 40
+        - 40
+        - 95
+        - 391
+        - 3
+        - 0
+    c8bc8a6f:
+      Res:
+        - RunCommand1
+      Parent: bef5db50
+      Rect:
+        - 40
+        - 40
+        - 188
+        - 351
+        - 3
+        - 0
+    4f61a072:
+      Parent: 44d0a81f
+      Rect:
+        - 701
+        - 266
+        - 314
+        - 218
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    b2e8862d:
+      Parent: 44d0a81f
+      Rect:
+        - 773
+        - 268
+        - 318
+        - 506
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    5ddd2610:
+      Res:
+        - VSwitch1
+      Parent: 4f61a072
+      Rect:
+        - 185
+        - 148
+        - 424
+        - 290
+        - 5
+        - 0
+    adbaaa64:
+      Res:
+        - VSwitch2
+      Parent: 4f61a072
+      Rect:
+        - 163
+        - 145
+        - 743
+        - 296
+        - 5
+        - 0
+    f0a0f7be:
+      Res:
+        - VSwitch3
+      Parent: b2e8862d
+      Rect:
+        - 191
+        - 180
+        - 415
+        - 558
+        - 5
+        - 0
+    74f60349:
+      Res:
+        - VSwitch4
+      Parent: b2e8862d
+      Rect:
+        - 167
+        - 186
+        - 741
+        - 552
+        - 5
+        - 0
+    71a1c263:
+      Res:
+        - RunCommand2
+      Parent: bef5db50
+      Rect:
+        - 40
+        - 40
+        - 1139
+        - 351
+        - 11
+        - 0
+    695de657:
+      Res:
+        - RunCommand4
+      Parent: bef5db50
+      Rect:
+        - 40
+        - 40
+        - 1139
+        - 628
+        - 11
+        - 0
+    c29e3186:
+      Res:
+        - BackendALB
+        - BackendAlbListener
+      Ref:
+        - BackendAlbListener
+      Parent: 44d0a81f
+      Rect:
+        - 40
+        - 40
+        - 1139
+        - 504
+        - 11
+        - 0
+    50b2f9c4:
+      Res:
+        - FrontendALB
+        - FrontendAlbListener
+      Ref:
+        - FrontendAlbListener
+      Parent: 44d0a81f
+      Rect:
+        - 40
+        - 40
+        - 188
+        - 506
+        - 12
+        - 0
+    b4a929d9:
+      Res:
+        - RunCommand3
+      Parent: bef5db50
+      Rect:
+        - 40
+        - 40
+        - 202
+        - 628
+        - 12
+        - 0
+    fe90582f:
+      Res:
+        - RosWaitCondition
+      Parent: bef5db50
+      Rect:
+        - 40
+        - 40
+        - 95
+        - 518
+        - 12
+        - 0
+    '29886e05':
+      Parent: bef5db50
+      Edge:
+        - fe90582f
+        - c072a7e9
+      Line: 0:0:0:gray:0
+    2fca3d42:
+      Parent: bef5db50
+      Edge:
+        - 71a1c263
+        - 95c0af47
+      Line: 0:0:0:gray:0
+    b61947de:
+      Parent: bef5db50
+      Edge:
+        - 695de657
+        - 25d73724
+      Line: 0:0:0:gray:0
+    2acf3229:
+      Parent: bef5db50
+      Edge:
+        - c8bc8a6f
+        - 3988afb9
+      Line: 0:0:0:gray:0
+    71946bd9:
+      Parent: bef5db50
+      Edge:
+        - b4a929d9
+        - 1c27819e
+      Line: 0:0:0:gray:0
+    5ac7cd2f:
+      Parent: 44d0a81f
+      Edge:
+        - c29e3186
+        - 42ed08ee
+      Line: 0:0:0:gray:0
+    74056fc3:
+      Parent: 44d0a81f
+      Edge:
+        - 50b2f9c4
+        - fa81fc7a
+      Line: 0:0:0:gray:0
+    75b67f15:
+      Res:
+        - SecurityGroup2
+      Parent: 44d0a81f
+      Rect:
+        - 539
+        - 219
+        - 398
+        - 535
+        - 25
+        - 0
+    42ed08ee:
+      Res:
+        - BackendAlbServerGroup
+        - BackendAlbBackendServerAttachment
+      Ref:
+        - BackendAlbBackendServerAttachment
+      Parent: 44d0a81f
+      Rect:
+        - 127
+        - 402
+        - 763
+        - 323
+        - 25
+        - 0
+    fa81fc7a:
+      Res:
+        - FrontendAlbServerGroup
+        - FrontendAlbBackendServerAttachment
+      Ref:
+        - FrontendAlbBackendServerAttachment
+      Parent: 44d0a81f
+      Rect:
+        - 170
+        - 412
+        - 431
+        - 319
+        - 25
+        - 0
+    7661a5a0:
+      Res:
+        - SecurityGroup1
+      Parent: 44d0a81f
+      Rect:
+        - 560
+        - 205
+        - 388
+        - 260
+        - 25
+        - 0
+    25d73724:
+      Res:
+        - EcsInstance4
+      Parent: 74f60349
+      Rect:
+        - 40
+        - 40
+        - 805
+        - 628
+        - 26
+        - 0
+      Layer:
+        - 75b67f15
+        - 42ed08ee
+    1c27819e:
+      Res:
+        - EcsInstance3
+      Parent: f0a0f7be
+      Rect:
+        - 40
+        - 40
+        - 484
+        - 628
+        - 26
+        - 0
+      Layer:
+        - 75b67f15
+        - fa81fc7a
+    95c0af47:
+      Res:
+        - EcsInstance2
+      Parent: adbaaa64
+      Rect:
+        - 40
+        - 40
+        - 805
+        - 351
+        - 26
+        - 0
+      Layer:
+        - 7661a5a0
+        - 42ed08ee
+    3988afb9:
+      Res:
+        - EcsInstance1
+      Parent: 5ddd2610
+      Rect:
+        - 40
+        - 40
+        - 484
+        - 351
+        - 26
+        - 0
+      Layer:
+        - 7661a5a0
+        - fa81fc7a

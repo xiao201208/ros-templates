@@ -11,7 +11,7 @@ Parameters:
       en: Existing VPC Instance ID
       zh-cn: 现有VPC的实例ID
     Description:
-      en: Please search the ID starts with (vpc-xxx)from console-Virtual Private Cloud
+      en: Please search for the ID starting with (vpc-xxx) from Console - Virtual Private Cloud
       zh-cn: 现有虚拟专有网络的实例ID,控制台-VPC-专有网络下查询
     AssociationProperty: ALIYUN::ECS::VPC::VPCId
   VSwitchZoneId:
@@ -57,10 +57,7 @@ Parameters:
       en: Instance Type
       zh-cn: 实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>note: a few zones do not support general specifications<br>see
-        detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone.<br><b>Note:</b> Some zones do not support general specifications.<br>See details: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>注：可用区可能不支持通用规格<br>规格详见：<a href='https://help.aliyun.com/document_detail/25378.html'
         target='_blank'><b><font color='blue'>实例规格族</font></a></b>
     AssociationProperty: ALIYUN::ECS::Instance::InstanceType
@@ -69,7 +66,7 @@ Parameters:
   EniCount:
     Type: Number
     Label:
-      en: The Server Binds the ENI number.
+      en: The number of ENIs bound to the server.
       zh-cn: 服务器绑定弹性网卡数量
     Description:
       en: The number of Eni that a single server needs to be bound. For details of
@@ -94,7 +91,7 @@ Parameters:
   EcsSystemDiskSize:
     Type: Number
     Label:
-      en: System Disk Space
+      en: System Disk Size
       zh-cn: 系统盘空间
     Description:
       en: 'System disk space, range of values: 40-500, units: GB.'
@@ -108,11 +105,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -126,6 +119,7 @@ Parameters:
     - ephemeral_ssd
   EcsPassword:
     Type: String
+    NoEcho: true
     Label:
       en: Login Password
       zh-cn: 登录密码
@@ -138,24 +132,14 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=| {}[]:;' <>,.? / Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: 'ALIYUN::ECS::Instance::Password'
   BandwidthPackageId:
     Type: String
     Label:
       en: Shared Bandwidth Instance ID
       zh-cn: 共享带宽实例ID
     Description:
-      en: 'Share bandwidth instance ID. shared bandwidth provides the regional bandwidth
-        sharing and multiplexing <br>function. Multiple elastic public network IP
-        can be integrated into the shared bandwidth instance, which can reuse the
-        bandwidth in the shared bandwidth, and save the cost of public network bandwidth.This
-        configuration does not take effect when the number of elastic public IP numbers
-        is 0<br>Note: each shared bandwidth instance supports binding up to 100 EIPs.For
-        details, please refer to:<b><a href=''https://help.aliyun.com/document_detail/150483.html''
-        target=''_blank''><font color=''blue''>Restrictions on use</font></a></b>'
+      en: "Shared bandwidth instance ID. Shared bandwidth provides regional bandwidth sharing and multiplexing functionality. Multiple elastic public IP addresses can be integrated into the shared bandwidth instance, allowing reuse of bandwidth and reducing public network bandwidth costs. This configuration does not take effect when the number of elastic public IPs is 0.<br>Note: Each shared bandwidth instance supports binding up to 100 EIPs. For details, please refer to: <b><a href='https://help.aliyun.com/document_detail/150483.html' target='_blank'><font color='blue'>Restrictions on use</font></a></b>"
       zh-cn: 共享带宽实例ID，共享带宽提供地域级带宽共享和复用功能，可以将多个弹性公网IP统一加入到共享带宽实例中，复用共享<br>带宽中的带宽，节省公网带宽使用成本，<b><font
         color='blue'>当配置弹性公网IP个数为0时此配置无效。</font></b><br>注：每个共享带宽实例最大支持绑定100个弹性公网IP，详情请参考：<b><a
         href='https://help.aliyun.com/document_detail/150483.html' target='_blank'><font
@@ -243,14 +227,7 @@ Resources:
           PackageId:
             Default: null
             Description:
-              en: 'Share bandwidth instance ID. shared bandwidth provides the regional
-                bandwidth sharing and multiplexing <br>function. Multiple elastic
-                public network IP can be integrated into the shared bandwidth instance,
-                which can reuse the bandwidth in the shared bandwidth, and save the
-                cost of public network bandwidth.<br>Note: each shared bandwidth instance
-                supports binding up to 100 EIPs.For details, please refer to:<b><a
-                href=''https://help.aliyun.com/document_detail/150483.html'' target=''_blank''><font
-                color=''blue''>Restrictions on use</font></a></b>'
+              en: "Shared bandwidth instance ID. Shared bandwidth provides regional bandwidth sharing and multiplexing functionality. Multiple elastic public IP addresses can be integrated into the shared bandwidth instance, allowing reuse of bandwidth and reducing public network bandwidth costs.<br>Note: Each shared bandwidth instance supports binding up to 100 EIPs. For details, please refer to: <b><a href='https://help.aliyun.com/document_detail/150483.html' target='_blank'><font color='blue'>Restrictions on use</font></a></b>"
               zh-cn: 共享带宽实例ID，共享带宽提供地域级带宽共享和复用功能，可以将多个弹性公网IP统一加入到共享带宽实例中，复用共享<br>带宽中的带宽，节省公网带宽使用成本<br>注：每个共享带宽实例最大支持绑定100个弹性公网IP，详情请参考：<b><a
                 href='https://help.aliyun.com/document_detail/150483.html' target='_blank'><font
                 color='blue'>使用限制</font></a></b>。
@@ -424,3 +401,83 @@ Metadata:
         default: VPC
     TemplateTags:
     - acs:example:网络:创建一台多网卡绑定多弹性公网地址的云服务器(已有VPC)
+    - acs:public_template:Example:ecs-bind-mult-eni-and-eip
+  ALIYUN::ROS::Composer:
+    6de2a864:
+      Rect:
+        - 609
+        - 540
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    d69ed413:
+      Parent: 6de2a864
+      Rect:
+        - 573
+        - 470
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    f429fded:
+      Res:
+        - VpcId
+      Parent: d69ed413
+      Rect:
+        - 537
+        - 400
+        - 80
+        - 200
+        - 3
+        - 0
+      ResT: ALIYUN::ECS::VPC
+    eba49a2f:
+      Res:
+        - ENIStack
+      Parent: f429fded
+      Rect:
+        - 40
+        - 40
+        - 537
+        - 380
+        - 4
+        - 0
+    cc9e7699:
+      Res:
+        - VSwitchZoneId
+      Parent: f429fded
+      Rect:
+        - 382
+        - 266
+        - 101
+        - 265
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    d3660313:
+      Res:
+        - VSwitchId
+      Parent: cc9e7699
+      Rect:
+        - 321
+        - 172
+        - 131
+        - 314
+        - 5
+        - 0
+      ResT: ALIYUN::ECS::VSwitch
+    0bb35226:
+      Res:
+        - EcsInstanceGroup
+      Parent: d3660313
+      Rect:
+        - 40
+        - 40
+        - 272
+        - 379
+        - 6
+        - 0
+

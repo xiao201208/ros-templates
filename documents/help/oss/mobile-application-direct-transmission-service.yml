@@ -23,20 +23,17 @@ Parameters:
       InstanceChargeType: PostPaid
       SystemDiskCategory: cloud_essd
       ZoneId: ${ZoneId}
-    Label:
-      en: Instance Type
-      zh-cn: 实例规格
   Password:
     NoEcho: true
     Type: String
     Description:
-      en: Server login password, Length 8-30, must contain three(Capital letters, lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in)
+      en: "Server login password: length 8–30 characters, must contain at least three of: uppercase letters, lowercase letters, numbers, and special symbols (including ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/)."
       zh-cn: 服务器登录密码，长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）
     Label:
       en: ECS Instance Password
       zh-cn: ECS实例密码
     ConstraintDescription:
-      en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in)
+      en: "Length 8-30, must contain three of: uppercase letters, lowercase letters, numbers, and special symbols (`` ` ~ ! @ # $ % ^ & * _ - + = | { } [ ] : ; ' < > , . ? / )."
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）
     AssociationProperty: ALIYUN::ECS::Instance::Password
 Resources:
@@ -162,15 +159,6 @@ Resources:
           cd AppTokenServerDemo
           echo -e '{\n  "AccessKeyID": "${AccessKey.AccessKeyId}",\n  "AccessKeySecret": "${AccessKey.AccessKeySecret}",\n  "RoleArn": "${Role.Arn}",\n  "TokenExpireTime": "3600",\n  "PolicyFile": "policy/bucket_write_policy.txt"\n}' > config.json
           nohup java -jar app-token-server.jar &
-  SecurityGroupIngress_22:
-    Type: ALIYUN::ECS::SecurityGroupIngress
-    Properties:
-      SecurityGroupId:
-        Ref: SecurityGroup
-      SourceCidrIp: 0.0.0.0/0
-      IpProtocol: tcp
-      NicType: intranet
-      PortRange: 22/22
   SecurityGroupIngress_80:
     Type: ALIYUN::ECS::SecurityGroupIngress
     Properties:
@@ -201,7 +189,7 @@ Resources:
 Outputs:
   RoleArn:
     Description:
-      en: Role ARN.
+      en: Role ARN
       zh-cn: 角色的ARN。
     Value:
       Fn::GetAtt:
@@ -221,7 +209,7 @@ Outputs:
       Fn::Sub: http://${Eip.EipAddress}:7080
   EcsInstanceId:
     Description:
-      en: Ecs instance id.
+      en: ECS instance ID
       zh-cn: ECS实例id。
     Value:
       Fn::Select:
@@ -231,7 +219,7 @@ Outputs:
             - InstanceIds
   EipAllocationId:
     Description:
-      en: Eip allocation id.
+      en: EIP allocation ID
       zh-cn: EIP实例id。
     Value:
       Fn::GetAtt:
@@ -239,7 +227,7 @@ Outputs:
         - AllocationId
   EcsLoginAddress:
     Description:
-      en: Ecs login address.
+      en: ECS login address
       zh-cn: ECS登录地址。
     Value:
       Fn::Sub:
@@ -265,3 +253,217 @@ Metadata:
             en: Instance
     TemplateTags:
       - acs:document-help:oss:快速搭建移动应用直传服务
+      - acs:public_template:Example:mobile-application-direct-transmission-service
+  ALIYUN::ROS::Composer:
+    f5a78c30:
+      Rect:
+        - 680
+        - 600
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    67b58daf:
+      Parent: f5a78c30
+      Rect:
+        - 640
+        - 530
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    547d76f7:
+      Res:
+        - Role
+      Parent: 67b58daf
+      Rect:
+        - 40
+        - 40
+        - 80
+        - 620
+        - 3
+        - 0
+      Hidden: true
+    54a16047:
+      Res:
+        - User
+      Parent: 67b58daf
+      Rect:
+        - 40
+        - 40
+        - 140
+        - 620
+        - 3
+        - 0
+      Hidden: true
+    c3f3f7f9:
+      Res:
+        - AccessKey
+      Parent: 67b58daf
+      Rect:
+        - 40
+        - 40
+        - 640
+        - 260
+        - 3
+        - 0
+      Hidden: true
+    034aa639:
+      Res:
+        - Vpc
+      Parent: 67b58daf
+      Rect:
+        - 480
+        - 340
+        - 140
+        - 260
+        - 3
+        - 0
+    046f5d56:
+      Res:
+        - Eip
+        - EipAssociation
+      Ref:
+        - EipAssociation
+      Parent: 67b58daf
+      Rect:
+        - 40
+        - 40
+        - 279
+        - 600
+        - 3
+        - 0
+    d31eb7ed:
+      Res:
+        - ServerCommand
+      Parent: 67b58daf
+      Rect:
+        - 40
+        - 40
+        - 80
+        - 200
+        - 3
+        - 0
+      Hidden: true
+    a116d133:
+      Res:
+        - SecurityGroupIngress_80
+      Parent: 67b58daf
+      Rect:
+        - 40
+        - 40
+        - 140
+        - 200
+        - 3
+        - 0
+      Hidden: true
+    a69af030:
+      Res:
+        - SecurityGroupIngress_443
+      Parent: 67b58daf
+      Rect:
+        - 40
+        - 40
+        - 640
+        - 200
+        - 3
+        - 0
+      Hidden: true
+    f4fc153b:
+      Res:
+        - SecurityGroupIngress_7080
+      Parent: 67b58daf
+      Rect:
+        - 40
+        - 40
+        - 80
+        - 260
+        - 3
+        - 0
+      Hidden: true
+    d002e788:
+      Res:
+        - ZoneId
+      Parent: 034aa639
+      Rect:
+        - 440
+        - 270
+        - 160
+        - 310
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    cae149b5:
+      Res:
+        - VSwitch
+      Parent: d002e788
+      Rect:
+        - 400
+        - 200
+        - 180
+        - 360
+        - 5
+        - 0
+    5c7fabbc:
+      Res:
+        - SecurityGroup
+      Parent: 034aa639
+      Rect:
+        - 199
+        - 123
+        - 200
+        - 410
+        - 10
+        - 0
+    b0990c2a:
+      Edge:
+        - 54a16047
+        - 547d76f7
+      Line: 0:0:0:gray:0
+    180c6602:
+      Edge:
+        - c3f3f7f9
+        - 54a16047
+      Line: 0:0:0:gray:0
+    1f9072c1:
+      Parent: 67b58daf
+      Edge:
+        - 046f5d56
+        - bcb411fc
+      Line: 0:0:0:gray:0
+    fcd791ab:
+      Parent: 67b58daf
+      Edge:
+        - d31eb7ed
+        - bcb411fc
+      Line: 0:0:0:gray:0
+    627dc9e7:
+      Edge:
+        - a116d133
+        - 5c7fabbc
+      Line: 0:0:0:gray:0
+    c5333b37:
+      Edge:
+        - a69af030
+        - 5c7fabbc
+      Line: 0:0:0:gray:0
+    2735d96c:
+      Edge:
+        - f4fc153b
+        - 5c7fabbc
+      Line: 0:0:0:gray:0
+    bcb411fc:
+      Res:
+        - InstanceGroup
+      Parent: cae149b5
+      Rect:
+        - 40
+        - 40
+        - 279
+        - 440
+        - 11
+        - 0
+      Layer:
+        - 5c7fabbc

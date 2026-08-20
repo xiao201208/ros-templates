@@ -42,12 +42,10 @@ Parameters:
       en: Machine Group Name
       zh-cn: 机器分组名称
     Description:
-      en: 'Length 2-32, allows upper case letters, numbers, mid-horizontal lines,
-        and underscores, but does not begin or end with a symbol. '
+      en: "Length 2–32 characters. Allows uppercase letters, numbers, hyphens, and underscores, but must not begin or end with a symbol."
       zh-cn: 长度2-32，允许大小写字母、数字、中横线及下划线，但不能以符号开头或结尾。
     ConstraintDescription:
-      en: 'Length 2-32, allows upper case letters, numbers, mid-horizontal lines,
-        and underscores, but does not begin or end with a symbol. '
+      en: "Length 2–32 characters. Allows uppercase letters, numbers, hyphens, and underscores, but must not begin or end with a symbol."
       zh-cn: 长度2-32，允许大小写字母、数字、中横线及下划线，但不能以符号开头或结尾。
     Default: demo-log-group
     MinLength: 2
@@ -58,9 +56,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>you can use
-        the following IP address ranges: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in the CIDR Block form; <br>you can use the following IP address ranges: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -95,8 +91,7 @@ Parameters:
       en: Image
       zh-cn: 镜像
     Description:
-      en: 'Server instance Image ID, please use CentOS Image, see detail: <b><a href=''https://www.alibabacloud.com/help/doc-detail/112977.html''
-        target=''_blank''><font color=''blue''>Find the mirror</font></a></b>'
+      en: "Server instance Image ID. Use a CentOS image. See details: <b><a href='https://www.alibabacloud.com/help/doc-detail/112977.html' target='_blank'><font color='blue'>Find the image</font></a></b>"
       zh-cn: 服务器镜像，请使用CentOS镜像，详见：<b><a href='https://help.aliyun.com/document_detail/112977.html'
         target='_blank'><font color='blue'>查找镜像</font></a></b>
     AssociationProperty: ALIYUN::ECS::Instance:ImageId
@@ -107,10 +102,7 @@ Parameters:
       en: Specifications
       zh-cn: 规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -121,11 +113,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -165,10 +153,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: 'ALIYUN::ECS::Instance::Password'
   KafkaEmrVer:
     Type: String
     Label:
@@ -193,10 +178,7 @@ Parameters:
       en: Specification
       zh-cn: 规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.g5.xlarge</b></font><br>note:
-        a few zones do not support general specifications, please confirm the specification
-        at E-MapReduce console.'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.g5.xlarge</b></font><br>note: a few zones do not support general specifications, please confirm the specification at E-MapReduce console."
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.g5.xlarge</b></font><br>注：可用区可能不支持通用规格，需要在EMR控制台确认。
     AssociationProperty: ALIYUN::ECS::Instance::InstanceType
   KafkaDiskType:
@@ -205,9 +187,7 @@ Parameters:
       en: Disk Type
       zh-cn: 磁盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[CLOUD_EFFICIENCY:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[CLOUD_SSD: <font color=''green''>SSD
-        Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[CLOUD_EFFICIENCY: <font color='green'>Efficient Cloud Disk</font>]<br>[CLOUD_SSD: <font color='green'>SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[CLOUD_EFFICIENCY: <font
         color=''green''>高效云盘</font>]<br>[CLOUD_SSD: <font color=''green''>SSD云盘</font>]'
     Default: CLOUD_SSD
@@ -220,10 +200,10 @@ Parameters:
       en: System Disk Size
       zh-cn: 系统盘大小
     Description:
-      en: 'System disk size, range of values: 40-500, units: GB.'
+      en: 'System disk size, range: 40–500 GB'
       zh-cn: 系统盘大小, 取值范围：[40, 500], 单位：GB。
     ConstraintDescription:
-      en: 'System disk size, range of values: 40-500, units: GB.'
+      en: 'System disk size, range: 40–500 GB'
       zh-cn: 系统盘大小, 取值范围：[40, 500], 单位：GB。
     Default: 120
     MinValue: 40
@@ -234,10 +214,10 @@ Parameters:
       en: Data Disk Size
       zh-cn: 数据盘大小
     Description:
-      en: 'Data disk size, range of values: 40-32768, units: GB.'
+      en: 'Data disk size, range: 40–32768 GB'
       zh-cn: 数据盘大小, 取值范围：[40, 32768], 单位：GB。
     ConstraintDescription:
-      en: 'Data disk size, range of values: 40-32768, units: GB.'
+      en: 'Data disk size, range: 40–32768 GB'
       zh-cn: 数据盘大小, 取值范围：[40, 32768], 单位：GB。
     Default: 80
     MinValue: 40
@@ -248,7 +228,7 @@ Parameters:
       en: Mounted public net
       zh-cn: 挂载公网
     Description:
-      en: Whether to mount the public net.
+      en: Whether to mount the public network
       zh-cn: 是否挂载公网。
     Default: true
     AllowedValues:
@@ -257,10 +237,10 @@ Parameters:
   KafkaSshEnable:
     Type: Boolean
     Label:
-      en: Remote Logon
+      en: Remote Login
       zh-cn: 是否开启SSH
     Description:
-      en: Whether to enable SSH.
+      en: Whether to enable SSH access
       zh-cn: 是否开启SSH。
     Default: false
     AllowedValues:
@@ -272,10 +252,7 @@ Parameters:
       en: Login Password
       zh-cn: 登录密码
     Description:
-      en: 'Login password, 8-30 characters, and must contains uppercase, lowercase,
-        number, and special characters !@#$%^&* <br>note: <b><font color=''blue''>The
-        password must consists of 4 types of refered symbol, or the stack will fail
-        to be created</font></b>'
+      en: "Login password, 8-30 characters, and must contain uppercase, lowercase, number, and special characters !@#$%^&*.<br>Note: <b><font color='blue'>The password must consist of 4 types of referenced symbols; otherwise, the stack will fail to be created.</font></b>"
       zh-cn: 登录密码，8-30 个字符，且必须同时包含大写字母、小写字母、数字和特殊字符!@#$%^&* <br>注意：<b><font color='blue'>必须占四种，否则资源栈会创建失败</font></b>
     ConstraintDescription:
       en: 8-30 characters, and must contains uppercase, lowercase, number, and special
@@ -305,10 +282,10 @@ Parameters:
   HadoopHighAvailabilityEnable:
     Type: Boolean
     Label:
-      en: High-availability
+      en: High Availability
       zh-cn: 是否高可用
     Description:
-      en: Whether to open High-availability cluster
+      en: Whether to open High Availability cluster
       zh-cn: 是否开启高可用集群
     Default: false
     AllowedValues:
@@ -320,10 +297,7 @@ Parameters:
       en: Specification
       zh-cn: 规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.g5.xlarge</b></font><br>note:
-        a few zones do not support general specifications, please confirm the specification
-        at E-MapReduce console.'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.g5.xlarge</b></font><br>note: a few zones do not support general specifications, please confirm the specification at E-MapReduce console."
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.g5.xlarge</b></font><br>注：可用区可能不支持通用规格，需要在EMR控制台确认。
     AssociationProperty: ALIYUN::ECS::Instance::InstanceType
   HadoopCoreNodeCount:
@@ -332,10 +306,10 @@ Parameters:
       en: Number of Core instances
       zh-cn: Core实例数量
     Description:
-      en: 'Number of Core instances, range of values: [1，1000].'
+      en: 'Number of Core instances, range of values: [1,1000].'
       zh-cn: Core实例数量，范围[1，1000]。
     ConstraintDescription:
-      en: 'Number of Core instances, range of values: [1，1000].'
+      en: 'Number of Core instances, range of values: [1,1000].'
       zh-cn: Core实例数量，范围[1，1000]。
     Default: 2
     MinValue: 1
@@ -346,9 +320,7 @@ Parameters:
       en: Disk Type
       zh-cn: 磁盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[CLOUD_EFFICIENCY:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[CLOUD_SSD: <font color=''green''>SSD
-        Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[CLOUD_EFFICIENCY: <font color='green'>Efficient Cloud Disk</font>]<br>[CLOUD_SSD: <font color='green'>SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[CLOUD_EFFICIENCY: <font
         color=''green''>高效云盘</font>]<br>[CLOUD_SSD: <font color=''green''>SSD云盘</font>]'
     Default: CLOUD_SSD
@@ -361,10 +333,10 @@ Parameters:
       en: System Disk Size
       zh-cn: 系统盘大小
     Description:
-      en: 'System disk size, range of values: 40-500, units: GB.'
+      en: 'System disk size, range: 40–500 GB'
       zh-cn: 系统盘大小, 取值范围：[40, 500], 单位：GB。
     ConstraintDescription:
-      en: 'System disk size, range of values: 40-500, units: GB.'
+      en: 'System disk size, range: 40–500 GB'
       zh-cn: 系统盘大小, 取值范围：[40, 500], 单位：GB。
     Default: 120
     MinValue: 40
@@ -375,10 +347,10 @@ Parameters:
       en: Data Disk Size
       zh-cn: 数据盘大小
     Description:
-      en: 'Data disk size, range of values: 40-32768, units: GB.'
+      en: 'Data disk size, range: 40–32768 GB'
       zh-cn: 数据盘大小, 取值范围：[40, 32768], 单位：GB。
     ConstraintDescription:
-      en: 'Data disk size, range of values: 40-32768, units: GB.'
+      en: 'Data disk size, range: 40–32768 GB'
       zh-cn: 数据盘大小, 取值范围：[40, 32768], 单位：GB。
     Default: 80
     MinValue: 40
@@ -386,10 +358,10 @@ Parameters:
   HadoopIsOpenPublicIp:
     Type: Boolean
     Label:
-      en: Mounted Public Net
+      en: Mount Public Network
       zh-cn: 挂载公网
     Description:
-      en: Whether to mount the public net.
+      en: Whether to mount the public network
       zh-cn: 是否挂载公网。
     Default: true
     AllowedValues:
@@ -398,10 +370,10 @@ Parameters:
   HadoopSshEnable:
     Type: Boolean
     Label:
-      en: Remote Logon
+      en: Remote Login
       zh-cn: 是否开启SSH
     Description:
-      en: Whether to enable SSH.
+      en: Whether to enable SSH access
       zh-cn: 是否开启SSH。
     Default: false
     AllowedValues:
@@ -413,10 +385,7 @@ Parameters:
       en: Login Password
       zh-cn: 登录密码
     Description:
-      en: 'Login password, 8-30 characters, and must contains uppercase, lowercase,
-        number, and special characters !@#$%^&* <br>note: <b><font color=''blue''>The
-        password must consists of 4 types of refered symbol, or the stack will fail
-        to be created</font></b>'
+      en: "Login password, 8-30 characters, and must contain uppercase, lowercase, number, and special characters !@#$%^&*.<br>Note: <b><font color='blue'>The password must consist of 4 types of referenced symbols; otherwise, the stack will fail to be created.</font></b>"
       zh-cn: 登录密码，8-30 个字符，且必须同时包含大写字母、小写字母、数字和特殊字符!@#$%^&* <br>注意：<b><font color='blue'>必须占四种，否则资源栈会创建失败</font></b>
     ConstraintDescription:
       en: 8-30 characters, and must contains uppercase, lowercase, number, and special
@@ -444,12 +413,6 @@ Resources:
     Properties:
       VpcId:
         Ref: EcsVpc
-      SecurityGroupIngress:
-      - IpProtocol: tcp
-        NicType: internet
-        PortRange: 22/22
-        Priority: 1
-        SourceCidrIp: 0.0.0.0/0
       SecurityGroupName:
         Fn::Join:
         - '-'
@@ -879,6 +842,7 @@ Metadata:
         default: EMR-Hadoop
     TemplateTags:
     - acs:solution:数据分析:SLS多云日志采集、处理及分析
+    - acs:public_template:Solution:sls-multi-cloud-log-processing-analysis
   ALIYUN::ROS::Designer:
     0c0bdeb7-72f4-4e95-9f48-a46bd0e857cf:
       position:

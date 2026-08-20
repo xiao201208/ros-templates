@@ -1,0 +1,266 @@
+ROSTemplateFormatVersion: '2015-09-01'
+Description:
+  en: Quickly experience Qwen2.5-Omni model through hundreds of exercises.
+  zh-cn: 通过百炼快速体验 Qwen2.5-Omni 模型。
+Parameters:
+  CommonName:
+    Type: String
+    Default: bailian
+  ApiKeyInfo:
+    Type: Json
+    Label:
+      en: API-KEY
+      zh-cn: API-KEY
+    AssociationProperty: ALIYUN::Bailian::ApiKey::ApiKeyInfo
+    Description:
+      zh-cn: >-
+        开通百炼模型服务，并获得 API-KEY，请参考：
+        <a href="https://help.aliyun.com/zh/model-studio/developer-reference/get-api-key" 
+        target="_blank">获取 API-KEY</a>。
+      en: >-
+        Activate BaiLian and obtain the API-KEY. Please refer to: 
+        <a href="https://help.aliyun.com/zh/model-studio/developer-reference/get-api-key" 
+        target="_blank">Get API-KEY</a>.
+  ZoneId:
+    Label:
+      en: Availability Zone
+      zh-cn: 可用区
+    Type: String
+    AssociationProperty: ALIYUN::ECS::Instance::ZoneId
+  InstanceType:
+    Type: String
+    Label:
+      en: Instance Type
+      zh-cn: 实例规格
+    AssociationProperty: ALIYUN::ECS::Instance::InstanceType
+    AssociationPropertyMetadata:
+      InstanceChargeType: PostPaid
+      SystemDiskCategory: cloud_essd
+      ZoneId: ${ZoneId}
+      Constraints:
+        Memory:
+          - 2
+          - 4
+          - 6
+          - 8
+          - 10
+  InstancePassword:
+    Type: String
+    Label:
+      en: Instance Password
+      zh-cn: 实例密码
+    Description:
+      en: Server login password, Length 8-30, must contain three(Capital letters, lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in)
+      zh-cn: 服务器登录密码,长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）
+    AssociationProperty: ALIYUN::ECS::Instance::Password
+Resources:
+  EcsVpc:
+    Type: ALIYUN::ECS::VPC
+    Properties:
+      CidrBlock: 192.168.0.0/16
+      VpcName:
+        Fn::Sub: vpc_${CommonName}
+  EcsVSwitch:
+    Type: ALIYUN::ECS::VSwitch
+    Properties:
+      VpcId:
+        Ref: EcsVpc
+      CidrBlock: 192.168.1.0/24
+      ZoneId:
+        Ref: ZoneId
+      VSwitchName:
+        Fn::Sub: vsw_${CommonName}
+  EcsSecurityGroup:
+    Type: ALIYUN::ECS::SecurityGroup
+    Properties:
+      VpcId:
+        Ref: EcsVpc
+      SecurityGroupName:
+        Fn::Sub: sg-${CommonName}
+      SecurityGroupIngress:
+        - PortRange: 80/80
+          SourceCidrIp: 0.0.0.0/0
+          IpProtocol: tcp
+  EcsInstanceGroup:
+    Type: ALIYUN::ECS::InstanceGroup
+    Properties:
+      ZoneId:
+        Ref: ZoneId
+      VpcId:
+          Ref: EcsVpc
+      VSwitchId:
+          Ref: EcsVSwitch
+      SecurityGroupId:
+        Ref: EcsSecurityGroup
+      ImageId: aliyun_3_x64_20G_alibase_
+      InstanceName:
+        Fn::Sub: ${CommonName}-ecs
+      InstanceType:
+        Ref: InstanceType
+      SystemDiskCategory: cloud_essd
+      SystemDiskSize: 40
+      MaxAmount: 1
+      InternetMaxBandwidthOut: 5
+      Password:
+        Ref: InstancePassword
+  InstanceRunCommand:
+    Type: ALIYUN::ECS::RunCommand
+    Properties:
+      InstanceIds:
+        Fn::GetAtt:
+          - EcsInstanceGroup
+          - InstanceIds
+      CommandContent:
+        Fn::Sub:
+          - |
+            #!/bin/bash
+            cat << EOF >> ~/.bash_profile
+            export DASHSCOPE_API_KEY=${ApiKey}
+            export ROS_DEPLOY=true
+            EOF
+
+            source ~/.bash_profile
+
+            curl -fsSL https://static-aliyun-doc.oss-cn-hangzhou.aliyuncs.com/install-script/qwen2.5-omni-7b/install.sh | bash
+          - ApiKey:
+              Fn::Jq:
+                - First
+                - .ApiKeyValue
+                - Ref: ApiKeyInfo
+      Type: RunShellScript
+      Timeout: 3000
+      Sync: true
+Outputs:
+  Console.AppUrl:
+    Label:
+      zh-cn: 应用地址
+      en: App url
+    Description:
+      zh-cn: 模型应用部署地址。
+      en: Model app deployment path.
+    Value:
+      Fn::Sub:
+        - http://${ServerAddress}:80
+        - ServerAddress:
+            Fn::Select:
+              - 0
+              - Fn::GetAtt:
+                 - EcsInstanceGroup
+                 - PublicIps
+Metadata:
+  ALIYUN::ROS::Interface:
+    ParameterGroups:
+      - Parameters:
+          - ApiKeyInfo
+        Label:
+          default:
+            zh-cn: 百炼配置
+            en: Bailian Configuration
+      - Parameters:
+          - ZoneId
+          - InstanceType
+          - InstancePassword
+        Label:
+          default:
+            en: Ecs Configuration
+            zh-cn: ECS 实例配置
+    Hidden:
+      - CommonName
+    TemplateTags:
+      - acs:technical-solution:ai:通过百炼快速体验Qwen2.5-Omni模型-tech_solu_242
+  ALIYUN::ROS::Composer:
+    b0718259:
+      Rect:
+        - 620
+        - 480
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    6282abec:
+      Parent: b0718259
+      Rect:
+        - 580
+        - 410
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    6b457674:
+      Res:
+        - EcsVpc
+      Parent: 6282abec
+      Rect:
+        - 480
+        - 340
+        - 140
+        - 200
+        - 3
+        - 0
+    6f0d78b4:
+      Res:
+        - InstanceRunCommand
+      Parent: 6282abec
+      Rect:
+        - 40
+        - 40
+        - 80
+        - 200
+        - 3
+        - 0
+      Hidden: true
+    e32020c7:
+      Res:
+        - ZoneId
+      Parent: 6b457674
+      Rect:
+        - 440
+        - 270
+        - 160
+        - 250
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    ab70a9e0:
+      Res:
+        - EcsVSwitch
+      Parent: e32020c7
+      Rect:
+        - 400
+        - 200
+        - 180
+        - 300
+        - 5
+        - 0
+    b66d2aa8:
+      Res:
+        - EcsSecurityGroup
+      Parent: 6b457674
+      Rect:
+        - 150
+        - 124
+        - 200
+        - 350
+        - 10
+        - 0
+    460d58c2:
+      Parent: 6282abec
+      Edge:
+        - 6f0d78b4
+        - 914fcef9
+      Line: 0:0:0:gray:0
+    914fcef9:
+      Res:
+        - EcsInstanceGroup
+      Parent: ab70a9e0
+      Rect:
+        - 40
+        - 40
+        - 255
+        - 392
+        - 11
+        - 0
+      Layer:
+        - b66d2aa8

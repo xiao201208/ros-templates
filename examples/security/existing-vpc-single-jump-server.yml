@@ -24,7 +24,7 @@ Parameters:
       en: Existing VPC Instance ID
       zh-cn: 现有VPC的实例ID
     Description:
-      en: Please search the ID starts with (vpc-xxx)from console-Virtual Private Cloud
+      en: Please search for the ID starting with (vpc-xxx) in the console - Virtual Private Cloud.
       zh-cn: 现有虚拟专有网络的实例ID,控制台-VPC-专有网络下查询
     AssociationProperty: ALIYUN::ECS::VPC::VPCId
   VSwitch:
@@ -75,11 +75,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -97,7 +93,7 @@ Parameters:
       en: System Disk Space
       zh-cn: 系统盘空间
     Description:
-      en: 'System disk size, range of values: 20-500, units: GB.'
+      en: 'System disk size, range: 20–500 GB.'
       zh-cn: 系统盘大小, 取值范围：[20, 500], 单位：GB。
     Default: 20
   JumpServerWebPort:
@@ -106,11 +102,12 @@ Parameters:
       en: Port of the Zookeeper Web Service
       zh-cn: JumpServer的访问端口
     Description:
-      en: 'JumpServer Web services ports, port value range: 1 to 65535.'
+      en: 'JumpServer Web services ports, range: 1 to 65535.'
       zh-cn: JumpServer的Web访问端口，端口取值范围：1~65535
     Default: 80
   Password:
     Type: String
+    NoEcho: true
     Label:
       en: Instance Password
       zh-cn: 实例密码
@@ -123,10 +120,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
   DBName:
     Type: String
     Label:
@@ -184,7 +178,7 @@ Parameters:
       en: Redis Server Password
       zh-cn: Redis登录密码
     Description:
-      en: Redis Server login password, Length 6-30.
+      en: "Redis Server login password: 6–30 characters."
       zh-cn: Redis登录密码,长度6-30。
     MinLength: 6
     MaxLength: 30
@@ -386,3 +380,76 @@ Metadata:
           zh-cn: JumpServer 配置（必填）
     TemplateTags:
     - acs:example:安全:JumpServer单机版(已有VPC)
+    - acs:public_template:Example:existing-vpc-single-jump-server
+  ALIYUN::ROS::Composer:
+    a36b852d:
+      Rect:
+        - 540
+        - 400
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    3844fb71:
+      Parent: a36b852d
+      Rect:
+        - 500
+        - 330
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    36814afd:
+      Res:
+        - VSwitch
+      Parent: 3844fb71
+      Rect:
+        - 299
+        - 197
+        - 140
+        - 200
+        - 3
+        - 0
+      ResT: ALIYUN::ECS::VSwitch
+    ad0340b3:
+      Res:
+        - WaitCondition
+      Parent: 3844fb71
+      Rect:
+        - 40
+        - 40
+        - 474
+        - 223
+        - 3
+        - 0
+    db08749f:
+      Res:
+        - WaitConditionHandle
+      Parent: 3844fb71
+      Rect:
+        - 40
+        - 40
+        - 474
+        - 342
+        - 3
+        - 0
+    06e28f3a:
+      Res:
+        - JumpServer
+      Parent: 36814afd
+      Rect:
+        - 40
+        - 40
+        - 269
+        - 280
+        - 4
+        - 0
+    2d0b92e4:
+      Parent: 3844fb71
+      Edge:
+        - ad0340b3
+        - db08749f
+      Line: 0:0:0:gray:0
+

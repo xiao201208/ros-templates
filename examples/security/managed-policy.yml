@@ -11,7 +11,7 @@ Parameters:
       en: Policy Name
     Description:
       zh-cn: 可包含大小写字母、数字以及中划线（-）
-      en: May contain uppercase and lowercase letters, numbers, and hyphens (-)
+      en: May contain uppercase and lowercase letters, numbers, and hyphens (-).
     Default: TestManagedPolicy
   Description:
     Type: String
@@ -37,7 +37,7 @@ Parameters:
       zh-cn: 资源
     Description:
       zh-cn: 适用于操作的资源，详情请参考<a href='https://help.aliyun.com/document_detail/93738.html'>权限策略基本元素</a>。
-      en: Resources for operations, refer to <a href='https://www.alibabacloud.com/help/doc-detail/93738.htm'>Policy
+      en: Resources for operations; refer to <a href='https://www.alibabacloud.com/help/doc-detail/93738.htm'>Policy elements</a> for more info.s for operations, refer to <a href='https://www.alibabacloud.com/help/doc-detail/93738.htm'>Policy
         elements</a> for more info.
     Default:
     - '*'
@@ -48,7 +48,7 @@ Parameters:
       en: Authority
     Description:
       zh-cn: 允许/拒绝对资源的操作
-      en: Allow/Deny Action for Resource
+      en: Allow/Deny Action for Resources for operations; refer to <a href='https://www.alibabacloud.com/help/doc-detail/93738.htm'>Policy elements</a> for more info.
     Default: Allow
     AllowedValues:
     - Allow
@@ -83,3 +83,35 @@ Metadata:
         default: Policy
     TemplateTags:
     - acs:example:安全:RAM策略管理
+    - acs:public_template:Example:managed-policy
+  ALIYUN::ROS::Composer:
+    '32815186':
+      Res:
+        - ManagedPolicy
+      Parent: 3214c503
+      Rect:
+        - 40
+        - 40
+        - 155
+        - 194
+        - 3
+        - 0
+    10e2470c:
+      Rect:
+        - 270
+        - 211
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    3214c503:
+      Parent: 10e2470c
+      Rect:
+        - 224
+        - 127
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region

@@ -11,6 +11,7 @@ Metadata:
       - folder_ids
     TemplateTags:
     - acs:technical-solution:security-and-compliance:高效构建安全合规的新账号-tech_solu_66
+    - acs:public_template:Solution:efficiently-build-a-new-account-with-security-and-compliance
     Hidden:
     - idp_metadata
     - ALIYUN__StackId

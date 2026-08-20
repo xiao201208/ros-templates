@@ -14,9 +14,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>you can use
-        the following IP address ranges: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in CIDR notation; <br>you can use the following IP address ranges: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -27,7 +25,7 @@ Parameters:
   VSwitchZoneId:
     Type: String
     Label:
-      en: VSwitch Available Zone
+      en: VSwitch Availability Zone
       zh-cn: 交换机可用区
     Description:
       en: Availability Zone ID,<br><b>note： <font color='blue'>Before selecting, please
@@ -62,10 +60,7 @@ Parameters:
       en: Instance Type
       zh-cn: 实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -76,7 +71,7 @@ Parameters:
       en: Amount
       zh-cn: 实例数量
     Description:
-      en: Number of Instances under VSwitch
+      en: Number of instances in the VSwitch
       zh-cn: 交换机下的实例数量
     Default: 1
     AllowedValues:
@@ -93,10 +88,10 @@ Parameters:
   EcsGroupSystemDiskSize:
     Type: Number
     Label:
-      en: System Disk Space
+      en: System Disk Size
       zh-cn: 系统盘空间
     Description:
-      en: 'System disk size, range of values: 40-500, units: GB.'
+      en: 'System disk size: 40–500 GB, in GB units.'
       zh-cn: 系统盘大小, 取值范围：[40, 500], 单位：GB。
     Default: 80
   EcsGroupSystemDiskCategory:
@@ -105,11 +100,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -127,11 +118,7 @@ Parameters:
       en: Instance Preemption Policy
       zh-cn: 实例抢占策略
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[NoSpot：<font color=''green''>Regular
-        pay-as-you-go instances</font>]<br>[SpotWithPriceLimit：<font color=''green''>A
-        preemptive instance of setting a cap price</font>]<br>[SpotAsPriceGo：<font
-        color=''green''>The system automatically bids, following the actual price
-        in the current market</font>]<br><font color=''blue''></a>'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[NoSpot: <font color='green'>Regular pay-as-you-go instances</font>]<br>[SpotWithPriceLimit: <font color='green'>A preemptive instance of setting a cap price</font>]<br>[SpotAsPriceGo: <font color='green'>The system automatically bids, following the actual price in the current market</font>]<br><font color='blue'></a>"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[NoSpot：<font color=''green''>正常按量付费实例</font>]<br>[SpotWithPriceLimit：<font
         color=''green''>设置上限价格的抢占式实例</font>]<br>[SpotAsPriceGo：<font color=''green''>系统自动出价，跟随当前市场实际价格</font>]<br><font
         color=''blue''></a>'
@@ -175,10 +162,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
   DBInstanceEngineAndVersion:
     Type: String
     Label:
@@ -199,9 +183,7 @@ Parameters:
       en: Specifications
       zh-cn: 实例规格
     Description:
-      en: 'Select the instance specification based on the type of database engine
-        and the available area support;<br>see detail: <a href=''https://www.alibabacloud.com/help/doc-detail/26312.htm''
-        target=''_blank''><b><font color=''blue''>Instance specification sheet</font></b></a>'
+      en: "Select the instance specification based on the type of database engine and the available area support;<br>see detail: <a href='https://www.alibabacloud.com/help/doc-detail/26312.htm' target='_blank'><b><font color='blue'>Instance specification sheet</font></b></a>"
       zh-cn: 根据数据库引擎的类型和可用的区域支持选择实例规格；<br>请参见详细信息：<a href='https://help.aliyun.com/document_detail/26312.html'
         target='_blank'><b><font color='blue'>实例规格表</font></b></a>
     Default: rds.mysql.s2.large
@@ -219,7 +201,7 @@ Parameters:
   DBInstanceStorage:
     Type: Number
     Label:
-      en: Storage Space
+      en: "Database storage space, in GB units, increments of 5GB, range: 5–1000 GB."
       zh-cn: 存储空间
     Description:
       en: 'Database storage space, units: GB, per 5GB increment, value range: 5-1000.'
@@ -245,13 +227,11 @@ Parameters:
       en: Account Password
       zh-cn: 账号密码
     Description:
-      en: 'Length 8-32 characters, can contain size letters, Numbers and special symbols
-        (including:!@ # $% ^ & * - + = _).'
+      en: "8-32 characters, can contain lowercase letters, numbers, and special symbols (including: !@#$%^&*-+=_)."
       zh-cn: 长度8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*-+=_）。
     AssociationProperty: ALIYUN::RDS::Instance::AccountPassword
     ConstraintDescription:
-      en: '8-32 characters, can contain size letters, Numbers and special symbols
-        (including:!@ # $% ^ & * - + = _).'
+      en: "8-32 characters, can contain lowercase letters, numbers, and special symbols (including: !@#$%^&*-+=_)."
       zh-cn: 8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*-+=_）。
     MinLength: 8
     MaxLength: 32
@@ -277,11 +257,7 @@ Parameters:
       en: Instance Type
       zh-cn: 实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.g5.xlarge</b></font><br><b>note:
-        <font color=''blue''>you can refer to the E-MapReduce documentation for instance
-        recommendations</b></font><br>see detail: <a href=''https://www.alibabacloud.com/help/doc-detail/35223.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.g5.xlarge</b></font><br><b>note: <font color='blue'>you can refer to the E-MapReduce documentation for instance recommendations</b></font><br>see detail: <a href='https://www.alibabacloud.com/help/doc-detail/35223.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: '填写VSwitch可用区下可使用的规格；<br>通用规格：<font color=''red''><b>ecs.g5.xlarge</b></font><br><b>注:
         <font color=''blue''>可以借鉴E-MapReduce的文档的实例推荐</b></font><br>详见：<a href=''https://help.aliyun.com/document_detail/35223.html''
         target=''_blank''><b><font color=''blue''>实例规格族</font></a></b>'
@@ -292,9 +268,7 @@ Parameters:
       en: Disk Type
       zh-cn: 磁盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[CLOUD_EFFICIENCY:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[CLOUD_SSD: <font color=''green''>SSD
-        Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[CLOUD_EFFICIENCY: <font color='green'>Efficient Cloud Disk</font>]<br>[CLOUD_SSD: <font color='green'>SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[CLOUD_EFFICIENCY: <font
         color=''green''>高效云盘</font>]<br>[CLOUD_SSD: <font color=''green''>SSD云盘</font>]'
     Default: CLOUD_SSD
@@ -307,7 +281,7 @@ Parameters:
       en: Core Node Count
       zh-cn: Core实例数量
     Description:
-      en: 'Number of Core instances, range of values: [1，1000].'
+      en: 'Number of Core instances, range of values: [1,1000].'
       zh-cn: Core实例数量。范围[1，1000]。
     Default: 2
     MinValue: 1
@@ -413,11 +387,6 @@ Resources:
         PortRange: -1/-1
         Priority: 1
       SecurityGroupIngress:
-      - IpProtocol: tcp
-        NicType: internet
-        PortRange: 22/22
-        Priority: 1
-        SourceCidrIp: 0.0.0.0/0
       - IpProtocol: tcp
         NicType: internet
         PortRange: 433/433
@@ -709,71 +678,105 @@ Metadata:
         default: EMR
     TemplateTags:
     - acs:solution:数据迁移:自建Hive数据仓库跨版本迁移到阿里云EMR
-  ALIYUN::ROS::Designer:
-    23f048f5-625d-454b-be45-b7eef0a1a593:
-      source:
-        id: 56757445-ba3c-462c-9e9b-92cf55cd7e3f
-      target:
-        id: 924333a5-b0b7-4079-ac53-801c2bee4462
-      z: 1
-    26c7b49a-29cf-4e20-9513-f068acbc6c33:
-      source:
-        id: f4cdd1a8-a279-4217-b1da-c3b74fc15e0e
-      target:
-        id: 924333a5-b0b7-4079-ac53-801c2bee4462
-      z: 1
-    3aa89ba4-f7d0-475e-be6a-898cc0854d10:
-      embeds:
-      - 3c3887ca-6775-41d3-81b2-49e3d0a2df0e
-      - 924333a5-b0b7-4079-ac53-801c2bee4462
-      position:
-        x: 200
-        y: 55
-      size:
-        height: 419
-        width: 444
-      z: 0
-    3c3887ca-6775-41d3-81b2-49e3d0a2df0e:
-      embeds:
-      - 56757445-ba3c-462c-9e9b-92cf55cd7e3f
-      - aa6d494c-d28a-407b-a949-c74061048dc1
-      - f4cdd1a8-a279-4217-b1da-c3b74fc15e0e
-      position:
-        x: 274
-        y: 100
-      size:
-        height: 251
-        width: 275
-      z: 1
-    56757445-ba3c-462c-9e9b-92cf55cd7e3f:
-      position:
-        x: 456
-        y: 215
-      size:
-        height: 60
-        width: 60
-      z: 2
-    924333a5-b0b7-4079-ac53-801c2bee4462:
-      position:
-        x: 377
-        y: 370
-      size:
-        height: 60
-        width: 60
-      z: 1
-    aa6d494c-d28a-407b-a949-c74061048dc1:
-      position:
-        x: 379
-        y: 137
-      size:
-        height: 60
-        width: 60
-      z: 2
-    f4cdd1a8-a279-4217-b1da-c3b74fc15e0e:
-      position:
-        x: 302
-        y: 216
-      size:
-        height: 60
-        width: 60
-      z: 2
+    - acs:public_template:Solution:self-built-hive-data-warehouse-migrated-to-emr
+  ALIYUN::ROS::Composer:
+    3589c8c9:
+      Rect:
+        - 520
+        - 440
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    3708767e:
+      Parent: 3589c8c9
+      Rect:
+        - 480
+        - 370
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    e289589f:
+      Res:
+        - Vpc
+      Parent: 3708767e
+      Rect:
+        - 440
+        - 300
+        - 80
+        - 200
+        - 3
+        - 0
+    9ea8b205:
+      Res:
+        - VSwitch
+      Parent: e289589f
+      Rect:
+        - 400
+        - 230
+        - 100
+        - 250
+        - 4
+        - 0
+    804e379a:
+      Res:
+        - EmrCluster
+      Parent: 9ea8b205
+      Rect:
+        - 40
+        - 40
+        - 280
+        - 345
+        - 5
+        - 0
+    6d7e89d1:
+      Res:
+        - RdsDbInstance
+      Parent: 9ea8b205
+      Rect:
+        - 40
+        - 40
+        - 407
+        - 345
+        - 5
+        - 0
+    17dca64e:
+      Res:
+        - SecurityGroup
+      Parent: e289589f
+      Rect:
+        - 101
+        - 130
+        - 120
+        - 300
+        - 10
+        - 0
+    1c1b561b:
+      Parent: e289589f
+      Edge:
+        - 804e379a
+        - 17dca64e
+      Line: 0:0:0:gray:0
+    0c60b514:
+      Parent: 9ea8b205
+      Edge:
+        - 804e379a
+        - 6d7e89d1
+      Line: 0:0:0:gray:0
+    f460a47f:
+      Res:
+        - EcsGroup
+      Parent: 9ea8b205
+      Rect:
+        - 40
+        - 40
+        - 151
+        - 345
+        - 11
+        - 0
+      Layer:
+        - 17dca64e
+

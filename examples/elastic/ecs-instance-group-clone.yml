@@ -1,10 +1,7 @@
 ROSTemplateFormatVersion: '2015-09-01'
 Description:
   zh-cn: 克隆ECS实例模板：根据SourceInstanceId，复制相同配置的ECS实例，用户自定义名称、数量、密码，输出新实例ID、公网IP、可用区ID。
-  en: 'Clone ECS Instance from Template: Replicate an ECS instance with identical
-    configurations based on the provided SourceInstanceId, allowing users to customize
-    the name, quantity, and password. The process outputs the new instance IDs, public
-    IP addresses, and availability zone IDs.'
+  en: "Clone ECS Instance from Template: Replicate an ECS instance with identical configurations based on the provided SourceInstanceId, allowing users to customize the name, quantity, and password. The process outputs the new instance IDs, public IP addresses, and availability zone IDs."
 Parameters:
   InstanceName:
     Type: String
@@ -12,11 +9,10 @@ Parameters:
       en: Instance Name
       zh-cn: 实例名称
     Description:
-      en: '[2, 128] alphanumeric letters, underline, dot or hyphen'
+      en: '[2, 128] alphanumeric characters, including underscores, dots, or hyphens'
       zh-cn: 实例名称；2~128个字符，可包含英文、中文、数字、下划线（_）、点号（.）和连字符（-）。
     ConstraintDescription:
-      en: '[2, 128] characters, consists of uppercase letter, lowercase letter, number
-        or special characters.'
+      en: "[2, 128] characters, consisting of uppercase letters, lowercase letters, numbers, or special characters."
       zh-cn: '[2, 128] 个字符，由大写字母、小写字母、数字或特殊字符组成。'
     Default: ClonedECS
     MinLength: 2
@@ -33,10 +29,10 @@ Parameters:
   MaxAmount:
     Type: Number
     Label:
-      en: The Maximum of ECS Instances
+      en: Maximum number of ECS instances
       zh-cn: 最大个数
     Description:
-      en: The maximum of ECS instances, must be greater than or equal to the minimum.
+      en: The maximum number of ECS instances must be greater than or equal to the minimum.
       zh-cn: 一次性创建ECS实例的最大个数，必须大于或等于一次性创建ECS实例的最小个数
     ConstraintDescription:
       en: An integer within [1, 100]
@@ -50,14 +46,11 @@ Parameters:
       en: ECS Instance Password
       zh-cn: ECS实例密码
     Description:
-      en: '[8, 30] characters, consists of uppercase letter, lowercase letter, number
-        or special characters such as ( ) ` ~ ! @ # $ % ^ & * - + = | { } [ ] : ;
-        ‘ < > , . ? / '
+      en: "[8, 30] characters, consists of uppercase letter, lowercase letter, number or special characters such as ( ) ` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' < > , . ? / "
       zh-cn: '长度为8~30个字符。必须同时包含三项（大、小写字母，数字和特殊符号），支持以下特殊字符：( ) ` ~ ! @ # $ % ^ & *
         - + = | { } [ ] : ; ‘ < > , . ? /。'
     ConstraintDescription:
-      en: 'Length 8-30, must contain upper case letters, lower case letters, Numbers,
-        special symbols three; special characters include: ()`~!@#$%^&*_-+=|{}[]:;''<>,.?/'
+      en: "8 to 30 characters, must contain uppercase letters, lowercase letters, numbers, and three types of special symbols. Special characters include: ()`~!@#$%^&*-+=|{}[]:;'<>,.?/"
       zh-cn: 长度8-30，必须包含大写字母、小写字母、数字、特殊符号三种；特殊字符包括：()`~!@#$%^&*_-+=|{}[]:;' <>,.?/
     AllowedPattern: '[a-zA-Z0-9-\(\)\`\~\!@\#\$%\^&\*-+=\|\{\}\[\]\:\;\‘\,\.\?\/]*'
     MinLength: 8
@@ -104,3 +97,36 @@ Metadata:
         default: ECS
     TemplateTags:
     - acs:example:弹性计算:指定SourceInstanceId克隆出相同配置的一组ECS实例
+    - acs:public_template:Example:ecs-instance-group-clone
+  ALIYUN::ROS::Composer:
+    1206a181:
+      Rect:
+        - 310
+        - 307
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    1790c0f0:
+      Parent: 1206a181
+      Rect:
+        - 217
+        - 210
+        - 86
+        - 149
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    49e9716c:
+      Res:
+        - ECSInstanceGroup
+      Parent: 1790c0f0
+      Rect:
+        - 40
+        - 40
+        - 175
+        - 232
+        - 3
+        - 0
+

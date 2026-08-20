@@ -30,7 +30,292 @@ Metadata:
         Label:
           default: SLB
     TemplateTags:
-      - acs:technical-solution:network:ECS:电商行业业务及数据库上云
+      - acs:technical-solution:network:电商行业业务及数据库上云
+      - acs:public_template:Solution:e-commerce-business-and-db-on-the-cloud
+  ALIYUN::ROS::Composer:
+    4acd901c:
+      Parent: 3cf39869
+      Rect:
+        - 966
+        - 897
+        - 83
+        - -118
+        - -7
+        - 0
+      ResT: Composer::ROSParameter::Region
+    c19b1bc8:
+      Res:
+        - Vpc
+      Parent: 4acd901c
+      Rect:
+        - 830
+        - 816
+        - 163
+        - -75
+        - -6
+        - 0
+    4b990b02:
+      Res:
+        - Eip_0
+        - VpcEipAssociation_0
+      Parent: 4acd901c
+      Rect:
+        - 40
+        - 40
+        - 441
+        - 13
+        - -6
+        - 0
+    3cf39869:
+      Rect:
+        - 1058
+        - 972
+        - 40
+        - -158
+        - -5
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    d42e6f8e:
+      Res:
+        - InstallMysqlRunCommand
+      Parent: 3cf39869
+      Rect:
+        - 40
+        - 40
+        - 871
+        - 378
+        - -4
+        - 0
+    0b525181:
+      Res:
+        - MigrationJob
+      Parent: 3cf39869
+      Rect:
+        - 40
+        - 40
+        - 871
+        - 558
+        - -4
+        - 0
+    b701ccd1:
+      Res:
+        - Eip_1
+        - VpcEipAssociation_1
+      Parent: 4acd901c
+      Rect:
+        - 40
+        - 40
+        - 695
+        - 103
+        - 3
+        - 0
+    afa90190:
+      Res:
+        - ECS_Vsw_1
+      Parent: c19b1bc8
+      Rect:
+        - 269
+        - 194
+        - 237
+        - 301
+        - 4
+        - 0
+    59e72c48:
+      Res:
+        - ECS_Vsw_2
+      Parent: c19b1bc8
+      Rect:
+        - 308
+        - 189
+        - 520
+        - 306
+        - 4
+        - 0
+    299e422f:
+      Res:
+        - SLB_Vsw_1
+      Parent: c19b1bc8
+      Rect:
+        - 260
+        - 141
+        - 331
+        - 112
+        - 4
+        - 0
+    c1961813:
+      Res:
+        - RDS_Vsw_1
+      Parent: c19b1bc8
+      Rect:
+        - 266
+        - 165
+        - 234
+        - 515
+        - 4
+        - 0
+    a6a8b993:
+      Res:
+        - RDS_Vsw_2
+      Parent: c19b1bc8
+      Rect:
+        - 311
+        - 167
+        - 520
+        - 515
+        - 4
+        - 0
+    c8ed80df:
+      Res:
+        - DtsInstance
+      Parent: c19b1bc8
+      Rect:
+        - 40
+        - 40
+        - 871
+        - 658
+        - 4
+        - 0
+    3c166436:
+      Res:
+        - Slb
+        - SlbListener
+        - SlbBackendServerAttachment
+      Parent: 299e422f
+      Rect:
+        - 40
+        - 40
+        - 441
+        - 163
+        - 5
+        - 0
+    2bf8851a:
+      Res:
+        - RdsDBInstance
+      Parent: c1961813
+      Rect:
+        - 40
+        - 40
+        - 425
+        - 558
+        - 5
+        - 0
+    366f5340:
+      Res:
+        - WordpressSg
+      Parent: c19b1bc8
+      Rect:
+        - 131
+        - 87
+        - 650
+        - 358
+        - 20
+        - 0
+
+    1a721066:
+      Res:
+        - ECommerceSg
+      Parent: c19b1bc8
+      Rect:
+        - 351
+        - 90
+        - 269
+        - 356
+        - 20
+        - 0
+
+    70da20bc:
+      Parent: c19b1bc8
+      Edge:
+        - 3c166436
+        - 19b40ae2
+      Line: 0:0:0:gray:0
+    065c70ba:
+      Parent: c19b1bc8
+      Edge:
+        - 3c166436
+        - 5c3cc1e0
+      Line: 0:0:0:gray:0
+    69c78669:
+      Parent: 4acd901c
+      Edge:
+        - 4b990b02
+        - 3c166436
+      Line: 0:0:0:gray:0
+    71aab7a2:
+      Parent: 4acd901c
+      Edge:
+        - b701ccd1
+        - ae6502d6
+      Line: 0:0:0:gray:0
+    217abeca:
+      Parent: 3cf39869
+      Edge:
+        - d42e6f8e
+        - ae6502d6
+      Line: 0:0:0:gray:0
+    5e89f529:
+      Parent: c19b1bc8
+      Edge:
+        - 2bf8851a
+        - 1a721066
+      Line: 0:0:0:gray:0
+    62aea9a1:
+      Parent: 3cf39869
+      Edge:
+        - c8ed80df
+        - 0b525181
+      Line: 0:0:0:gray:0
+    3c3bb831:
+      Parent: 3cf39869
+      Edge:
+        - 0b525181
+        - ae6502d6
+      Line: 0:0:0:gray:0
+    32d3d9cf:
+      Parent: 3cf39869
+      Edge:
+        - 0b525181
+        - 2bf8851a
+      Line: 0:0:0:gray:0
+    ae6502d6:
+      Res:
+        - WordpressDemoEcs
+      Parent: 59e72c48
+      Rect:
+        - 40
+        - 40
+        - 695
+        - 378
+        - 21
+        - 0
+      Layer:
+        - 366f5340
+    19b40ae2:
+      Res:
+        - DsDemoEcs_0
+      Parent: afa90190
+      Rect:
+        - 40
+        - 40
+        - 331
+        - 378
+        - 21
+        - 0
+      Layer:
+        - 1a721066
+    5c3cc1e0:
+      Res:
+        - DsDemoEcs_1
+      Parent: 59e72c48
+      Rect:
+        - 40
+        - 40
+        - 549
+        - 378
+        - 21
+        - 0
+      Layer:
+        - 1a721066
 Parameters:
   ECS_ZoneId_1:
     Type: String
@@ -95,12 +380,10 @@ Parameters:
       en: ECS instance password
       zh-cn: ECS实例密码
     Description:
-      en: 'Length 8-32 characters, can contain size letters, Numbers and special symbols,
-        including: !@#$%^&*()_+-='
+      en: "8–32 characters, can contain uppercase letters, numbers, and special symbols, including: !@#$%^&*()_+-="
       zh-cn: 长度8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*()_+-=）
     ConstraintDescription:
-      en: '8-32 characters, can contain size letters, Numbers and special symbols,
-        including: !@#$%^&*()_+-='
+      en: "8–32 characters, can contain uppercase letters, numbers, and special symbols, including: !@#$%^&*()_+-="
       zh-cn: 8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*()_+-=）
     MinLength: 8
     MaxLength: 32
@@ -111,9 +394,7 @@ Parameters:
       en: Specifications
       zh-cn: 规格
     Description:
-      en: 'Select the instance specification based on the type of database engine
-        and the available area support;<br>see detail: <a href=''https://www.alibabacloud.com/help/doc-detail/26312.html''
-        target=''_blank''><b><font color=''blue''>Instance specification sheet</font></b></a>'
+      en: "Select the instance specification based on the type of database engine and the available area support;<br>see detail: <a href='https://www.alibabacloud.com/help/doc-detail/26312.html' target='_blank'><b><font color='blue'>Instance specification sheet</font></b></a>"
       zh-cn: 根据数据库引擎的类型和可用的区域支持选择实例规格；<br>请参见详细信息：<a href='https://help.aliyun.com/document_detail/26312.html'
         target='_blank'><b><font color='blue'>实例规格表</font></b></a>
     Default: rds.mysql.s2.large
@@ -123,13 +404,10 @@ Parameters:
       en: Database password
       zh-cn: 数据库密码
     Description:
-      en: 'Length 8-32 characters, can contain size letters, Numbers and special symbols,
-        including: !@#$%^&*()_+-= <br>It applies to both the password of the self-built database on ECS and
-        the password of RDS.'
+      en: "8–32 characters, can contain uppercase letters, numbers, and special symbols, including: !@#$%^&*()_+-= <br>It applies to both the password of the self-built database on ECS and the password of RDS."
       zh-cn: 长度8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*()_+-=）<br>同时适用于ECS上自建数据库的密码与RDS的密码。
     ConstraintDescription:
-      en: '8-32 characters, can contain size letters, Numbers and special symbols,
-        including: !@#$%^&*()_+-='
+      en: "8–32 characters, can contain uppercase letters, numbers, and special symbols, including: !@#$%^&*()_+-="
       zh-cn: 8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*()_+-=）
     MinLength: 8
     MaxLength: 32
@@ -204,11 +482,6 @@ Resources:
       VpcId:
         Ref: Vpc
       SecurityGroupIngress:
-        - PortRange: 22/22
-          Priority: 1
-          SourceCidrIp: 0.0.0.0/0
-          IpProtocol: tcp
-          NicType: intranet
         - PortRange: 80/80
           Priority: 1
           SourceCidrIp: 0.0.0.0/0
@@ -235,11 +508,6 @@ Resources:
       VpcId:
         Ref: Vpc
       SecurityGroupIngress:
-        - PortRange: 22/22
-          Priority: 1
-          SourceCidrIp: 0.0.0.0/0
-          IpProtocol: tcp
-          NicType: intranet
         - PortRange: 80/80
           Priority: 1
           SourceCidrIp: 0.0.0.0/0
@@ -556,7 +824,7 @@ Outputs:
   EcsLoginAddress:
     Description:
       zh-cn: ECS登陆地址。
-      en: Ecs login address.
+      en: ECS login address.
     Value:
       Fn::Sub:
         - https://ecs-workbench.aliyun.com/?from=EcsConsole&instanceType=ecs&regionId=${Region}&instanceId=${InstanceId}

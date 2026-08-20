@@ -15,6 +15,9 @@ Examples and best practices of ROS templates. The templates are categorized as f
 - `solutions`: Solutions that provide template best practices for complex scenarios. The templates are the same as those in the ROS Console [Solution Center](https://ros.console.aliyun.com/cn-beijing/solutions).
 - `transform`: Templates based on [Transform syntax](https://www.alibabacloud.com/help/resource-orchestration-service/latest/template-syntax-transform), offering simplified templates for specific scenarios.
 - `documents`：The templates involved in the Alibaba Cloud documents.
+  - `help`: The templates involved in the Alibaba Cloud Help Center documents.
+  - `solution`: The templates involved in the Alibaba Cloud solutions.
+  - `trial`: The templates involved in the Alibaba Cloud trial tutorial.
 - `compute-nest-best-practice`: Best practice templates for [Compute Nest](https://www.alibabacloud.com/help/computing-nest), providing templates for basic and advanced Compute Nest scenarios.
 
 ## Details
@@ -479,6 +482,7 @@ Examples and best practices of ROS templates. The templates are categorized as f
 | [build-a-dialogue-model-based-on-ChatGLM-and-LangChain.yml](documents/solution/ai/build-a-dialogue-model-based-on-ChatGLM-and-LangChain.yml)                     | Build a dialogue model based on ChatGLM and LangChain.                                                             |
 | [build-a-dialogue-model-based-on-Qwen-and-LangChain.yml](documents/solution/ai/build-a-dialogue-model-based-on-Qwen-and-LangChain.yml)                           | Build a dialogue model based on Qwen and LangChain.                                                                |
 | [ack-ai-fine-tuning.yml](documents/solution/ai/ack-ai-fine-tuning.yml)                                                                                           | Use the cloud-native AI suite to submit model fine-tuning training tasks and deploy GPU shared inference services. |
+| [AI-Apps-on-Alibaba-Cloud-Bailian.yml](documents/solution/ai/AI-Apps-on-Alibaba-Cloud-Bailian.yml)                                                                                           | 10 minutes to build AI applications through Alibaba Cloud Bailian platform. |
 | [exclusive-qa-service.yml](documents/solution/ai/exclusive-qa-service.yml)                                                                                       | DashVector and Tongyi QianWen build exclusive Q&A service.                                                         |
 | [discover-and-reach-high-value-users.yml](documents/solution/ai/discover-and-reach-high-value-users.yml)                                                         | Discover and reach high value users.                                                                               |
 | [ComfyUI-by-fc.yml](documents/solution/ai/ComfyUI-by-fc.yml)                                                                                                     | Deploy ComfyUI through Function Computing to implement an AIGC image generation system.                            |
@@ -487,6 +491,8 @@ Examples and best practices of ROS templates. The templates are categorized as f
 | [AnalyticDB-and-Bailian-system.yml](documents/solution/ai/AnalyticDB-and-Bailian-system.yml)                                                                     | AnalyticDB and Bailian build intelligent question and answer system.                                               |
 | [pai-rec-deploy-recommendation-solution.yml](documents/solution/ai/pai-rec-deploy-recommendation-solution.yml)                                                   | Deploying a recommendation solution using PAI-Rec.                                                                 |
 | [ecs-ai-face-detection-solution.yml](documents/solution/ai/ecs-ai-face-detection-solution.yml)                                                                   | Deploying a face detection and comparison solution based on the Visual Intelligence Open Platform.                 |
+| [Quickstart-Qwen2.5-Omni-with-Baijian.yml](documents/solution/ai/Quickstart-Qwen2.5-Omni-with-Baijian.yml)                                                                   | Quickly experience Qwen2.5-Omni model through hundreds of exercises.                |
+| [use-cen-access-to-bailian-service.yml](documents/solution/ai/use-cen-access-to-bailian-service.yml)                                                                   | Secure and efficient access to Peregrine services over a private network.               |
 
 - data-analysis
 
@@ -499,21 +505,31 @@ Examples and best practices of ROS templates. The templates are categorized as f
 | [cloud-native-enterprise-data-lake.yml](./documents/solution/data-analysis/cloud-native-enterprise-data-lake.yml)     | Cloud-native enterprise data lake.                                                                                |
 | [OLAP-analysis-based-on-Hologres.yml](./documents/solution/data-analysis/OLAP-analysis-based-on-Hologres.yml)         | Lightweight and high-performance OLAP analysis based on Hologres.                                                 |
 | [quickly-build-large-screen.yml](./documents/solution/data-analysis/quickly-build-large-screen.yml)                   | Quickly build a large screen of enterprise management.                                                            |
+| [efficient-storage-and-processing-of-multimedia-data.yml](./documents/solution/data-analysis/efficient-storage-and-processing-of-multimedia-data.yml)                   | Efficient storage and processing of multimedia data.                                                           |
+| [Rapid-Enterprise-Data-Analysis-Agent.yaml](./documents/solution/data-analysis/Rapid-Enterprise-Data-Analysis-Agent.yaml)                   | Rapid Enterprise Data Analysis Agent Development.                                                           |
+| [build-agentic-lakehouse-on-starrocks.yml](./documents/solution/data-analysis/build-agentic-lakehouse-on-starrocks.yml)                   | Building an Agentic Lakehouse for Omni-Modal Data.                                                           |
 
 - database
 
-| Template                                                                                                                               | Description                                                                                                                     |
-| -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| [automatic-database-scaling-and-SQL-optimization.yml](documents/solution/database/automatic-database-scaling-and-SQL-optimization.yml) | Automatic database scaling and SQL optimization                                                                                 |
-| [wordpress-website-database-on-the-cloud.yml](documents/solution/database/wordpress-website-database-on-the-cloud.yml)                 | WordPress website database on the cloud.                                                                                        |
-| [build-enterprise-web-with-mobi.yml](documents/solution/database/build-enterprise-web-with-mobi.yml)                                   | Build enterprise portals efficiently with low code.                                                                             |
-| [dts-cache-synchronization.yml](documents/solution/database/dts-cache-synchronization.yml)                                             | The consistency scheme of cache synchronization between MySQL and Redis is implemented by DTS .                                 |
-| [migrate-rds-mysql-to-polardb-mysql.yml](documents/solution/database/migrate-rds-mysql-to-polardb-mysql.yml)                           | Online one-click upgrade of RDS MySQL to PolarDB MySQL version without modifying any code and configuration of the application. |
-| [one-stop-htap-service.yml](documents/solution/database/one-stop-htap-service.yml)                                                     | Build a one-stop HTAP service based on RDS and ClickHouse.                                                                      |
-| [data-transmission-from-ECS-to-RDS.yml](documents/solution/database/data-transmission-from-ECS-to-RDS.yml)                             | Data transmission from ECS self-built database to RDS database.                                                                 |
-| [migrate-database-to-cloud.yml](documents/solution/database/migrate-database-to-cloud.yml)                                             | Migrate self-built database to cloud database.                                                                                  |
-| [rag-application.yml](documents/solution/database/rag-application.yml)                                                                 | Quickly build RAG applications using AnalyticDB and Streamlit.                                                                  |
-| [through-RocketMQ-transaction-messages.yml](documents/solution/database/through-RocketMQ-transaction-messages.yml)                     | Distributed transactions are implemented through RocketMQ transaction messages.                                                 |
+| Template                                                                                                                              | Description                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| [automatic-database-scaling-and-SQL-optimization.yml](documents/solution/database/automatic-database-scaling-and-SQL-optimization.yml) | Automatic database scaling and SQL optimization                                                                                |
+| [wordpress-website-database-on-the-cloud.yml](documents/solution/database/wordpress-website-database-on-the-cloud.yml)                | WordPress website database on the cloud.                                                                                       |
+| [build-enterprise-web-with-mobi.yml](documents/solution/database/build-enterprise-web-with-mobi.yml)                                  | Build enterprise portals efficiently with low code.                                                                            |
+| [dts-cache-synchronization.yml](documents/solution/database/dts-cache-synchronization.yml)                                            | The consistency scheme of cache synchronization between MySQL and Redis is implemented by DTS .                                |
+| [migrate-rds-mysql-to-polardb-mysql.yml](documents/solution/database/migrate-rds-mysql-to-polardb-mysql.yml)                          | Online one-click upgrade of RDS MySQL to PolarDB MySQL version without modifying any code and configuration of the application. |
+| [one-stop-htap-service.yml](documents/solution/database/one-stop-htap-service.yml)                                                    | Build a one-stop HTAP service based on RDS and ClickHouse.                                                                     |
+| [data-transmission-from-ECS-to-RDS.yml](documents/solution/database/data-transmission-from-ECS-to-RDS.yml)                            | Data transmission from ECS self-built database to RDS database.                                                                |
+| [migrate-database-to-cloud.yml](documents/solution/database/migrate-database-to-cloud.yml)                                            | Migrate self-built database to cloud database.                                                                                 |
+| [rag-application.yml](documents/solution/database/rag-application.yml)                                                                | Quickly build RAG applications using AnalyticDB and Streamlit.                                                                 |
+| [rds-database-agent.yml](documents/solution/database/rds-database-agent.yml)                                                                | Read and write separation is realized by RDS database agent.                                                             |
+| [through-RocketMQ-transaction-messages.yml](documents/solution/database/through-RocketMQ-transaction-messages.yml)                    | Distributed transactions are implemented through RocketMQ transaction messages.                                                |
+| [SelectDB-Log-Storage-and-Real-Time-Analytics.yaml](documents/solution/database/SelectDB-Log-Storage-and-Real-Time-Analytics.yaml)                    | Read and write separation is realized by RDS database agent.                                              |
+| [Modern-SelectDB-Lakehouse-Platform.yaml](documents/solution/database/Modern-SelectDB-Lakehouse-Platform.yaml)                    | Low cost, high performance lake warehouse integrated architecture based on SelectDB.                                              |
+| [Native-SQL-Multimodal-Search.yml](documents/solution/database/Native-SQL-Multimodal-Search.yml)                    | Native SQL easily realizes multimodal intelligent retrieval.                       |
+| [Redis-for-High-Concurrency.yml](documents/solution/database/Redis-for-High-Concurrency.yml)                     | To handle high concurrency, the Redis version cache is utilized to achieve ultra-fast response.                      |
+| [migrate-ecs-redis-to-cloud.yml](documents/solution/database/migrate-ecs-redis-to-cloud.yml)                     | Migrate self-built Redis to the cloud database.                     |
+| [database-office-security-protection.yml](documents/solution/database/database-office-security-protection.yml)                     | Quickly achieve database office security protection through SASE.                 |
 
 - iot
 
@@ -549,6 +565,8 @@ Examples and best practices of ROS templates. The templates are categorized as f
 | [cloud-native-observable-operation-and-maintenance.yml](documents/solution/storage/cloud-native-observable-operation-and-maintenance.yml) | Cloud-native observable operation and maintenance.          |
 | [snapshot-optimize.yml](documents/solution/storage/snapshot-optimize.yml)                                                                 | Deploy high-performance MySQL services based on EBS ESSD.   |
 | [collect-application-log.yml](documents/solution/storage/collect-application-log.yml)                                                     | Application business log monitoring and alarming.           |
+| [deploy-personal-cloud-drive-based-on-nextcloud.yml](documents/solution/storage/deploy-personal-cloud-drive-based-on-nextcloud.yml)                     | Deploy personal web disks based on Nextcloud.                                                 |
+| [Tair-for-Multi-Device-IM-Sync.yml](documents/solution/storage/Tair-for-Multi-Device-IM-Sync.yml)                     | Tair (compatible with Redis) enables multi-terminal message synchronization in IM.                                                |
 
 - cdn-and-video-cloud
 
@@ -561,14 +579,14 @@ Examples and best practices of ROS templates. The templates are categorized as f
 
 - cloud-migration
 
-| 模板                                                                                                  | 说明                                                                                                                                      |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| [operating-system-migration.yml](documents/solution/cloud-migration/operating-system-migration.yml)   | Manually build a WordPress website on a CentOS 7 ECS instance. ｜ [解决方案](https://www.aliyun.com/solution/tech-solution/centos_alinux) |
+| 模板                                                                                                  | 说明                                                                                                                                       |
+| ----------------------------------------------------------------------------------------------------- |------------------------------------------------------------------------------------------------------------------------------------------|
+| [operating-system-migration.yml](documents/solution/cloud-migration/operating-system-migration.yml)   | Manually build a WordPress website on a CentOS 7 ECS instance. ｜ [Solution](https://www.aliyun.com/solution/tech-solution/centos_alinux) |
 | [migrate-prometheus-to-cloud.yml](documents/solution/cloud-migration/migrate-prometheus-to-cloud.yml) | Migrate self-built Prometheus to cloud-managed Prometheus service. ｜                                                                     |
 | [operating-system-migration.yml](documents/solution/cloud-migration/operating-system-migration.yml)   | Manually build a WordPress website on a CentOS 7 ECS instance. ｜ [Solution](https://www.aliyun.com/solution/tech-solution/centos_alinux) |
-| [migrate-kafka-to-cloud.yml](documents/solution/cloud-migration/migrate-kafka-to-cloud.yml)           | Migrate Kafka to Cloud.                                                                                                                   |
-| [migrate-rabbitmq-to-cloud.yml](documents/solution/cloud-migration/migrate-rabbitmq-to-cloud.yml)     | Migrate RabbitMq to Cloud.                                                                                                                |
-| [migrate-rocketmq-to-cloud.yml](documents/solution/cloud-migration/migrate-rocketmq-to-cloud.yml)     | Migrate RocketMQ to Cloud.                                                                                                                |
+| [migrate-kafka-to-cloud.yml](documents/solution/cloud-migration/migrate-kafka-to-cloud.yml)           | Migrate Kafka to Cloud.                                                                                                                  |
+| [migrate-rabbitmq-to-cloud.yml](documents/solution/cloud-migration/migrate-rabbitmq-to-cloud.yml)     | Migrate RabbitMq to Cloud.                                                                                                               |
+| [migrate-rocketmq-to-cloud.yml](documents/solution/cloud-migration/migrate-rocketmq-to-cloud.yml)     | Migrate RocketMQ to Cloud.                                                                                                               |
 
 - high-availability-architecture
 
@@ -583,6 +601,7 @@ Examples and best practices of ROS templates. The templates are categorized as f
 | [serverless-high-availability-architecture.yml](documents/solution/high-availability-architecture/serverless-high-availability-architecture.yml) | Serverless high availability architecture.                        |
 | [build-high-performance-flash-sale-system.yaml](documents/solution/high-availability-architecture/build-high-performance-flash-sale-system.yaml) | Build a high-performance flash sale system.                        |
 | [end-to-end-full-link-tracking-and-diagnosis.yaml](documents/solution/high-availability-architecture/end-to-end-full-link-tracking-and-diagnosis.yaml) | End-to-end full-link tracking and diagnosis.                        |
+| [Real-Time-Cloud-Product-Monitoring-with-Prometheus.yaml](documents/solution/high-availability-architecture/Real-Time-Cloud-Product-Monitoring-with-Prometheus.yaml) | Complete real-time monitoring of cloud products with Prometheus.                |
 | [optimizing-complex-query-performance.yaml](documents/solution/high-availability-architecture/optimizing-complex-query-performance.yaml) | Optimizing Complex Query Performance in E-commerce.                        |
 
 - ops-on-cloud
@@ -602,20 +621,28 @@ Examples and best practices of ROS templates. The templates are categorized as f
 
 - internet-application-development
 
-| Template                                                                                                                                                   | Description                                                                        |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [Nginx-access-log-data-archive.yml](documents/solution/internet-application-development/Nginx-access-log-data-archive.yml)                                 | Nginx access log data archive.                                                     |
-| [video-website-solution.yml](documents/solution/internet-application-development/video-website-solution.yml)                                               | Storage and Media Processing Solution for Video Website.                           |
-| [log-security-audit-and-compliance-assessment.yaml](documents/solution/internet-application-development/log-security-audit-and-compliance-assessment.yaml) | Log security audit and compliance assessment.                                      |
-| [distributed-task-scheduling.yaml](documents/solution/internet-application-development/distributed-task-scheduling.yaml)                                   | Distributed task scheduling through SchedulerX.                                    |
-| [efficiently-build-app-on-the-cloud.yaml](documents/solution/internet-application-development/efficiently-build-app-on-the-cloud.yaml)                     | Efficiently build APP on the cloud.                                                |
-| [file-processing-on-fc.yaml](documents/solution/internet-application-development/file-processing-on-fc.yaml)                                               | Using function computing to implement file processing on websites.                 |
-| [process-data-with-lindorm.yaml](documents/solution/internet-application-development/process-data-with-lindorm.yaml)                                       | Lindorm one-stop processing of pan-time series data.                               |
-| [rapidly-deployment-applets.yaml](documents/solution/internet-application-development/rapidly-deployment-applets.yaml)                                     | Rapidly develop multi-platform applets.                                            |
-| [rapidly-enterprise-portal.yaml](documents/solution/internet-application-development/rapidly-enterprise-portal.yaml)                                       | Rapidly set up a enterprise portal.                                                |
-| [serverless-rabbitmq.yaml](documents/solution/internet-application-development/serverless-rabbitmq.yaml)                                                   | Cloud Message Queue RabbitMQ version Serverless series advantages and practices.   |
-| [websites-from-HTTP-to-HTTPS.yaml](documents/solution/internet-application-development/websites-from-HTTP-to-HTTPS.yaml)                                   | Making websites more secure from HTTP to HTTPS.                                    |
-| [ES-vector-retrieval-capabilities.yml](documents/solution/internet-application-development/ES-vector-retrieval-capabilities.yml)                           | Using Elasticsearch's vector search capabilities for personalized recommendations. |
+| Template                                                                                                                                                             | Description                                                                        |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| [Nginx-access-log-data-archive.yml](documents/solution/internet-application-development/Nginx-access-log-data-archive.yml)                                           | Nginx access log data archive.                                                     |
+| [video-website-solution.yml](documents/solution/internet-application-development/video-website-solution.yml)                                                         | Storage and Media Processing Solution for Video Website.                           |
+| [log-security-audit-and-compliance-assessment.yaml](documents/solution/internet-application-development/log-security-audit-and-compliance-assessment.yaml)           | Log security audit and compliance assessment.                                      |
+| [distributed-task-scheduling.yaml](documents/solution/internet-application-development/distributed-task-scheduling.yaml)                                             | Distributed task scheduling through SchedulerX.                                    |
+| [efficiently-build-app-on-the-cloud.yaml](documents/solution/internet-application-development/efficiently-build-app-on-the-cloud.yaml)                               | Efficiently build APP on the cloud.                                                |
+| [file-processing-on-fc.yaml](documents/solution/internet-application-development/file-processing-on-fc.yaml)                                                         | Using function computing to implement file processing on websites.                 |
+| [process-data-with-lindorm.yaml](documents/solution/internet-application-development/process-data-with-lindorm.yaml)                                                 | Lindorm one-stop processing of pan-time series data.                               |
+| [rapidly-deployment-applets.yaml](documents/solution/internet-application-development/rapidly-deployment-applets.yaml)                                               | Rapidly develop multi-platform applets.                                            |
+| [rapidly-enterprise-portal.yaml](documents/solution/internet-application-development/rapidly-enterprise-portal.yaml)                                                 | Rapidly set up a enterprise portal.                                                |
+| [serverless-rabbitmq.yaml](documents/solution/internet-application-development/serverless-rabbitmq.yaml)                                                             | Cloud Message Queue RabbitMQ version Serverless series advantages and practices.   |
+| [websites-from-HTTP-to-HTTPS.yaml](documents/solution/internet-application-development/websites-from-HTTP-to-HTTPS.yaml)                                             | Making websites more secure from HTTP to HTTPS.                                    |
+| [ES-vector-retrieval-capabilities.yml](documents/solution/internet-application-development/ES-vector-retrieval-capabilities.yml)                                     | Using Elasticsearch's vector search capabilities for personalized recommendations. |
+| [data-protection-against-ransomware-attacks.yml](documents/solution/internet-application-development/data-protection-against-ransomware-attacks.yml)                 | Data protection:Data protection against ransomware attacks.                        |
+| [upgrade-the-front-end-separation-architecture.yml](documents/solution/internet-application-development/upgrade-the-front-end-separation-architecture.yml)           | Complete front-end separation architecture upgrade in 10 minutes (ECS version).    |
+| [deploy-SSL-certificates-to-Nginx-applications.yml](documents/solution/internet-application-development/deploy-SSL-certificates-to-Nginx-applications.yml)           | Deploy SSL certificates to Nginx applications.                                     |
+| [deploy-SSL-certificates-to-SpringBoot-applications.yml](documents/solution/internet-application-development/deploy-SSL-certificates-to-SpringBoot-applications.yml) | Deploy SSL certificates to Spring Boot applications.                               |
+| [deploy-SSL-certificates-to-Tomcat-applications.yml](documents/solution/internet-application-development/deploy-SSL-certificates-to-Tomcat-applications.yml)         | Deploy SSL certificates to Tomcat applications.                                    |
+| [cloud-site-construction.yml](documents/solution/internet-application-development/cloud-site-construction.yml)                                                       | Cloud site construction: effectively reduce network bandwidth costs.               |
+| [Run-Dify-on-Serverless.yml](documents/solution/internet-application-development/Run-Dify-on-Serverless.yml)                                                       | Deploy the production environment Dify platform through the Serverless application engine.              |
+| [Elsaticsearch-AI-Maintenance.yml](documents/solution/internet-application-development/Elsaticsearch-AI-Maintenance.yml)                                                       | Elasticsearch Intelligent operation and maintenance AI assistant.           |
 
 - security-and-compliance
 
@@ -623,7 +650,7 @@ Examples and best practices of ROS templates. The templates are categorized as f
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | [efficiently-build-a-new-account-with-security-and-compliance.yml](documents/solution/security-and-compliance/efficiently-build-a-new-account-with-security-and-compliance.yml) | Efficiently build a new account with security and compliance.            |
 | [multiple-accounts-support-configuration-auditing.yml](documents/solution/security-and-compliance/multiple-accounts-support-configuration-auditing.yml)                         | Configure unified compliance audit for multiple accounts.                |
-| [cloud-firewall-in-multiple-accounts.yml](documents/solution/security-and-compliance/cloud-firewall-in-multiple-accounts.yml)                                                   | Create a VPC type ECS and bind EIP.                                      |
+| [cloud-firewall-in-multiple-accounts.yml](documents/solution/security-and-compliance/cloud-firewall-in-multiple-accounts.yml)                                                   | Cloud firewall enables unified management of multiple accounts for enterprises.                                      |
 | [enterprise-multi-account-identity-permissions.yml](documents/solution/security-and-compliance/enterprise-multi-account-identity-permissions.yml)                               | Centralized management of enterprise multi-account identity permissions. |
 | [only-approved-cloud-services.yml](documents/solution/security-and-compliance/only-approved-cloud-services.yml)                                                                 | Restrict enterprises to only approved cloud services.                    |
 | [protect-web-applications-with-WAF.yml](documents/solution/security-and-compliance/protect-web-applications-with-WAF.yml)                                                       | Protect web applications with WAF.                                       |

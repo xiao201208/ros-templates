@@ -45,7 +45,7 @@ Parameters:
       en: EIP Bandwidth
       zh-cn: 弹性公网带宽
     Description:
-      en: 'EIP Bandwidth, Value range: [1,200], unit: Mbps.'
+      en: 'EIP Bandwidth, value range: [1, 200], unit: Mbps.'
       zh-cn: 弹性公网地址带宽。取值范围：1~200， 单位：Mbps。
     Default: 1
     MinValue: 1
@@ -56,7 +56,7 @@ Parameters:
       en: EIP Charge Type
       zh-cn: 弹性公网地址的收费类型
     Description:
-      en: The charge type of EIP, PayByBandwidth；PayByTraffic.
+      en: The charge type of EIP, PayByBandwidth;PayByTraffic.
       zh-cn: 弹性公网地址的收费类型，PayByBandwidth：按带宽付费，PayByTraffic：按流量付费
     AssociationPropertyMetadata:
       LocaleKey: InternetChargeType
@@ -70,12 +70,7 @@ Parameters:
       en: VSwitch Availability Zone
       zh-cn: 交换机可用区
     Description:
-      en: 'Availability zone ID.<br><b>Note: <font color=''blue''>Before selecting,
-        please confirm whether the availability zone supports the specification of
-        creating ECS resources. It is recommended to be different from other switch
-        availability zones</font></b ><br><font color=''red''>The switch availability
-        zone and the selected switch instance ID must be in the same availability
-        zone.</font>'
+      en: "Availability zone ID.<br><b>Note: <font color='blue'>Before selecting, please confirm whether the availability zone supports the specification for creating ECS resources. It is recommended to be different from other switch availability zones</font></b><br><font color='red'>The switch availability zone and the selected switch instance ID must be in the same availability zone.</font>"
       zh-cn: 可用区ID。<br><b>注： <font color='blue'>选择前请确认该可用区是否支持创建ECS资源的规格，建议与其他交换机可用区不同</font></b><br><font
         color='red'>交换机可用区和已选择的交换机实例ID必须在同一个可用区。</font>
     AssociationProperty: ALIYUN::ECS::Instance:ZoneId
@@ -126,11 +121,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -145,7 +136,7 @@ Parameters:
       en: System Disk Space
       zh-cn: 系统盘空间
     Description:
-      en: 'System disk size, range of values: 20-500, units: GB.'
+      en: 'System disk size, value range: 20–500 GB.'
       zh-cn: 系统盘大小, 取值范围：[20, 500], 单位：GB。
     Default: 20
     MinValue: 20
@@ -205,6 +196,7 @@ Parameters:
       - 9
   ECSPassword:
     Type: String
+    NoEcho: true
     Label:
       en: Instance Password
       zh-cn: 实例密码
@@ -218,10 +210,7 @@ Parameters:
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
     Default: null
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: 'ALIYUN::ECS::Instance::Password'
   KeyPairName:
     Type: String
     Label:
@@ -342,3 +331,78 @@ Metadata:
         default: ECS
     TemplateTags:
     - acs:example:弹性计算:创建VPC类型ECS，并绑定EIP(已有VPC)
+    - acs:public_template:Example:existing-vpc-one-ecs-bind-eip
+  ALIYUN::ROS::Composer:
+    '15612638':
+      Parent: b0b1b97b
+      Edge:
+        - f5ffcd98
+        - e6173172
+      Line: 0:0:0:gray:0
+    f22d1662:
+      Rect:
+        - 580
+        - 478
+        - 40
+        - 32
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    b0b1b97b:
+      Parent: f22d1662
+      Rect:
+        - 540
+        - 418
+        - 60
+        - 72
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    f5ffcd98:
+      Res:
+        - ElasticIp
+        - ElasticIpAssociation
+      Parent: b0b1b97b
+      Rect:
+        - 40
+        - 40
+        - 310
+        - 112
+        - 3
+        - 0
+    014eb433:
+      Res:
+        - VPC
+      Parent: b0b1b97b
+      Rect:
+        - 440
+        - 270
+        - 110
+        - 200
+        - 3
+        - 0
+      ResT: ALIYUN::ECS::VPC
+    f646868b:
+      Res:
+        - VSwitch
+      Parent: 014eb433
+      Rect:
+        - 400
+        - 200
+        - 130
+        - 250
+        - 4
+        - 0
+      ResT: ALIYUN::ECS::VSwitch
+    e6173172:
+      Res:
+        - ECSInstanceGroup
+      Parent: f646868b
+      Rect:
+        - 40
+        - 40
+        - 310
+        - 315
+        - 5
+        - 0
+

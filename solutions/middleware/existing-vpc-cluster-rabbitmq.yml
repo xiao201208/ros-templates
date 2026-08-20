@@ -92,11 +92,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -115,7 +111,7 @@ Parameters:
       en: System Disk Space
       zh-cn: 系统盘空间
     Description:
-      en: 'System disk size, range of values: 20-500, units: GB.'
+      en: 'System disk size, range: 20–500 GB.'
       zh-cn: 系统盘大小, 取值范围：[20, 500], 单位：GB。
     Default: 20
   Password:
@@ -124,18 +120,12 @@ Parameters:
       en: Instance Password
       zh-cn: 实例密码
     Description:
-      en: Server login password, Length 8-30, must contain three(Capital letters,
-        lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol
-        in).
+      en: "Server login password, Password length: 8–30 characters, must contain three(Capital letters, lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in)."
       zh-cn: 服务器登录密码,长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
     ConstraintDescription:
-      en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
-        ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
+      en: "Password length: 8–30 characters, must contain three(Capital letters, lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in)."
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
   ClusterAmount:
     Type: Number
     Label:
@@ -168,7 +158,7 @@ Parameters:
       en: Number of Queues
       zh-cn: Queue数量
     Description:
-      en: 'Single Vhost Creates Queue Quantity, Value Range: 1~2000'
+      en: 'Single VHost Creates Queue Quantity, Value Range: 1–2000'
       zh-cn: 单Vhost创建的Queue数量，取值范围：[1, 2000]
     Default: 100
     MinValue: 1
@@ -179,9 +169,7 @@ Parameters:
       en: Flow Control Limits
       zh-cn: 流控限制
     Description:
-      en: 'RabbitMQ service uses a certain threshold of system memory, it activates
-        a memory alarm and triggers a flow control mechanism, with optional configurations:
-        0.4 (40%), 0.6 (60%), 0.8 (80%)'
+      en: "RabbitMQ service uses a certain threshold of system memory; it activates a memory alarm and triggers a flow control mechanism. Optional configurations: 0.4 (40%), 0.6 (60%), 0.8 (80%)"
       zh-cn: RabbitMQ服务占用系统内存达到一定阈值时，会启动内存报警，触发流控机制，可选配置：0.4（40%），0.6（60%），0.8（80%）
     Default: '0.4'
     AllowedValues:
@@ -203,10 +191,10 @@ Parameters:
       en: Administrator User Login Password
       zh-cn: 管理员用户登录密码
     Description:
-      en: RabbitMQ administrator user login password, length 8-30
+      en: RabbitMQ administrator user login password, length 8–30 characters
       zh-cn: RabbitMQ管理员用户登录密码,长度8-30
     ConstraintDescription:
-      en: Length 8-30
+      en: "Password length: 8–30 characters"
       zh-cn: 长度8-30
     NoEcho: true
 Resources:
@@ -741,3 +729,199 @@ Metadata:
           zh-cn: RabbitMQ 配置（必填）
     TemplateTags:
     - acs:solution:中间件:RabbitMQ集群版(已有VPC)
+    - acs:public_template:Solution:existing-vpc-cluster-rabbitmq
+  ALIYUN::ROS::Composer:
+    2a7eb0bb:
+      Rect:
+        - 632
+        - 530
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    840b92af:
+      Parent: 2a7eb0bb
+      Rect:
+        - 596
+        - 460
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    b719103b:
+      Res:
+        - MasterWaitConditionHandle
+      Parent: 840b92af
+      Rect:
+        - 40
+        - 40
+        - 540
+        - 490
+        - 3
+        - 0
+      Hidden: true
+    a4fd7387:
+      Res:
+        - MasterWaitCondition
+      Parent: 840b92af
+      Rect:
+        - 40
+        - 40
+        - 600
+        - 200
+        - 3
+        - 0
+      Hidden: true
+    8a222808:
+      Res:
+        - ESSRole
+      Parent: 840b92af
+      Rect:
+        - 40
+        - 40
+        - 540
+        - 200
+        - 3
+        - 0
+      Hidden: true
+    38581f11:
+      Res:
+        - VpcEip
+        - EipBind
+      Parent: 840b92af
+      Rect:
+        - 40
+        - 40
+        - 290
+        - 530
+        - 3
+        - 0
+    665fe30d:
+      Res:
+        - WebScalingConditionHandle
+      Parent: 840b92af
+      Rect:
+        - 40
+        - 40
+        - 600
+        - 490
+        - 3
+        - 0
+      Hidden: true
+    8f7ed6cc:
+      Res:
+        - WebScalingWaitCondition
+      Parent: 840b92af
+      Rect:
+        - 40
+        - 40
+        - 80
+        - 490
+        - 3
+        - 0
+      Hidden: true
+    '81469e97':
+      Res:
+        - VPC
+      Parent: 840b92af
+      Rect:
+        - 543
+        - 315
+        - 76
+        - 200
+        - 3
+        - 0
+      ResT: ALIYUN::ECS::VPC
+    b5e31beb:
+      Res:
+        - VSwitch
+      Parent: '81469e97'
+      Rect:
+        - 488
+        - 238
+        - 92
+        - 246
+        - 4
+        - 0
+      ResT: ALIYUN::ECS::VSwitch
+    42959a7f:
+      Res:
+        - SlbLoadBalancer
+        - SlbBackendServerAttachment
+        - SlbListener15672
+        - SlbListener5672
+      Parent: b5e31beb
+      Rect:
+        - 40
+        - 40
+        - 290
+        - 405
+        - 5
+        - 0
+    7dc09783:
+      Edge:
+        - a4fd7387
+        - b719103b
+      Line: 0:0:0:gray:0
+    0ade0477:
+      Parent: b5e31beb
+      Edge:
+        - 42959a7f
+        - 512657ae
+      Line: 0:0:0:gray:0
+    4bd59bf0:
+      Parent: '81469e97'
+      Edge:
+        - d9d5b97f
+        - 42959a7f
+      Line: 0:0:0:gray:0
+    f9c704eb:
+      Parent: 840b92af
+      Edge:
+        - d9d5b97f
+        - 8a222808
+      Line: 0:0:0:gray:0
+    17ae63d1:
+      Parent: 840b92af
+      Edge:
+        - 38581f11
+        - 42959a7f
+      Line: 0:0:0:gray:0
+    d26b7bd0:
+      Edge:
+        - 8f7ed6cc
+        - 665fe30d
+      Line: 0:0:0:gray:0
+    d9d5b97f:
+      Res:
+        - WebScalingGroup
+        - ESSLifecycleHook
+        - WebScalingConfiguration
+        - ScalingGroupEnable
+      Parent: '81469e97'
+      Rect:
+        - 288
+        - 101
+        - 166
+        - 284
+        - 13
+        - 0
+      Label:
+        zh-CN: 云服务器弹性伸缩组
+    512657ae:
+      Res:
+        - MasterRabbitMQServer
+      Parent: b5e31beb
+      Rect:
+        - 40
+        - 40
+        - 290
+        - 304
+        - 14
+        - 0
+      Layer:
+        - d9d5b97f
+      Label:
+        zh-CN: 主节点云服务器

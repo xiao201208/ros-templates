@@ -46,13 +46,13 @@ Parameters:
     NoEcho: true
     Type: String
     Description:
-      en: Server login password, Length 8-30, must contain three(Capital letters, lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in)
+      en: "Server login password, length 8-30 characters, must contain three of: capital letters, lowercase letters, numbers, and special symbols (\\`~!@#$%^&*_-+=|{}[]:;'<>,.?/)"
       zh-cn: 服务器登录密码,长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）
     Label:
       en: ECS Instance Password
       zh-cn: ECS实例密码
     ConstraintDescription:
-      en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in)
+      en: "Length 8-30 characters, must contain three of: capital letters, lowercase letters, numbers, and special symbols (\\`~!@#$%^&*_-+=|{}[]:;'<>,.?/)"
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）
     AssociationProperty: ALIYUN::ECS::Instance::Password
   InstanceType:
@@ -70,10 +70,10 @@ Parameters:
     Type: String
     Description:
       zh-cn: 可用区ID。<br><b>注： <font color='blue'>选择可用区前请确认该可用区是否支持创建ECS资源的规格</font></b>
-      en: Availability Zone ID,<br><b>note： <font color='blue'>Before selecting, please confirm that the Availability Zone supports the specification of creating ECS resources</font></b>
+      en: "Availability Zone ID,<br><b>note: <font color='blue'>Before selecting, please confirm that the Availability Zone supports the specification of creating ECS resources</font></b>"
     Label:
       zh-cn: 可用区ID
-      en: Available Zone ID
+      en: Availability Zone ID
   ElasticsearchPassword:
     NoEcho: true
     Type: String
@@ -81,7 +81,7 @@ Parameters:
       en: Elasticsearch Instance Password
       zh-cn: Elasticsearch实例密码
     Description:
-      en: Server login password, Length 8-30, must contain three(Capital letters, lowercase letters, numbers, !@#$%^&*()_+-= Special symbol in)
+      en: "Server login password, length 8-30 characters, must contain three of: capital letters, lowercase letters, numbers, and special symbols (!@#$%^&*()_+-=)"
       zh-cn: 服务器登录密码,长度8-30，必须包含三项（大写字母、小写字母、数字、 !@#$%^&*()_+-= 中的特殊符号）
     AssociationProperty: ALIYUN::RDS::Instance::AccountPassword
 Metadata:
@@ -104,8 +104,143 @@ Metadata:
           default: APP
     TemplateTags:
       - acs:technical-solution:ai:使用Elasticsearch的向量检索能力进行个性化推荐-tech_solu_153
+      - acs:public_template:Solution:ES-vector-retrieval-capabilities
     Hidden:
       - CommonName
+  ALIYUN::ROS::Composer:
+    5748b038:
+      Rect:
+        - 580
+        - 481
+        - -102
+        - 93
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    c414464f:
+      Parent: 5748b038
+      Rect:
+        - 533
+        - 411
+        - -82
+        - 143
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    1f674a92:
+      Res:
+        - InstallApp
+      Parent: c414464f
+      Rect:
+        - 40
+        - 40
+        - -42
+        - 381
+        - 3
+        - 0
+    3b275f89:
+      Res:
+        - WaitConditionHandle
+      Parent: c414464f
+      Rect:
+        - 40
+        - 40
+        - -42
+        - 219
+        - 3
+        - 0
+    6d499a30:
+      Res:
+        - WaitCondition
+      Parent: c414464f
+      Rect:
+        - 40
+        - 40
+        - -42
+        - 301
+        - 3
+        - 0
+    72cb0af6:
+      Res:
+        - EcsVpc
+      Parent: c414464f
+      Rect:
+        - 378
+        - 337
+        - 38
+        - 192
+        - 3
+        - 0
+    c64caf0f:
+      Res:
+        - ZoneId
+      Parent: 72cb0af6
+      Rect:
+        - 345
+        - 270
+        - 58
+        - 241
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    60f238ea:
+      Res:
+        - EcsVSwitch
+      Parent: c64caf0f
+      Rect:
+        - 267
+        - 195
+        - 78
+        - 294
+        - 5
+        - 0
+    29abe6f5:
+      Res:
+        - Elasticsearch
+      Parent: 60f238ea
+      Rect:
+        - 40
+        - 40
+        - 258
+        - 381
+        - 6
+        - 0
+    ede1de2b:
+      Res:
+        - EcsSecurityGroup
+      Parent: 72cb0af6
+      Rect:
+        - 89
+        - 118
+        - 98
+        - 341
+        - 10
+        - 0
+    '5e223263':
+      Parent: c414464f
+      Edge:
+        - 1f674a92
+        - 4042ea30
+      Line: 0:0:0:gray:0
+    ae11fc04:
+      Parent: c414464f
+      Edge:
+        - 6d499a30
+        - 3b275f89
+      Line: 0:0:0:gray:0
+    4042ea30:
+      Res:
+        - EcsInstance
+      Parent: 60f238ea
+      Rect:
+        - 40
+        - 40
+        - 123
+        - 381
+        - 11
+        - 0
+      Layer:
+        - ede1de2b
 Outputs:
   Console@DemoUrl:
     Description:
@@ -232,7 +367,7 @@ Resources:
       VSwitchId:
         Ref: EcsVSwitch
       Version: 7.10_with_X-Pack
-      InstanceCategory: IS
+      InstanceCategory: x-pack
       ZoneCount: 1
       ZoneId:
         Ref: ZoneId
@@ -240,6 +375,6 @@ Resources:
         DiskType: cloud_essd
         DiskSize: 20
         Amount: 3
-        Spec: elasticsearch.sn1ne.large
+        Spec: elasticsearch.sn1ne.large.new
       Password:
         Ref: ElasticsearchPassword

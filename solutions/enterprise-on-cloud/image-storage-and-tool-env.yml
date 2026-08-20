@@ -9,9 +9,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>you can use
-        the following IP address ranges: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in the CIDR Block form; <br>you can use the following IP address ranges: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 10.0.0.0/8
@@ -46,10 +44,7 @@ Parameters:
       en: Specifications
       zh-cn: 实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -73,11 +68,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -117,22 +108,17 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
   UserName:
     Type: String
     Label:
       en: User Name
       zh-cn: 用户名
     Description:
-      en: 'User name, Length 1-64, consist of Capital letters, lowercase letters,
-        numbers, .@-_z. <br><b>note: <font color=''blue''>Unique in your account</b></font> '
+      en: "User name, length 1-64, consists of capital letters, lowercase letters, numbers, .@-_z. <br><b>Note: <font color='blue'>Unique in your account</b></font>"
       zh-cn: 用户名，1-64个大小写字母、数字、.@-_z中的特殊符合组成。<br><b>注：<font color='blue'>账号内唯一</b></font>
     ConstraintDescription:
-      en: 'User name, Length 1-64, consist of Capital letters, lowercase letters,
-        numbers, .@-_z. <br><b>note: <font color=''blue''>Unique in your account</b></font> '
+      en: "User name, length 1-64, consists of capital letters, lowercase letters, numbers, .@-_z. <br><b>Note: <font color='blue'>Unique in your account</b></font>"
       zh-cn: 用户名，1-64个大小写字母、数字、.@-_z中的特殊符合组成。<br><b>注：<font color='blue'>账号内唯一</b></font>
     Default: VMWare-move
     MinLength: 1
@@ -212,11 +198,6 @@ Resources:
       - IpProtocol: tcp
         NicType: internet
         PortRange: 80/80
-        Priority: 1
-        SourceCidrIp: 0.0.0.0/0
-      - IpProtocol: tcp
-        NicType: internet
-        PortRange: 22/22
         Priority: 1
         SourceCidrIp: 0.0.0.0/0
       SecurityGroupName:
@@ -463,6 +444,7 @@ Metadata:
         default: OSS
     TemplateTags:
     - acs:solution:业务上云:VMware迁移DDH-镜像存储及工具环境的搭建
+    - acs:public_template:Solution:image-storage-and-tool-env
   ALIYUN::ROS::Designer:
     0205d1d6-fbef-49e7-888a-1dfbee13a4d7:
       position:

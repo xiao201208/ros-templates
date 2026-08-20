@@ -20,7 +20,7 @@ Parameters:
       en: Domain Name
       zh-cn: 域名
     Description:
-      en: Domain Name.The default value default is not parsed.
+      en: Domain Name. The default value 'default' is not parsed.
       zh-cn: 域名。默认值default时不做解析。
     Default: default
   VpcCidrBlock:
@@ -29,9 +29,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>you can use
-        the following IP address ranges: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in the CIDR Block form; <br>you can use the following IP address ranges: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -112,8 +110,7 @@ Parameters:
       en: Image
       zh-cn: 镜像
     Description:
-      en: 'Server Instance Image ID,</br>see detail: <b><a href=''https://www.alibabacloud.com/help/en/doc-detail/112977.html''
-        target=''_blank''><font color=''blue''>find the mirror</font></a></b>'
+      en: "Server Instance Image ID,<br>see details: <b><a href='https://www.alibabacloud.com/help/en/doc-detail/112977.html' target='_blank'><font color='blue'>Find the image</font></a></b>"
       zh-cn: 服务器镜像，</br>详见：<b><a href='https://help.aliyun.com/document_detail/112977.html'
         target='_blank'><font color='blue'>查找镜像</font></a></b>
     Default: centos_7
@@ -123,10 +120,7 @@ Parameters:
       en: Availability Zone 1 Instance Type
       zh-cn: 可用区1实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch 1 availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch 1 availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch 1可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -139,10 +133,7 @@ Parameters:
       en: Availability Zone 2 Instance Type
       zh-cn: 可用区2实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch 2 availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch 2 availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch 2可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -155,11 +146,7 @@ Parameters:
       en: Disk Type
       zh-cn: 磁盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -196,10 +183,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
   CustomImageName:
     Type: String
     Label:
@@ -218,9 +202,7 @@ Parameters:
       en: Specifications
       zh-cn: 规格
     Description:
-      en: 'Fill in instance specifications based on database type and availability
-        zone support;<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/26350.html''
-        target=''_blank''><b><font color=''blue''>Specification inquiry</font></b></a>'
+      en: "Fill in instance specifications based on database type and availability zone support.<br>See details: <a href='https://www.alibabacloud.com/help/en/doc-detail/26350.html' target='_blank'><b><font color='blue'>Specification Inquiry</font></a></b>"
       zh-cn: 根据数据库类型和可用区支持的情况填写实例规格；<br>请参见详细信息：<a href='https://help.aliyun.com/document_detail/26350.html'
         target='_blank'><b><font color='blue'>规格查询</font></b></a>
     Default: redis.master.stand.default
@@ -230,17 +212,7 @@ Parameters:
       en: Eviction Policy
       zh-cn: 数据逐出策略
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[noeviction: <font
-        color=''green''>Without ejecting any data, writes to new data get an error
-        message</font>]<br>[allkeys-lru: <font color=''green''>The LRU algorithm is
-        used to eject the original data</font>]<br>[volatile-lru: <font color=''green''>The
-        LRU algorithm is used to eject the original data, but only the data whose
-        expiration time is set</font>]<br>[allkeys-random: <font color=''green''>Randomly
-        eject the original data</font>]<br>[volatile-random: <font color=''green''>Randomly
-        eject the original data, but only the data with the expiration date set</font>]<br>[volatile-ttl:
-        <font color=''green''>Only data whose expiration date is set is evicted, and
-        the eviction is done in the order of TTL from small to large</font>]<br><font
-        color=''blue''></a>'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[noeviction: <font color='green'>Do not evict any data; writes to new data return an error</font>]<br>[allkeys-lru: <font color='green'>Use LRU algorithm to evict existing data</font>]<br>[volatile-lru: <font color='green'>Use LRU algorithm to evict only data with set expiration times</font>]<br>[allkeys-random: <font color='green'>Randomly evict existing data</font>]<br>[volatile-random: <font color='green'>Randomly evict only data with set expiration times</font>]<br>[volatile-ttl: <font color='green'>Evict only data with set expiration times, ordered by TTL from smallest to largest</font>]"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[noeviction: <font color=''green''>不逐出任何数据，新数据的写入会得到一个错误信息</font>]<br>[allkeys-lru:
         <font color=''green''>按照 LRU 算法逐出原有数据</font>]<br>[volatile-lru: <font color=''green''>按照
         LRU 算法逐出原有数据，但仅逐出设置了过期时间的数据</font>]<br>[allkeys-random: <font color=''green''>随机逐出原有数据</font>]<br>[volatile-random:
@@ -260,14 +232,10 @@ Parameters:
       en: Instance password
       zh-cn: 实例密码
     Description:
-      en: 'The password can be 8 to 32 characters in length and must contain three
-        of the following conditions: uppercase letters, lowercase letters, numbers,
-        and special characters ( !@#$%^&*()_+-= ).'
+      en: "The password must be 8 to 32 characters long and contain at least three of the following: uppercase letters, lowercase letters, numbers, and special characters (!@#$%^&*()_+-=)."
       zh-cn: 密码长度可以是8到32个字符，并且必须包含以下三种情况:大写字母、小写字母、数字和特殊字符(!@#$%^&*()_+-=)。
     ConstraintDescription:
-      en: 'The password can be 8 to 32 characters in length and must contain three
-        of the following conditions: uppercase letters, lowercase letters, numbers,
-        and special characters ( !@#$%^&*()_+-= ).'
+      en: "The password must be 8 to 32 characters long and contain at least three of the following: uppercase letters, lowercase letters, numbers, and special characters (!@#$%^&*()_+-=)."
       zh-cn: 密码长度可以是8到32个字符，并且必须包含以下三种情况:大写字母、小写字母、数字和特殊字符(!@#$%^&*()_+-=)。
     MinLength: 8
     MaxLength: 32
@@ -286,7 +254,7 @@ Parameters:
   DBClusterTypeAndVersion:
     Type: String
     Label:
-      en: Type And Version
+      en: Type and Version
       zh-cn: 类型与版本号
     Description:
       en: Database type and version number.
@@ -314,8 +282,7 @@ Parameters:
       en: Character Set
       zh-cn: 字符集
     Description:
-      en: 'For more information on values, </br>see detail: <b><a href=''https://www.alibabacloud.com/help/en/doc-detail/99716.html''
-        target=''_blank''><font color=''blue''>Character Set Table</font></a></b>'
+      en: "For more information on values, <br>see details: <b><a href='https://www.alibabacloud.com/help/en/doc-detail/99716.html' target='_blank'><font color='blue'>Character Set Table</font></a></b>"
       zh-cn: 取值详情，</br>详见：<b><a href='https://help.aliyun.com/document_detail/99716.html'
         target='_blank'><font color='blue'>字符集表</font></a></b>
     Default: utf8
@@ -346,12 +313,10 @@ Parameters:
       en: Account Password
       zh-cn: 数据库账号密码
     Description:
-      en: 'Length 8-32 characters, can contain size letters, Numbers and special symbols
-        (including: !@#$%^&*-+=_).'
+      en: "Length 8–32 characters. Can contain lowercase letters, numbers, and special symbols (including: !@#$%^&*-+=_)."
       zh-cn: 长度8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*-+=_）。
     ConstraintDescription:
-      en: '8-32 characters, can contain size letters, Numbers and special symbols
-        (including: !@#$%^&*-+=_).'
+      en: "8–32 characters. Can contain lowercase letters, numbers, and special symbols (including: !@#$%^&*-+=_)."
       zh-cn: 8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*-+=_）。
     MinLength: '8'
     MaxLength: '32'
@@ -362,8 +327,7 @@ Parameters:
       en: Min Amount
       zh-cn: 实例数量最小值
     Description:
-      en: 'Minimum number of ECS instances within a scaling group, Value range: [0,
-        100].'
+      en: "Minimum number of ECS instances within a scaling group. Value range: [0, 100]."
       zh-cn: 伸缩组内ECS实例的最小数量，取值范围：[0, 100]。
     Default: 1
   MaxSize:
@@ -372,8 +336,7 @@ Parameters:
       en: Max Amount
       zh-cn: 实例数量最大值
     Description:
-      en: 'Maximum number of ECS instances within a scaling group, Value range: [0,
-        100].'
+      en: "Maximum number of ECS instances within a scaling group. Value range: [0, 100]."
       zh-cn: 伸缩组内ECS实例的最大数量，取值范围：[0, 100]。
     Default: 5
   DefaultCooldown:
@@ -382,7 +345,7 @@ Parameters:
       en: Cooling Time
       zh-cn: 冷却时间
     Description:
-      en: 'Value range: [0,86400], default is 300 seconds.'
+      en: 'Value range: [0, 86400]. Default is 300 seconds.'
       zh-cn: 取值范围：[0,86400]，默认300秒。
     Default: '300'
   AdjustmentType:
@@ -440,10 +403,7 @@ Parameters:
       en: Account Privilege
       zh-cn: 账号权限
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[ReadWrite：<font
-        color=''green''>read-write</font>]<br>[ReadOnly：<font color=''green''>read
-        only</font>]<br>[DMLOnly：<font color=''green''>only allow DML</font>]<br>[DDLOnly：<font
-        color=''green''>only allow DDL</font>]<br><font color=''blue''></a>'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[ReadWrite: <font color='green'>read-write</font>]<br>[ReadOnly: <font color='green'>read only</font>]<br>[DMLOnly: <font color='green'>only allow DML</font>]<br>[DDLOnly: <font color='green'>only allow DDL</font>]<br><font color='blue'></a>"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[ReadWrite：<font color=''green''>读写</font>]<br>[ReadOnly：<font
         color=''green''>只读</font>]<br>[DMLOnly：<font color=''green''>只允许DML</font>]<br>[DDLOnly：<font
         color=''green''>只允许DDL</font>]<br><font color=''blue''></a>'
@@ -1236,6 +1196,7 @@ Metadata:
         default: ESS
     TemplateTags:
     - acs:solution:业务上云:云上部署-互联网行业构建高弹性系统
+    - acs:public_template:Solution:internet-industry-high-elastic-system-construction
   ALIYUN::ROS::Designer:
     03fff626-f3a8-4bfb-a198-f3c489010360:
       source:

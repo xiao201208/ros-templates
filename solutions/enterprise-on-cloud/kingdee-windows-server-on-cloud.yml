@@ -34,10 +34,7 @@ Parameters:
       en: Instance Type
       zh-cn: 实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.g5.xlarge</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -84,10 +81,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
     Confirm: true
   SystemDiskSize:
     Type: Number
@@ -104,11 +98,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -130,9 +120,6 @@ Resources:
         - '-'
         - - StackId
           - Ref: ALIYUN::StackId
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 92c6daaa-0978-4925-bb6b-188340507d5c
   EcsSecurityGroup:
     Type: ALIYUN::ECS::SecurityGroup
     Properties:
@@ -150,9 +137,6 @@ Resources:
         PortRange: -1/-1
         Priority: 1
         SourceCidrIp: 0.0.0.0/0
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: c8c8e38d-cf9a-4023-92f4-b0df10654e28
   EcsVSwitch:
     Type: ALIYUN::ECS::VSwitch
     Properties:
@@ -161,9 +145,6 @@ Resources:
       VpcId:
         Ref: EcsVpc
       CidrBlock: 192.168.0.0/24
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: c53d1e62-1f8d-4a15-962e-49ebe0deab92
   KingSeeServer:
     Type: ALIYUN::ECS::Instance
     Properties:
@@ -188,9 +169,6 @@ Resources:
         Ref: SystemDiskCategory
       SystemDiskSize:
         Ref: SystemDiskSize
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: acec6d25-1a3d-4305-bb5c-45c6858aaa70
 Outputs:
   EcsHostName:
     Value:
@@ -225,47 +203,71 @@ Metadata:
           zh-cn: 金蝶主机配置
     TemplateTags:
     - acs:solution:企业软件上云:金蝶云星空应用部署上云(新建专有网络)-单机服务器部署
-  ALIYUN::ROS::Designer:
-    8d11b979-5df1-4538-8ab1-5043295900a3:
-      source:
-        id: acec6d25-1a3d-4305-bb5c-45c6858aaa70
-      target:
-        id: c8c8e38d-cf9a-4023-92f4-b0df10654e28
-      z: 1
-    92c6daaa-0978-4925-bb6b-188340507d5c:
-      embeds:
-      - c8c8e38d-cf9a-4023-92f4-b0df10654e28
-      - c53d1e62-1f8d-4a15-962e-49ebe0deab92
-      position:
-        x: 485
-        y: 205
-      size:
-        height: 344
-        width: 486.5244140625
-      z: 0
-    acec6d25-1a3d-4305-bb5c-45c6858aaa70:
-      position:
-        x: 601
-        y: 341
-      size:
-        height: 60
-        width: 60
-      z: 2
-    c53d1e62-1f8d-4a15-962e-49ebe0deab92:
-      embeds:
-      - acec6d25-1a3d-4305-bb5c-45c6858aaa70
-      position:
-        x: 544
-        y: 279
-      size:
-        height: 180
-        width: 171
-      z: 1
-    c8c8e38d-cf9a-4023-92f4-b0df10654e28:
-      position:
-        x: 860
-        y: 341
-      size:
-        height: 60
-        width: 60
-      z: 1
+    - acs:public_template:Solution:kingdee-windows-server-on-cloud
+  ALIYUN::ROS::Composer:
+    821ede33:
+      Rect:
+        - 426
+        - 428
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    e36cac22:
+      Parent: 821ede33
+      Rect:
+        - 370
+        - 349
+        - 68
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    f876a915:
+      Res:
+        - EcsVpc
+      Parent: e36cac22
+      Rect:
+        - 309
+        - 274
+        - 98
+        - 200
+        - 3
+        - 0
+    a9bbca89:
+      Res:
+        - EcsVSwitch
+      Parent: f876a915
+      Rect:
+        - 244
+        - 196
+        - 131
+        - 250
+        - 4
+        - 0
+    89b61d2d:
+      Res:
+        - EcsSecurityGroup
+      Parent: f876a915
+      Rect:
+        - 140
+        - 121
+        - 169
+        - 301
+        - 6
+        - 0
+    b20ffb95:
+      Res:
+        - KingSeeServer
+      Parent: a9bbca89
+      Rect:
+        - 40
+        - 40
+        - 219
+        - 330
+        - 7
+        - 0
+      Layer:
+        - 89b61d2d
+

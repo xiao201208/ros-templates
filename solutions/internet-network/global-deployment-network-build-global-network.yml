@@ -26,7 +26,7 @@ Parameters:
       en: Overseas VPC Instance Region
       zh-cn: 境外专有网络实例地域
     Description:
-      en: The territory of an offshore proprietary network instance
+      en: The region of an overseas proprietary network instance
       zh-cn: 境外专有网络实例所在的地域
     AllowedValues:
     - ap-south-1
@@ -65,7 +65,7 @@ Parameters:
       en: Domestic VPC 1 Instance Region
       zh-cn: 国内专有网络1实例地域
     Description:
-      en: Domestic proprietary network 1 instance region
+      en: Domestic proprietary network 2 instance region
       zh-cn: 国内专有网络1实例地域
     AllowedValues:
     - cn-shenzhen
@@ -83,8 +83,7 @@ Parameters:
       en: Domestic VPC 1 Instance ID
       zh-cn: 国内专有网络1实例ID
     Description:
-      en: 'Existing domestic proprietary network instance ID, such as: hangzhou VPC
-        instance ID.'
+      en: "Existing domestic proprietary network instance ID, such as: Hangzhou VPC instance ID."
       zh-cn: 已存在的国内专有网络实例ID，如： 杭州VPC实例ID。
     MinLength: 3
   VbrId4Domestic:
@@ -93,11 +92,7 @@ Parameters:
       en: Domestic Physical Special Line Instance ID
       zh-cn: 国内物理专线实例ID
     Description:
-      en: 'Existing domestic physical special line instance ID, the physical special
-        line and the domestic proprietary network 1 instance region is the same and
-        the network segment can not be duplicated with other VPC network segment of
-        the network;<font color=''blue''><br><b>Note: the network with the physical
-        dedicated line will not be opened by default.</b><font>'
+      en: "Existing domestic physical special line instance ID. The physical special line and the domestic proprietary network 1 instance region must be the same, and the network segment must not conflict with other VPC network segments.<font color='blue'><br><b>Note: The network with the physical dedicated line will not be enabled by default.</b></font>"
       zh-cn: 已存在的国内物理专线实例ID，该物理专线与国内专有网络1实例地域相同并且网段不能与组网的其他VPC网段重复; <font color='blue'><br><b>注：默认default时不打通与物理专线的网络。</b><font>
     Default: default
     MinLength: 3
@@ -107,7 +102,7 @@ Parameters:
       en: Domestic VPC 2 Instance Region
       zh-cn: 国内专有网络2实例地域
     Description:
-      en: Domestic proprietary network 1 instance region
+      en: Domestic proprietary network 2 instance region
       zh-cn: 国内专有网络2实例地域
     AllowedValues:
     - cn-shenzhen
@@ -125,23 +120,16 @@ Parameters:
       en: Domestic VPC 2 Instance ID
       zh-cn: 国内专有网络2实例ID
     Description:
-      en: 'Existing domestic proprietary network instance ID, such as: beijing VPC
-        instance Id.'
+      en: "Existing domestic proprietary network instance ID, such as: Beijing VPC instance ID."
       zh-cn: 已存在的国内专有网络实例ID，如： 北京VPC实例ID。
     MinLength: 3
   CenGeographicRegionBId:
     Type: String
     Label:
-      en: Overseas VPC Instance Area
+      en: Overseas VPC instance region
       zh-cn: 境外专有网络实例所属大区
     Description:
-      en: '<font color=''blue''><b>The overseas proprietary network instance belongs
-        to the region，Purchasing a cross-border bandwidth pack requires that the current
-        account be enterprise certified;<br>Optional values: </b></font><br>[China:
-        <font color=''green''>China, Select this option not to create cross-border
-        bandwidth packets</font>]<br>[North-America: <font color=''green''>North-America</font>]<br>[Asia-Pacific:
-        <font color=''green''>Asia-Pacific</font>]<br>[Europe: <font color=''green''>Europe</font>]<br>[Australia:
-        <font color=''green''>Australia</font>]<br><font color=''blue''></a>'
+      en: "<font color='blue'><b>The overseas proprietary network instance belongs to the region,Purchasing a cross-border bandwidth pack requires that the current account be enterprise certified;<br>Optional values: </b></font><br>[China: <font color='green'>China, Select this option not to create cross-border bandwidth packets</font>]<br>[North-America: <font color='green'>North-America</font>]<br>[Asia-Pacific: <font color='green'>Asia-Pacific</font>]<br>[Europe: <font color='green'>Europe</font>]<br>[Australia: <font color='green'>Australia</font>]<br><font color='blue'></a>"
       zh-cn: '<font color=''blue''><b>境外专有网络实例所属大区，购买跨境带宽包需要保证当前账号已取得企业认证;<br>可选值:
         </b></font><br>[China: <font color=''green''>中国大陆, 选择此项不创建跨境带宽包</font>]<br>[North-America:
         <font color=''green''>北美</font>]<br>[Asia-Pacific: <font color=''green''>亚太</font>]<br>[Europe:
@@ -160,8 +148,7 @@ Parameters:
       en: Outbound Bandwidth Packet Billing Cycle
       zh-cn: 境外带宽包计费周期
     Description:
-      en: 'The billing cycle of the bandwidth packet outside the enterprise network.
-        Value: Month | Year, the default value is Month.'
+      en: "The billing cycle for the outbound bandwidth packet outside the enterprise network. Value: Month | Year; default value is Month."
       zh-cn: 企业网境外带宽包的计费周期。取值：Month | Year，默认值为Month。
     Default: Month
     AllowedValues:
@@ -362,3 +349,4 @@ Metadata:
         default: CEN
     TemplateTags:
     - acs:solution:网络组网:在线教育全球部署网络规划-组建全球地域网络
+    - acs:public_template:Solution:global-deployment-network-build-global-network

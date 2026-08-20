@@ -10,11 +10,11 @@ Parameters:
       en: VPC Name
       zh-cn: 虚拟专有网络名称
     Description:
-      en: Name of VPC, [2, 128] English or Chinese characters, must start with a letter
+      en: Name of VPC, [2, 128] characters (English or Chinese), must start with a letter
         or Chinese in size, can contain numbers, '_' or '.', '-'.
       zh-cn: VPC 名称，[2，128]英文或中文字符，必须以字母或中文开头，可以包含数字、下划线或“.”、“-”。
     ConstraintDescription:
-      en: '[2, 128] English or Chinese characters'
+      en: '[2, 128] characters (English or Chinese)'
       zh-cn: '[2, 128] 英文或中文字符'
     Default: MyVPC
     MinLength: 2
@@ -25,9 +25,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: VPC网段
     Description:
-      en: 'The VPC CIDR Block; <br>You can use the following IP address ranges and
-        their subnets: <br><font color=''green''>[10.0.0.0/8]</font><br><font color=''green''>[172.16.0.0/12]</font><br><font
-        color=''green''>[192.168.0.0/16]</font>'
+      en: "VPC CIDR Block<br>You can use the following IP address ranges and their subnets:<br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: VPC网段；<br>您可以使用以下IP地址范围及其子网：<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0/16]</font>
     Default: 10.0.0.0/8
@@ -41,7 +39,7 @@ Parameters:
       en: VSwitch CIDR Block
       zh-cn: 交换机的子网
     Description:
-      en: CIDR Block of created VSwitch,It must belong to itself VPC CIDR Block.
+      en: CIDR Block of created VSwitch; must be within the VPC CIDR Block.
       zh-cn: 创建的虚拟交换机的子网，它必须属于自己的VPC网段内
     Default: 10.0.10.0/24
   ZoneId:
@@ -61,7 +59,7 @@ Parameters:
       en: Instance Name
       zh-cn: 实例名称
     Description:
-      en: The name of ECS instance, [2, 128] English or Chinese characters, must start
+      en: The name of ECS instance, [2, 128] characters (English or Chinese), must start
         with a letter or Chinese in size, can contain numbers, '_' or '.', '-'.
       zh-cn: ECS实例名称，[2，128]英文或中文字符，必须以字母或中文开头，可以包含数字、下划线或“.”、“-”。
     Default: DefaultECSInstance
@@ -106,8 +104,7 @@ Parameters:
         letter and number. <br> special characters include()`~!@#$%^&*_-+=|{}[]:;'<>,.?/
       zh-cn: 长度8-30，必须包含大写字母、小写字母、数字、特殊符号三个；<br>特殊字符包括：()`~!@#$%^&*_-+=|{}[]:;'<>,.?/
     ConstraintDescription:
-      en: 'Length 8-30, must contain upper case letters, lower case letters, Numbers,
-        special symbols three; special characters include: ()`~!@#$%^&*_-+=|{}[]:;''<>,.?/'
+      en: "Length 8-30 characters, must contain uppercase letters, lowercase letters, numbers, and special symbols (three required); special characters include: `()~!@#$%^&*_-+=|{}[]:;'<>,.?/"
       zh-cn: 长度8-30，必须包含大写字母、小写字母、数字、特殊符号三种；特殊字符包括：()`~!@#$%^&*_-+=|{}[]:;' <>,.?/
     AllowedPattern: '[0-9A-Za-z\_\-&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
     MinLength: '8'
@@ -183,9 +180,6 @@ Resources:
         Ref: VpcCidrBlock
       VpcName:
         Ref: VpcName
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 33ec8514-1b03-425f-862a-35c70b2f462c
   VSwitch:
     Type: ALIYUN::ECS::VSwitch
     Properties:
@@ -195,9 +189,6 @@ Resources:
         Ref: Vpc
       CidrBlock:
         Ref: VSwitchCidrBlock
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: bdcc07fd-7a3b-4758-90a3-c931e25445b5
   WebServerSecurityGroup:
     Type: ALIYUN::ECS::SecurityGroup
     Properties:
@@ -215,9 +206,6 @@ Resources:
         PortRange: -1/-1
         Priority: 1
         SourceCidrIp: 0.0.0.0/0
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 2a0aaeba-b844-4d44-a879-3bd35ca85c9f
   WebServer:
     Type: ALIYUN::ECS::Instance
     Properties:
@@ -357,15 +345,9 @@ Resources:
             - 'ros-notify -d ''{"data" : "Install Ruby on rails."}''
 
               '
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 9abc8b0f-108a-4186-9517-7576554acc1f
   WebServerConditionHandle:
     Type: ALIYUN::ROS::WaitConditionHandle
     Properties: {}
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 68e9da8c-1f83-4651-9c85-8cd766cddda1
   WebServerGroupWaitCondition:
     Type: ALIYUN::ROS::WaitCondition
     Properties:
@@ -374,9 +356,6 @@ Resources:
         Ref: WebServerConditionHandle
       Timeout: 3600
     DependsOn: WebServer
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: a5f44003-e470-4fca-beb6-ef5ea65368b0
 Outputs:
   WebsiteURL:
     Description:
@@ -422,69 +401,100 @@ Metadata:
           zh-cn: 数据库
     TemplateTags:
     - acs:example:网站:创建一个ECSInstance和本地MySQL部署RubyOnRails
-  ALIYUN::ROS::Designer:
-    2a0aaeba-b844-4d44-a879-3bd35ca85c9f:
-      position:
-        x: 341
-        y: 255
-      size:
-        height: 60
-        width: 60
-      z: 1
-    33ec8514-1b03-425f-862a-35c70b2f462c:
-      embeds:
-      - bdcc07fd-7a3b-4758-90a3-c931e25445b5
-      - 2a0aaeba-b844-4d44-a879-3bd35ca85c9f
-      position:
-        x: 268
-        y: 79
-      size:
-        height: 257
-        width: 198.3134765625
-      z: 0
-    44ad3021-0347-413a-80f9-fabbcaf14f86:
-      source:
-        id: a5f44003-e470-4fca-beb6-ef5ea65368b0
-      target:
-        id: 68e9da8c-1f83-4651-9c85-8cd766cddda1
-      z: 1
-    68e9da8c-1f83-4651-9c85-8cd766cddda1:
-      position:
-        x: 547
-        y: 106
-      size:
-        height: 60
-        width: 60
-      z: 0
-    9abc8b0f-108a-4186-9517-7576554acc1f:
-      position:
-        x: 341
-        y: 149
-      size:
-        height: 60
-        width: 60
-      z: 2
-    a5f44003-e470-4fca-beb6-ef5ea65368b0:
-      position:
-        x: 547
-        y: 243
-      size:
-        height: 60
-        width: 60
-      z: 0
-    bdcc07fd-7a3b-4758-90a3-c931e25445b5:
-      embeds:
-      - 9abc8b0f-108a-4186-9517-7576554acc1f
-      position:
-        x: 293
-        y: 102
-      size:
-        height: 138
-        width: 149
-      z: 1
-    fd6b1c7c-19b3-4c5e-a20e-1b1c080ec92c:
-      source:
-        id: 9abc8b0f-108a-4186-9517-7576554acc1f
-      target:
-        id: 2a0aaeba-b844-4d44-a879-3bd35ca85c9f
-      z: 1
+    - acs:public_template:Example:ruby-on-rails-single-instance
+  ALIYUN::ROS::Composer:
+    f569aecd:
+      Rect:
+        - 580
+        - 470
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    aa01cfce:
+      Parent: f569aecd
+      Rect:
+        - 540
+        - 400
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    fe42cd95:
+      Res:
+        - Vpc
+      Parent: aa01cfce
+      Rect:
+        - 440
+        - 270
+        - 80
+        - 200
+        - 3
+        - 0
+    3c6377e9:
+      Res:
+        - WebServerConditionHandle
+      Parent: aa01cfce
+      Rect:
+        - 40
+        - 40
+        - 225
+        - 490
+        - 3
+        - 0
+      Hidden: true
+    6612af15:
+      Res:
+        - WebServerGroupWaitCondition
+      Parent: aa01cfce
+      Rect:
+        - 40
+        - 40
+        - 339
+        - 490
+        - 3
+        - 0
+      Hidden: true
+    46ed70c9:
+      Res:
+        - VSwitch
+      Parent: fe42cd95
+      Rect:
+        - 400
+        - 200
+        - 100
+        - 250
+        - 4
+        - 0
+    a11a9b00:
+      Res:
+        - WebServerSecurityGroup
+      Parent: fe42cd95
+      Rect:
+        - 160
+        - 129
+        - 219
+        - 284
+        - 8
+        - 0
+    89d09328:
+      Res:
+        - WebServer
+      Parent: 46ed70c9
+      Rect:
+        - 40
+        - 40
+        - 280
+        - 315
+        - 9
+        - 0
+      Layer:
+        - a11a9b00
+    027c2f08:
+      Parent: aa01cfce
+      Edge:
+        - 6612af15
+        - 3c6377e9
+      Line: 0:0:0:gray:0

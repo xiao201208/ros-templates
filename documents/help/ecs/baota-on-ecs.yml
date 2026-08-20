@@ -19,7 +19,7 @@ Parameters:
           en: Create New Instance
         UseExisted:
           zh-cn: 选择已有实例
-          en: Select Existed Instance
+          en: Select Existing Instance
   ZoneId:
     Type: String
     Default: null
@@ -155,9 +155,6 @@ Resources:
       SecurityGroupName:
         Fn::Sub: ${CommonName}-sg
       SecurityGroupIngress:
-        - PortRange: 22/22
-          SourceCidrIp: 0.0.0.0/0
-          IpProtocol: tcp
         - PortRange: 443/443
           SourceCidrIp: 0.0.0.0/0
           IpProtocol: tcp
@@ -245,21 +242,6 @@ Resources:
             - UseExistedInstance
             - Ref: EcsInstanceId
             - Ref: EcsInstance
-  SecurityGroupIngress_22:
-    Type: ALIYUN::ECS::SecurityGroupIngress
-    Condition: UseExistedInstance
-    Properties:
-      SecurityGroupId:
-        Fn::Jq:
-          - First
-          - .[0].SecurityGroupIds[0]
-          - Fn::GetAtt:
-              - DsEcs
-              - Instances
-      SourceCidrIp: 0.0.0.0/0
-      IpProtocol: tcp
-      NicType: intranet
-      PortRange: 22/22
   SecurityGroupIngress_443:
     Type: ALIYUN::ECS::SecurityGroupIngress
     Condition: UseExistedInstance
@@ -305,11 +287,10 @@ Resources:
       IpProtocol: icmp
       NicType: intranet
       PortRange: -1/-1
-
 Outputs:
   EcsLoginAddress:
     Description:
-      en: Ecs login address.
+      en: ECS login address
       zh-cn: ECS登录地址。
     Value:
       Fn::Sub:
@@ -364,7 +345,7 @@ Outputs:
             - Data
   Console@PASSWORD:
     Description:
-      en: The default initial password can only be obtained correctly before logging into the panel for the first time. Please use the bt 5 command to change the password at other times.
+      en: The default initial password can only be obtained correctly the first time you log in to the panel. Use the `bt 5` command to change the password at other times.
       zh-cn: 默认初始密码仅在首次登录面板前能正确获取，其它时间请通过 bt 5 命令修改密码。
     Label:
       en: PASSWORD
@@ -391,3 +372,210 @@ Metadata:
       - CommonName
     TemplateTags:
       - acs:document-help:ecs:部署宝塔服务
+      - acs:public_template:Example:baota-on-ecs
+  ALIYUN::ROS::Composer:
+    86eb3bf8:
+      Rect:
+        - 765
+        - 697
+        - 8
+        - 138
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    6d4518b2:
+      Parent: 86eb3bf8
+      Rect:
+        - 722
+        - 610
+        - 24
+        - 195
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    ff8af71b:
+      Res:
+        - Vpc
+      Parent: 6d4518b2
+      Rect:
+        - 480
+        - 340
+        - 140
+        - 260
+        - 3
+        - 0
+    8d3dfeeb:
+      Parent: 6d4518b2
+      Rect:
+        - 40
+        - 40
+        - 441
+        - 708
+        - 3
+        - 0
+      ResT: MODULE::ACS::OOS::Extension
+    daa5909c:
+      Res:
+        - GetBaoTaPanelLoginInfo
+      Parent: 6d4518b2
+      Rect:
+        - 40
+        - 40
+        - 57
+        - 448
+        - 3
+        - 0
+    ea41c8da:
+      Res:
+        - GetBaoTaPanelLoginInfoWaitCondition
+      Parent: 6d4518b2
+      Rect:
+        - 40
+        - 40
+        - 660
+        - 310
+        - 3
+        - 0
+    57d9c314:
+      Parent: 6d4518b2
+      Rect:
+        - 40
+        - 40
+        - 226
+        - 620
+        - 3
+        - 0
+      ResT: DATASOURCE::ECS::Instances
+    92e7c185:
+      Res:
+        - GetBaoTaPanelLoginInfoWaitConditionHandle
+      Parent: 6d4518b2
+      Rect:
+        - 40
+        - 40
+        - 660
+        - 520
+        - 3
+        - 0
+    16d55f2d:
+      Res:
+        - SecurityGroupIngress_8888
+      Parent: 6d4518b2
+      Rect:
+        - 40
+        - 40
+        - 314
+        - 708
+        - 3
+        - 0
+    be668a11:
+      Res:
+        - SecurityGroupIngress_443
+      Parent: 6d4518b2
+      Rect:
+        - 40
+        - 40
+        - 140
+        - 708
+        - 3
+        - 0
+    2f70583a:
+      Res:
+        - SecurityGroupIngress_-1
+      Parent: 6d4518b2
+      Rect:
+        - 40
+        - 40
+        - 226
+        - 708
+        - 3
+        - 0
+    8e9b0bef:
+      Res:
+        - ZoneId
+      Parent: ff8af71b
+      Rect:
+        - 440
+        - 270
+        - 160
+        - 310
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    1be339b8:
+      Res:
+        - VSwitch
+      Parent: 8e9b0bef
+      Rect:
+        - 400
+        - 200
+        - 180
+        - 360
+        - 5
+        - 0
+    1d8b6481:
+      Res:
+        - SecurityGroup
+      Parent: ff8af71b
+      Rect:
+        - 223
+        - 117
+        - 244
+        - 419
+        - 10
+        - 0
+    7aa5adbe:
+      Parent: 6d4518b2
+      Edge:
+        - 8d3dfeeb
+        - ebd3144e
+      Line: 0:0:0:gray:0
+    2b6c70d0:
+      Parent: 6d4518b2
+      Edge:
+        - daa5909c
+        - ebd3144e
+      Line: 0:0:0:gray:0
+    d43a78b0:
+      Parent: 6d4518b2
+      Edge:
+        - ea41c8da
+        - 92e7c185
+      Line: 0:0:0:gray:0
+    2c919f9f:
+      Parent: 6d4518b2
+      Edge:
+        - 57d9c314
+        - ebd3144e
+      Line: 0:0:0:gray:0
+    6c21b1ff:
+      Parent: 6d4518b2
+      Edge:
+        - be668a11
+        - 57d9c314
+      Line: 0:0:0:gray:0
+    dc57ee22:
+      Parent: 6d4518b2
+      Edge:
+        - 16d55f2d
+        - 57d9c314
+      Line: 0:0:0:gray:0
+    fe4c41f8:
+      Parent: 6d4518b2
+      Edge:
+        - 2f70583a
+        - 57d9c314
+      Line: 0:0:0:gray:0
+    ebd3144e:
+      Res:
+        - EcsInstance
+      Parent: 1be339b8
+      Rect:
+        - 40
+        - 40
+        - 336
+        - 448
+        - 11
+        - 0
+      Layer:
+        - 1d8b6481

@@ -10,9 +10,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The ip address range of the VPC in the CidrBlock form; <br>You can use
-        the following ip address ranges and their subnets: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in CIDR block format; <br>You can use the following IP address ranges and their subnets: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: VPC的ip地址段范围，<br>您可以使用以下的ip地址段或其子网:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -40,7 +38,7 @@ Parameters:
   VSwitch2ZoneId:
     Type: String
     Label:
-      en: VSwitch 2 ZoneId
+      en: VSwitch 2 Zone ID
       zh-cn: 交换机2可用区ID
     Description:
       en: VSwitch available area id, VSwitch available area id, Different from the
@@ -137,3 +135,68 @@ Metadata:
         default: VPC
     TemplateTags:
     - acs:example:网络:组建双可用区网络
+    - acs:public_template:Example:multi-zone-network
+  ALIYUN::ROS::Composer:
+    704d6208:
+      Rect:
+        - 702
+        - 515
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    0a6fe5f2:
+      Parent: 704d6208
+      Rect:
+        - 656
+        - 442
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    b76feaf4:
+      Res:
+        - EcsVpc
+      Parent: 0a6fe5f2
+      Rect:
+        - 618
+        - 351
+        - 80
+        - 200
+        - 3
+        - 0
+    4e711ee9:
+      Res:
+        - EcsVSwitch1
+      Parent: b76feaf4
+      Rect:
+        - 191
+        - 185
+        - 126
+        - 256
+        - 4
+        - 0
+    504d7448:
+      Res:
+        - EcsVSwitch2
+      Parent: b76feaf4
+      Rect:
+        - 193
+        - 187
+        - 392
+        - 255
+        - 4
+        - 0
+    89cf7507:
+      Res:
+        - EcsSecurityGroup
+      Parent: b76feaf4
+      Rect:
+        - 554
+        - 284
+        - 100
+        - 233
+        - 10
+        - 0

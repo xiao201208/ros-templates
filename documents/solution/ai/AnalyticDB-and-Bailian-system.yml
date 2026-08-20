@@ -1,6 +1,6 @@
 ROSTemplateFormatVersion: '2015-09-01'
 Description:
-  en: AnalyticDB and Bailian build intelligent question and answer system.
+  en: Build an intelligent question-and-answer system using AnalyticDB and Bailian.
   zh-cn: AnalyticDB与百炼搭建智能问答系统。
 Parameters:
   ZoneId:
@@ -14,13 +14,16 @@ Parameters:
   DASHSCOPE_API_KEY:
     NoEcho: true
     Type: String
+    AssociationProperty: ALIYUN::Bailian::ApiKey::ApiKeyInfo
+    AssociationPropertyMetadata:
+      OnlyKey: true
     Label:
       en: Bailian application API-KEY
       zh-cn: 百炼应用的API-KEY
   APP_ID:
     Type: String
     Label:
-      en: Application ID of Bilian application
+      en: Application ID of Bailian application
       zh-cn: 百炼应用的应用ID
   InstanceType:
     Type: String
@@ -207,6 +210,7 @@ Resources:
               cd demo
               python3.9 -m venv $(pwd)/venv
               source $(pwd)/venv/bin/activate
+              pip3 install aiohttp==3.8.6
               pip3 install -r requirements.txt
               sed "s/socketio.run(app, debug=True, host='0.0.0.0')/socketio.run(app, debug=True, host='0.0.0.0', allow_unsafe_werkzeug=True)/" app-stream.py > temp_app_stream.py
               mv temp_app_stream.py app-stream.py
@@ -236,7 +240,7 @@ Outputs:
   WebUrl:
     Description:
       zh-cn: Web 访问地址。
-      en: The Addresses of Web.
+      en: Web addresses
     Value:
       'Fn::Sub':
         - 'http://${ServerAddress}:5000/home'
@@ -249,7 +253,7 @@ Outputs:
   EcsLoginAddress:
     Description:
       zh-cn: ECS登录地址。
-      en: Ecs login address.
+      en: ECS login address
     Value:
       'Fn::Sub':
         - >-
@@ -271,16 +275,151 @@ Metadata:
           - InstancePassword
         Label:
           default:
-            en: Ecs Configuration
+            en: ECS Configuration
             zh-cn: ECS 实例配置
       - Parameters:
           - APP_ID
           - DASHSCOPE_API_KEY
         Label:
           default:
-            en: Bilian Application Configuration
+            en: Bailian Application Configuration
             zh-cn: 百炼应用配置
     Hidden:
       - CommonName
     TemplateTags:
       - acs:technical-solution:ai:AnalyticDB与百炼搭建智能问答系统-tech_solu_150
+      - acs:public_template:Solution:AnalyticDB-and-Bailian-system
+  ALIYUN::ROS::Composer:
+    d94d7a23:
+      Rect:
+        - 537
+        - 566
+        - -35
+        - 45
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    df8b4d07:
+      Parent: d94d7a23
+      Rect:
+        - 493
+        - 486
+        - -13
+        - 85
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    af6238f8:
+      Res:
+        - Vpc
+      Parent: df8b4d07
+      Rect:
+        - 382
+        - 351
+        - 67
+        - 134
+        - 3
+        - 0
+    725f562b:
+      Res:
+        - RosWaitCondition
+      Parent: df8b4d07
+      Rect:
+        - 40
+        - 40
+        - 7
+        - 394
+        - 3
+        - 0
+    74dee865:
+      Res:
+        - WaitConditionHandle
+      Parent: df8b4d07
+      Rect:
+        - 40
+        - 40
+        - 7
+        - 299
+        - 3
+        - 0
+    461f4628:
+      Res:
+        - RunCommand
+      Parent: df8b4d07
+      Rect:
+        - 40
+        - 40
+        - 168
+        - 494
+        - 3
+        - 0
+    6581d00d:
+      Res:
+        - ZoneId
+      Parent: af6238f8
+      Rect:
+        - 338
+        - 278
+        - 87
+        - 185
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    664b2ecd:
+      Res:
+        - VSwitch
+      Parent: 6581d00d
+      Rect:
+        - 286
+        - 205
+        - 113
+        - 229
+        - 5
+        - 0
+    b20d9a5b:
+      Res:
+        - AnalyticDB
+      Parent: 664b2ecd
+      Rect:
+        - 40
+        - 40
+        - 322
+        - 327
+        - 6
+        - 0
+    8f03e09f:
+      Res:
+        - SecurityGroup
+      Parent: af6238f8
+      Rect:
+        - 110
+        - 136
+        - 127
+        - 284
+        - 10
+        - 0
+    c7d0d931:
+      Parent: df8b4d07
+      Edge:
+        - 725f562b
+        - 74dee865
+      Line: 0:0:0:gray:0
+    65f0c661:
+      Parent: df8b4d07
+      Edge:
+        - 461f4628
+        - b20ca74e
+      Line: 0:0:0:gray:0
+    b20ca74e:
+      Res:
+        - EcsInstance
+      Parent: 664b2ecd
+      Rect:
+        - 40
+        - 40
+        - 168
+        - 327
+        - 11
+        - 0
+      Layer:
+        - 8f03e09f

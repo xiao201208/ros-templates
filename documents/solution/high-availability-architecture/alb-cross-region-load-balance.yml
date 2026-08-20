@@ -29,9 +29,10 @@ Metadata:
       Label:
         default:
           zh-cn: ECS实例密码配置
-          en: Ecs Password Configuration
+          en: ECS Password Configuration
     TemplateTags:
     - acs:technical-solution:network:ALB实现跨地域负载均衡-tech_solu_10
+    - acs:public_template:Solution:alb-cross-region-load-balance
 Workspace:
   main.tf: |+
     locals {
@@ -474,7 +475,7 @@ Workspace:
             "Label": {
               "default": {
                 "zh-cn": "ECS实例密码配置",
-                "en": "Ecs Password Configuration"
+                "en": "ECS Password Configuration"
               }
             }
           }

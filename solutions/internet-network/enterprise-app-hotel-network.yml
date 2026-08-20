@@ -1,7 +1,7 @@
 ROSTemplateFormatVersion: '2015-09-01'
 Description:
   zh-cn: 构建混合云网络，支持多地域访问，含VPC、ECS、SLB、RDS资源，确保酒店PMS系统云上云下互访，兼顾安全性与性能需求。
-  en: Build a hybrid cloud network to support multi-regional access, including VPC, ECS, SLB, and RDS resources, ensuring mutual access between the hotel PMS system on and off the cloud, taking into account security and performance requirements.
+  en: Build a hybrid cloud network to support multi-regional access, including VPC, ECS, SLB, and RDS resources, ensuring mutual access between the hotel PMS system on and off the cloud, while considering security and performance requirements.
 Conditions:
   ConnectToCCN:
     Fn::Not:
@@ -15,9 +15,7 @@ Parameters:
       en: VPC network segment
       zh-cn: 专有网络网段
     Description:
-      en: 'The ip address range of the VPC in the CidrBlock form; <br>You can use
-        the following ip address ranges and their subnets: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in CIDR notation.<br>Valid ranges include: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络ip地址段范围，<br>您可以使用以下的ip地址段或其子网:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -103,10 +101,7 @@ Parameters:
       en: Specification
       zh-cn: 规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -117,11 +112,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -159,10 +150,7 @@ Parameters:
         lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol
         in).
       zh-cn: 服务器登录密码,长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: 'ALIYUN::ECS::Instance::Password'
   SlbLoadBalancerSpec:
     Type: String
     Label:
@@ -180,7 +168,7 @@ Parameters:
       en: Backend Server Weights
       zh-cn: 后端服务器权重
     Description:
-      en: The back-end server weight added by load balancing.
+      en: The weight assigned to the backend server by load balancing.
       zh-cn: 负载均衡添加的后端服务器权重。
     Default: 100
     MinValue: 1
@@ -269,13 +257,11 @@ Parameters:
       en: High-Privileged Account Password
       zh-cn: 高权限账号密码
     Description:
-      en: 'Length 8-32 bits, large /lowercase letters, numbers, special characters
-        accounted for three: !@#$%^&*()_+-='
+      en: "8-32 characters long, must include uppercase and lowercase letters, numbers, and special characters (e.g., !@#$%^&*()_+-=)."
       zh-cn: '长度8－32位，大/小写字母、数字、特殊字符占三种；特殊字符包含: !@#$%^&*()_+-='
     AssociationProperty: ALIYUN::RDS::Instance::AccountPassword
     ConstraintDescription:
-      en: 'Length 8-32 bits, large /lowercase letters, numbers, special characters
-        accounted for three: !@#$%^&*()_+-='
+      en: "8-32 characters long, must include uppercase and lowercase letters, numbers, and special characters (e.g., !@#$%^&*()_+-=)."
       zh-cn: '长度8－32位，大/小写字母、数字、特殊字符占三种；特殊字符包含: !@#$%^&*()_+-='
     MinLength: 8
     MaxLength: 32
@@ -665,3 +651,210 @@ Metadata:
         default: SAG
     TemplateTags:
     - acs:solution:网络组网:企业应用（酒店PMS）混合云组网
+    - acs:public_template:Solution:enterprise-app-hotel-network
+  ALIYUN::ROS::Composer:
+    16b17b6f:
+      Rect:
+        - 945
+        - 719
+        - 134
+        - -51
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    f1ce687e:
+      Parent: 16b17b6f
+      Rect:
+        - 878
+        - 650
+        - 163
+        - -10
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    99a262cf:
+      Res:
+        - EcsVpc
+      Parent: f1ce687e
+      Rect:
+        - 782
+        - 410
+        - 200
+        - 191
+        - 3
+        - 0
+    7a6c98c5:
+      Res:
+        - SagCloudConnectNetwork
+      Parent: f1ce687e
+      Rect:
+        - 40
+        - 40
+        - 697
+        - 30
+        - 3
+        - 0
+    df80e898:
+      Res:
+        - CenCcnAttachment
+      Parent: f1ce687e
+      Rect:
+        - 40
+        - 40
+        - 522
+        - 30
+        - 3
+        - 0
+    66a58169:
+      Res:
+        - CenInstance
+      Parent: f1ce687e
+      Rect:
+        - 40
+        - 40
+        - 522
+        - 125
+        - 3
+        - 0
+    d1121564:
+      Res:
+        - SagSmartAccessGatewayBinding
+      Parent: f1ce687e
+      Rect:
+        - 40
+        - 40
+        - 697
+        - 125
+        - 3
+        - 0
+    00a400a3:
+      Res:
+        - EcsVSwitch1
+      Parent: 99a262cf
+      Rect:
+        - 392
+        - 237
+        - 225
+        - 312
+        - 4
+        - 0
+    be330458:
+      Res:
+        - EcsVSwitch2
+      Parent: 99a262cf
+      Rect:
+        - 240
+        - 218
+        - 663
+        - 331
+        - 4
+        - 0
+    f39c97de:
+      Res:
+        - CenVpcAttachment
+      Parent: 99a262cf
+      Rect:
+        - 40
+        - 40
+        - 522
+        - 231
+        - 4
+        - 0
+    f37d2433:
+      Res:
+        - RdsDBInstance
+      Parent: 00a400a3
+      Rect:
+        - 40
+        - 40
+        - 272
+        - 421
+        - 5
+        - 0
+    23cbb44b:
+      Parent: 00a400a3
+      Edge:
+        - a22c6232
+        - 5015cdb6
+      Line: 0:0:0:gray:0
+    6f460781:
+      Parent: 99a262cf
+      Edge:
+        - a22c6232
+        - 51a733b5
+      Line: 0:0:0:gray:0
+    4447d772:
+      Parent: f1ce687e
+      Edge:
+        - f39c97de
+        - 66a58169
+      Line: 0:0:0:gray:0
+    e57e0cc7:
+      Parent: f1ce687e
+      Edge:
+        - df80e898
+        - 66a58169
+      Line: 0:0:0:gray:0
+    eb833620:
+      Parent: f1ce687e
+      Edge:
+        - df80e898
+        - 7a6c98c5
+      Line: 0:0:0:gray:0
+    898f4d29:
+      Parent: f1ce687e
+      Edge:
+        - d1121564
+        - 7a6c98c5
+      Line: 0:0:0:gray:0
+    0c5eccc2:
+      Res:
+        - EcsSecurityGroup
+      Parent: 99a262cf
+      Rect:
+        - 493
+        - 114
+        - 353
+        - 403
+        - 15
+        - 0
+    a22c6232:
+      Res:
+        - SlbLoadBalancer
+        - SlbBackendServerAttachment
+        - SlbListener
+      Parent: 00a400a3
+      Rect:
+        - 40
+        - 40
+        - 546
+        - 440
+        - 16
+        - 0
+    51a733b5:
+      Res:
+        - EcsInstanceGroup2
+      Parent: be330458
+      Rect:
+        - 40
+        - 40
+        - 737
+        - 440
+        - 16
+        - 0
+      Layer:
+        - 0c5eccc2
+    5015cdb6:
+      Res:
+        - EcsInstanceGroup1
+      Parent: 00a400a3
+      Rect:
+        - 40
+        - 40
+        - 420
+        - 440
+        - 16
+        - 0
+      Layer:
+        - 0c5eccc2
+

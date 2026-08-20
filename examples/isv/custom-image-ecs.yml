@@ -8,7 +8,7 @@ Conditions:
   CreateVpcConditions:
     Fn::Equals:
     - true
-    - Ref: WhetherCreateVpc
+    - Ref: Whether to Create VPC
 Parameters:
   PayType:
     Type: String
@@ -78,10 +78,10 @@ Parameters:
       en: Availability Zone
       zh-cn: 可用区
     AssociationProperty: ALIYUN::ECS::Instance::ZoneId
-  WhetherCreateVpc:
+  Whether to Create VPC:
     Type: Boolean
     Label:
-      en: WhetherCreateVpc
+      en: Whether to Create VPC
       zh-cn: 是否新建VPC
     Default: false
   VpcCidrBlock:
@@ -92,15 +92,13 @@ Parameters:
     Description:
       zh-cn: VPC的ip地址段范围，<br>您可以使用以下的ip地址段或其子网:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
-      en: 'The ip address range of the VPC in the CidrBlock form; <br>You can use
-        the following ip address ranges and their subnets: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in CIDR block format; <br>You can use the following IP address ranges and their subnets: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
     AssociationProperty: ALIYUN::VPC::VPC::CidrBlock
     AssociationPropertyMetadata:
       Visible:
         Condition:
           Fn::Equals:
-          - ${WhetherCreateVpc}
+          - ${Whether to Create VPC}
           - true
     Default: 192.168.0.0/16
   VSwitchCidrBlock:
@@ -117,7 +115,7 @@ Parameters:
       Visible:
         Condition:
           Fn::Equals:
-          - ${WhetherCreateVpc}
+          - ${Whether to Create VPC}
           - true
     Default: 192.168.1.0/24
   VpcId:
@@ -130,7 +128,7 @@ Parameters:
       Visible:
         Condition:
           Fn::Equals:
-          - ${WhetherCreateVpc}
+          - ${Whether to Create VPC}
           - false
     Default: ''
   VSwitchId:
@@ -145,11 +143,12 @@ Parameters:
       Visible:
         Condition:
           Fn::Equals:
-          - ${WhetherCreateVpc}
+          - ${Whether to Create VPC}
           - false
     Default: ''
   InstancePassword:
     Type: String
+    NoEcho: true
     Label:
       en: Instance Password
       zh-cn: 实例密码
@@ -163,10 +162,6 @@ Parameters:
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in)
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）
     AssociationProperty: ALIYUN::ECS::Instance::Password
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
   SystemDiskCategory:
     Type: String
     Label:
@@ -335,6 +330,9 @@ Resources:
 #                  - PublicIps
 Metadata:
   ALIYUN::ROS::Interface:
+    TemplateTags:
+      - acs:public_template:Example:custom-image-ecs
+      - acs:example:ISV软件部署:创建单ECS实例并部署Nginx
 ## 参数组的顺序会确定用户创建服务实例页面的参数排列顺序
 ## The order of the parameter groups determines the order in which the parameters are arranged on the user creation service instance page
 ## 如果绝大部分实例规格都适用，比如x86架构，可以按注释中将可用区放在前面选择
@@ -347,7 +345,7 @@ Metadata:
 #            zh-cn: 可用区配置
 #            en: Zone Configuration
 #      - Parameters:
-#          - WhetherCreateVpc
+#          - Whether to Create VPC
 #          - VpcCidrBlock
 #          - VSwitchCidrBlock
 #          - VpcId
@@ -400,7 +398,7 @@ Metadata:
           zh-cn: 可用区配置
           en: Zone Configuration
     - Parameters:
-      - WhetherCreateVpc
+      - Whether to Create VPC
       - VpcCidrBlock
       - VSwitchCidrBlock
       - VpcId
@@ -418,5 +416,129 @@ Metadata:
         default:
           en: Instance
           zh-cn: ECS实例详细配置
-    TemplateTags:
-    - acs:example:ISV软件部署:创建单ECS实例并部署Nginx
+  ALIYUN::ROS::Composer:
+    '39783266':
+      Res:
+        - VpcId
+      Parent: '64956550'
+      Rect:
+        - 342
+        - 358
+        - 116
+        - 206
+        - 3
+        - 0
+      ResT: ALIYUN::ECS::VPC
+    '63831870':
+      Res:
+        - ZoneId
+      Parent: '39783266'
+      Rect:
+        - 283
+        - 282
+        - 136
+        - 247
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    '64956550':
+      Parent: fd09af51
+      Rect:
+        - 538
+        - 440
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    fd09af51:
+      Rect:
+        - 596
+        - 527
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    e4ce4145:
+      Res:
+        - InstanceRunCommand
+      Parent: '64956550'
+      Rect:
+        - 40
+        - 40
+        - 502
+        - 385
+        - 3
+        - 0
+    96efaf0e:
+      Res:
+        - WaitCondition
+      Parent: '64956550'
+      Rect:
+        - 40
+        - 40
+        - 502
+        - 218
+        - 3
+        - 0
+    fe97e4fa:
+      Res:
+        - WaitConditionHandle
+      Parent: '64956550'
+      Rect:
+        - 40
+        - 40
+        - 502
+        - 302
+        - 3
+        - 0
+    f84f7392:
+      Res:
+        - VSwitchId
+      Parent: '63831870'
+      Rect:
+        - 173
+        - 196
+        - 191
+        - 287
+        - 5
+        - 0
+      ResT: ALIYUN::ECS::VSwitch
+    6e0a47af:
+      Res:
+        - EcsSecurityGroup
+      Parent: '39783266'
+      Rect:
+        - 141
+        - 107
+        - 203
+        - 361
+        - 10
+        - 0
+    acdc19d4:
+      Parent: '64956550'
+      Edge:
+        - 96efaf0e
+        - fe97e4fa
+      Line: 0:0:0:gray:0
+    f1d7bf79:
+      Parent: '64956550'
+      Edge:
+        - e4ce4145
+        - 6838178d
+      Line: 0:0:0:gray:0
+    6838178d:
+      Res:
+        - EcsInstanceGroup
+      Parent: f84f7392
+      Rect:
+        - 40
+        - 40
+        - 249
+        - 385
+        - 11
+        - 0
+      Layer:
+        - 6e0a47af
+

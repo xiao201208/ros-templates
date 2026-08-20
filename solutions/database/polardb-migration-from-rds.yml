@@ -37,10 +37,7 @@ Parameters:
       en: Availability Zone
       zh-cn: 可用区
     Description:
-      en: 'Availability Zone ID,<br><b>note： <font color=''blue''>Before selecting,
-        please confirm that the Availability Zone supports the specification of creating
-        RDS、POLARDB and ECS resources</font></b><br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/123712.html''
-        target=''_blank''><b><font color=''blue''>View region and zone info</font></b></a>'
+      en: "Availability Zone ID,<br><b>note: <font color='blue'>Before selecting, please confirm that the Availability Zone supports the specification of creating RDS、POLARDB and ECS resources</font></b><br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/123712.html' target='_blank'><b><font color='blue'>View region and zone info</font></b></a>"
       zh-cn: '可用区ID。<br><b>注： <font color=''blue''>选择可用区前请确认该可用区是否支持创建RDS、POLARDB及ECS资源的规格</font></b><br>详见:
         <a href=''https://help.aliyun.com/document_detail/123712.html'' target=''_blank''><b><font
         color=''blue''>可用区信息</b></font></a>'
@@ -64,7 +61,7 @@ Parameters:
       en: VSwitch CIDR Block
       zh-cn: 交换机网段
     Description:
-      en: CIDR Block of created VSwitch, It must belong to itself VPC CIDR Block.
+      en: CIDR Block of created VSwitch. It must belong to the VPC CIDR Block.
       zh-cn: 交换机网段，必须为专有网络子网段。
     Default: 172.16.10.0/24
   ImageId:
@@ -85,10 +82,7 @@ Parameters:
       en: Specifications
       zh-cn: 实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -101,11 +95,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -143,10 +133,7 @@ Parameters:
         lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol
         in).
       zh-cn: 服务器登录密码,长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
   DBInstanceEngineAndVersion:
     Type: String
     Label:
@@ -167,9 +154,7 @@ Parameters:
       en: Specifications
       zh-cn: 规格
     Description:
-      en: 'Select the instance specification based on the type of database engine
-        and the available area support;<br>see detail: <a href=''https://www.alibabacloud.com/help/doc-detail/26312.html''
-        target=''_blank''><b><font color=''blue''>Instance specification sheet</font></b></a>'
+      en: "Select the instance specification based on the database engine type and available region support;<br>see details: <a href='https://www.alibabacloud.com/help/doc-detail/26312.html' target='_blank'><b><font color='blue'>Instance specification sheet</font></b></a>"
       zh-cn: '根据数据库引擎类型和可用区域支持选择实例规格;<br>详见: <a href=''https://help.aliyun.com/document_detail/26312.html''
         target=''_blank''><b><font color=''blue''>实例规格表</font></b></a>'
     Default: rds.mysql.s1.small
@@ -179,10 +164,10 @@ Parameters:
       en: Storage Space
       zh-cn: 存储空间
     Description:
-      en: 'Incrementing in every 5G, unit: GB,Value range:[5，1000].'
+      en: 'Incrementing in every 5G, unit: GB,Value range:[5,1000].'
       zh-cn: 每5GB进行递增，单位:GB,取值范围:[5，1000]。
     ConstraintDescription:
-      en: 'range:[5，1000], Incrementing in every 5G, unit: GB'
+      en: 'range:[5,1000], Incrementing in every 5G, unit: GB'
       zh-cn: 取值范围:[5，1000], 每 5G 递增，单位：GB
     Default: 5
     MinValue: 5
@@ -224,8 +209,7 @@ Parameters:
       zh-cn: 大/小写字母、数字和特殊字符占3种，8-32位。
     AssociationProperty: ALIYUN::RDS::Instance::AccountPassword
     ConstraintDescription:
-      en: '8-32 characters, can contain size letters, Numbers and special symbols
-        (including:!@ # $% ^ & * - + = _).'
+      en: "8–32 characters, can include uppercase letters, numbers, and special symbols (including: !@#$%^&*-+=_)."
       zh-cn: 8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*-+=_）。
     AllowedPattern: '[0-9A-Za-z\!\@\#\$\%\^\&\*\-\+\=\_]+$'
     MinLength: 8
@@ -237,9 +221,7 @@ Parameters:
       en: Node Specifications
       zh-cn: 节点规格
     Description:
-      en: 'The node specifications of the cluster.For more information, see detail:
-        <a href=''https://www.alibabacloud.com/help/doc-detail/68498.html'' target=''_blank''><b><font
-        color=''blue''>Specifications and pricing</font></b></a>'
+      en: "The node specifications of the cluster.For more information, see detail: <a href='https://www.alibabacloud.com/help/doc-detail/68498.html' target='_blank'><b><font color='blue'>Specifications and pricing</font></b></a>"
       zh-cn: 集群的节点规格。 有关更多信息，请参见：<a href='https://help.aliyun.com/document_detail/68498.html'
         target='_blank'><b><font color='blue'>规格与定价</font></b></a>
     Default: polar.mysql.x4.medium
@@ -249,7 +231,7 @@ Parameters:
       en: Amount
       zh-cn: 节点数
     Description:
-      en: Number of odes to be added to cluster.
+      en: Number of nodes to be added to the cluster.
       zh-cn: 要添加到集群中的节点数。
     Default: 1
     MinValue: 1
@@ -265,9 +247,6 @@ Resources:
         - _
         - - Vpc
           - Ref: ALIYUN::StackId
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 9c217332-cf05-4f8a-958a-92dee6767b1e
   VSwitch:
     Type: ALIYUN::ECS::VSwitch
     Properties:
@@ -283,9 +262,6 @@ Resources:
         - - VSwitch
           - Ref: ALIYUN::StackId
     DependsOn: Vpc
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: c6afa28a-1c51-4825-b407-062efedcec45
   Database:
     Type: ALIYUN::RDS::DBInstance
     Properties:
@@ -315,9 +291,6 @@ Resources:
       Tags:
         Key: best_practice
         Value: '025'
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 2407fe33-99f1-4d88-8291-7d7d15da43dc
   ReadOnlyDBInstance:
     Type: ALIYUN::RDS::ReadOnlyDBInstance
     Properties:
@@ -343,9 +316,6 @@ Resources:
         Key: best_practice
         Value: '025'
     DependsOn: Database
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: ecdfa84b-486c-4c76-986c-44ae0742f1aa
   Account:
     Type: ALIYUN::RDS::Account
     Properties:
@@ -359,9 +329,6 @@ Resources:
     DependsOn:
     - Database
     - ReadOnlyDBInstance
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 4a02364d-839e-454a-b408-36f6f3261081
   DBCluster:
     Type: ALIYUN::POLARDB::DBCluster
     Properties:
@@ -391,9 +358,6 @@ Resources:
       SourceResourceId:
         Ref: Database
     DependsOn: Account
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 2d801f11-0026-44e6-bdb4-ddade3344097
   DBNodes:
     Type: ALIYUN::POLARDB::DBNodes
     Properties:
@@ -401,9 +365,6 @@ Resources:
         Ref: Amount
       DBClusterId:
         Ref: DBCluster
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 2354342f-76cf-4216-b694-3c10c1bb3226
   SecurityGroup:
     Type: ALIYUN::ECS::SecurityGroup
     Properties:
@@ -415,9 +376,6 @@ Resources:
         - - SecurityGroup
           - Ref: ALIYUN::StackId
     DependsOn: Vpc
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: c4d0275e-c29f-4307-ab7a-e90190ab4160
   EcsInstance:
     Type: ALIYUN::ECS::Instance
     Properties:
@@ -447,9 +405,6 @@ Resources:
         - ''
         - - "#!/bin/sh \n"
           - yum install -y mysql
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 9d32db26-8f87-43e0-b18b-46e0f685ad8a
   ReadOnlyDBInstance2:
     Type: ALIYUN::RDS::ReadOnlyDBInstance
     Condition: CreateReadOnlyDBInstance2
@@ -476,9 +431,6 @@ Resources:
         Key: best_practice
         Value: '025'
     DependsOn: Database
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 5e04d1dc-9238-476e-9e4f-331c6a8d65b3
   ReadOnlyDBInstance3:
     Type: ALIYUN::RDS::ReadOnlyDBInstance
     Condition: CreateReadOnlyDBInstance3
@@ -505,9 +457,6 @@ Resources:
         Key: best_practice
         Value: '025'
     DependsOn: Database
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: c39cb40b-34e7-4402-8c99-5eae6e305a4b
   ReadOnlyDBInstance4:
     Type: ALIYUN::RDS::ReadOnlyDBInstance
     Condition: CreateReadOnlyDBInstance4
@@ -534,9 +483,6 @@ Resources:
         Key: best_practice
         Value: '025'
     DependsOn: Database
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: d42d5365-86be-417a-88ef-1f18853c4076
   ReadOnlyDBInstance5:
     Type: ALIYUN::RDS::ReadOnlyDBInstance
     Condition: CreateReadOnlyDBInstance5
@@ -563,9 +509,6 @@ Resources:
         Key: best_practice
         Value: '025'
     DependsOn: Database
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: bd889d6b-e608-4993-8fc2-ab500053b9b6
 Metadata:
   ALIYUN::ROS::Interface:
     ParameterGroups:
@@ -599,174 +542,200 @@ Metadata:
         default: POLARDB
     TemplateTags:
     - acs:solution:数据库:MySQL迁移PolarDB
-  ALIYUN::ROS::Designer:
-    2354342f-76cf-4216-b694-3c10c1bb3226:
-      position:
-        x: 718
-        y: 307
-      size:
-        height: 60
-        width: 60
-      z: 0
-    2407fe33-99f1-4d88-8291-7d7d15da43dc:
-      position:
-        x: 332
-        y: 218
-      size:
-        height: 60
-        width: 60
-      z: 2
-    2d801f11-0026-44e6-bdb4-ddade3344097:
-      position:
-        x: 442
-        y: 307
-      size:
-        height: 60
-        width: 60
-      z: 2
-    3db36521-e690-4c04-8031-2423e576952c:
-      source:
-        id: 5e04d1dc-9238-476e-9e4f-331c6a8d65b3
-      target:
-        id: 2407fe33-99f1-4d88-8291-7d7d15da43dc
-      z: 1
-    4a02364d-839e-454a-b408-36f6f3261081:
-      position:
-        x: 718
-        y: 218
-      size:
-        height: 60
-        width: 60
-      z: 0
-    5e04d1dc-9238-476e-9e4f-331c6a8d65b3:
-      position:
-        x: 332
-        y: 105
-      size:
-        height: 60
-        width: 60
-      z: 2
-    64e2a80f-74ce-4847-96b8-916304761ca1:
-      source:
-        id: ecdfa84b-486c-4c76-986c-44ae0742f1aa
-      target:
-        id: 2407fe33-99f1-4d88-8291-7d7d15da43dc
-      z: 1
-    66d8fb55-c22b-4683-a028-a2c2986a4a8c:
-      source:
-        id: 9d32db26-8f87-43e0-b18b-46e0f685ad8a
-      target:
-        id: c4d0275e-c29f-4307-ab7a-e90190ab4160
-      z: 1
-    67e22f98-dbf8-458f-b937-e487ce0391eb:
-      source:
-        id: d42d5365-86be-417a-88ef-1f18853c4076
-      target:
-        id: 2407fe33-99f1-4d88-8291-7d7d15da43dc
-      z: 1
-    817a5514-05b6-4e08-9c17-2966ad2eb6f5:
-      source:
-        id: bd889d6b-e608-4993-8fc2-ab500053b9b6
-      target:
-        id: 2407fe33-99f1-4d88-8291-7d7d15da43dc
-      z: 1
-    8365e182-d063-44b6-bc21-0804c463905f:
-      source:
-        id: 4a02364d-839e-454a-b408-36f6f3261081
-      target:
-        id: 2407fe33-99f1-4d88-8291-7d7d15da43dc
-      z: 1
-    9c217332-cf05-4f8a-958a-92dee6767b1e:
-      embeds:
-      - c6afa28a-1c51-4825-b407-062efedcec45
-      - c4d0275e-c29f-4307-ab7a-e90190ab4160
-      position:
-        x: 119
-        y: 42
-      size:
-        height: 499
-        width: 514
-      z: 0
-    9d32db26-8f87-43e0-b18b-46e0f685ad8a:
-      position:
-        x: 382
-        y: 408
-      size:
-        height: 60
-        width: 60
-      z: 2
-    ae2b13a3-03bc-48ce-ab3f-1163dfd2a388:
-      source:
-        id: c39cb40b-34e7-4402-8c99-5eae6e305a4b
-      target:
-        id: 2407fe33-99f1-4d88-8291-7d7d15da43dc
-      z: 1
-    bd889d6b-e608-4993-8fc2-ab500053b9b6:
-      position:
-        x: 184
-        y: 327
-      size:
-        height: 60
-        width: 60
-      z: 2
-    c39cb40b-34e7-4402-8c99-5eae6e305a4b:
-      position:
-        x: 442
-        y: 121
-      size:
-        height: 60
-        width: 60
-      z: 2
-    c4536b87-840d-444c-8d31-e7eaae060f04:
-      source:
-        id: 2354342f-76cf-4216-b694-3c10c1bb3226
-      target:
-        id: 2d801f11-0026-44e6-bdb4-ddade3344097
-      z: 1
-    c4d0275e-c29f-4307-ab7a-e90190ab4160:
-      position:
-        x: 551
-        y: 408
-      size:
-        height: 60
-        width: 60
-      z: 1
-    c6afa28a-1c51-4825-b407-062efedcec45:
-      embeds:
-      - 9d32db26-8f87-43e0-b18b-46e0f685ad8a
-      - 2407fe33-99f1-4d88-8291-7d7d15da43dc
-      - 5e04d1dc-9238-476e-9e4f-331c6a8d65b3
-      - c39cb40b-34e7-4402-8c99-5eae6e305a4b
-      - d42d5365-86be-417a-88ef-1f18853c4076
-      - bd889d6b-e608-4993-8fc2-ab500053b9b6
-      - 2d801f11-0026-44e6-bdb4-ddade3344097
-      - ecdfa84b-486c-4c76-986c-44ae0742f1aa
-      position:
-        x: 141
-        y: 80
-      size:
-        height: 414
-        width: 386
-      z: 1
-    d42d5365-86be-417a-88ef-1f18853c4076:
-      position:
-        x: 166
-        y: 218
-      size:
-        height: 60
-        width: 60
-      z: 2
-    ecdfa84b-486c-4c76-986c-44ae0742f1aa:
-      position:
-        x: 184
-        y: 124
-      size:
-        height: 60
-        width: 60
-      z: 2
-    f6e8f4b6-26d8-4ed0-8ad8-09aca51afc18:
-      source:
-        id: 2d801f11-0026-44e6-bdb4-ddade3344097
-      target:
-        id: 2407fe33-99f1-4d88-8291-7d7d15da43dc
-      z: 1
+    - acs:public_template:Solution:polardb-migration-from-rds
+  ALIYUN::ROS::Composer:
+    3f0df94f:
+      Rect:
+        - 714
+        - 614
+        - 40
+        - 60
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    794306df:
+      Parent: 3f0df94f
+      Rect:
+        - 657
+        - 537
+        - 60
+        - 100
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    0a3edc8c:
+      Res:
+        - Vpc
+      Parent: 794306df
+      Rect:
+        - 591
+        - 466
+        - 77
+        - 140
+        - 3
+        - 0
+    9870046a:
+      Res:
+        - VSwitch
+      Parent: 0a3edc8c
+      Rect:
+        - 529
+        - 323
+        - 93
+        - 245
+        - 4
+        - 0
+    0ef9cba5:
+      Res:
+        - DBCluster
+      Parent: 9870046a
+      Rect:
+        - 40
+        - 40
+        - 273
+        - 285
+        - 11
+        - 0
+    edb15c3e:
+      Res:
+        - ReadOnlyDBInstance5
+      Parent: 9870046a
+      Rect:
+        - 40
+        - 40
+        - 408
+        - 480
+        - 11
+        - 0
+    1f8277ee:
+      Res:
+        - ReadOnlyDBInstance4
+      Parent: 9870046a
+      Rect:
+        - 40
+        - 40
+        - 247
+        - 480
+        - 11
+        - 0
+    4c198518:
+      Res:
+        - ReadOnlyDBInstance3
+      Parent: 9870046a
+      Rect:
+        - 40
+        - 40
+        - 564
+        - 480
+        - 11
+        - 0
+    4b0130a2:
+      Res:
+        - ReadOnlyDBInstance2
+      Parent: 9870046a
+      Rect:
+        - 40
+        - 40
+        - 326
+        - 480
+        - 11
+        - 0
+    8efe864f:
+      Res:
+        - ReadOnlyDBInstance
+      Parent: 9870046a
+      Rect:
+        - 40
+        - 40
+        - 483
+        - 480
+        - 11
+        - 0
+    '803e0779':
+      Res:
+        - SecurityGroup
+      Parent: 0a3edc8c
+      Rect:
+        - 111
+        - 105
+        - 98
+        - 447
+        - 14
+        - 0
+    9e9f0d2c:
+      Res:
+        - DBNodes
+      Parent: 9870046a
+      Rect:
+        - 40
+        - 40
+        - 129
+        - 285
+        - 15
+        - 0
+    b2acb703:
+      Res:
+        - Database
+      Parent: 9870046a
+      Rect:
+        - 40
+        - 40
+        - 408
+        - 285
+        - 15
+        - 0
+    9457f442:
+      Res:
+        - EcsInstance
+      Parent: 9870046a
+      Rect:
+        - 40
+        - 40
+        - 129
+        - 480
+        - 15
+        - 0
+      Layer:
+        - '803e0779'
+    af1e7a85:
+      Parent: 9870046a
+      Edge:
+        - 8efe864f
+        - b2acb703
+      Line: 0:0:0:gray:0
+    8761ac16:
+      Parent: 9870046a
+      Edge:
+        - 0ef9cba5
+        - b2acb703
+      Line: 0:0:0:gray:0
+    6355da0b:
+      Parent: 9870046a
+      Edge:
+        - 9e9f0d2c
+        - 0ef9cba5
+      Line: 0:0:0:gray:0
+    d247e659:
+      Parent: 9870046a
+      Edge:
+        - 4b0130a2
+        - b2acb703
+      Line: 0:0:0:gray:0
+    a2b0cafb:
+      Parent: 9870046a
+      Edge:
+        - 4c198518
+        - b2acb703
+      Line: 0:0:0:gray:0
+    d0dcf10c:
+      Parent: 9870046a
+      Edge:
+        - 1f8277ee
+        - b2acb703
+      Line: 0:0:0:gray:0
+    5ff57e06:
+      Parent: 9870046a
+      Edge:
+        - edb15c3e
+        - b2acb703
+      Line: 0:0:0:gray:0

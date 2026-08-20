@@ -70,11 +70,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -89,34 +85,32 @@ Parameters:
       en: System Disk Space
       zh-cn: 系统盘空间
     Description:
-      en: 'System disk size, range of values: 20-500, units: GB.'
+      en: 'System disk size. Value range: 20–500 GB.'
       zh-cn: 系统盘大小, 取值范围：[20, 500], 单位：GB。
     Default: 40
   Password:
     Type: String
+    NoEcho: true
     Label:
       en: Instance Password
       zh-cn: 实例密码
     Description:
-      en: Server login password, Length 8-30, must contain three(Capital letters,
+      en: Server login password, 8–30 characters, must contain three(Capital letters,
         lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol
         in).
       zh-cn: 服务器登录密码,长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
     ConstraintDescription:
-      en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
+      en: 8–30 characters, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
   MaxQueueNumber:
     Type: Number
     Label:
       en: Number of Queues
       zh-cn: Queue数量
     Description:
-      en: 'Single Vhost Creates Queue Quantity, Value Range: 1~2000'
+      en: 'Single VHost Creates Queue Quantity. Value range: 1–2000.'
       zh-cn: 单Vhost创建的Queue数量，取值范围：[1, 2000]
     Default: 100
     MinValue: 1
@@ -127,9 +121,7 @@ Parameters:
       en: Flow Control Limits
       zh-cn: 流控限制
     Description:
-      en: 'RabbitMQ service uses a certain threshold of system memory, it activates
-        a memory alarm and triggers a flow control mechanism, with optional configurations:
-        0.4 (40%), 0.6 (60%), 0.8 (80%)'
+      en: "RabbitMQ service uses a certain threshold of system memory; it activates a memory alarm and triggers a flow control mechanism. Optional configurations are 0.4 (40%), 0.6 (60%), and 0.8 (80%)."
       zh-cn: RabbitMQ服务占用系统内存达到一定阈值时，会启动内存报警，触发流控机制，可选配置：0.4（40%），0.6（60%），0.8（80%）
     Default: '0.4'
     AllowedValues:
@@ -151,10 +143,10 @@ Parameters:
       en: Administrator User Login Password
       zh-cn: 管理员用户登录密码
     Description:
-      en: RabbitMQ administrator user login password, length 8-30
+      en: RabbitMQ administrator user login password, 8–30 characters in length
       zh-cn: RabbitMQ管理员用户登录密码,长度8-30
     ConstraintDescription:
-      en: Length 8-30
+      en: 8–30 characters
       zh-cn: 长度8-30
     NoEcho: true
 Resources:
@@ -164,9 +156,6 @@ Resources:
       CidrBlock:
         Ref: VpcCidrBlock
       VpcName: MyVPC
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: cd62e181-1aec-4b74-a9a2-69d7949056fb
   EcsSecurityGroup:
     Type: ALIYUN::ECS::SecurityGroup
     Properties:
@@ -190,9 +179,6 @@ Resources:
         Priority: 1
         SourceCidrIp: 0.0.0.0/0
       SecurityGroupName: SG
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 2db1741c-3ff9-42d0-a150-6f77a61b6a11
   EcsVSwitch:
     Type: ALIYUN::ECS::VSwitch
     Properties:
@@ -205,9 +191,6 @@ Resources:
         Ref: EcsVpc
       CidrBlock:
         Ref: VSwitchCidrBlock
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: a2924908-10e1-4c79-baf7-16636fbdee84
   RabbitMQServer:
     Type: ALIYUN::ECS::InstanceGroup
     Properties:
@@ -278,15 +261,9 @@ Resources:
             - "ros-notify -d \"{\\\"Data\\\" : \\\"SUCCESS\\\", \\\"Status\\\" : \\\
               \"SUCCESS\\\"}\" \n"
     DependsOn: EcsVSwitch
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 22852ebe-413c-4474-a95c-396d4a45a662
   RosWaitConditionHandle:
     Type: ALIYUN::ROS::WaitConditionHandle
     Properties: {}
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 163244f3-f503-402f-ab5b-ef19fbcdc7d7
   RosWaitCondition:
     Type: ALIYUN::ROS::WaitCondition
     Properties:
@@ -294,9 +271,6 @@ Resources:
       Handle:
         Ref: RosWaitConditionHandle
       Timeout: 1800
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 3b557656-6947-49eb-b4a3-c809db365a1c
 Outputs:
   RabbitMQWebUrl:
     Value:
@@ -335,69 +309,100 @@ Metadata:
           zh-cn: RabbitMQ 配置（必填）
     TemplateTags:
     - acs:example:弹性计算:RabbitMQ单机版(新建VPC)
-  ALIYUN::ROS::Designer:
-    163244f3-f503-402f-ab5b-ef19fbcdc7d7:
-      position:
-        x: 1013
-        y: 316
-      size:
-        height: 60
-        width: 60
-      z: 0
-    22852ebe-413c-4474-a95c-396d4a45a662:
-      position:
-        x: 731
-        y: 481
-      size:
-        height: 60
-        width: 60
-      z: 2
-    2db1741c-3ff9-42d0-a150-6f77a61b6a11:
-      position:
-        x: 731
-        y: 320
-      size:
-        height: 60
-        width: 60
-      z: 1
-    3b557656-6947-49eb-b4a3-c809db365a1c:
-      position:
-        x: 1013
-        y: 486
-      size:
-        height: 60
-        width: 60
-      z: 0
-    6aa3f5af-2303-4eaa-9284-4f8818cbb972:
-      source:
-        id: 3b557656-6947-49eb-b4a3-c809db365a1c
-      target:
-        id: 163244f3-f503-402f-ab5b-ef19fbcdc7d7
-      z: 1
-    a2924908-10e1-4c79-baf7-16636fbdee84:
-      embeds:
-      - 22852ebe-413c-4474-a95c-396d4a45a662
-      position:
-        x: 668
-        y: 435
-      size:
-        height: 204
-        width: 196
-      z: 1
-    c0fe3d47-2853-4cfb-9c4b-90132fde15d7:
-      source:
-        id: 22852ebe-413c-4474-a95c-396d4a45a662
-      target:
-        id: 2db1741c-3ff9-42d0-a150-6f77a61b6a11
-      z: 1
-    cd62e181-1aec-4b74-a9a2-69d7949056fb:
-      embeds:
-      - a2924908-10e1-4c79-baf7-16636fbdee84
-      - 2db1741c-3ff9-42d0-a150-6f77a61b6a11
-      position:
-        x: 583
-        y: 282
-      size:
-        height: 413
-        width: 383.0146484375
-      z: 0
+    - acs:public_template:Example:new-vpc-single-rabbitmq
+  ALIYUN::ROS::Composer:
+    3ac8257e:
+      Rect:
+        - 580
+        - 470
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    93ae0fdd:
+      Parent: 3ac8257e
+      Rect:
+        - 540
+        - 400
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    4fdc5558:
+      Res:
+        - EcsVpc
+      Parent: 93ae0fdd
+      Rect:
+        - 440
+        - 270
+        - 80
+        - 200
+        - 3
+        - 0
+    621bd34a:
+      Res:
+        - RosWaitConditionHandle
+      Parent: 93ae0fdd
+      Rect:
+        - 40
+        - 40
+        - 200
+        - 490
+        - 3
+        - 0
+      Hidden: true
+    73eb8205:
+      Res:
+        - RosWaitCondition
+      Parent: 93ae0fdd
+      Rect:
+        - 40
+        - 40
+        - 367
+        - 490
+        - 3
+        - 0
+      Hidden: true
+    01c67cfd:
+      Res:
+        - EcsVSwitch
+      Parent: 4fdc5558
+      Rect:
+        - 400
+        - 200
+        - 100
+        - 250
+        - 4
+        - 0
+    fbc227b5:
+      Res:
+        - EcsSecurityGroup
+      Parent: 4fdc5558
+      Rect:
+        - 237
+        - 115
+        - 186
+        - 298
+        - 8
+        - 0
+    d4650179:
+      Res:
+        - RabbitMQServer
+      Parent: 01c67cfd
+      Rect:
+        - 40
+        - 40
+        - 280
+        - 330
+        - 9
+        - 0
+      Layer:
+        - fbc227b5
+    bc9d9856:
+      Parent: 93ae0fdd
+      Edge:
+        - 73eb8205
+        - 621bd34a
+      Line: 0:0:0:gray:0

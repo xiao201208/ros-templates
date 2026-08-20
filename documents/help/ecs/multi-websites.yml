@@ -1,7 +1,7 @@
 ROSTemplateFormatVersion: '2015-09-01'
 Description:
   zh-cn: 使用LNMP环境部署多个站点。
-  en: Use lnmp to deploy multi-websites by ros.
+  en: Use ROS to deploy multi-websites with LNMP.
 Parameters:
   InstanceSource:
     Type: String
@@ -19,7 +19,7 @@ Parameters:
           en: Create New Instance
         UseExisted:
           zh-cn: 选择已有实例
-          en: Select Existed Instance
+          en: Select Existing Instance
   ZoneId:
     Type: String
     Default: null
@@ -110,7 +110,7 @@ Parameters:
       zh-cn: ECS实例ID
     Description:
       zh-cn: 创建ECS实例时，ECS实例ID。<br><b>注： <font color='blue'>该一键部署脚本仅支持Alibaba Cloud Linux 3，请勿选择其他操作系统的实例。</font></b>
-      en: ECS instance ID,<br><b>note： <font color='blue'>This one click deployment script only supports Alibaba Cloud Linux 3、CentOS 8.5和CentOS 7.9, please do not select instances of other operating systems</font></b>
+      en: "ECS instance ID,<br><b>note: <font color='blue'>This one click deployment script only supports Alibaba Cloud Linux 3、CentOS 8.5和CentOS 7.9, please do not select instances of other operating systems</font></b>"
     AssociationProperty: ALIYUN::ECS::Instance::InstanceId
     AssociationPropertyMetadata:
       Status: Running
@@ -159,9 +159,6 @@ Resources:
       SecurityGroupName:
         Fn::Sub: ${CommonName}-sg
       SecurityGroupIngress:
-        - PortRange: 22/22
-          SourceCidrIp: 0.0.0.0/0
-          IpProtocol: tcp
         - PortRange: 443/443
           SourceCidrIp: 0.0.0.0/0
           IpProtocol: tcp
@@ -171,21 +168,6 @@ Resources:
         - PortRange: '-1/-1'
           SourceCidrIp: 0.0.0.0/0
           IpProtocol: icmp
-  SecurityGroupIngress_22:
-    Type: ALIYUN::ECS::SecurityGroupIngress
-    Condition: UseExistedInstance
-    Properties:
-      SecurityGroupId:
-        Fn::Jq:
-          - First
-          - .[0].SecurityGroupIds[0]
-          - Fn::GetAtt:
-              - DsEcs
-              - Instances
-      SourceCidrIp: 0.0.0.0/0
-      IpProtocol: tcp
-      NicType: intranet
-      PortRange: 22/22
   SecurityGroupIngress_443:
     Type: ALIYUN::ECS::SecurityGroupIngress
     Condition: UseExistedInstance
@@ -412,3 +394,166 @@ Metadata:
       - CommonName
     TemplateTags:
       - acs:document-help:ecs:使用LNMP环境部署多个站点
+      - acs:public_template:Example:multi-websites
+  ALIYUN::ROS::Composer:
+    47ae271d:
+      Rect:
+        - 724
+        - 592
+        - -4
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    416aa789:
+      Parent: 47ae271d
+      Rect:
+        - 683
+        - 526
+        - 12
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    f5e440ae:
+      Res:
+        - Vpc
+      Parent: 416aa789
+      Rect:
+        - 532
+        - 340
+        - 28
+        - 260
+        - 3
+        - 0
+    53013e4e:
+      Res:
+        - SecurityGroupIngress_80
+      Parent: 416aa789
+      Rect:
+        - 40
+        - 40
+        - 600
+        - 600
+        - 3
+        - 0
+    417b3e54:
+      Parent: 416aa789
+      Rect:
+        - 40
+        - 40
+        - 600
+        - 320
+        - 3
+        - 0
+      ResT: MODULE::ACS::OOS::Extension
+    2839a019:
+      Res:
+        - SecurityGroupIngress_443
+      Parent: 416aa789
+      Rect:
+        - 40
+        - 40
+        - 600
+        - 410
+        - 3
+        - 0
+    668a6af0:
+      Parent: 416aa789
+      Rect:
+        - 40
+        - 40
+        - 600
+        - 520
+        - 3
+        - 0
+      ResT: DATASOURCE::ECS::Instances
+    8a21d6b9:
+      Res:
+        - ZoneId
+      Parent: f5e440ae
+      Rect:
+        - 496
+        - 270
+        - 44
+        - 310
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    6c5c4c5d:
+      Res:
+        - DeployMultiWebsite
+      Parent: 8a21d6b9
+      Rect:
+        - 40
+        - 40
+        - 61
+        - 440
+        - 5
+        - 0
+    5307fe24:
+      Res:
+        - VSwitch
+      Parent: 8a21d6b9
+      Rect:
+        - 400
+        - 200
+        - 120
+        - 360
+        - 5
+        - 0
+    ea1a597f:
+      Res:
+        - SecurityGroup
+      Parent: f5e440ae
+      Rect:
+        - 191
+        - 122
+        - 203
+        - 415
+        - 10
+        - 0
+    6fb7c1ca:
+      Parent: 416aa789
+      Edge:
+        - 2839a019
+        - 668a6af0
+      Line: 0:0:0:gray:0
+    fca611cf:
+      Parent: 416aa789
+      Edge:
+        - 53013e4e
+        - 668a6af0
+      Line: 0:0:0:gray:0
+    45fc3240:
+      Parent: 416aa789
+      Edge:
+        - 417b3e54
+        - ad8b2a04
+      Line: 0:0:0:gray:0
+    ab612d46:
+      Parent: 8a21d6b9
+      Edge:
+        - 6c5c4c5d
+        - ad8b2a04
+      Line: 0:0:0:gray:0
+    484f9d45:
+      Parent: 416aa789
+      Edge:
+        - 668a6af0
+        - ad8b2a04
+      Line: 0:0:0:gray:0
+    ad8b2a04:
+      Res:
+        - EcsInstance
+      Parent: 5307fe24
+      Rect:
+        - 40
+        - 40
+        - 274
+        - 440
+        - 11
+        - 0
+      Layer:
+        - ea1a597f
+

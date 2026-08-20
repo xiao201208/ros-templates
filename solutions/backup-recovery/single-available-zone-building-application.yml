@@ -19,9 +19,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>you can use
-        the following IP address ranges: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in CIDR block format; <br>you can use the following IP address ranges: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -67,9 +65,7 @@ Parameters:
       en: EIP Charge Type
       zh-cn: 弹性公网IP计费方式
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[PayByBandwidth：<font
-        color=''green''>Pay-by-bandwidth</font>]<br>[PayByTraffic：<font color=''green''>Pay-by-data-transfer</font>]<br><font
-        color=''blue''></a>'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[PayByBandwidth: <font color='green'>Pay-by-bandwidth</font>]<br>[PayByTraffic: <font color='green'>Pay-by-data-transfer</font>]<br><font color='blue'></a>"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[PayByBandwidth：<font color=''green''>按固定带宽计费</font>]<br>[PayByTraffic：<font
         color=''green''>按流量计费</font>]<br><font color=''blue''></a>'
     Default: PayByTraffic
@@ -82,10 +78,7 @@ Parameters:
       en: Specifications
       zh-cn: 实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -98,11 +91,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -142,9 +131,7 @@ Parameters:
       en: Image
       zh-cn: 镜像
     Description:
-      en: 'Server Instance Image ID, Use centos_7 mirror to install the app, and the
-        other images are not installed, see detail: <b><a href=''https://www.alibabacloud.com/help/en/doc-detail/112977.html''
-        target=''_blank''><font color=''blue''>Find the mirror</font></a></b>'
+      en: "Server Instance Image ID, Use centos_7 mirror to install the app, and the other images are not installed, see detail: <b><a href='https://www.alibabacloud.com/help/en/doc-detail/112977.html' target='_blank'><font color='blue'>Find the mirror</font></a></b>"
       zh-cn: 服务器镜像，使用centos_7镜像安装相关应用，其他镜像不安装，详见：<b><a href='https://help.aliyun.com/document_detail/112977.html'
         target='_blank'><font color='blue'>查找镜像</font></a></b>
     Default: centos_7
@@ -162,18 +149,14 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: '8'
-    MaxLength: '30'
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
   EcsGroupName:
     Type: String
     Label:
       en: Instance/Host Name
       zh-cn: 实例名/主机名
     Description:
-      en: 'Instance Name/Host Name.Default: WP1, create successful display [wp1-000,
-        wp1-001...].'
+      en: "Instance Name/Host Name. Default: WP1. On successful creation, displays as [wp1-000, wp1-001...]."
       zh-cn: 实例名/主机名。默认：WP1,创建成功显示[WP1-000, WP1-001....]。
     Default: WP1
   LoadBalancerSpec:
@@ -200,7 +183,7 @@ Parameters:
       en: Listening Port
       zh-cn: 监听端口
     Description:
-      en: 'SLB externally provided ports.Default: 80,range of values：1-65535.'
+      en: 'SLB externally provided ports.Default: 80,range of values: 1-65535.'
       zh-cn: 前端使用的端口。默认值：80, 取值：1-65535。
     Default: 80
     MinValue: 1
@@ -211,7 +194,7 @@ Parameters:
       en: SLB Backend Server Port
       zh-cn: 后端服务器的端口
     Description:
-      en: 'Default: 80. value range: 1-65535.'
+      en: 'Default: 80. Value range: 1–65535.'
       zh-cn: 默认：80。取值范围1-65535。
     Default: 80
     MinValue: 1
@@ -236,9 +219,7 @@ Parameters:
       en: Specifications
       zh-cn: 规格
     Description:
-      en: 'Select the instance specification based on the type of database engine
-        and the available area support;<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/26350.html''
-        target=''_blank''><b><font color=''blue''>Instance specification sheet</font></b></a>'
+      en: "Select the instance specification based on the database engine type and available region support;<br>see details: <a href='https://www.alibabacloud.com/help/en/doc-detail/26350.html' target='_blank'><b><font color='blue'>Instance specification sheet</font></b></a>"
       zh-cn: 根据数据库引擎的类型和可用的区域支持选择实例规格；<br>请参见详细信息：<a href='https://help.aliyun.com/document_detail/26350.html'
         target='_blank'><b><font color='blue'>实例规格表</font></b></a>
     Default: rds.mysql.s2.large
@@ -248,7 +229,7 @@ Parameters:
       en: Storage Space
       zh-cn: 存储空间
     Description:
-      en: 'Database storage space, units: GB, per 5GB increment, value range: 20-1000.'
+      en: 'Database storage space, in GB. Increments of 5GB. Value range: 20–1000.'
       zh-cn: 数据库存储空间, 单位：GB, 每5GB进行递增，取值范围：20-1000。
     Default: 20
     MinValue: 20
@@ -298,7 +279,7 @@ Parameters:
         (including:!@#$%^&*-+=_).
       zh-cn: 长度8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*-+=_）。
     ConstraintDescription:
-      en: 8-32 characters, can contain size letters, Numbers and special symbols (including:!@#$%^&*-+=_).
+      en: "8-32 characters, can contain uppercase letters, numbers, and special symbols (including: !@#$%^&*-+=_)."
       zh-cn: 8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*-+=_）。
     MinLength: '8'
     MaxLength: '32'
@@ -309,9 +290,7 @@ Parameters:
       en: Specifications
       zh-cn: 规格
     Description:
-      en: 'Fill in instance specifications based on database type and availability
-        zone support;<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/26350.html''
-        target=''_blank''><b><font color=''blue''>Specification inquiry</font></b></a>'
+      en: "Fill in instance specifications based on database type and availability zone support; see details: <a href='https://www.alibabacloud.com/help/en/doc-detail/26350.html' target='_blank'><b><font color='blue'>Specification inquiry</font></b></a>"
       zh-cn: 根据数据库类型和可用区支持的情况填写实例规格；<br>请参见详细信息：<a href='https://help.aliyun.com/document_detail/26350.html'
         target='_blank'><b><font color='blue'>规格查询</font></b></a>
     Default: redis.master.stand.default
@@ -334,14 +313,10 @@ Parameters:
       en: Instance Password
       zh-cn: 实例密码
     Description:
-      en: 'The password can be 8 to 32 characters in length and must contain three
-        of the following conditions: uppercase letters, lowercase letters, numbers,
-        and special characters ( !@#$%^&*()_+-= ).'
+      en: "The password must be 8 to 32 characters long and contain at least three of the following: uppercase letters, lowercase letters, numbers, and special characters (!@#$%^&*()_+-=)."
       zh-cn: 密码长度可以是8到32个字符，并且必须包含以下三种情况:大写字母、小写字母、数字和特殊字符(!@#$%^&*()_+-=)。
     ConstraintDescription:
-      en: 'The password can be 8 to 32 characters in length and must contain three
-        of the following conditions: uppercase letters, lowercase letters, numbers,
-        and special characters ( !@#$%^&*()_+-= ).'
+      en: "The password must be 8 to 32 characters long and contain at least three of the following: uppercase letters, lowercase letters, numbers, and special characters (!@#$%^&*()_+-=)."
       zh-cn: 密码长度可以是8到32个字符，并且必须包含以下三种情况:大写字母、小写字母、数字和特殊字符(!@#$%^&*()_+-=)。
     MinLength: 8
     MaxLength: 32
@@ -352,7 +327,7 @@ Parameters:
       en: VPC Description
       zh-cn: VPC 描述
     Description:
-      en: VPC description.The length is [2, 256].Can not begin with http:// and https://.
+      en: VPC description. The length is [2, 256]. Cannot begin with http:// or https://.
       zh-cn: VPC描述, 长度为 [2, 256]。不能以 http:// 和 https:// 开头。
     Default: VPC用于同地域可用区灾备2.0-迁移演练
 Resources:
@@ -366,20 +341,12 @@ Resources:
         - '-'
         - - StackId
           - Ref: ALIYUN::StackId
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: b9820522-e318-4d4d-9574-02ba55d76c8a
   EcsSecurityGroup:
     Type: ALIYUN::ECS::SecurityGroup
     Properties:
       VpcId:
         Ref: EcsVpc
       SecurityGroupIngress:
-      - IpProtocol: tcp
-        NicType: intranet
-        PortRange: 22/22
-        Priority: 1
-        SourceCidrIp: 0.0.0.0/0
       - IpProtocol: tcp
         NicType: intranet
         PortRange: 80/80
@@ -409,9 +376,6 @@ Resources:
       - Key: best_practice
         Value: '057'
     DependsOn: EcsVpc
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: a1e0ee8f-3ca1-4142-a901-cf066b4da978
   EcsVSwitch:
     Type: ALIYUN::ECS::VSwitch
     Properties:
@@ -428,9 +392,6 @@ Resources:
           - StackId
           - Ref: ALIYUN::StackId
     DependsOn: EcsVpc
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 6d16e5ec-55af-4409-b0c6-84b9ef40d5fe
   Rds:
     Type: ALIYUN::RDS::DBInstance
     Properties:
@@ -464,9 +425,6 @@ Resources:
       Tags:
         Key: best_practice
         Value: '057'
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 0f65c728-7a2f-4a69-929f-707960b55549
   Redis:
     Type: ALIYUN::REDIS::Instance
     Properties:
@@ -488,9 +446,6 @@ Resources:
       Password:
         Ref: RedisPassword
     DependsOn: EcsVSwitch
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: c2a3ce3a-410e-4a45-b2ff-bed578ba0aed
   EcsInstanceGroup:
     Type: ALIYUN::ECS::InstanceGroup
     Properties:
@@ -657,9 +612,6 @@ Resources:
     DependsOn:
     - Rds
     - Redis
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: d1600d3c-9502-41d4-a820-d6191f18d5c7
   VpcEip:
     Type: ALIYUN::VPC::EIP
     Properties:
@@ -667,9 +619,6 @@ Resources:
         Ref: EipBandwidth
       InternetChargeType:
         Ref: EipInternetChargeType
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: b6e9f6c2-67e8-4d7d-921e-8420851eeb72
   EipBind:
     Type: ALIYUN::VPC::EIPAssociation
     Properties:
@@ -682,9 +631,6 @@ Resources:
       AllocationId:
         Ref: VpcEip
     DependsOn: EcsInstanceGroup
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: b36a6115-8a3d-46ae-9da6-81067d5001cb
   RdsAccount:
     Type: ALIYUN::RDS::Account
     Properties:
@@ -696,9 +642,6 @@ Resources:
       DBInstanceId:
         Ref: Rds
     DependsOn: Rds
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: e4261848-fea6-4a89-8c04-76badeef0065
   RdsAccountPrivilege:
     Type: ALIYUN::RDS::AccountPrivilege
     Properties:
@@ -710,9 +653,6 @@ Resources:
       DBName:
         Ref: RdsDBName
     DependsOn: RdsAccount
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: e70877d3-f588-41fb-aa34-5f35cc4a3384
   RedisWhitelist:
     Type: ALIYUN::REDIS::Whitelist
     Properties:
@@ -722,16 +662,10 @@ Resources:
         Ref: VpcCidrBlock
     DependsOn:
     - Redis
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: f0c9dd1d-9bff-4aa5-a8a2-ce8359d8d578
   RosWaitConditionHandle:
     Type: ALIYUN::ROS::WaitConditionHandle
     Condition: CreateCentOSImage
     Properties: {}
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 8b8a7d0d-b449-4d6b-9848-b1e7aebac91f
   RosWaitCondition:
     Type: ALIYUN::ROS::WaitCondition
     Condition: CreateCentOSImage
@@ -740,9 +674,6 @@ Resources:
       Handle:
         Ref: RosWaitConditionHandle
       Timeout: 3600
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 0a28ac3e-7797-47ac-b8d9-9172a472b2fe
   Slb:
     Type: ALIYUN::SLB::LoadBalancer
     Properties:
@@ -760,9 +691,6 @@ Resources:
       Tags:
       - Key: best_practice
         Value: '057'
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: a6b3e3a3-ba70-42c1-8a44-c0b6b2d90244
   SlbBackendServerAttachment:
     Type: ALIYUN::SLB::BackendServerAttachment
     Properties:
@@ -776,9 +704,6 @@ Resources:
         Ref: Slb
     DependsOn:
     - EcsInstanceGroup
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 323e7370-3fc5-43e9-bffc-c64c51235a68
   SlbListener:
     Type: ALIYUN::SLB::Listener
     Properties:
@@ -804,9 +729,6 @@ Resources:
         StickySessionType: insert
         XForwardedFor: 'off'
       Protocol: http
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 2140f4ac-07bf-45cf-b57f-f91f428f4ffa
 Outputs:
   EcsHostNames:
     Description:
@@ -898,7 +820,7 @@ Outputs:
       - SecurityGroupId
   SlbAddressType:
     Description:
-      en: SLB address type
+      en: SLB Address Type
       zh-cn: 负载均衡地址类型。
     Value:
       Fn::GetAtt:
@@ -930,7 +852,7 @@ Outputs:
       - IpAddress
   SlbListenerPortsAndProtocol:
     Description:
-      en: SLB ports and protocols
+      en: SLB Ports and Protocols
       zh-cn: 负载均衡端口和协议
     Value:
       Fn::GetAtt:
@@ -938,7 +860,7 @@ Outputs:
       - ListenerPortsAndProtocol
   VpcId:
     Description:
-      en: Virtual proprietary network instance ID
+      en: VPC Instance ID
       zh-cn: 虚拟专有网络实例ID。
     Value:
       Fn::GetAtt:
@@ -989,199 +911,185 @@ Metadata:
         default: REDIS
     TemplateTags:
     - acs:solution:备份&容灾:同地域跨可用区容灾方案2.0-单可用区应用搭建
-  ALIYUN::ROS::Designer:
-    00dee6e9-cf2d-4847-9e3b-5ff5b7c99e53:
-      source:
-        id: 0a28ac3e-7797-47ac-b8d9-9172a472b2fe
-      target:
-        id: 8b8a7d0d-b449-4d6b-9848-b1e7aebac91f
-      z: 1
-    05e15b79-239a-45fb-bc95-14ae111d628c:
-      source:
-        id: d1600d3c-9502-41d4-a820-d6191f18d5c7
-      target:
-        id: a1e0ee8f-3ca1-4142-a901-cf066b4da978
-      z: 1
-    0a28ac3e-7797-47ac-b8d9-9172a472b2fe:
-      position:
-        x: 79
-        y: 299
-      size:
-        height: 60
-        width: 60
-      z: 0
-    0f65c728-7a2f-4a69-929f-707960b55549:
-      position:
-        x: 591
-        y: 206
-      size:
-        height: 60
-        width: 60
-      z: 2
-    123b0492-b36d-46a8-a7c5-78737996955b:
-      source:
-        id: 323e7370-3fc5-43e9-bffc-c64c51235a68
-      target:
-        id: a6b3e3a3-ba70-42c1-8a44-c0b6b2d90244
-      z: 1
-    2140f4ac-07bf-45cf-b57f-f91f428f4ffa:
-      position:
-        x: 435
-        y: -151
-      size:
-        height: 60
-        width: 60
-      z: 0
-    23ebba15-8513-4e35-9968-686b32c8aa81:
-      source:
-        id: e70877d3-f588-41fb-aa34-5f35cc4a3384
-      target:
-        id: 0f65c728-7a2f-4a69-929f-707960b55549
-      z: 1
-    323e7370-3fc5-43e9-bffc-c64c51235a68:
-      position:
-        x: 271
-        y: -53
-      size:
-        height: 60
-        width: 60
-      z: 0
-    3efebde5-92f3-4deb-a1c2-a16cd18252e5:
-      source:
-        id: b36a6115-8a3d-46ae-9da6-81067d5001cb
-      target:
-        id: b6e9f6c2-67e8-4d7d-921e-8420851eeb72
-      z: 1
-    401ddd89-7bd4-41c3-9c61-d7dda8768321:
-      source:
-        id: 2140f4ac-07bf-45cf-b57f-f91f428f4ffa
-      target:
-        id: a6b3e3a3-ba70-42c1-8a44-c0b6b2d90244
-      z: 1
-    4bb42420-1909-4784-99bc-666418454c85:
-      source:
-        id: b36a6115-8a3d-46ae-9da6-81067d5001cb
-      target:
-        id: d1600d3c-9502-41d4-a820-d6191f18d5c7
-      z: 1
-    6d16e5ec-55af-4409-b0c6-84b9ef40d5fe:
-      embeds:
-      - 0f65c728-7a2f-4a69-929f-707960b55549
-      - c2a3ce3a-410e-4a45-b2ff-bed578ba0aed
-      - d1600d3c-9502-41d4-a820-d6191f18d5c7
-      position:
-        x: 236
-        y: 99
-      size:
-        height: 290
-        width: 460
-      z: 1
-    7f48eadd-1a75-4a1a-a8e7-a2d1e32ed541:
-      source:
-        id: f0c9dd1d-9bff-4aa5-a8a2-ce8359d8d578
-      target:
-        id: c2a3ce3a-410e-4a45-b2ff-bed578ba0aed
-      z: 1
-    8b8a7d0d-b449-4d6b-9848-b1e7aebac91f:
-      position:
-        x: 79
-        y: 204
-      size:
-        height: 60
-        width: 60
-      z: 0
-    9ae5274d-9bbc-4e5e-a23d-8b46613136dc:
-      source:
-        id: 323e7370-3fc5-43e9-bffc-c64c51235a68
-      target:
-        id: d1600d3c-9502-41d4-a820-d6191f18d5c7
-      z: 1
-    a1e0ee8f-3ca1-4142-a901-cf066b4da978:
-      position:
-        x: 271
-        y: 435
-      size:
-        height: 60
-        width: 60
-      z: 1
-    a6b3e3a3-ba70-42c1-8a44-c0b6b2d90244:
-      position:
-        x: 435
-        y: -53
-      size:
-        height: 60
-        width: 60
-      z: 0
-    b36a6115-8a3d-46ae-9da6-81067d5001cb:
-      position:
-        x: 80
-        y: 115
-      size:
-        height: 60
-        width: 60
-      z: 0
-    b6e9f6c2-67e8-4d7d-921e-8420851eeb72:
-      position:
-        x: -17
-        y: 115
-      size:
-        height: 60
-        width: 60
-      z: 0
-    b9820522-e318-4d4d-9574-02ba55d76c8a:
-      embeds:
-      - a1e0ee8f-3ca1-4142-a901-cf066b4da978
-      - 6d16e5ec-55af-4409-b0c6-84b9ef40d5fe
-      position:
-        x: 189
-        y: 32
-      size:
-        height: 492
-        width: 553
-      z: 0
-    c2a3ce3a-410e-4a45-b2ff-bed578ba0aed:
-      position:
-        x: 436
-        y: 204
-      size:
-        height: 60
-        width: 60
-      z: 2
-    d1600d3c-9502-41d4-a820-d6191f18d5c7:
-      position:
-        x: 271
-        y: 205
-      size:
-        height: 60
-        width: 60
-      z: 2
-    d1cab98f-ebd9-4de9-9b0d-5b41616aab3c:
-      source:
-        id: e4261848-fea6-4a89-8c04-76badeef0065
-      target:
-        id: 0f65c728-7a2f-4a69-929f-707960b55549
-      z: 1
-    e4261848-fea6-4a89-8c04-76badeef0065:
-      position:
-        x: 776
-        y: 206
-      size:
-        height: 60
-        width: 60
-      z: 0
-    e70877d3-f588-41fb-aa34-5f35cc4a3384:
-      position:
-        x: 591
-        y: -54
-      size:
-        height: 60
-        width: 60
-      z: 0
-    f0c9dd1d-9bff-4aa5-a8a2-ce8359d8d578:
-      position:
-        x: 436
-        y: 572
-      size:
-        height: 60
-        width: 60
-      z: 0
+    - acs:public_template:Solution:single-available-zone-building-application
+  ALIYUN::ROS::Composer:
+    '43253184':
+      Res:
+        - RosWaitCondition
+      Parent: 66cc7732
+      Rect:
+        - 40
+        - 40
+        - 580
+        - 560
+        - 3
+        - 0
+      Hidden: true
+    8ecbb4df:
+      Rect:
+        - 720
+        - 573
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    66cc7732:
+      Parent: 8ecbb4df
+      Rect:
+        - 668
+        - 499
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    95b45fd2:
+      Res:
+        - EcsVpc
+      Parent: 66cc7732
+      Rect:
+        - 466
+        - 339
+        - 80
+        - 197
+        - 3
+        - 0
+    950c62c5:
+      Res:
+        - VpcEip
+      Parent: 66cc7732
+      Rect:
+        - 40
+        - 40
+        - 330
+        - 560
+        - 3
+        - 0
+    6772167c:
+      Res:
+        - RedisWhitelist
+      Parent: 66cc7732
+      Rect:
+        - 40
+        - 40
+        - 580
+        - 277
+        - 3
+        - 0
+    a0d3d034:
+      Res:
+        - Slb
+      Parent: 66cc7732
+      Rect:
+        - 40
+        - 40
+        - 140
+        - 560
+        - 3
+        - 0
+    7d5b980f:
+      Res:
+        - RosWaitConditionHandle
+      Parent: 66cc7732
+      Rect:
+        - 40
+        - 40
+        - 580
+        - 400
+        - 3
+        - 0
+      Hidden: true
+    14059f0a:
+      Res:
+        - EcsVSwitch
+      Parent: 95b45fd2
+      Rect:
+        - 400
+        - 243
+        - 100
+        - 237
+        - 4
+        - 0
+    94ecdee1:
+      Res:
+        - EcsSecurityGroup
+      Parent: 95b45fd2
+      Rect:
+        - 101
+        - 117
+        - 113
+        - 307
+        - 13
+        - 0
+    8d691cfa:
+      Res:
+        - EcsInstanceGroup
+      Parent: 14059f0a
+      Rect:
+        - 40
+        - 40
+        - 140
+        - 340
+        - 14
+        - 0
+      Layer:
+        - 94ecdee1
+    afd01231:
+      Res:
+        - Redis
+      Parent: 14059f0a
+      Rect:
+        - 40
+        - 40
+        - 380
+        - 277
+        - 14
+        - 0
+    96b5d2f7:
+      Res:
+        - Rds
+      Parent: 14059f0a
+      Rect:
+        - 40
+        - 40
+        - 380
+        - 400
+        - 14
+        - 0
+    ce96bf09:
+      Parent: 14059f0a
+      Edge:
+        - 8d691cfa
+        - 96b5d2f7
+      Line: 0:0:0:gray:0
+    dce99848:
+      Parent: 14059f0a
+      Edge:
+        - 8d691cfa
+        - afd01231
+      Line: 0:0:0:gray:0
+    fc16c844:
+      Parent: 66cc7732
+      Edge:
+        - 950c62c5
+        - 8d691cfa
+      Line: 0:0:0:gray:0
+    193eabee:
+      Parent: 66cc7732
+      Edge:
+        - 6772167c
+        - afd01231
+      Line: 0:0:0:gray:0
+    bb079b16:
+      Parent: 66cc7732
+      Edge:
+        - '43253184'
+        - 7d5b980f
+      Line: 0:0:0:gray:0
+    cc5d21b1:
+      Parent: 66cc7732
+      Edge:
+        - a0d3d034
+        - 8d691cfa
+      Line: 0:0:0:gray:0

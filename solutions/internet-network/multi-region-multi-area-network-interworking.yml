@@ -15,7 +15,7 @@ Parameters:
       en: VBR Region
       zh-cn: VBR的地域
     Description:
-      en: Provide sritgoing VBR region name that requires networking.
+      en: Provide the VBR region name that requires networking.
       zh-cn: 提供需要组建网络的VBR地域名称。
     Default: cn-hangzhou
     AllowedValues:
@@ -54,7 +54,7 @@ Parameters:
       en: Existing VPC Regions
       zh-cn: 已存在的VPC地域
     Description:
-      en: Provide the name of another region where the network needs to be formed.
+      en: Provide the name of another region where network connectivity is required.
       zh-cn: 提供需要组建网络的另一地域名称。
     AllowedValues:
     - cn-shenzhen
@@ -91,9 +91,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>you can use
-        the following IP address ranges: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in the CIDR Block form; <br>you can use the following IP address ranges: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 172.16.0.0/12
@@ -161,10 +159,7 @@ Parameters:
       en: Availability Zone 1 Instance Type
       zh-cn: 可用区1实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch 1 availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch 1 availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch1可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -177,10 +172,7 @@ Parameters:
       en: Availability Zone 2 Instance Type
       zh-cn: 可用区2实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch 2 availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch 2 availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch2可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -193,11 +185,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -224,10 +212,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
   LoadBalancerSpec:
     Type: String
     Label:
@@ -256,12 +241,7 @@ Parameters:
       en: Geographic A Region ID
       zh-cn: 网络实例A所属大区
     Description:
-      en: '<font color=''blue''><b>The region to which the network instance belongs,
-        Purchasing a cross-border bandwidth pack requires that the current account
-        be enterprise certified; optional values:</b></font><br>[China: <font color=''green''>Chinese
-        Mainland</font>]<br>[North-America: <font color=''green''>North America</font>]<br>[Asia-Pacific:
-        <font color=''green''>Asia-Pacific</font>]<br>[Europe: <font color=''green''>Europe</font>]<br>[Australia:
-        <font color=''green''>Australia</font>]<br><font color=''blue''></a>'
+      en: "<font color='blue'><b>The region to which the network instance belongs, Purchasing a cross-border bandwidth pack requires that the current account be enterprise certified; optional values:</b></font><br>[China: <font color='green'>Chinese Mainland</font>]<br>[North-America: <font color='green'>North America</font>]<br>[Asia-Pacific: <font color='green'>Asia-Pacific</font>]<br>[Europe: <font color='green'>Europe</font>]<br>[Australia: <font color='green'>Australia</font>]<br><font color='blue'></a>"
       zh-cn: '<font color=''blue''><b>网络实例所属的大区，购买跨境带宽包需要保证当前账号已取得企业认证；可选值: </b></font><br>[China:
         <font color=''green''>中国大陆</font>]<br>[North-America: <font color=''green''>北美</font>]<br>[Asia-Pacific:
         <font color=''green''>亚太</font>]<br>[Europe: <font color=''green''>欧洲</font>]<br>[Australia:
@@ -279,12 +259,7 @@ Parameters:
       en: Geographic B Region ID
       zh-cn: 网络实例B所属的大区
     Description:
-      en: '<font color=''blue''><b>The region to which the network instance belongs,
-        Purchasing a cross-border bandwidth pack requires that the current account
-        be enterprise certified; optional values:</b></font><br>[China: <font color=''green''>Chinese
-        Mainland</font>]<br>[North-America: <font color=''green''>North America</font>]<br>[Asia-Pacific:
-        <font color=''green''>Asia-Pacific</font>]<br>[Europe: <font color=''green''>Europe</font>]<br>[Australia:
-        <font color=''green''>Australia</font>]<br><font color=''blue''></a>'
+      en: "<font color='blue'><b>The region to which the network instance belongs, Purchasing a cross-border bandwidth pack requires that the current account be enterprise certified; optional values:</b></font><br>[China: <font color='green'>Chinese Mainland</font>]<br>[North-America: <font color='green'>North America</font>]<br>[Asia-Pacific: <font color='green'>Asia-Pacific</font>]<br>[Europe: <font color='green'>Europe</font>]<br>[Australia: <font color='green'>Australia</font>]<br><font color='blue'></a>"
       zh-cn: '<font color=''blue''><b>网络实例所属的大区，购买跨境带宽包需要保证当前账号已取得企业认证；可选值: </b></font><br>[China:
         <font color=''green''>中国大陆</font>]<br>[North-America: <font color=''green''>北美</font>]<br>[Asia-Pacific:
         <font color=''green''>亚太</font>]<br>[Europe: <font color=''green''>欧洲</font>]<br>[Australia:
@@ -639,3 +614,4 @@ Metadata:
         default: CEN
     TemplateTags:
     - acs:solution:网络组网:组建多可用区多地域的混合云-多可用区多地域混合云搭建服务
+    - acs:public_template:Solution:multi-region-multi-area-network-interworking

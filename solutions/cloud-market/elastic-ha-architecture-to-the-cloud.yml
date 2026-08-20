@@ -1,7 +1,7 @@
 ROSTemplateFormatVersion: '2015-09-01'
 Description:
   zh-cn: 创建双可用区高可用架构，包含ECS、SLB、Auto Scaling、POLARDB、可选REDIS，通过ROS模版实现资源自动化部署与配置。
-  en: Create a dual-availability zone high-availability architecture, including ECS, SLB, Auto Scaling, POLARDB, and optional REDIS, and realize automatic deployment and configuration of resources through ROS templates.
+  en: Create a dual-AZ high-availability architecture including ECS, SLB, Auto Scaling, POLARDB, and optional REDIS, and achieve automatic deployment and configuration of resources through ROS templates.
 Conditions:
   IsPolarDBInstance:
     Fn::Equals:
@@ -22,9 +22,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>You can use
-        the following IP address ranges: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in CIDR notation;<br>Valid IP address ranges include:<br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -35,7 +33,7 @@ Parameters:
   VSwitchZoneId1:
     Type: String
     Label:
-      en: VSwitch 1 Available Zone
+      en: VSwitch 1 Availability Zone
       zh-cn: 交换机1可用区
     Description:
       en: Availability Zone ID,<br><b>note： <font color='blue'>Before selecting, please
@@ -56,7 +54,7 @@ Parameters:
   VSwitchZoneId2:
     Type: String
     Label:
-      en: VSwitch 2 Available Zone
+      en: VSwitch 2 Availability Zone
       zh-cn: 交换机2可用区
     Description:
       en: Availability Zone ID, Please select a different availability zone, <br><b>note：
@@ -81,9 +79,7 @@ Parameters:
       en: Payment Type
       zh-cn: 付费类型
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[Postpaid：<font
-        color=''green''>pay-as-you-go</font>]<br>[Prepaid：<font color=''green''>prepayment，monthly
-        or annual</font>]'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[Postpaid: <font color='green'>pay-as-you-go</font>]<br>[Prepaid: <font color='green'>prepayment,monthly or annual</font>]"
       zh-cn: '<font color=''blue''><b>付费类型；可选值: </b></font><br>[Postpaid：<font color=''green''>按量付费</font>]<br>[Prepaid：<font
         color=''green''>预付费，包月</font>]<br>注：预付费，包月实例'
     Default: PostPaid
@@ -106,10 +102,7 @@ Parameters:
       en: Instance Type
       zh-cn: 实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch 1 availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.g5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch 1 availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.g5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch1可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.g5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -131,11 +124,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -172,19 +161,14 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=| {}[]:;' <>,.? / Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
   LoadbalancerPayType:
     Type: String
     Label:
       en: Payment Type
       zh-cn: 付费类型
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[PayOnDemand：<font
-        color=''green''>pay-as-you-go</font>]<br>[PrePay：<font color=''green''>prepayment，monthly
-        or annual</font>]'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[PayOnDemand: <font color='green'>pay-as-you-go</font>]<br>[PrePay: <font color='green'>prepayment,monthly or annual</font>]"
       zh-cn: '<font color=''blue''><b>付费类型；可选值: </b></font><br>[PayOnDemand：<font
         color=''green''>按量付费</font>]<br>[PrePay：<font color=''green''>预付费，包月</font>]'
     Default: PayOnDemand
@@ -215,8 +199,7 @@ Parameters:
       en: Payment Type
       zh-cn: 付费类型
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[PostPaid：<font
-        color=''green''>pay-as-you-go</font>]'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[PostPaid: <font color='green'>pay-as-you-go</font>]"
       zh-cn: '<font color=''blue''><b>付费类型；可选值: </b></font><br>[PostPaid：<font color=''green''>按量付费</font>]'
     Default: PostPaid
     AllowedValues:
@@ -227,9 +210,7 @@ Parameters:
       en: Specifications
       zh-cn: 规格
     Description:
-      en: 'Select the instance specification based on the type of database engine
-        and the available area support;<br>see detail: <a href=''https://www.alibabacloud.com/help/doc-detail/26350.html''
-        target=''_blank''><b><font color=''blue''>Instance specification sheet</font></b></a>'
+      en: "Select the instance specification based on the type of database engine and the available area support;<br>see detail: <a href='https://www.alibabacloud.com/help/doc-detail/26350.html' target='_blank'><b><font color='blue'>Instance specification sheet</font></b></a>"
       zh-cn: 根据数据库引擎的类型和可用的区域支持选择实例规格；<br>请参见详细信息：<a href='https://help.aliyun.com/document_detail/26350.html'
         target='_blank'><b><font color='blue'>实例规格表</font></b></a>
     Default: redis.master.mid.default
@@ -268,10 +249,7 @@ Parameters:
       en: Payment Type
       zh-cn: 付费类型
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[Postpaid：<font
-        color=''green''>pay-as-you-go</font>]<br>[Prepaid：<font color=''green''>prepayment，monthly
-        or annual</font>]<br><b>note: <font color=''blue''>Prepaid，The monthly instance
-        does not create a database (db) and an account</font>'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[Postpaid: <font color='green'>pay-as-you-go</font>]<br>[Prepaid: <font color='green'>prepayment,monthly or annual</font>]<br><b>note: <font color='blue'>Prepaid，The monthly instance does not create a database (db) and an account</font>"
       zh-cn: '<font color=''blue''><b>付费类型；可选值: </b></font><br>[Postpaid：<font color=''green''>按量付费</font>]<br>[Prepaid：<font
         color=''green''>预付费，包月</font>]<br>注： <font color=''blue''>预付费，包月实例不创建数据库（db）和账号</font>'
     Default: Postpaid
@@ -284,10 +262,7 @@ Parameters:
       en: 'Automatic Renewal '
       zh-cn: 自动续费
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[AutoRenewal：<font
-        color=''green''>automatic renewal</font>]<br>[NotRenewal：<font color=''green''>No
-        longer a renewal</font>]<br><b>note： <font color=''blue''>If the automatic
-        renewal, the default renewal 1 month</font>'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[AutoRenewal: <font color='green'>automatic renewal</font>]<br>[NotRenewal: <font color='green'>No longer a renewal</font>]<br><b>note: <font color='blue'>If the automatic renewal, the default renewal 1 month</font>"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[AutoRenewal：<font color=''green''>自动续费</font>]<br>[NotRenewal：<font
         color=''green''>不再续费</font>]<br>注： 如自动续费，默认续费1个月份。'
     Default: NotRenewal
@@ -351,7 +326,7 @@ Parameters:
         (including:!@#$%^&*-+=_).
       zh-cn: 长度8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*-+=_）。
     ConstraintDescription:
-      en: Length 8-32, can contain size letters, Numbers and special symbols (including:!@#$%^&*-+=_).
+      en: "Length 8-32 characters, can contain uppercase and lowercase letters, numbers, and special symbols (including: !@#$%^&*-+=_)."
       zh-cn: 长度8-32,可包含大小字母、数字及特殊符号（包含：!@#$%^&*-+=_）。
     MinLength: '8'
     MaxLength: '32'
@@ -359,7 +334,7 @@ Parameters:
   ScalingGroupMinSize:
     Type: Number
     Label:
-      en: Minimum Number of ECS
+      en: Minimum Number of ECS Instances
       zh-cn: ECS实例数量最小值
     Description:
       en: ' range of values: [1, 100]'
@@ -370,7 +345,7 @@ Parameters:
   ScalingGroupMaxSize:
     Type: Number
     Label:
-      en: Maximum Number of ECS
+      en: Maximum Number of ECS Instances
       zh-cn: ECS实例数量最大值
     Description:
       en: ' range of values: [0, 100]'
@@ -381,14 +356,10 @@ Parameters:
   ScalingGroupRemovalPolicys:
     Type: CommaDelimitedList
     Label:
-      en: Removal ECS Policies
+      en: Removal Policy for ECS Instances
       zh-cn: 移出ECS实例的策略
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[OldestInstance：<font
-        color=''green''>Take the earliest ECS instance to join the flex group</font>]<br>[NewestInstance：<font
-        color=''green''>Take the latest ECS instance that has joined the flex group</font>]<br>[OldestScalingConfiguration：<font
-        color=''green''>Take the instance that was created by the earliest scaling
-        configuration</font>]<br><font color=''blue''></a>'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[OldestInstance: <font color='green'>Take the earliest ECS instance to join the flex group</font>]<br>[NewestInstance: <font color='green'>Take the latest ECS instance that has joined the flex group</font>]<br>[OldestScalingConfiguration: <font color='green'>Take the instance that was created by the earliest scaling configuration</font>]<br><font color='blue'></a>"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[OldestInstance：<font color=''green''>取最早加入伸缩组的
         ECS 实例</font>]<br>[NewestInstance：<font color=''green''>取最新加入伸缩组的 ECS 实例</font>]<br>[OldestScalingConfiguration：<font
         color=''green''>取最早伸缩配置创建的实例</font>]<br><font color=''blue''></a>'
@@ -420,7 +391,7 @@ Parameters:
   ScalingRuleAdjustmentValue:
     Type: Number
     Label:
-      en: Scaling Rules Adjust Values
+      en: Scaling Rule Adjustment Values
       zh-cn: 伸缩规则调整值
     Description:
       en: The number of ECS instances in the scaling group should not exceed 500 in
@@ -810,7 +781,7 @@ Outputs:
       - ImageId
   EcsInstanceId:
     Description:
-      en: Ecs instance ID
+      en: ECS Instance ID
       zh-cn: Ecs实例ID
     Value:
       Fn::GetAtt:
@@ -818,7 +789,7 @@ Outputs:
       - InstanceId
   LoadBalancerId:
     Description:
-      en: SLB ID
+      en: SLB Instance ID
       zh-cn: 负载均衡实例ID
     Value:
       Fn::GetAtt:
@@ -826,7 +797,7 @@ Outputs:
       - LoadBalancerId
   PolarDBConnectionString:
     Description:
-      en: PolarDB cluster ID
+      en: PolarDB Cluster ID
       zh-cn: PolarDB集群ID
     Value:
       Fn::GetAtt:
@@ -834,7 +805,7 @@ Outputs:
       - DBClusterId
   RedisHost:
     Description:
-      en: The Intranet connection address of the Redis instance
+      en: Internal Connection Address of the Redis Instance
       zh-cn: Redis实例的内网连接地址
     Value:
       Fn::GetAtt:
@@ -850,7 +821,7 @@ Outputs:
       - ScalingGroupId
   SlbIp:
     Description:
-      en: SLB IP
+      en: SLB Internal IP Address
       zh-cn: 负载均衡实例IP
     Value:
       Fn::GetAtt:
@@ -909,3 +880,251 @@ Metadata:
         default: ESS
     TemplateTags:
     - acs:solution:云市场:通用产品上云部署架构（高可用、弹性）
+    - acs:public_template:Solution:elastic-ha-architecture-to-the-cloud
+  ALIYUN::ROS::Composer:
+    '89112487':
+      Res:
+        - RedisInstance
+      Parent: 2180ff9a
+      Rect:
+        - 40
+        - 40
+        - -360
+        - 253
+        - 5
+        - 0
+    9ef2ed0a:
+      Rect:
+        - 967
+        - 611
+        - -480
+        - -117
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    c48a2507:
+      Parent: 9ef2ed0a
+      Rect:
+        - 903
+        - 534
+        - -451
+        - -65
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    ebaf6157:
+      Res:
+        - EcsVpc
+      Parent: c48a2507
+      Rect:
+        - 806
+        - 433
+        - -410
+        - 3
+        - 3
+        - 0
+    ae2b62b0:
+      Res:
+        - SlbLoadBalancer
+        - SlbListener
+        - SlbBackendServerAttachment
+      Parent: c48a2507
+      Rect:
+        - 40
+        - 40
+        - -190
+        - 29
+        - 3
+        - 0
+    3a3c5c7f:
+      Res:
+        - PolarDBInstance
+      Parent: ebaf6157
+      Rect:
+        - 40
+        - 40
+        - 291
+        - 101
+        - 4
+        - 0
+    ee02fc4f:
+      Res:
+        - PolarDBAccount
+      Parent: ebaf6157
+      Rect:
+        - 40
+        - 40
+        - 162
+        - 361
+        - 4
+        - 0
+    648d4b3d:
+      Res:
+        - PolarDBAccountPrivilege
+      Parent: ebaf6157
+      Rect:
+        - 40
+        - 40
+        - 15
+        - 361
+        - 4
+        - 0
+    2180ff9a:
+      Res:
+        - EcsVSwitch1
+      Parent: ebaf6157
+      Rect:
+        - 380
+        - 244
+        - -394
+        - 101
+        - 4
+        - 0
+    ed1b3ce8:
+      Res:
+        - EcsVSwitch2
+      Parent: ebaf6157
+      Rect:
+        - 191
+        - 144
+        - 11
+        - 99
+        - 4
+        - 0
+    76dcc3fb:
+      Res:
+        - PolarDBClusterAccessWhiteList
+      Parent: ebaf6157
+      Rect:
+        - 40
+        - 40
+        - 291
+        - 213
+        - 4
+        - 0
+    08989ded:
+      Res:
+        - EcsCustomImage
+      Parent: ebaf6157
+      Rect:
+        - 40
+        - 40
+        - -190
+        - 361
+        - 4
+        - 0
+    2c24b563:
+      Res:
+        - PolarDBCluster
+      Parent: ed1b3ce8
+      Rect:
+        - 40
+        - 40
+        - 86
+        - 151
+        - 5
+        - 0
+    0ba0d4a1:
+      Res:
+        - RedisPrepayInstance
+      Parent: 2180ff9a
+      Rect:
+        - 40
+        - 40
+        - -360
+        - 162
+        - 5
+        - 0
+    05ee0e03:
+      Parent: ebaf6157
+      Edge:
+        - 08989ded
+        - d890b38a
+      Line: 0:0:0:gray:0
+    b60eef76:
+      Parent: c48a2507
+      Edge:
+        - ae2b62b0
+        - d890b38a
+      Line: 0:0:0:gray:0
+    e88c5e8f:
+      Parent: c48a2507
+      Edge:
+        - 41afeb45
+        - ae2b62b0
+      Line: 0:0:0:gray:0
+    de05ec89:
+      Parent: ebaf6157
+      Edge:
+        - 41afeb45
+        - 9c83fc7c
+      Line: 0:0:0:gray:0
+    7fafd9ad:
+      Parent: ebaf6157
+      Edge:
+        - 41afeb45
+        - 08989ded
+      Line: 0:0:0:gray:0
+    cd68691c:
+      Parent: ebaf6157
+      Edge:
+        - 3a3c5c7f
+        - 2c24b563
+      Line: 0:0:0:gray:0
+    640348c9:
+      Parent: ebaf6157
+      Edge:
+        - ee02fc4f
+        - 2c24b563
+      Line: 0:0:0:gray:0
+    e4512b7a:
+      Parent: ebaf6157
+      Edge:
+        - 648d4b3d
+        - 2c24b563
+      Line: 0:0:0:gray:0
+    cea13bf9:
+      Parent: ebaf6157
+      Edge:
+        - 76dcc3fb
+        - 2c24b563
+      Line: 0:0:0:gray:0
+    9c83fc7c:
+      Res:
+        - EcsSecurityGroup
+      Parent: ebaf6157
+      Rect:
+        - 110
+        - 125
+        - -150
+        - 150
+        - 17
+        - 0
+    41afeb45:
+      Res:
+        - EssScalingGroup
+        - EssScalingConfiguration
+        - EssScalingRule
+        - EssScalingGroupEnable
+      Parent: ebaf6157
+      Rect:
+        - 74
+        - 40
+        - -277
+        - 193
+        - 17
+        - 0
+    d890b38a:
+      Res:
+        - EcsInstance
+      Parent: 2180ff9a
+      Rect:
+        - 40
+        - 40
+        - -115
+        - 193
+        - 18
+        - 0
+      Layer:
+        - 9c83fc7c
+

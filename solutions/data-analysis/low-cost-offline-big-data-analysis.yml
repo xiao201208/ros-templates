@@ -33,7 +33,7 @@ Parameters:
         composed of upper and lower case letters and Numbers.
       zh-cn: 指定密码，8-30位，密码必须符合密码强度要求，由大小写字母和数字组成。
     ConstraintDescription:
-      en: ' [8, 30] bits are composed of upper and lower case letters and Numbers'
+      en: '8-30 characters composed of uppercase and lowercase letters and numbers.'
       zh-cn: '[8, 30]位由大小写字母和数字组成。'
     MinLength: 8
     MaxLength: 30
@@ -44,9 +44,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>you can use
-        the following IP address ranges: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in the CIDR Block form; <br>you can use the following IP address ranges: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -81,9 +79,7 @@ Parameters:
       en: EIP Billing
       zh-cn: 弹性公网IP计费方式
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[PayByBandwidth：<font
-        color=''green''>Charge on fixed bandwidth</font>]<br>[paybytraffic：<font color=''green''>Charge
-        by flow</font>]<br><font color=''blue''></a>'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[PayByBandwidth: <font color='green'>Charge on fixed bandwidth</font>]<br>[paybytraffic: <font color='green'>Charge by flow</font>]<br><font color='blue'></a>"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[PayByBandwidth：<font color=''green''>按固定带宽计费</font>]<br>[paybytraffic：<font
         color=''green''>按流量计费</font>]<br><font color=''blue''></a>'
     Default: PayByTraffic
@@ -96,7 +92,7 @@ Parameters:
       en: EIP Bandwidth
       zh-cn: 弹性公网IP带宽值
     Description:
-      en: 'Elastic public network IP bandwidth value,value: 1~200, Unit: Mbps.'
+      en: 'EIP Bandwidth: value 1~200, unit: Mbps.'
       zh-cn: 弹性公网IP带宽值, 取值：1~200, 单位：Mbps。
     Default: 5
     MinValue: 1
@@ -118,10 +114,7 @@ Parameters:
       en: Specification
       zh-cn: 规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -145,11 +138,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -175,10 +164,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
   Slave1Name:
     Type: String
     Label:
@@ -251,11 +237,7 @@ Parameters:
       en: Instance Preemption Policy
       zh-cn: 实例抢占策略
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[NoSpot：<font color=''green''>Regular
-        pay-as-you-go instances</font>]<br>[SpotWithPriceLimit：<font color=''green''>A
-        preemptive instance of setting a cap price</font>]<br>[SpotAsPriceGo：<font
-        color=''green''>The system automatically bids, following the actual price
-        in the current market</font>]<br><font color=''blue''></a>'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[NoSpot: <font color='green'>Regular pay-as-you-go instances</font>]<br>[SpotWithPriceLimit: <font color='green'>A preemptive instance of setting a cap price</font>]<br>[SpotAsPriceGo: <font color='green'>The system automatically bids, following the actual price in the current market</font>]<br><font color='blue'></a>"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[NoSpot：<font color=''green''>正常按量付费实例</font>]<br>[SpotWithPriceLimit：<font
         color=''green''>设置上限价格的抢占式实例</font>]<br>[SpotAsPriceGo：<font color=''green''>系统自动出价，跟随当前市场实际价格</font>]<br><font
         color=''blue''></a>'
@@ -280,10 +262,7 @@ Parameters:
       en: Specification
       zh-cn: 规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -304,7 +283,7 @@ Parameters:
       en: Minimum Number of Servers
       zh-cn: 服务器数量最小值
     Description:
-      en: Value range：[0, 100]。
+      en: "Value range: [0, 100]."
       zh-cn: 取值范围：[0, 100]。
     Default: 2
     MinValue: 2
@@ -315,11 +294,7 @@ Parameters:
       en: Scale Rule Adjustment Mode
       zh-cn: 伸缩规则调整方式
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[QuantityChangeInCapacity：<font
-        color=''green''>Increases or decreases a specified number of ECS instances</font>]<br>[PercentChangeInCapacity：<font
-        color=''green''>Increases or decreases ECS instances by a specified percentage</font>]<br>[TotalCapacity：<font
-        color=''green''>Adjusts the number of ECS instances of the current scaling
-        group to the specified number</font>]<br><font color=''blue''></a>'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[QuantityChangeInCapacity: <font color='green'>Increases or decreases a specified number of ECS instances</font>]<br>[PercentChangeInCapacity: <font color='green'>Increases or decreases ECS instances by a specified percentage</font>]<br>[TotalCapacity: <font color='green'>Adjusts the number of ECS instances of the current scaling group to the specified number</font>]<br><font color='blue'></a>"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[QuantityChangeInCapacity：<font
         color=''green''>增加或减少指定数量的ECS实例</font>]<br>[PercentChangeInCapacity：<font
         color=''green''>增加或减少指定比例的ECS实例</font>]<br>[TotalCapacity：<font color=''green''>将当前伸缩组的ECS实例数量调整到指定数量</font>]<br><font
@@ -354,8 +329,7 @@ Parameters:
       en: Official Download Link
       zh-cn: 官网下载链接
     Description:
-      en: 'Recommended for use overseas: http://apache.claz.org/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz<br>Recommended
-        for domestic use: http://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz'
+      en: "Recommended for use overseas: http://apache.claz.org/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz<br>Recommended for domestic use: http://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz"
       zh-cn: 海外推荐使用：http://apache.claz.org/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz<br>国内推荐使用：http://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-3.2.1/hadoop-3.2.1.tar.gz
   DefaultCooldown:
     Type: Number
@@ -363,8 +337,7 @@ Parameters:
       en: Flex group default cooldown
       zh-cn: 伸缩组默认的冷却时间
     Description:
-      en: 'Flex group default cooldown.Value range: [0, 86400], unit: second.The default
-        value is 300 seconds.'
+      en: "Flex group default cooldown. Value range: [0, 86400], unit: second. The default value is 300 seconds."
       zh-cn: 伸缩组默认的冷却时间。取值范围：[0, 86400]，单位：秒。默认值为 300 秒。
     Default: 300
   InstanceName:
@@ -1528,6 +1501,7 @@ Metadata:
         default: Hadoop
     TemplateTags:
     - acs:solution:数据分析:低成本基于抢占式ECS实例进行离线大数据分析实践
+    - acs:public_template:Solution:low-cost-offline-big-data-analysis
   ALIYUN::ROS::Designer:
     0eb797e9-1275-43f8-967c-4db426365894:
       position:

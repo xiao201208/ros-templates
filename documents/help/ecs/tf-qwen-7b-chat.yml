@@ -117,3 +117,4 @@ Metadata:
   ALIYUN::ROS::Interface:
     TemplateTags:
     - acs:document-help:ecs:使用AMD CPU实例部署通义千问Qwen-7B-Chat
+    - acs:public_template:Example:tf-qwen-7b-chat

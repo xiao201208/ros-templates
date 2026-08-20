@@ -23,10 +23,7 @@ Parameters:
       en: Instance Type
       zh-cn: 实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -66,11 +63,12 @@ Parameters:
       en: Allocate Public IP
       zh-cn: 分配公网IP
     Description:
-      en: Whether to assign a common IP.
+      en: Whether to assign a public IP address.
       zh-cn: 是否分配公共IP。
     Default: false
   InstancePassword:
     Type: String
+    NoEcho: true
     Label:
       en: Instance Password
       zh-cn: 实例密码
@@ -83,10 +81,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
   SystemDiskCategory:
     Type: String
     Label:
@@ -175,3 +170,71 @@ Metadata:
         default: ECS
     TemplateTags:
     - acs:example:弹性计算:创建VPC网络下的ECS实例
+    - acs:public_template:Example:ecs-vpc-instance
+  ALIYUN::ROS::Composer:
+    450ea67e:
+      Rect:
+        - 520
+        - 410
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    8f422d83:
+      Parent: 450ea67e
+      Rect:
+        - 480
+        - 340
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    5f96ba9a:
+      Res:
+        - EcsVpc
+      Parent: 8f422d83
+      Rect:
+        - 440
+        - 270
+        - 80
+        - 200
+        - 3
+        - 0
+    0bb9d91e:
+      Res:
+        - EcsVSwitch
+      Parent: 5f96ba9a
+      Rect:
+        - 400
+        - 200
+        - 100
+        - 250
+        - 4
+        - 0
+    1cfb8ee6:
+      Res:
+        - EcsSecurityGroup
+      Parent: 5f96ba9a
+      Rect:
+        - 278
+        - 123
+        - 151
+        - 300
+        - 6
+        - 0
+    acea0722:
+      Res:
+        - EcsInstance
+      Parent: 0bb9d91e
+      Rect:
+        - 40
+        - 40
+        - 270
+        - 330
+        - 7
+        - 0
+      Layer:
+        - 1cfb8ee6
+

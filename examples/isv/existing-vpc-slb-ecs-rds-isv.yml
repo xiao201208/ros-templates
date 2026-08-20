@@ -103,6 +103,7 @@ Parameters:
       InstanceChargeType: ${InstanceChargeType}
   InstancePassword:
     Type: String
+    NoEcho: true
     Label:
       en: Instance Password
       zh-cn: 实例密码
@@ -116,14 +117,10 @@ Parameters:
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in)
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）
     AssociationProperty: ALIYUN::ECS::Instance::Password
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
   LoadBalancerSpec:
     Type: String
     Label:
-      en: LoadBalancer Specifications
+      en: Load Balancer Specifications
       zh-cn: 负载均衡实例规格
     AssociationProperty: ALIYUN::SLB::Instance::InstanceType
     AssociationPropertyMetadata:
@@ -134,7 +131,7 @@ Parameters:
       zh-cn: 数据库账号名称
       en: DB Username
     Description:
-      en: Primary account name of the database instance.
+      en: Primary account name for the database instance.
       zh-cn: 数据库实例的主账号名称。
     ConstraintDescription:
       en: Consist of 2 to 16 characters of lowercase letters, underline. Must begin
@@ -383,27 +380,27 @@ Metadata:
       Label:
         default:
           zh-cn: 选择已有基础资源配置
-          en: Choose existing Infrastructure Configuration
+          en: Choose existing infrastructure configuration
     - Parameters:
       - PayType
       - PayPeriodUnit
       - PayPeriod
       Label:
         default:
-          en: PayType Configuration
+          en: Pay Type Configuration
           zh-cn: 付费类型
     - Parameters:
       - EcsInstanceType
       - InstancePassword
       Label:
         default:
-          en: Instance Configure
+          en: Instance Configuration
           zh-cn: ECS实例配置
     - Parameters:
       - LoadBalancerSpec
       Label:
         default:
-          en: SLB Configure
+          en: SLB Configuration
           zh-cn: SLB负载均衡配置
     - Parameters:
       - DBInstanceClass
@@ -417,3 +414,165 @@ Metadata:
           zh-cn: RDS数据库配置
     TemplateTags:
     - acs:example:ISV软件部署:创建两个ECS和SLB并将ECS添加到SLB后端服务器，并创建一台RDS
+    - acs:public_template:Example:existing-vpc-slb-ecs-rds-isv
+  ALIYUN::ROS::Composer:
+    '70616237':
+      Res:
+        - EcsSecurityGroup
+      Parent: 0c8b8bd1
+      Rect:
+        - 129
+        - 107
+        - 185
+        - 335
+        - 12
+        - 0
+    49ad052a:
+      Rect:
+        - 850
+        - 580
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    d8a1e46e:
+      Parent: 49ad052a
+      Rect:
+        - 770
+        - 498
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    0a9dca10:
+      Res:
+        - WaitConditionHandle
+      Parent: d8a1e46e
+      Rect:
+        - 40
+        - 40
+        - 425
+        - 570
+        - 3
+        - 0
+      Hidden: true
+    3ab57047:
+      Res:
+        - WaitCondition
+      Parent: d8a1e46e
+      Rect:
+        - 40
+        - 40
+        - 292
+        - 570
+        - 3
+        - 0
+      Hidden: true
+    0c8b8bd1:
+      Parent: d8a1e46e
+      Rect:
+        - 619
+        - 374
+        - 140
+        - 196
+        - 3
+        - 0
+      ResT: ALIYUN::ECS::VPC
+    0ab709dc:
+      Parent: 0c8b8bd1
+      Rect:
+        - 538
+        - 298
+        - 160
+        - 250
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    e0b832b3:
+      Parent: 0ab709dc
+      Rect:
+        - 400
+        - 234
+        - 180
+        - 296
+        - 5
+        - 0
+      ResT: ALIYUN::ECS::VSwitch
+    c0bebb0d:
+      Res:
+        - Slb
+      Parent: e0b832b3
+      Rect:
+        - 40
+        - 40
+        - 220
+        - 450
+        - 11
+        - 0
+    229b0855:
+      Res:
+        - InstanceRunCommand
+      Parent: e0b832b3
+      Rect:
+        - 40
+        - 40
+        - 465
+        - 450
+        - 11
+        - 0
+    e9fc092c:
+      Res:
+        - Database
+      Parent: e0b832b3
+      Rect:
+        - 40
+        - 40
+        - 465
+        - 336
+        - 13
+        - 0
+    a1a2c154:
+      Res:
+        - EcsInstanceGroup
+      Parent: e0b832b3
+      Rect:
+        - 40
+        - 40
+        - 220
+        - 370
+        - 13
+        - 0
+      Layer:
+        - '70616237'
+    29a796c3:
+      Parent: e0b832b3
+      Edge:
+        - e9fc092c
+        - a1a2c154
+      Line: 0:0:0:gray:0
+    902c387f:
+      Parent: e0b832b3
+      Edge:
+        - c0bebb0d
+        - a1a2c154
+      Line: 0:0:0:gray:0
+    3ff762a4:
+      Parent: d8a1e46e
+      Edge:
+        - 3ab57047
+        - 0a9dca10
+      Line: 0:0:0:gray:0
+    f278ffa9:
+      Parent: e0b832b3
+      Edge:
+        - 229b0855
+        - a1a2c154
+      Line: 0:0:0:gray:0
+    f0ef2726:
+      Parent: e0b832b3
+      Edge:
+        - 229b0855
+        - e9fc092c
+      Line: 0:0:0:gray:0

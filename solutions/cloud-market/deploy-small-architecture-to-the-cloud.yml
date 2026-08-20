@@ -33,9 +33,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>you can use
-        the following IP address ranges and their subnets: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in the CIDR Block form; <br>you can use the following IP address ranges and their subnets: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段或其子网:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -70,9 +68,7 @@ Parameters:
       en: Payment Type
       zh-cn: 付费类型
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[PostPaid：<font
-        color=''green''>pay-as-you-go</font>]<br>[PrePaid：<font color=''green''>prepayment,
-        monthly</font>]'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[PostPaid: <font color='green'>pay-as-you-go</font>]<br>[PrePaid: <font color='green'>prepayment, monthly</font>]"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[PostPaid：<font color=''green''>按量付费</font>]<br>[PrePaid：<font
         color=''green''>预付费，包月</font>]'
     Default: PostPaid
@@ -96,7 +92,7 @@ Parameters:
       en: Automatic Renewal.
       zh-cn: 自动续费。
     Description:
-      en: Automatic renewal at the expiration.
+      en: Automatic renewal at expiration.
       zh-cn: 到期是否自动续费。
     Default: false
   InstanceGroupInstanceType:
@@ -105,10 +101,7 @@ Parameters:
       en: Specifications
       zh-cn: 规格
     Description:
-      en: 'Fill in specifications that can be used under the existing VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in specifications that can be used under the existing VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写已存在的VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -121,8 +114,7 @@ Parameters:
       en: Image
       zh-cn: 镜像
     Description:
-      en: 'Server Instance Image ID,see detail: <b><a href=''https://www.alibabacloud.com/help/en/doc-detail/112977.html''
-        target=''_blank''><font color=''blue''>Find the mirror</font></a></b>'
+      en: "Server Instance Image ID,see detail: <b><a href='https://www.alibabacloud.com/help/en/doc-detail/112977.html' target='_blank'><font color='blue'>Find the mirror</font></a></b>"
       zh-cn: 服务器镜像，详见：<b><a href='https://help.aliyun.com/document_detail/112977.html'
         target='_blank'><font color='blue'>查找镜像</font></a></b>
     Default: centos_7_06_64
@@ -149,21 +141,14 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: 'ALIYUN::ECS::Instance::Password'
   EcsSystemDiskCategory:
     Type: String
     Label:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -190,9 +175,7 @@ Parameters:
       en: Payment Type
       zh-cn: 付费类型
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[PayOnDemand：<font
-        color=''green''>pay-as-you-go</font>]<br>[PrePay：<font color=''green''>prepayment，monthly
-        or annual</font>]<br><font color=''blue''></a>'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[PayOnDemand: <font color='green'>pay-as-you-go</font>]<br>[PrePay: <font color='green'>prepayment,monthly or annual</font>]<br><font color='blue'></a>"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[PayOnDemand：<font color=''green''>按量付费</font>]<br>[PrePay：<font
         color=''green''>预付费，包月</font>]<br><font color=''blue''></a>'
     Default: PayOnDemand
@@ -216,10 +199,7 @@ Parameters:
       en: Payment Type
       zh-cn: 付费类型
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[PayOnDemand：<font
-        color=''green''>pay-as-you-go</font>]<br>[PrePay：<font color=''green''>prepayment，monthly
-        or annual</font>]<br><font color=''blue''>The monthly instance can not create
-        a database (db) and an account.</font>'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[PayOnDemand: <font color='green'>pay-as-you-go</font>]<br>[PrePay: <font color='green'>prepayment,monthly or annual</font>]<br><font color='blue'>The monthly instance can not create a database (db) and an account.</font>"
       zh-cn: '<font color=''blue''><b>付费类型；可选值: </b></font><br>[Postpaid：<font color=''green''>按量付费</font>]<br>[Prepaid：<font
         color=''green''>预付费，包月</font>]<br>预付费，包月实例不创建数据库（db）和账号。'
     Default: Postpaid
@@ -232,13 +212,13 @@ Parameters:
       en: 'Automatic Renewal '
       zh-cn: 自动续费
     Description:
-      en: Automatic renewal at the expiration.
+      en: Automatic renewal at expiration.
       zh-cn: 到期是否自动续费
     Default: false
   DBInstanceEngineAndVersion:
     Type: String
     Label:
-      en: Type And Version
+      en: Type and Version
       zh-cn: 类型与版本号
     Description:
       en: Database type and version number.
@@ -255,9 +235,7 @@ Parameters:
       en: Specifications
       zh-cn: 实例规格
     Description:
-      en: 'Select the instance specification based on the type of database engine
-        and the available area support;<br>see detail: <a href=''https://www.alibabacloud.com/help/doc-detail/26312.htm''
-        target=''_blank''><b><font color=''blue''>Instance specification sheet</font></b></a>'
+      en: "Select the instance specification based on the type of database engine and the available area support; see details: <a href='https://www.alibabacloud.com/help/doc-detail/26312.htm' target='_blank'><b><font color='blue'>Instance specification sheet</font></b></a>"
       zh-cn: 根据数据库引擎的类型和可用的区域支持选择实例规格；<br>请参见详细信息：<a href='https://help.aliyun.com/document_detail/26312.html'
         target='_blank'><b><font color='blue'>实例规格表</font></b></a>
     Default: rds.mysql.s2.large
@@ -285,8 +263,7 @@ Parameters:
       en: Storage Space
       zh-cn: 存储空间
     Description:
-      en: '<font color=''blue''><b>Database storage space, unit: GB, value range:
-        50-1000</b>'
+      en: "<font color='blue'><b>Database storage space, unit: GB, value range: 50–1000</b></font>"
       zh-cn: '数据库存储空间, 单位：GB, 取值范围: 50-1000'
     Default: 50
     MinValue: 20
@@ -309,8 +286,7 @@ Parameters:
       en: Account Password
       zh-cn: 数据库账号密码
     Description:
-      en: 'Length 8-32 characters, can contain size letters, Numbers and special symbols
-        (including:!@ # $% ^ & * - + = _).'
+      en: "Length 8–32 characters. Can contain uppercase letters, numbers, and special symbols (including: !@#$%^&*()-+=_)."
       zh-cn: 长度8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*-+=_）。
     ConstraintDescription:
       en: Length 8-32, must contain three(Capital letters, lowercase letters, numbers,
@@ -325,8 +301,7 @@ Parameters:
       en: Payment Type
       zh-cn: 付费类型
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[PostPaid：<font
-        color=''green''>pay-as-you-go</font>]'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[PostPaid: <font color='green'>pay-as-you-go</font>]"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[PostPaid：<font color=''green''>按量付费</font>]'
     Default: PostPaid
     AllowedValues:
@@ -337,9 +312,7 @@ Parameters:
       en: Specifications
       zh-cn: 规格
     Description:
-      en: 'Select the instance specifications for available zone support; <br>see
-        detail: <a href=''https://www.alibabacloud.com/help/doc-detail/26350.html''
-        target=''_blank''><b><font color=''blue''>Instance specification sheet</font></b></a>'
+      en: "Select the instance specifications for available zone support; see details: <a href='https://www.alibabacloud.com/help/doc-detail/26350.html' target='_blank'><b><font color='blue'>Instance specification sheet</font></b></a>"
       zh-cn: 选择可用区支持的实例规格；<br>请参见详细信息：<a href='https://help.aliyun.com/document_detail/26350.html'
         target='_blank'><b><font color='blue'>实例规格表</font></b></a>
     Default: redis.master.mid.default
@@ -349,7 +322,7 @@ Parameters:
       en: Database Version
       zh-cn: 数据库版本
     Description:
-      en: 'Redis database version.Default: 4.0.'
+      en: 'Redis database version. Default: 4.0.'
       zh-cn: Redis数据库版本。默认值：4.0。
     Default: '4.0'
     AllowedValues:
@@ -727,3 +700,152 @@ Metadata:
         default: REDIS
     TemplateTags:
     - acs:solution:云市场:通用产品上云部署架构（小型）
+    - acs:public_template:Solution:deploy-small-architecture-to-the-cloud
+  ALIYUN::ROS::Composer:
+    f98f3e92:
+      Rect:
+        - 651
+        - 592
+        - 208
+        - -75
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    6adf796d:
+      Parent: f98f3e92
+      Rect:
+        - 565
+        - 509
+        - 251
+        - -34
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    396ef187:
+      Res:
+        - EcsVpc
+      Parent: 6adf796d
+      Rect:
+        - 442
+        - 365
+        - 271
+        - 87
+        - 3
+        - 0
+    c09c150c:
+      Res:
+        - MergePay
+      Parent: 6adf796d
+      Rect:
+        - 40
+        - 40
+        - 741
+        - 330
+        - 3
+        - 0
+    acf07fcc:
+      Res:
+        - SlbLoadBalancer
+        - SlbBackendServerAttachment
+      Parent: 6adf796d
+      Rect:
+        - 40
+        - 40
+        - 536
+        - 6
+        - 3
+        - 0
+    be548f64:
+      Res:
+        - EcsVSwitch
+      Parent: 396ef187
+      Rect:
+        - 397
+        - 299
+        - 291
+        - 127
+        - 4
+        - 0
+    66dddedd:
+      Res:
+        - RedisPrepayInstance
+      Parent: be548f64
+      Rect:
+        - 40
+        - 40
+        - 536
+        - 330
+        - 5
+        - 0
+    761a4e63:
+      Res:
+        - RdsPrepayDBInstance
+      Parent: be548f64
+      Rect:
+        - 40
+        - 40
+        - 334
+        - 330
+        - 5
+        - 0
+    f993f200:
+      Res:
+        - RedisInstance
+      Parent: be548f64
+      Rect:
+        - 40
+        - 40
+        - 334
+        - 250
+        - 5
+        - 0
+    a62de895:
+      Res:
+        - RdsDBInstance
+        - RdsAccount
+        - RdsAccountPrivilege
+      Parent: be548f64
+      Rect:
+        - 40
+        - 40
+        - 334
+        - 175
+        - 5
+        - 0
+    55c44026:
+      Parent: 6adf796d
+      Edge:
+        - c09c150c
+        - 66dddedd
+      Line: 0:0:0:gray:0
+    c9a3d314:
+      Parent: 6adf796d
+      Edge:
+        - acf07fcc
+        - a54499ad
+      Line: 0:0:0:gray:0
+    3e2d7d46:
+      Res:
+        - EcsSecurityGroup
+      Parent: 396ef187
+      Rect:
+        - 151
+        - 108
+        - 481
+        - 166
+        - 12
+        - 0
+    a54499ad:
+      Res:
+        - EcsInstanceGroup
+      Parent: be548f64
+      Rect:
+        - 40
+        - 40
+        - 536
+        - 193
+        - 13
+        - 0
+      Layer:
+        - 3e2d7d46
+

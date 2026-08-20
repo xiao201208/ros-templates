@@ -11,9 +11,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>You can use
-        the following IP address ranges and their subnets: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in the CIDR Block form; <br>You can use the following IP address ranges and their subnets: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: VPC的IP地址范围；<br>您可以使用以下IP地址范围及其子网：<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0/16]</font>
     Default: 192.168.0.0/16
@@ -27,7 +25,7 @@ Parameters:
       en: VSwitch CIDR Block
       zh-cn: 交换机网段
     Description:
-      en: CIDR Block of created VSwitch,It must belong to itself VPC CIDR Block.
+      en: CIDR Block of created VSwitch. It must belong to the VPC CIDR Block.
       zh-cn: 创建的虚拟交换机的子网，它必须属于自己的VPC网段内
     Default: 192.168.1.0/24
   ZoneId:
@@ -108,8 +106,7 @@ Parameters:
         Numbers, underscores, letters beginning, letters or Numbers ending.
       zh-cn: 长度8-30，必须包含大写字母、小写字母、数字、特殊符号三种；<br>特殊字符包括：（）'~！@#$%^&*_-+=|{}[]:;'<>,.?/
     ConstraintDescription:
-      en: 'Length 8-30, must contain upper case letters, lower case letters, Numbers,
-        special symbols three; special characters include: ()`~!@#$%^&*_-+=|{}[]:;''<>,.?/'
+      en: "Length 8–30 characters, must contain uppercase letters, lowercase letters, numbers, and special symbols. Special characters include: ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/"
       zh-cn: 长度8-30，必须包含大写字母、小写字母、数字、特殊符号三种；特殊字符包括：()`~!@#$%^&*_-+=|{}[]:;' <>,.?/
     AllowedPattern: '[a-zA-Z0-9-\(\)\`\~\!@\#\$%\^&\*-+=\|\{\}\[\]\:\;\‘\,\.\?\/]*'
     MinLength: '8'
@@ -783,6 +780,7 @@ Metadata:
         default: Hadoop
     TemplateTags:
     - acs:example:大数据:创建基于ECSGroup部署Hadoop分布式环境
+    - acs:public_template:Example:hadoop-distributed-ecs-instance-group
   ALIYUN::ROS::Designer:
     015fe252-8418-40a7-ab81-50756bb6b92a:
       position:

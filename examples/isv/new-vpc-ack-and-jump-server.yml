@@ -72,9 +72,7 @@ Parameters:
     Description:
       zh-cn: VPC的ip地址段范围，<br>您可以使用以下的ip地址段或其子网:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
-      en: 'The ip address range of the VPC in the CidrBlock form; <br>You can use
-        the following ip address ranges and their subnets: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in CIDR block format; <br>You can use the following IP address ranges and their subnets: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
     AssociationProperty: ALIYUN::VPC::VPC::CidrBlock
     Default: 192.168.0.0/16
   VSwitchCidrBlock:
@@ -95,26 +93,24 @@ Parameters:
       en: Instance Password
       zh-cn: 实例密码
     Description:
-      en: 'Length 8-32 characters, can contain size letters, Numbers and special symbols,
-        including:! @ # $ % ^ & * ( ) _ + - ='
+      en: "Length 8-32 characters, can contain size letters, Numbers and special symbols, including: ! @ # $ % ^ & * ( ) _ + - ="
       zh-cn: 长度8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*()_+-=）
     ConstraintDescription:
-      en: '8-32 characters, can contain size letters, Numbers and special symbols,
-        including:! @ # $ % ^ & * ( ) _ + - ='
+      en: "8-32 characters, can contain size letters, Numbers and special symbols, including: ! @ # $ % ^ & * ( ) _ + - ="
       zh-cn: 8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*()_+-=）
     AssociationProperty: ALIYUN::ECS::Instance::Password
     MinLength: 8
     MaxLength: 32
     NoEcho: true
   WorkerInstanceType:
-    Type: String
-    Label:
-      en: Worker Nodes Types
-      zh-cn: Worker节点规格
-    AssociationProperty: ALIYUN::ECS::Instance::InstanceType
+    Type: CommaDelimitedList
+    AssociationProperty: 'ALIYUN::ECS::Instance::InstanceType'
     AssociationPropertyMetadata:
+      InstanceChargeType: ${PayType}
       ZoneId: ${ZoneId}
-    Default: ecs.g6.large
+    Label:
+      en: Instance Type
+      zh-cn: 实例规格
   WorkerSystemDiskCategory:
     Type: String
     Label:
@@ -143,10 +139,7 @@ Parameters:
     Description:
       zh-cn: 请填写有效的私有网段，即以下网段及其子网：10.0.0.0/8，172.16-31.0.0/12-16，192.168.0.0/16<br>不能与
         VPC 及 VPC 内已有 Kubernetes 集群使用的网段重复。<font color='blue'><b>创建成功后不能修改</b></font>
-      en: 'Please fill in a valid private segment, i.e. the following segments and
-        their subnets: 10.0.0.0/8, 172.16-31.0.0/12-16, 192.168.0.0/16<br> which cannot
-        duplicate the network segments already used by clusters in VPC and VPC Kunetberes.
-        <font color=''blue''><b>Cannot be modified after successful creation</b></font>'
+      en: "Please fill in a valid private segment, i.e., the following segments and their subnets: 10.0.0.0/8, 172.16-31.0.0/12-16, 192.168.0.0/16<br> which cannot duplicate the network segments already used by clusters in VPC and VPC Kubernetes. <font color='blue'><b>Cannot be modified after successful creation</b></font>"
     AssociationProperty: ALIYUN::CS::ManagedKubernetesCluster::PodCidr
     Default: 10.0.0.0/16
   ServiceCidr:
@@ -157,9 +150,7 @@ Parameters:
     Description:
       zh-cn: 可选范围：10.0.0.0/16-24，172.16-31.0.0/16-24，192.168.0.0/16-24<br>不能与 VPC
         及 VPC 内已有 Kubernetes 集群使用的网段重复。<font color='blue'><b>创建成功后不能修改</b></font>
-      en: 'Optional range: 10.0.0.0/16-24, 172.16-31.0.0/16-24, 192.168.0.0/16-24<br>
-        cannot duplicate segments already used by existing Kubernetes clusters in
-        VPC and VPC.<font color=''blue''><b>Cannot be modified after successful creation</b></font>'
+      en: "Optional range: 10.0.0.0/16-24, 172.16-31.0.0/16-24, 192.168.0.0/16-24<br> cannot duplicate segments already used by existing Kubernetes clusters in VPC. <font color='blue'><b>Cannot be modified after successful creation</b></font>"
     AssociationProperty: ALIYUN::CS::ManagedKubernetesCluster::ServiceCidr
     Default: 172.16.0.0/16
   EcsInstanceType:
@@ -226,6 +217,38 @@ Resources:
         IpProtocol: all
         DestCidrIp: 0.0.0.0/0
         NicType: intranet
+  NodePools:
+    Type: 'ALIYUN::CS::ClusterNodePool'
+    Properties:
+      ClusterId:
+        Ref: ManagedKubernetesCluster
+      NodePoolInfo:
+        Name: default-nodepool
+      ScalingGroup:
+        Period:
+          Ref: PayPeriod
+        PeriodUnit:
+          Ref: PayPeriodUnit
+        InstanceChargeType:
+          Ref: PayType
+        VSwitchIds:
+          - Ref: EcsVSwitch
+        ZoneIds:
+          - Ref: ZoneId
+        SystemDiskCategory:
+          Ref: WorkerSystemDiskCategory
+        SystemDiskSize:
+          Ref: WorkerSystemDiskSize
+        InstanceTypes:
+          Ref: WorkerInstanceType
+        LoginPassword:
+          Ref: LoginPassword
+        Platform: AliyunLinux
+        ImageId: aliyun_3_9_x64_20G_alibase_20231219.vhd
+      KubernetesConfig:
+        Runtime: containerd
+        RuntimeVersion: 1.6.28
+      Count: 3
   ManagedKubernetesCluster:
     Type: ALIYUN::CS::ManagedKubernetesCluster
     Properties:
@@ -235,15 +258,6 @@ Resources:
       - Ref: EcsVSwitch
       SecurityGroupId:
         Ref: EcsSecurityGroup
-      ChargeType:
-        Ref: PayType
-      Period:
-        Ref: PayPeriod
-      PeriodUnit:
-        Ref: PayPeriodUnit
-      WorkerInstanceTypes:
-      - Ref: WorkerInstanceType
-      NumOfNodes: 3
       ClusterSpec: ack.pro.small
       ContainerCidr:
         Ref: PodCidr
@@ -251,12 +265,6 @@ Resources:
         Ref: ServiceCidr
       ZoneIds:
       - Ref: ZoneId
-      WorkerSystemDiskCategory:
-        Ref: WorkerSystemDiskCategory
-      WorkerSystemDiskSize:
-        Ref: WorkerSystemDiskSize
-      LoginPassword:
-        Ref: LoginPassword
       SnatEntry: true
       Addons:
       - Name: flannel
@@ -474,3 +482,177 @@ Metadata:
         zh-cn: 负载均衡配置
     TemplateTags:
     - acs:example:ISV软件部署:新建一组Kubernetes托管版集群，并创建一台跳板机使用kubectl部署应用
+    - acs:public_template:Example:new-vpc-ack-and-jump-server
+  ALIYUN::ROS::Composer:
+    '11521222':
+      Res:
+        - EipSlbAddress
+        - EipSlbAddressAssociation
+      Ref:
+        - EipSlbAddressAssociation
+      Parent: aa9c78cb
+      Rect:
+        - 40
+        - 40
+        - 261
+        - 520
+        - 3
+        - 0
+    d9d72244:
+      Rect:
+        - 640
+        - 500
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    aa9c78cb:
+      Parent: d9d72244
+      Rect:
+        - 600
+        - 430
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    4d8de3ff:
+      Res:
+        - EcsVpc
+      Parent: aa9c78cb
+      Rect:
+        - 440
+        - 300
+        - 140
+        - 200
+        - 3
+        - 0
+    208b7882:
+      Res:
+        - WaitConditionHandle
+      Parent: aa9c78cb
+      Rect:
+        - 40
+        - 40
+        - 80
+        - 520
+        - 3
+        - 0
+      Hidden: true
+    c4313891:
+      Res:
+        - WaitCondition
+      Parent: aa9c78cb
+      Rect:
+        - 40
+        - 40
+        - 600
+        - 200
+        - 3
+        - 0
+      Hidden: true
+    7cd431c0:
+      Res:
+        - InstanceRunCommand
+      Parent: aa9c78cb
+      Rect:
+        - 40
+        - 40
+        - 261
+        - 299
+        - 4
+        - 0
+      Hidden: true
+    4524564c:
+      Res:
+        - EcsVSwitch
+      Parent: 4d8de3ff
+      Rect:
+        - 400
+        - 230
+        - 160
+        - 250
+        - 4
+        - 0
+    86861eb6:
+      Res:
+        - ManagedKubernetesCluster
+      Parent: 4d8de3ff
+      Rect:
+        - 40
+        - 40
+        - 444
+        - 420
+        - 5
+        - 0
+    b51cc1dc:
+      Res:
+        - Slb
+      Parent: 4524564c
+      Rect:
+        - 40
+        - 40
+        - 261
+        - 299
+        - 5
+        - 0
+    e2240734:
+      Res:
+        - EcsSecurityGroup
+      Parent: 4d8de3ff
+      Rect:
+        - 136
+        - 108
+        - 396
+        - 279
+        - 10
+        - 0
+    fb5d765b:
+      Parent: 4d8de3ff
+      Edge:
+        - 86861eb6
+        - e2240734
+      Line: 0:0:0:gray:0
+    2c4d2933:
+      Parent: aa9c78cb
+      Edge:
+        - '11521222'
+        - b51cc1dc
+      Line: 0:0:0:gray:0
+    a65d6b1b:
+      Edge:
+        - c4313891
+        - 208b7882
+      Line: 0:0:0:gray:0
+    3fdb02db:
+      Parent: aa9c78cb
+      Edge:
+        - 7cd431c0
+        - d16aa13c
+      Line: 0:0:0:gray:0
+    95aa8bfa:
+      Parent: aa9c78cb
+      Edge:
+        - 7cd431c0
+        - 86861eb6
+      Line: 0:0:0:gray:0
+    75af143c:
+      Parent: aa9c78cb
+      Edge:
+        - 7cd431c0
+        - b51cc1dc
+      Line: 0:0:0:gray:0
+    d16aa13c:
+      Res:
+        - EcsInstanceJumpBox
+      Parent: 4524564c
+      Rect:
+        - 40
+        - 40
+        - 444
+        - 299
+        - 11
+        - 0
+      Layer:
+        - e2240734

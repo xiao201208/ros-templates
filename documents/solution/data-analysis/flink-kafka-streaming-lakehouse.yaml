@@ -1,0 +1,596 @@
+ROSTemplateFormatVersion: '2015-09-01'
+Description:
+  zh-cn: 通过创建VPC、VSwitch、OSS Bucket和Flink实例与Kafka实例实现对统一元数据和数据存储及管理平台，为客户提供元数据管理、权限管理和存储优化等功能。
+  en: Through the creation of VPC, VSwitch, OSS Bucket, Flink instances and Kafka
+    instances, a unified metadata and data storage and management platform is realized,
+    providing customers with metadata management, permission management, storage optimization
+    and other functions.
+Parameters:
+  ZoneId:
+    Type: String
+    Label:
+      zh-cn: 可用区ID
+      en: Available Zone ID
+    Description:
+      zh-cn: 可用区ID。<br><b>注：用于创建VSwitch，并给Flink实例使用。
+      en: Availability Zone ID,<br><b>note： <font color='blue'>It is used to create
+        VSwitch and used for Flink instance.</font></b>
+    AssociationProperty: ZoneId
+  FlinkInstanceName:
+    Type: String
+    Label:
+      zh-cn: Flink实例名称
+      en: Flink Instance Name
+    AssociationProperty: AutoCompleteInput
+    AssociationPropertyMetadata:
+      Length: 3
+      Prefix: streaming-lakehouse-
+      CharacterClasses:
+        - Class: lowercase
+          min: 1
+    Description:
+      zh-cn: '长度为1~60个字符，必须以小写字母开头和结尾，可以包含小写字母、数字和连字符(-); 注：需要全网唯一性，已经存在的不能再创建。'
+      en: '1 to 60 characters in length, must start and end with a lowercase letter, and can contain lowercase letters, numbers, and hyphens (-); Note: The uniqueness of the whole network is required, and the existing one cannot be created.'
+  InstanceType:
+    Type: String
+    Label:
+      zh-cn: 实例类型
+      en: Instance Type
+    AssociationProperty: ALIYUN::ECS::Instance::InstanceType
+    AssociationPropertyMetadata:
+      SystemDiskCategory: cloud_essd
+      InstanceChargeType: PostPaid
+      ZoneId: ${ZoneId}
+  InstancePassword:
+    NoEcho: true
+    Type: String
+    Label:
+      zh-cn: 实例密码
+      en: Instance Password
+    Description:
+      zh-cn: 长度8-30，必须包含大写字母、小写字母、数字、特殊符号三个；<br>特殊字符包括：()`~!@#$%^&*_-+=|{}[]:;'<>,.?/
+      en: The 8-30 long login password of instance, consists of the uppercase, lowercase
+        letter and number. <br> special characters include()`~!@#$%^&*_-+=|{}[]:;'<>,.?/
+    ConstraintDescription:
+      zh-cn: 长度8-30，必须包含大写字母、小写字母、数字、特殊符号三种；特殊字符包括：()`~!@#$%^&*_-+=|{}[]:;' <>,.?/
+      en: 'Length 8-30, must contain upper case letters, lower case letters, Numbers,
+        special symbols three; special characters include: ()`~!@#$%^&*_-+=|{}[]:;''<>,.?/'
+    AssociationProperty: ALIYUN::ECS::Instance::Password
+  BucketName:
+    Type: String
+    Label:
+      zh-cn: 新建存储空间名称
+      en: NewBucketName
+    Description:
+      zh-cn: Bucket 名称在 OSS 范围内必须全局唯一。长度为3~63个字符。必须以小写英文字母或数字开头和结尾，可包含小写英文字母、数字和短划线（-）。
+      en: Bucket names must be globally unique within the scope of OSS. The length
+        is 3~63 characters. Must start and end with a lowercase English letter or
+        number, and can contain lowercase English letters, numbers, and dashes (-).
+    AssociationProperty: AutoCompleteInput
+    AssociationPropertyMetadata:
+      Length: 6
+      Prefix: test-bucketname-
+      CharacterClasses:
+        - Class: lowercase
+          min: 1
+    AllowedPattern: ^[a-z0-9][a-z0-9-]{1,61}[a-z0-9]$
+  KafkaTopicName:
+    Type: String
+    Label:
+      zh-cn: Topic名称
+      en: The name of the topic
+    Description:
+      zh-cn: '主题的名称。名称只能包含字母、数字、连字符（-）和下划线（_）。 名称的长度必须为3到64个字符，并且将被自动截断如果它包含更多字符。名称创建后不能修改。'
+      en: 'The name of the topic. The value of this parameter must meet the following requirements:
+          The name can only contain letters, digits, hyphens (-), and underscores (_).
+          The name must be 3 to 64 characters in length, and will be automatically truncated
+          if it contains more characters.
+          The name cannot be modified after being created.'
+    Default: topic_dlf_paimon_demo
+  KafkaConsumerName:
+    Label:
+      zh-cn: 消费组名称
+      en: GroupName
+    Description:
+      en: 'Group name. Value:
+          Can only contain letters, numbers, dashes (-), underscores (_), and at least
+          one English or number.
+          The length is limited to 3 to 128 characters, and more than 128 characters
+          will be automatically intercepted.
+          Once the group name is created, it cannot be modified.'
+      zh-cn: '消费组名称。只能包含字母、数字、短划线（-）、下划线（_），并且至少一个英语或数字。长度限制为3到128个字符，超过128个字符会被自动拦截。组名一旦创建，就不能修改。'
+    Type: String
+    Default: group_dlf_paimon_demo
+  StarRocksPassword:
+    Type: String
+    MinLength: 8
+    MaxLength: 30
+    NoEcho: true
+    Label:
+      zh-cn: 实例密码
+      en: Instance Password
+    Description:
+      en: Server login password, Length 8-30, must contain three(Capital letters, lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
+      zh-cn: 服务器登录密码,长度8-30，必须包含三项（大写字母、小写字母、数字、 @#$%^*_+- 中的特殊符号）。
+    ConstraintDescription:
+      en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
+      zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 @#$%^*_+- 中的特殊符号）。
+    AllowedPattern: '^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^*_+-])[A-Za-z\d@#$%^*_+-]{8,30}$'
+    AssociationProperty: ALIYUN::ECS::Instance::Password
+  StarRocksRamUserName:
+    Required: true
+    Type: String
+    Default: dlf-test
+    Label:
+      zh-cn: StarRocks的RAM管理员用户
+      en: StarRocks Ram Admin User
+Resources:
+  ECSVPC:
+    Type: ALIYUN::ECS::VPC
+    Properties:
+      VpcName: VPC_Streaming_Lakehouse
+      CidrBlock: 192.168.0.0/16
+  EcsSecurityGroup:
+    Type: ALIYUN::ECS::SecurityGroup
+    Properties:
+      VpcId:
+        Ref: ECSVPC
+      SecurityGroupName: SecurityGroup_1
+      SecurityGroupIngress:
+        - PortRange: 9092/9092
+          Priority: 1
+          SourceCidrIp: 192.168.0.0/16
+          IpProtocol: tcp
+          NicType: intranet
+  ECSVSwitch:
+    Type: ALIYUN::ECS::VSwitch
+    Properties:
+      ZoneId:
+        Ref: ZoneId
+      VpcId:
+        Ref: ECSVPC
+      VSwitchName: vsw_streaming_Lakehouse
+      CidrBlock: 192.168.1.0/24
+  KafkaInstance:
+    Type: ALIYUN::KAFKA::Instance
+    Properties:
+      DeployType: 5
+      DeployOption:
+        VpcId:
+          Ref: ECSVPC
+        SecurityGroup:
+          Ref: EcsSecurityGroup
+        ZoneId:
+          Ref: ZoneId
+        ServiceVersion: 2.2.0
+        IsEipInner: false
+        VSwitchId:
+          Ref: ECSVSwitch
+        DeployModule: vpc
+        Config:
+          kafka.log.retention.hours: '33'
+      OpenConnector: 'false'
+      PayType: Hour
+      DiskType: '1'
+      DiskSize: 500
+      IoMaxSpec: alikafka.hw.2xlarge
+      TopicQuota: 50
+      SpecType: normal
+      DeletionForce: 'false'
+  Topic:
+    Type: ALIYUN::KAFKA::Topic
+    Properties:
+      InstanceId:
+        Ref: KafkaInstance
+      Topic:
+        Ref: KafkaTopicName
+      Remark: dlf paimon test
+      PartitionNum: 12
+  ConsumerGroup:
+    Type: ALIYUN::KAFKA::ConsumerGroup
+    Properties:
+      InstanceId:
+        Ref: KafkaInstance
+      ConsumerId:
+        Ref: KafkaConsumerName
+      Remark: dlf paimon group
+  OSSBucket:
+    Type: ALIYUN::OSS::Bucket
+    Properties:
+      BucketName:
+        Ref: BucketName
+      DeletionForce: true
+  FlinkInstance:
+    Type: ALIYUN::Flink::Instance
+    Properties:
+      ZoneId:
+        Ref: ZoneId
+      VpcId:
+        Ref: ECSVPC
+      VSwitchIds:
+        - Ref: ECSVSwitch
+      Bucket:
+        Ref: OSSBucket
+      ChargeType: Postpaid
+      InstanceName:
+        Ref: FlinkInstanceName
+  EcsInstance:
+    Type: ALIYUN::ECS::Instance
+    Properties:
+      VpcId:
+        Fn::GetAtt:
+          - ECSVPC
+          - VpcId
+      VSwitchId:
+        Ref: ECSVSwitch
+      SecurityGroupId:
+        Ref: EcsSecurityGroup
+      ImageId: aliyun_3_x64_20G_alibase_
+      SystemDiskCategory: cloud_essd
+      AllocatePublicIP: true
+      SystemDiskSize: 40
+      InternetMaxBandwidthOut: 20
+      Password:
+        Ref: InstancePassword
+      InstanceType:
+        Ref: InstanceType
+  WaitConditionHandle:
+    Type: ALIYUN::ROS::WaitConditionHandle
+    Properties: { }
+  WaitCondition:
+    Type: ALIYUN::ROS::WaitCondition
+    Properties:
+      Count: 1
+      Handle:
+        Ref: WaitConditionHandle
+      Timeout: 3000
+  InstanceRunCommand:
+    Type: ALIYUN::ECS::RunCommand
+    Properties:
+      InstanceIds:
+        - Ref: EcsInstance
+      Type: RunShellScript
+      CommandContent:
+        Fn::Sub:
+          - |
+            #!/bin/bash
+            cat << EOF >> ~/.bash_profile
+            export ROS_DEPLOY=true
+            EOF
+            source ~/.bash_profile
+            curl -fsSL https://help-static-aliyun-doc.aliyuncs.com/install-script/streaming-lakehouse/init_data.sh | bash
+            # 执行成功回调WaitCondition结束waitCondition的等待
+            ${CurlCli} -d "{\"Data\" : \"Success\", \"status\" : \"SUCCESS\"}"
+          - CurlCli:
+              Fn::GetAtt:
+                - WaitConditionHandle
+                - CurlCli
+      Timeout: 3600
+      Sync: true
+  StarRocksRamUser:
+    Type: ALIYUN::RAM::User
+    Properties:
+      UserName:
+        Ref: StarRocksRamUserName
+      PolicyAttachments:
+        System:
+          - AliyunDLFFullAccess
+          - AliyunEMRFullAccess
+          - AliyunEMRStarRocksFullAccess
+  StarRocks:
+    Type: ALIYUN::EMR::StarRocksInstance
+    Properties:
+      OssAccessingRoleName: 'AliyunEMRStarRocksAccessingOSSRole'
+      ClusterZoneId:
+        Ref: ZoneId
+      VpcId:
+        Ref: ECSVPC
+      AdminPassword:
+        Ref: StarRocksPassword
+      Vswitches:
+        - VSwitchId:
+            Ref: ECSVSwitch
+          ZoneId:
+            Ref: ZoneId
+      PayType: PostPaid
+      RunMode: 'shared_data'
+      Version: '3.3'
+      PackageType: 'official'
+      InstanceName: 'serverless-starrocks-test'
+      BackendNodeGroups:
+        - ResidentNodeNumber: 1
+          DiskNumber: 1
+          StorageSize: 100
+          Cu: 8
+          StoragePerformanceLevel: 'pl1'
+          SpecType: 'standard'
+      FrontendNodeGroups:
+        - ResidentNodeNumber: 1
+          DiskNumber: 1
+          StorageSize: 100
+          Cu: 8
+          SpecType: 'standard'
+          StoragePerformanceLevel: 'pl1'
+Metadata:
+  ALIYUN::ROS::Interface:
+    Outputs:
+      - EcsInstanceUser
+      - EcsInstancePassword
+      - EcsLoginAddress
+    ParameterGroups:
+      - Parameters:
+          - ZoneId
+        Label:
+          default:
+            zh-cn: 可用区配置
+            en: Availability Zone
+      - Parameters:
+          - InstanceType
+          - InstancePassword
+        Label:
+          default:
+            zh-cn: ECS 配置
+            en: ECS Configuration
+      - Parameters:
+          - FlinkInstanceName
+        Label:
+          default:
+            zh-cn: Flink配置
+            en: Flink Configuration
+      - Parameters:
+          - KafkaTopicName
+          - KafkaConsumerName
+        Label:
+          default:
+            zh-cn: Kafka配置
+            en: Kafka Configuration
+      - Parameters:
+          - StarRocksPassword
+          - StarRocksRamUserName
+        Label:
+          default:
+            zh-cn: EMR StarRocks配置
+            en: EMR StarRocks Configuration
+    TemplateTags:
+      - acs:technical-solution:data-analysis:Streaming LakeHouse-tech_solu_286
+    Hidden:
+      - BucketName
+  ALIYUN::ROS::Composer:
+    '64120726':
+      Parent: 8d7669be
+      Edge:
+        - c2c271a2
+        - d25229c8
+      Line: 0:0:0:gray:0
+    6e74f5e2:
+      Rect:
+        - 640
+        - 560
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    a910aed9:
+      Parent: 6e74f5e2
+      Rect:
+        - 600
+        - 490
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    8d7669be:
+      Res:
+        - ECSVPC
+      Parent: a910aed9
+      Rect:
+        - 440
+        - 300
+        - 140
+        - 200
+        - 3
+        - 0
+    62b7f860:
+      Res:
+        - Topic
+      Parent: a910aed9
+      Rect:
+        - 40
+        - 40
+        - 448
+        - 540
+        - 3
+        - 0
+    a9d55965:
+      Res:
+        - ConsumerGroup
+      Parent: a910aed9
+      Rect:
+        - 40
+        - 40
+        - 580
+        - 330
+        - 3
+        - 0
+    1f139cb0:
+      Res:
+        - OSSBucket
+      Parent: a910aed9
+      Rect:
+        - 40
+        - 40
+        - 180
+        - 540
+        - 3
+        - 0
+      Hidden: true
+    5a360464:
+      Res:
+        - WaitConditionHandle
+      Parent: a910aed9
+      Rect:
+        - 40
+        - 40
+        - 140
+        - 580
+        - 3
+        - 0
+      Hidden: true
+    3d75f1cb:
+      Res:
+        - WaitCondition
+      Parent: a910aed9
+      Rect:
+        - 40
+        - 40
+        - 80
+        - 580
+        - 3
+        - 0
+      Hidden: true
+    cb0836a1:
+      Res:
+        - InstanceRunCommand
+      Parent: a910aed9
+      Rect:
+        - 40
+        - 40
+        - 80
+        - 200
+        - 3
+        - 0
+      Hidden: true
+    40aa8ac1:
+      Res:
+        - StarRocksRamUser
+      Parent: a910aed9
+      Rect:
+        - 40
+        - 40
+        - 600
+        - 520
+        - 3
+        - 0
+      Hidden: true
+    2b9b659e:
+      Res:
+        - ECSVSwitch
+      Parent: 8d7669be
+      Rect:
+        - 400
+        - 230
+        - 160
+        - 250
+        - 4
+        - 0
+    c2c271a2:
+      Res:
+        - KafkaInstance
+      Parent: 2b9b659e
+      Rect:
+        - 40
+        - 40
+        - 448
+        - 330
+        - 5
+        - 0
+    9d21053b:
+      Res:
+        - FlinkInstance
+      Parent: 8d7669be
+      Rect:
+        - 40
+        - 40
+        - 220
+        - 418
+        - 5
+        - 0
+    b1a7fdf7:
+      Res:
+        - StarRocks
+      Parent: 2b9b659e
+      Rect:
+        - 40
+        - 40
+        - 340
+        - 418
+        - 5
+        - 0
+      ResT: ALIYUN::EMR::StarRocksInstance
+    d25229c8:
+      Res:
+        - EcsSecurityGroup
+      Parent: 8d7669be
+      Rect:
+        - 159
+        - 100
+        - 180
+        - 300
+        - 10
+        - 0
+    dc1a978f:
+      Parent: a910aed9
+      Edge:
+        - 62b7f860
+        - c2c271a2
+      Line: 0:0:0:gray:0
+    24b36363:
+      Parent: a910aed9
+      Edge:
+        - a9d55965
+        - c2c271a2
+      Line: 0:0:0:gray:0
+    b680cfac:
+      Parent: a910aed9
+      Edge:
+        - 9d21053b
+        - 1f139cb0
+      Line: 0:0:0:gray:0
+    bab78e1f:
+      Edge:
+        - 3d75f1cb
+        - 5a360464
+      Line: 0:0:0:gray:0
+    d64062d3:
+      Parent: a910aed9
+      Edge:
+        - cb0836a1
+        - eaef76d7
+      Line: 0:0:0:gray:0
+    eaef76d7:
+      Res:
+        - EcsInstance
+      Parent: 2b9b659e
+      Rect:
+        - 40
+        - 40
+        - 242
+        - 330
+        - 11
+        - 0
+      Layer:
+        - d25229c8
+Outputs:
+  EcsLoginAddress:
+    Description:
+      en: Ecs login address.
+      zh-cn: ECS登录地址。
+    Value:
+      Fn::Sub:
+      - https://ecs-workbench.aliyun.com/?from=EcsConsole&instanceType=ecs&regionId=${Region}&instanceId=${InstanceId}
+      - InstanceId:
+          Fn::GetAtt:
+            - EcsInstance
+            - InstanceId
+        Region:
+          Ref: ALIYUN::Region
+  EcsInstanceUser:
+    Description: ECS实例用户名
+    Value: root
+  EcsInstancePassword:
+    Description: ECS实例用户密码
+    Value:
+      Ref: InstancePassword
+    NoEcho: true

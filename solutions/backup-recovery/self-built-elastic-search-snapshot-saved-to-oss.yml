@@ -22,9 +22,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>you can use
-        the following IP address ranges: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in the CIDR Block form; <br>you can use the following IP address ranges: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -48,12 +46,7 @@ Parameters:
       en: FlexGW VPN Image
       zh-cn: FlexGW VPN镜像
     Description:
-      en: 'Server Instance Image ID<br>cloud market mirror name: FlexGW IPsec VPN
-        on CentOS<br>Hangzhou: m-bp10z4rsouipm8yfurxh<br>Qingdao: m-m5eg9k9vsopnrj7ejwo9<br>Beijing:
-        m-2ze7k40e4ke66ouil52d<br>Shanghai: m-uf67h1a8x3ykhrtrtjrh<br>Shenzhen: m-wz97moazgfw3xy6xjb2x<br>note:
-        If the above image does not provide a mirror of the geographical region, please
-        use the supported FlexGW VPN free image; see detail: <b><a href=''https://marketplace.alibabacloud.com/products?keywords=FlexGW''
-        target=''_blank''><font color=''blue''>FlexGW Image</font></a></b>'
+      en: "Server Instance Image ID<br>Cloud Market Mirror Name: FlexGW IPsec VPN on CentOS<br>Hangzhou: m-bp10z4rsouipm8yfurxh<br>Qingdao: m-m5eg9k9vsopnrj7ejwo9<br>Beijing: m-2ze7k40e4ke66ouil52d<br>Shanghai: m-uf67h1a8x3ykhrtrtjrh<br>Shenzhen: m-wz97moazgfw3xy6xjb2x<br>Note: If the above image does not provide a mirror for the geographical region, please use the supported FlexGW VPN free image; see details: <b><a href='https://marketplace.alibabacloud.com/products?keywords=FlexGW' target='_blank'><font color='blue'>FlexGW Image</font></a></b>"
       zh-cn: 服务器镜像<br>云市场镜像名称：FlexGW IPsec VPN服务器企业版<br>杭州：m-bp10z4rsouipm8yfurxh<br>青岛：m-m5eg9k9vsopnrj7ejwo9<br>北京：m-2ze7k40e4ke66ouil52d<br>上海：m-uf67h1a8x3ykhrtrtjrh<br>深圳：m-wz97moazgfw3xy6xjb2x<br>注：以上镜像如未提供该地域的镜像，请使用支持的FlexGW
         VPN系统镜像；详见：<b><a href='https://market.aliyun.com/products/56812015/cmjj006981.html'
         target='_blank'><font color='blue'>FlexGW VPN系统镜像</font></a></b>
@@ -75,13 +68,7 @@ Parameters:
       en: Application Service Image
       zh-cn: 应用服务镜像
     Description:
-      en: 'Server Instance Image ID. <br>Hangzhou Magento Mirror: m-bp1d9e2n6iw68exr0z9h<br>Shenzhen
-        Magento Mirror: m-wz9g8nzni5lkutmmj5jrjr<br>Beijing Magento Mirror: m-2zefvtmu
-        9vljd06ll1u<br>Qingdao Magento Mirror: m-m5e92ot9nf1rm9c8neob<br>Shanghai
-        Magento Image: m-uf67vlqunx 6ldjsaaxo2<br>note: If the above image does not
-        provide a mirror of the geographical region, please use the supported magento
-        free image; see detail: <b><a href=''https://marketplace.alibabacloud.com/products?keywords=magento''
-        target=''_blank''><font color=''blue''>Magento Image</font></a></b>'
+      en: "Server Instance Image ID.<br>Hangzhou Magento Mirror: m-bp1d9e2n6iw68exr0z9h<br>Shenzhen Magento Mirror: m-wz9g8nzni5lkutmmj5jrjr<br>Beijing Magento Mirror: m-2zefvtmu9vljd06ll1u<br>Qingdao Magento Mirror: m-m5e92ot9nf1rm9c8neob<br>Shanghai Magento Image: m-uf67vlqunx6ldjsaaxo2<br>Note: If the above image does not provide a mirror for the geographical region, please use the supported Magento free image; see details: <b><a href='https://marketplace.alibabacloud.com/products?keywords=magento' target='_blank'><font color='blue'>Magento Image</font></a></b>"
       zh-cn: 服务器镜像<br>云市场镜像名称： Magento电子商务系统（Centos 7.2 64位）<br>版本：v1.0<br>杭州Magento镜像：m-bp1d9e2n6iw68exr0z9h<br>深圳Magento镜像：m-wz9g8nzni5lkutmmj5jr<br>北京Magento镜像：m-2zefvttmu9vljd06ll1u<br>青岛Magento镜像：m-m5e92ot9nf1rm9c8neob<br>上海Magento镜像：m-uf67vlqunx6ldjsaaxo2<br>注：以上镜像如未提供该地域的镜像，请使用支持的magento免费镜像；详见：<b><a
         href='https://market.aliyun.com/products/?keywords=Magento' target='_blank'><font
         color='blue'>Magento镜像</font></a></b>
@@ -91,11 +78,7 @@ Parameters:
       en: Specifications
       zh-cn: 规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;recommended to use：ecs.t5-lc1m2.large</b></font><br>general specifications：<font
-        color=''red''><b>ecs.g5.large</b></font><br>note: a few zones do not support
-        general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;recommended to use: ecs.t5-lc1m2.large</b></font><br>general specifications: <font color='red'><b>ecs.g5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格，推荐使用：ecs.t5-lc1m2.large；<br>通用规格：<font color='red'><b>ecs.g5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -115,10 +98,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=| {}[]:;' <>,.? / Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: 'ALIYUN::ECS::Instance::Password'
   BucketName:
     Type: String
     Label:
@@ -152,20 +132,12 @@ Resources:
         - '-'
         - - StackId
           - Ref: ALIYUN::StackId
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 114d8caf-9041-4c22-a8c5-21f82d937187
   EcsSecurityGroup:
     Type: ALIYUN::ECS::SecurityGroup
     Properties:
       VpcId:
         Ref: EcsVpc
       SecurityGroupIngress:
-      - IpProtocol: tcp
-        Policy: accept
-        PortRange: 22/22
-        Priority: 1
-        SourceCidrIp: 0.0.0.0/0
       - IpProtocol: tcp
         Policy: accept
         PortRange: 80/80
@@ -195,9 +167,6 @@ Resources:
       Tags:
       - Key: best_practice
         Value: 095
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: bfa8a058-ad24-4d06-9c4c-020bb180f1bb
   EcsVSwitch:
     Type: ALIYUN::ECS::VSwitch
     Properties:
@@ -212,9 +181,6 @@ Resources:
         - '-'
         - - StackId
           - Ref: ALIYUN::StackId
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 03e32041-eed6-413c-8ab4-a57272248ce9
   EcsInstanceELK:
     Type: ALIYUN::ECS::Instance
     Properties:
@@ -254,9 +220,6 @@ Resources:
             - "./install_elasticsearch_and_start.sh \n"
             - "ros-notify -d \"{\\\"Data\\\" : \\\"SUCCESS\\\", \\\"Status\\\" : \\\
               \"SUCCESS\\\"}\" \n"
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: cc6061af-e57f-4b06-848f-335f82956a03
   EcsInstanceApp:
     Type: ALIYUN::ECS::Instance
     Properties:
@@ -303,9 +266,6 @@ Resources:
             - "ros-notify -d \"{\\\"Data\\\" : \\\"SUCCESS\\\", \\\"Status\\\" : \\\
               \"SUCCESS\\\"}\" \n"
     DependsOn: EcsInstanceELK
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: a3eb4ff3-9663-44f1-b771-d562d853703b
   EcsInstanceVPN:
     Type: ALIYUN::ECS::Instance
     Properties:
@@ -330,9 +290,6 @@ Resources:
       Tags:
       - Key: 095
         Value: best_practice
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 44000149-e23e-41a0-a1d6-a33af76c0aef
   OssBucket:
     Type: ALIYUN::OSS::Bucket
     Properties:
@@ -343,15 +300,9 @@ Resources:
       Tags:
         Key: best_practice
         Value: 095
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 644e1541-b00b-4635-84dd-819db763baa3
   RosWaitConditionHandleApp:
     Type: ALIYUN::ROS::WaitConditionHandle
     Properties: {}
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 69101592-3363-4ead-9682-b7d1e843afcd
   RosWaitConditionApp:
     Type: ALIYUN::ROS::WaitCondition
     Properties:
@@ -360,15 +311,9 @@ Resources:
         Ref: RosWaitConditionHandleApp
       Timeout: 600
     DependsOn: RosWaitConditionHandleApp
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 6b314593-fe35-43ae-afb5-672722fc3695
   RosWaitConditionHandleELK:
     Type: ALIYUN::ROS::WaitConditionHandle
     Properties: {}
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 8130d753-6dd8-4b5e-9928-92eeaadeb7d9
   RosWaitConditionELK:
     Type: ALIYUN::ROS::WaitCondition
     Properties:
@@ -377,9 +322,6 @@ Resources:
         Ref: RosWaitConditionHandleELK
       Timeout: 600
     DependsOn: RosWaitConditionHandleELK
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 90b9f494-cb93-4afc-a372-83fade27cb20
 Outputs:
   BucketDomainName:
     Description:
@@ -473,129 +415,183 @@ Metadata:
         default: OSS
     TemplateTags:
     - acs:solution:备份&容灾:自建ElasticSearch快照备份OSS
-  ALIYUN::ROS::Designer:
-    03e32041-eed6-413c-8ab4-a57272248ce9:
-      embeds:
-      - 44000149-e23e-41a0-a1d6-a33af76c0aef
-      - cc6061af-e57f-4b06-848f-335f82956a03
-      - a3eb4ff3-9663-44f1-b771-d562d853703b
-      position:
-        x: 349
-        y: 108
-      size:
-        height: 402
-        width: 214
-      z: 1
-    114d8caf-9041-4c22-a8c5-21f82d937187:
-      embeds:
-      - 03e32041-eed6-413c-8ab4-a57272248ce9
-      - bfa8a058-ad24-4d06-9c4c-020bb180f1bb
-      position:
-        x: 204
-        y: 77
-      size:
-        height: 470
-        width: 375.0537109375
-      z: 0
-    44000149-e23e-41a0-a1d6-a33af76c0aef:
-      position:
-        x: 478
-        y: 292
-      size:
-        height: 60
-        width: 60
-      z: 2
-    644e1541-b00b-4635-84dd-819db763baa3:
-      position:
-        x: 640
-        y: 283
-      size:
-        height: 60
-        width: 60
-      z: 0
-    69101592-3363-4ead-9682-b7d1e843afcd:
-      position:
-        x: 641
-        y: 370
-      size:
-        height: 60
-        width: 60
-      z: 0
-    6b314593-fe35-43ae-afb5-672722fc3695:
-      position:
-        x: 641
-        y: 464
-      size:
-        height: 60
-        width: 60
-      z: 0
-    6cc37793-843d-467a-a79f-9ac2e2706e4b:
-      source:
-        id: cc6061af-e57f-4b06-848f-335f82956a03
-      target:
-        id: bfa8a058-ad24-4d06-9c4c-020bb180f1bb
-      z: 1
-    8130d753-6dd8-4b5e-9928-92eeaadeb7d9:
-      position:
-        x: 637
-        y: 104
-      size:
-        height: 60
-        width: 60
-      z: 0
-    8d3dff05-2439-4aa7-a8dc-8f72eab5911f:
-      source:
-        id: 44000149-e23e-41a0-a1d6-a33af76c0aef
-      target:
-        id: bfa8a058-ad24-4d06-9c4c-020bb180f1bb
-      z: 1
-    90b9f494-cb93-4afc-a372-83fade27cb20:
-      position:
-        x: 637
-        y: 193
-      size:
-        height: 60
-        width: 60
-      z: 0
-    a1a2df6c-4acf-488b-aaf4-313c2f3ef8bb:
-      source:
-        id: 90b9f494-cb93-4afc-a372-83fade27cb20
-      target:
-        id: 8130d753-6dd8-4b5e-9928-92eeaadeb7d9
-      z: 1
-    a3eb4ff3-9663-44f1-b771-d562d853703b:
-      position:
-        x: 478
-        y: 451
-      size:
-        height: 60
-        width: 60
-      z: 2
-    bfa8a058-ad24-4d06-9c4c-020bb180f1bb:
-      position:
-        x: 232
-        y: 292
-      size:
-        height: 60
-        width: 60
-      z: 1
-    cc6061af-e57f-4b06-848f-335f82956a03:
-      position:
-        x: 478
-        y: 131
-      size:
-        height: 60
-        width: 60
-      z: 2
-    ed1fa634-be92-4c78-bb0e-b6ea8b6d2dc9:
-      source:
-        id: a3eb4ff3-9663-44f1-b771-d562d853703b
-      target:
-        id: bfa8a058-ad24-4d06-9c4c-020bb180f1bb
-      z: 1
-    fc3402ee-0c4d-4e2e-b72a-6d25996ddcd7:
-      source:
-        id: 6b314593-fe35-43ae-afb5-672722fc3695
-      target:
-        id: 69101592-3363-4ead-9682-b7d1e843afcd
-      z: 1
+    - acs:public_template:Solution:self-built-elastic-search-snapshot-saved-to-oss
+  ALIYUN::ROS::Composer:
+    afe03d40:
+      Rect:
+        - 680
+        - 630
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    25a35432:
+      Parent: afe03d40
+      Rect:
+        - 640
+        - 560
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    3baa502f:
+      Res:
+        - EcsVpc
+      Parent: 25a35432
+      Rect:
+        - 483
+        - 436
+        - 80
+        - 200
+        - 3
+        - 0
+    f028f398:
+      Res:
+        - OssBucket
+      Parent: 25a35432
+      Rect:
+        - 40
+        - 40
+        - 596
+        - 410
+        - 3
+        - 0
+    16eeeb8e:
+      Res:
+        - RosWaitConditionHandleELK
+      Parent: 25a35432
+      Rect:
+        - 40
+        - 40
+        - 228
+        - 650
+        - 3
+        - 0
+      Hidden: true
+    ee27f8c6:
+      Res:
+        - RosWaitConditionELK
+      Parent: 25a35432
+      Rect:
+        - 40
+        - 40
+        - 100
+        - 650
+        - 3
+        - 0
+      Hidden: true
+    49bfade7:
+      Res:
+        - RosWaitConditionApp
+      Parent: 25a35432
+      Rect:
+        - 40
+        - 40
+        - 350
+        - 650
+        - 3
+        - 0
+      Hidden: true
+    ca8ae2e4:
+      Res:
+        - RosWaitConditionHandleApp
+      Parent: 25a35432
+      Rect:
+        - 40
+        - 40
+        - 480
+        - 650
+        - 3
+        - 0
+      Hidden: true
+    1d3d35d5:
+      Parent: 3baa502f
+      Rect:
+        - 440
+        - 360
+        - 100
+        - 250
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    dda9521f:
+      Res:
+        - EcsVSwitch
+      Parent: 1d3d35d5
+      Rect:
+        - 400
+        - 290
+        - 120
+        - 300
+        - 5
+        - 0
+    54ee8d53:
+      Res:
+        - EcsSecurityGroup
+      Parent: 3baa502f
+      Rect:
+        - 273
+        - 188
+        - 180
+        - 374
+        - 14
+        - 0
+    c4a691b5:
+      Res:
+        - EcsInstanceELK
+      Parent: dda9521f
+      Rect:
+        - 40
+        - 40
+        - 228
+        - 395
+        - 15
+        - 0
+      Layer:
+        - 54ee8d53
+    8f1aac4a:
+      Res:
+        - EcsInstanceVPN
+      Parent: dda9521f
+      Rect:
+        - 40
+        - 40
+        - 301
+        - 485
+        - 15
+        - 0
+      Layer:
+        - 54ee8d53
+    '183469e4':
+      Res:
+        - EcsInstanceApp
+      Parent: dda9521f
+      Rect:
+        - 40
+        - 40
+        - 360
+        - 395
+        - 15
+        - 0
+      Layer:
+        - 54ee8d53
+    dd744266:
+      Parent: dda9521f
+      Edge:
+        - '183469e4'
+        - c4a691b5
+      Line: 0:0:0:gray:0
+    c77ceb08:
+      Parent: 25a35432
+      Edge:
+        - 49bfade7
+        - ca8ae2e4
+      Line: 0:0:0:gray:0
+    56c6a02b:
+      Parent: 25a35432
+      Edge:
+        - ee27f8c6
+        - 16eeeb8e
+      Line: 0:0:0:gray:0

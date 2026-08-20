@@ -24,7 +24,7 @@ Parameters:
           en: Create New Instance
         UseExisted:
           zh-cn: 选择已有实例
-          en: Select Existed Instance
+          en: Select Existing Instance
     Default: CreateNew
     AllowedValues:
     - CreateNew
@@ -151,9 +151,6 @@ Resources:
       SecurityGroupName:
         Fn::Sub: ${CommonName}-sg
       SecurityGroupIngress:
-      - PortRange: 22/22
-        SourceCidrIp: 0.0.0.0/0
-        IpProtocol: tcp
       - PortRange: 8088/8088
         SourceCidrIp: 0.0.0.0/0
         IpProtocol: tcp
@@ -296,21 +293,6 @@ Resources:
         - UseExistedInstance
         - Ref: EcsInstanceId
         - Ref: EcsInstance
-  SecurityGroupIngress_22:
-    Type: ALIYUN::ECS::SecurityGroupIngress
-    Condition: UseExistedInstance
-    Properties:
-      SecurityGroupId:
-        Fn::Jq:
-        - First
-        - .[0].SecurityGroupIds[0]
-        - Fn::GetAtt:
-          - DsEcs
-          - Instances
-      SourceCidrIp: 0.0.0.0/0
-      IpProtocol: tcp
-      NicType: intranet
-      PortRange: 22/22
   SecurityGroupIngress_8088:
     Type: ALIYUN::ECS::SecurityGroupIngress
     Condition: UseExistedInstance
@@ -344,7 +326,7 @@ Resources:
 Outputs:
   EcsLoginAddress:
     Description:
-      en: Ecs login address.
+      en: ECS login address
       zh-cn: ECS登录地址。
     Value:
       Fn::Sub:
@@ -356,7 +338,7 @@ Outputs:
           - Ref: EcsInstance
   Console@Url:
     Description:
-      en: YARN Web Address.
+      en: YARN Web Address
       zh-cn: YARN 访问地址。
     Value:
       Fn::Sub:
@@ -371,7 +353,7 @@ Outputs:
             - Instances
   Hadoop NameNode Web Page:
     Description:
-      en: Hadoop NameNode Web Address.
+      en: Hadoop NameNode Web Address
       zh-cn: Hadoop NameNode 访问页面。
     Value:
       Fn::Sub:
@@ -396,5 +378,162 @@ Metadata:
       - EcsInstanceId
     TemplateTags:
     - acs:document-help:ecs:部署Hadoop环境
+    - acs:public_template:Example:hadoop
     Hidden:
     - CommonName
+  ALIYUN::ROS::Composer:
+    b13d9e0e:
+      Rect:
+        - 689
+        - 569
+        - 157
+        - 145
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+      Label: AlibabaCloud
+    7cd11a5e:
+      Parent: b13d9e0e
+      Rect:
+        - 622
+        - 445
+        - 190
+        - 226
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+      Label: 华东2（上海）
+    29549ba7:
+      Res:
+        - Vpc
+      Parent: 7cd11a5e
+      Rect:
+        - 506
+        - 373
+        - 227
+        - 276
+        - 3
+        - 0
+      Label: 专有网络VPC
+    07afc1e7:
+      Res:
+        - DeployHadoop
+      Parent: 7cd11a5e
+      Rect:
+        - 40
+        - 40
+        - 418
+        - 200
+        - 3
+        - 0
+      Label: 执行云助手命令
+    89582cdb:
+      Res:
+        - SecurityGroupIngress_8088
+      Parent: 7cd11a5e
+      Rect:
+        - 40
+        - 40
+        - 566
+        - 200
+        - 3
+        - 0
+      Label: 安全组入规则
+    c55b7fa2:
+      Res:
+        - SecurityGroupIngress_9870
+      Parent: 7cd11a5e
+      Rect:
+        - 40
+        - 40
+        - 671
+        - 200
+        - 3
+        - 0
+      Label: 安全组入规则
+    9b8690d1:
+      Res:
+        - ZoneId
+      Parent: 29549ba7
+      Rect:
+        - 271
+        - 247
+        - 270
+        - 356
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+      Label: 可用区
+    6ba20b15:
+      Res:
+        - VSwitch
+      Parent: 9b8690d1
+      Rect:
+        - 241
+        - 199
+        - 280
+        - 384
+        - 5
+        - 0
+      Label: 交换机
+    bca14b6f:
+      Res:
+        - SecurityGroup
+      Parent: 29549ba7
+      Rect:
+        - 448
+        - 317
+        - 262
+        - 306
+        - 11
+        - 0
+      Label: 安全组
+    98f368ea:
+      Res:
+        - EcsInstance
+      Parent: 6ba20b15
+      Rect:
+        - 40
+        - 40
+        - 417
+        - 448
+        - 12
+        - 0
+      Layer:
+        - bca14b6f
+      Label: 云服务器实例组
+    20b489c9:
+      Parent: 29549ba7
+      Rect:
+        - 40
+        - 40
+        - 620
+        - 448
+        - 12
+        - 0
+      ResT: DATASOURCE::ECS::Instances
+      Label: ECS_Instances
+    a270fafc:
+      Parent: 7cd11a5e
+      Edge:
+        - 07afc1e7
+        - 98f368ea
+      Line: 0:0:0:gray:0
+    e5590fe1:
+      Parent: 29549ba7
+      Edge:
+        - 20b489c9
+        - 98f368ea
+      Line: 0:0:0:gray:0
+    f5d8b01c:
+      Parent: 7cd11a5e
+      Edge:
+        - 89582cdb
+        - 20b489c9
+      Line: 0:0:0:gray:0
+    7b273642:
+      Parent: 7cd11a5e
+      Edge:
+        - c55b7fa2
+        - 20b489c9
+      Line: 0:0:0:gray:0

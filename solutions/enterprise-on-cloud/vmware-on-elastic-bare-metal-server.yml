@@ -23,7 +23,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: The IP address range of the VPC in the CIDR Block form.
+      en: The IP address range of the VPC in CIDR notation.
       zh-cn: 专有网络IP地址段范围。
     Default: 192.168.0.0/16
     AllowedValues:
@@ -83,15 +83,13 @@ Parameters:
   SecondaryPrivateIpAddressCount:
     Type: Number
     Label:
-      en: The Number of IPv4
+      en: Number of IPv4 Addresses
       zh-cn: IPv4数量
     Description:
-      en: 'The number of private IP addresses assigned to elastic network CARDS, range
-        of values: 1~19.'
+      en: "The number of private IP addresses assigned to elastic network cards, range: 1–19."
       zh-cn: 为弹性网卡分配的私有IP地址数量，取值范围：1~19。
     ConstraintDescription:
-      en: 'The number of private IP addresses assigned to an elastic network card,
-        range of values: 1~19.'
+      en: "The number of private IP addresses assigned to an elastic network card. Range: 1–19."
       zh-cn: 为弹性网卡分配的私有IP地址数量，取值范围：1~19。
     Default: 9
     MinValue: 1
@@ -102,10 +100,7 @@ Parameters:
       en: Instance Specification
       zh-cn: 实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.g5.xlarge</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.g5.xlarge</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.g5.xlarge</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -118,9 +113,7 @@ Parameters:
       en: Image
       zh-cn: 镜像
     Description:
-      en: 'Data center ECS instance Image ID. Default:Windows Sever 2016, <br>see
-        detail: <b><a href=''https://www.alibabacloud.com/help/doc-detail/112977.html''
-        target=''_blank''><font color=''blue''>Find the mirror</font></a></b>'
+      en: "Data Center ECS Instance Image ID. Default: Windows Server 2016.<br>See details: <b><a href='https://www.alibabacloud.com/help/doc-detail/112977.html' target='_blank'><font color='blue'>Find the Image</font></a></b>"
       zh-cn: '数据中心ECS实例镜像ID，默认使用Windows Sever 2016，<br>详情请参考: <a href=''https://help.aliyun.com/document_detail/112977.html''
         target=''_blank''><font color=''blue''><b>公共镜像</b></font></a>'
     Default: win2016_64_dtc
@@ -130,7 +123,7 @@ Parameters:
       en: Public IP
       zh-cn: 公网IP
     Description:
-      en: Whether to allocate public network IP.
+      en: Whether to allocate a public IP address.
       zh-cn: 是否分配公网IP
     Default: true
   WindowsVCenterDiskCategory:
@@ -139,11 +132,7 @@ Parameters:
       en: Disk Type
       zh-cn: 磁盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -158,13 +147,13 @@ Parameters:
   WindowsVCenterSystemDiskSize:
     Type: Number
     Label:
-      en: System Disk Space
+      en: System Disk Size
       zh-cn: 系统盘空间
     Description:
-      en: 'System disk size, range of values: 40-500, units: GB.'
+      en: 'System disk size: 40–500 GB.'
       zh-cn: 系统盘大小, 取值范围：[40, 500], 单位：GB。
     ConstraintDescription:
-      en: 'Value range: 40~500. Unit: GB'
+      en: 'Range: 40–500 GB'
       zh-cn: 取值范围：40~500。单位：GB
     Default: 40
     MinValue: 40
@@ -172,13 +161,13 @@ Parameters:
   WindowsVCenterDataDiskSize:
     Type: Number
     Label:
-      en: Disk Space
+      en: Data Disk Size
       zh-cn: 数据盘空间
     Description:
-      en: 'Disk space size, range of values: 20~32768, units: GB.'
+      en: 'Data disk size: 20–32768 GB.'
       zh-cn: 数据盘空间, 取值范围：20~32768，单位：GB。
     ConstraintDescription:
-      en: 'Value range: 20~32768. Unit: GB'
+      en: 'Value range: 20–32768. Unit: GB'
       zh-cn: 取值范围：20~32768, 单位：GB。
     Default: 20
     MinValue: 20
@@ -186,13 +175,13 @@ Parameters:
   WindowsVCenterInternetMaxBandwidthIn:
     Type: Number
     Label:
-      en: The Peak Bandwidth
+      en: Peak Bandwidth
       zh-cn: 带宽峰值
     Description:
-      en: 'range of values: 1~100, units: MB.'
+      en: 'Value range: 1–100. Units: MB'
       zh-cn: 取值范围：1~100。单位：MB
     ConstraintDescription:
-      en: 'Value range: 1~100. Unit: MB'
+      en: 'Value range: 1–100. Unit: MB'
       zh-cn: 取值范围：1~100。单位：MB
     Default: 10
     MinValue: 1
@@ -211,20 +200,17 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: 'ALIYUN::ECS::Instance::Password'
   InstanceGroupAmount:
     Type: Number
     Label:
       en: Number of Instances
       zh-cn: 实例数量
     Description:
-      en: 'Number of instances, range of values: [1，100].'
+      en: 'Number of instances, range of values: [1,100].'
       zh-cn: 创建的实例数量，范围：1~100。
     ConstraintDescription:
-      en: 'Number of instances, range of values: [1，1000].'
+      en: 'Number of instances, range of values: [1,1000].'
       zh-cn: 创建的ECS数量，范围：1~100。
     Default: 2
     MinValue: 1
@@ -235,7 +221,7 @@ Parameters:
       en: Custom Image ID
       zh-cn: 自定义镜像ID
     Description:
-      en: Customize the ID of VMware mirror esxi-xdragon-date.
+      en: Specify the ID of the VMware ESXi mirror esxi-xdragon-date.
       zh-cn: 自定义VMware镜像esxi-xdragon-date的ID。
   InstanceType:
     Type: String
@@ -243,11 +229,7 @@ Parameters:
       en: Instance Specification
       zh-cn: 实例规格
     Description:
-      en: 'ECS Bare Metal Instance;fill in the specifications that can be used under
-        the VSwitch availability zone;</b></font><br>recommended specifications：<font
-        color=''red''><b>ecs.ebmc5s.24xlarge</b></font><br>note: a few zones do not
-        support recommended specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "ECS Bare Metal Instance;fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>recommended specifications: <font color='red'><b>ecs.ebmc5s.24xlarge</b></font><br>note: a few zones do not support recommended specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 弹性裸金属服务器,填写VSwitch可用区下可使用的规格；<br>推荐规格：<font color='red'><b>ecs.ebmc5s.24xlarge</b></font><br>注：可用区可能不支持推荐规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -260,11 +242,7 @@ Parameters:
       en: Disk Type
       zh-cn: 磁盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -279,13 +257,13 @@ Parameters:
   DiskSize:
     Type: Number
     Label:
-      en: Disk Space
+      en: Data Disk Size
       zh-cn: 数据盘空间
     Description:
-      en: 'Disk space size, range of values: 20~500, units: GB.'
+      en: 'Disk space size, value range: 20–500 GB.'
       zh-cn: 数据盘空间, 取值范围：20~500，单位：GB。
     ConstraintDescription:
-      en: 'Value range: 20~500. Unit: GB'
+      en: 'Value range: 20–500. Unit: GB'
       zh-cn: 取值范围：20~500, 单位：GB。
     Default: 20
     MinValue: 20
@@ -293,13 +271,13 @@ Parameters:
   SystemDiskSize:
     Type: Number
     Label:
-      en: System Disk Space
+      en: System Disk Size
       zh-cn: 系统盘空间
     Description:
-      en: 'System disk size, range of values: 40-500, units: GB.'
+      en: 'System disk size: 40–500 GB.'
       zh-cn: 系统盘大小, 取值范围：[40, 500], 单位：GB。
     ConstraintDescription:
-      en: 'Value range: 40~500. Unit: GB'
+      en: 'Range: 40–500 GB'
       zh-cn: 取值范围：40~500。单位：GB
     Default: 40
     MinValue: 40
@@ -310,19 +288,19 @@ Parameters:
       en: Public IP
       zh-cn: 公网IP
     Description:
-      en: Whether to allocate public network IP.
+      en: Whether to allocate a public IP address.
       zh-cn: 是否分配公网IP
     Default: true
   InternetMaxBandwidthIn:
     Type: Number
     Label:
-      en: The Peak Bandwidth
+      en: Peak Bandwidth
       zh-cn: 带宽峰值
     Description:
-      en: 'Range of values: 1~100.'
+      en: 'Value range: 1–100'
       zh-cn: 取值范围：1~100。
     ConstraintDescription:
-      en: 'Value range: 1~100. Unit: MB'
+      en: 'Value range: 1–100. Unit: MB'
       zh-cn: 取值范围：1~100。单位：MB
     Default: 10
     MinValue: 1
@@ -333,8 +311,7 @@ Parameters:
       en: Image
       zh-cn: 镜像
     Description:
-      en: 'Test connection with ECS instance Image ID,<br>see detail: <b><a href=''https://www.alibabacloud.com/help/doc-detail/112977.html''
-        target=''_blank''><font color=''blue''>Find the mirror</font></a></b>'
+      en: "Test connection with ECS instance image ID.<br>See details: <b><a href='https://www.alibabacloud.com/help/doc-detail/112977.html' target='_blank'><font color='blue'>Find the image</font></a></b>"
       zh-cn: '测试连接用ECS实例镜像ID，<br>详情请参考: <a href=''https://help.aliyun.com/document_detail/112977.html''
         target=''_blank''><font color=''blue''><b>公共镜像</b></font></a>'
     Default: centos_7.6
@@ -344,10 +321,7 @@ Parameters:
       en: Instance Specification
       zh-cn: 实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.g5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.g5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.g5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -360,11 +334,7 @@ Parameters:
       en: Disk Type
       zh-cn: 磁盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -379,13 +349,13 @@ Parameters:
   TestSystemDiskSize:
     Type: Number
     Label:
-      en: System Disk Space
+      en: System Disk Size
       zh-cn: 系统盘空间
     Description:
-      en: 'System disk size, range of values: 40-500, units: GB.'
+      en: 'System disk size: 40–500 GB.'
       zh-cn: 系统盘大小, 取值范围：[40, 500], 单位：GB。
     ConstraintDescription:
-      en: 'Value range: 40~500. Unit: GB'
+      en: 'Range: 40–500 GB'
       zh-cn: 取值范围：40~500。单位：GB
     Default: 40
     MinValue: 40
@@ -396,7 +366,7 @@ Parameters:
       en: Public IP
       zh-cn: 公网IP
     Description:
-      en: Whether to allocate public network IP.
+      en: Whether to allocate a public IP address.
       zh-cn: 是否分配公网IP
     Default: true
   SystemDiskCategory:
@@ -405,11 +375,7 @@ Parameters:
       en: Disk Type
       zh-cn: 磁盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -1251,6 +1217,7 @@ Metadata:
           zh-cn: 'ECS: 测试连接实例'
     TemplateTags:
     - acs:solution:AnyStack on阿里云:VMware on弹性裸金属
+    - acs:public_template:Solution:vmware-on-elastic-bare-metal-server
   ALIYUN::ROS::Designer:
     0148eb06-afae-421a-9b1e-9cae7dd1aca7:
       source:

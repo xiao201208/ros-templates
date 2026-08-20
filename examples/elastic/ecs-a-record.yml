@@ -10,7 +10,7 @@ Parameters:
       en: Top-level Domain Name
       zh-cn: 顶级域名
     Description:
-      en: Top-level domain, default, do not resolve the domain name, such as “test.com”
+      en: Top-level domain, default, do not resolve the domain name, such as "test.com"
       zh-cn: 顶级域名，默认值default时不做域名解析, 如“test.com”
   DomainNamePre:
     Type: String
@@ -62,10 +62,7 @@ Parameters:
       en: Instance Type
       zh-cn: 实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>recommended specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support recommended specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>recommended specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support recommended specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>推荐规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持推荐规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -92,6 +89,7 @@ Parameters:
     Default: 20
   EcsPassword:
     Type: String
+    NoEcho: true
     Label:
       en: Instance Password
       zh-cn: 实例密码
@@ -104,10 +102,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: 'ALIYUN::ECS::Instance::Password'
 Resources:
   EcsVpc:
     Type: ALIYUN::ECS::VPC
@@ -135,11 +130,6 @@ Resources:
       - IpProtocol: tcp
         NicType: internet
         PortRange: 3389/3389
-        Priority: 1
-        SourceCidrIp: 0.0.0.0/0
-      - IpProtocol: tcp
-        NicType: internet
-        PortRange: 22/22
         Priority: 1
         SourceCidrIp: 0.0.0.0/0
       - IpProtocol: tcp
@@ -271,61 +261,71 @@ Metadata:
         default: ECS
     TemplateTags:
     - acs:example:网络:创建绑定A记录域名的ECS
-  ALIYUN::ROS::Designer:
-    02591ad1-fcc3-4921-933c-3a86b72d8cb6:
-      position:
-        x: 409
-        y: 165
-      size:
-        height: 60
-        width: 60
-      z: 1
-    06d6c3f2-9f00-4dcb-9ee5-e8fea5ce83bb:
-      source:
-        id: 0c2840a1-eabc-4d6f-8839-9b02dacb75e4
-      target:
-        id: 60fdde9d-fa14-461c-a5ae-2d1f35aefa00
-      z: 1
-    0c2840a1-eabc-4d6f-8839-9b02dacb75e4:
-      position:
-        x: 89
-        y: 165
-      size:
-        height: 60
-        width: 60
-      z: 0
-    1cdd27e7-749b-4049-b629-fab7f28a7ac0:
-      embeds:
-      - 22b93555-10ac-4401-8000-d08e5086c446
-      - 02591ad1-fcc3-4921-933c-3a86b72d8cb6
-      position:
-        x: 191
-        y: 50
-      size:
-        height: 288
-        width: 317.0537109375
-      z: 0
-    22b93555-10ac-4401-8000-d08e5086c446:
-      embeds:
-      - 60fdde9d-fa14-461c-a5ae-2d1f35aefa00
-      position:
-        x: 225
-        y: 125
-      size:
-        height: 140
-        width: 120
-      z: 1
-    3635b918-90dc-41b7-805b-3525adde7ead:
-      source:
-        id: 60fdde9d-fa14-461c-a5ae-2d1f35aefa00
-      target:
-        id: 02591ad1-fcc3-4921-933c-3a86b72d8cb6
-      z: 1
-    60fdde9d-fa14-461c-a5ae-2d1f35aefa00:
-      position:
-        x: 264
-        y: 165
-      size:
-        height: 60
-        width: 60
-      z: 2
+    - acs:public_template:Example:ecs-a-record
+  ALIYUN::ROS::Composer:
+    '67269199':
+      Res:
+        - Server
+      Parent: a6351ad3
+      Rect:
+        - 40
+        - 40
+        - 253
+        - 330
+        - 11
+        - 0
+      Layer:
+        - 87bae889
+    f3516d32:
+      Rect:
+        - 520
+        - 410
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    a466bda2:
+      Parent: f3516d32
+      Rect:
+        - 480
+        - 340
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    a81bc954:
+      Res:
+        - EcsVpc
+      Parent: a466bda2
+      Rect:
+        - 440
+        - 270
+        - 80
+        - 200
+        - 3
+        - 0
+    a6351ad3:
+      Res:
+        - EcsVSwitch
+      Parent: a81bc954
+      Rect:
+        - 400
+        - 200
+        - 100
+        - 250
+        - 4
+        - 0
+    87bae889:
+      Res:
+        - EcsSecurityGroup
+      Parent: a81bc954
+      Rect:
+        - 307
+        - 124
+        - 120
+        - 300
+        - 10
+        - 0
+

@@ -1,9 +1,7 @@
 ROSTemplateFormatVersion: '2015-09-01'
 Description:
   zh-cn: 创建VPC环境下的Redis实例，含参数配置：区域ID、实例规格、名称、数据淘汰策略、密码及引擎版本。
-  en: 'Creating a Redis instance within a VPC environment, with configuration parameters
-    including: Region ID, instance specification, name, data eviction policy, password,
-    and engine version.'
+  en: "Creating a Redis instance within a VPC environment, with configuration parameters including: Region ID, instance specification, name, data eviction policy, password, and engine version."
 Parameters:
   ZoneId:
     Type: String
@@ -41,10 +39,7 @@ Parameters:
       en: Eviction Policy
       zh-cn: 数据逐出策略
     Description:
-      en: 'Cache data eviction strategy: volatile-lru(Most recently used expired data),
-        volatile-ttl(Being expiring data), volatile-random(Any expired data), allkeys-lru（Least
-        recently used data), allkeys-random(Arbitrarily select data)、no-enviction(Do
-        not delete any data)'
+      en: "Cache data eviction strategy: volatile-lru(Most recently used expired data), volatile-ttl(Being expiring data), volatile-random(Any expired data), allkeys-lru(Least recently used data), allkeys-random(Arbitrarily select data)、no-enviction(Do not delete any data)"
       zh-cn: 缓存数据逐出策略：volatile lru（最近使用的过期数据）、volatile ttl（正在过期数据）、volatile random（任何过期数据）、allkeys
         lru（最近使用的最少数据）、allkeys random（任意选择数据）、no enviction（不要删除任何数据）
     Default: noeviction
@@ -61,12 +56,10 @@ Parameters:
       en: Instance Password
       zh-cn: 实例密码
     Description:
-      en: 'Length 8-32 characters, can contain size letters, Numbers and special symbols,
-        including:! @ # $ % ^ & * ( ) _ + - ='
+      en: "8 to 32 characters, must include uppercase letters, lowercase letters, numbers, and special symbols such as: ! @ # $ % ^ & * ( ) _ + - ="
       zh-cn: 长度8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*()_+-=）
     ConstraintDescription:
-      en: '8-32 characters, can contain size letters, Numbers and special symbols,
-        including:! @ # $ % ^ & * ( ) _ + - ='
+      en: "8 to 32 characters, must include uppercase letters, lowercase letters, numbers, and special symbols such as: ! @ # $ % ^ & * ( ) _ + - ="
       zh-cn: 8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*()_+-=）
     MinLength: '8'
     MaxLength: '32'
@@ -81,9 +74,6 @@ Resources:
     Type: ALIYUN::ECS::VPC
     Properties:
       CidrBlock: 192.168.0.0/16
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 47aaecc4-284b-4c8b-a95b-658a02e703d7
   EcsVSwitch:
     Type: ALIYUN::ECS::VSwitch
     Properties:
@@ -93,9 +83,6 @@ Resources:
         Ref: EcsVpc
       CidrBlock: 192.168.10.0/24
     DependsOn: EcsVpc
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 310a29ec-fec6-46b6-a91c-d4b17f60ec39
   RedisInstance:
     Type: ALIYUN::REDIS::Instance
     Properties:
@@ -116,9 +103,6 @@ Resources:
       Password:
         Ref: Password
     DependsOn: EcsVSwitch
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: b6a58ec1-4f18-400c-ba63-50402f945e8d
 Outputs:
   InstanceId:
     Value:
@@ -139,32 +123,57 @@ Metadata:
         default: REDIS
     TemplateTags:
     - acs:example:数据库:创建Redis实例
-  ALIYUN::ROS::Designer:
-    310a29ec-fec6-46b6-a91c-d4b17f60ec39:
-      embeds:
-      - b6a58ec1-4f18-400c-ba63-50402f945e8d
-      position:
-        x: 263
-        y: 75
-      size:
-        height: 140
-        width: 120
-      z: 1
-    47aaecc4-284b-4c8b-a95b-658a02e703d7:
-      embeds:
-      - 310a29ec-fec6-46b6-a91c-d4b17f60ec39
-      position:
-        x: 193
-        y: 13
-      size:
-        height: 258
-        width: 265
-      z: 0
-    b6a58ec1-4f18-400c-ba63-50402f945e8d:
-      position:
-        x: 294
-        y: 123
-      size:
-        height: 60
-        width: 60
-      z: 2
+    - acs:public_template:Example:redis-instance
+  ALIYUN::ROS::Composer:
+    bbcbfc10:
+      Rect:
+        - 520
+        - 410
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    aeb71862:
+      Parent: bbcbfc10
+      Rect:
+        - 480
+        - 340
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    2ef9aff8:
+      Res:
+        - EcsVpc
+      Parent: aeb71862
+      Rect:
+        - 440
+        - 270
+        - 80
+        - 200
+        - 3
+        - 0
+    552d9098:
+      Res:
+        - EcsVSwitch
+      Parent: 2ef9aff8
+      Rect:
+        - 400
+        - 200
+        - 100
+        - 250
+        - 4
+        - 0
+    8897353a:
+      Res:
+        - RedisInstance
+      Parent: 552d9098
+      Rect:
+        - 40
+        - 40
+        - 280
+        - 330
+        - 5
+        - 0

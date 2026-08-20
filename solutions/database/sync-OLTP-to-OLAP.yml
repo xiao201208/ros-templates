@@ -3,18 +3,25 @@ Parameters:
   RdsAccountName:
     Type: String
     Label:
-      zh-cn: 用户名称
-      en: Account Name
-    Description:
-      zh-cn: RDS MySQL管理员用户名称
-      en: RDS Account Name
+      zh-cn: RDS MySQL 用户名称
+      en: RDS MySQL Account Name
     Default: db_user
+    Description:
+      zh-cn: '由小写字母、大写字母、数字、下划线（_）组成，以字母开头，以字母或数字结尾，最多32个字符。'
+      en: 'Composed of lowercase letters, uppercase letters, digits, and underscores (_), starting with a letter and ending with a letter or digit, with a maximum length of 32 characters.'
   RdsAccountPassword:
     Type: String
     NoEcho: true
     Label:
-      zh-cn: RDS MySQL管理员用户密码
+      zh-cn: RDS MySQL 用户密码
       en: RDS DB Account Password
+    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
+    MinLength: 8
+    MaxLength: 32
+    AssociationProperty: ALIYUN::RDS::Instance::AccountPassword
+    ConstraintDescription:
+      zh-cn: '长度为8~32个字符。由大写英文字母、小写英文字母、数字、特殊字符中的任意三种组成。支持的特殊字符如下：!@#$&amp;%^*()_+-= 。'
+      en: 'The length is 8 ~ 32 characters. It is composed of uppercase English letters, lowercase English letters, numbers and special characters. The special characters supported are as follows: !@#$& amp;%^* ()_+-=  .'
     Description:
       zh-cn: |-
         长度为8~32个字符。由大写英文字母、小写英文字母、数字、特殊字符中的任意三种组成。支持的特殊字符如下：
@@ -25,18 +32,24 @@ Parameters:
   AdbAccountName:
     Type: String
     Label:
-      zh-cn: 用户名称
-      en: Account Name
-    Description:
-      zh-cn: AnalyticDB MySQL管理员用户名称
-      en: AnalyticDB Account Name
+      zh-cn: AnalyticDB MySQL 用户名称
+      en: AnalyticDB MySQL Account Name
     Default: adb_admin
+    Description:
+      zh-cn: '以小写字母开头，小写字母或数字结尾，可包含小写字母、数字以及下划线（_），长度为2到64个字符。'
+      en: 'Starting with a lowercase letter and ending with a lowercase letter or digit, may contain lowercase letters, digits, and underscores (_), with a length of 2 to 64 characters.'
   AdbAccountPassword:
     Type: String
     NoEcho: true
     Label:
-      zh-cn: AnalyticDB MySQL用户密码
+      zh-cn: AnalyticDB MySQL 用户密码
       en: AnalyticDB MySQL DB Account Password
+    MinLength: 8
+    MaxLength: 32
+    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
+    ConstraintDescription:
+      zh-cn: '长度为8~32个字符。由大写英文字母、小写英文字母、数字、特殊字符中的任意三种组成。支持的特殊字符如下：!@#$&amp;%^*()_+-= 。'
+      en: 'The length is 8 ~ 32 characters. It is composed of uppercase English letters, lowercase English letters, numbers and special characters. The special characters supported are as follows: !@#$& amp;%^* ()_+-=  .'
     Description:
       zh-cn: |-
         长度为8~32个字符。由大写英文字母、小写英文字母、数字、特殊字符中的任意三种组成。支持的特殊字符如下：
@@ -68,6 +81,12 @@ Parameters:
       Category: HighAvailability
       InstanceChargeType: Postpaid
       DBInstanceStorageType: cloud_essd
+  AdbInteractiveResourceGroupName:
+    Type: String
+    Label:
+      zh-cn: AnalyticDB Interactive 资源组名称
+      en: AnalyticDB Interactive ResourceGroup Name
+    Default: xihe_mpp
 Description:
   zh-cn: 本模板使用DTS实现一键数据同步，灵活配置云数据库 RDS MySQL版实例与云原生数据仓库 AnalyticDB MySQL 版集群之间的数据表实时同步。
   en: This template uses DTS to achieve one-click data synchronization, allowing for flexible configuration of real-time data table synchronization between cloud database RDS MySQL instances and cloud-native data warehouse AnalyticDB MySQL clusters.
@@ -104,6 +123,7 @@ Resources:
       Engine: MySQL
       EngineVersion: "8.0"
       SecurityIPList: 192.168.0.0/16
+      ReleasedKeepPolicy: None
   RdsAccount:
     Type: ALIYUN::RDS::Account
     Properties:
@@ -130,10 +150,15 @@ Resources:
       ProductForm: IntegrationForm
       PayType: Postpaid
       DBClusterVersion: "5.0"
-      ComputeResource: 8ACU
-      StorageResource: 8ACU
+  WaitAlbReady:
+    Type: 'ALIYUN::ROS::Sleep'
+    DependsOn: AnalyticDB
+    Properties:
+      CreateDuration: 120
+      DeleteDuration: 120
   AdbAccount:
     Type: ALIYUN::ADB::Account
+    DependsOn: WaitAlbReady
     Properties:
       DBClusterId:
         Ref: AnalyticDB
@@ -146,69 +171,100 @@ Resources:
     Type: ALIYUN::ROS::AutoEnableService
     Properties:
       ServiceName: PrivateLink
+  ADBLakeResourceGroup:
+    Type: ALIYUN::ADBLake::ResourceGroup
+    Properties:
+      GroupName:
+        Ref: AdbInteractiveResourceGroupName
+      GroupType: Interactive
+      MinClusterCount: 1
+      MaxClusterCount: 2
+      Engine: AnalyticDB
+      MinComputeResource: 16ACU
+      ClusterSizeResource: 16ACU
+      DBClusterId:
+        Ref: AnalyticDB
+    DependsOn: AdbAccount
+  ADBLakeResourceGroupAccountBinding:
+    Type: ALIYUN::ADBLake::ResourceGroupAccountBinding
+    Properties:
+      DBClusterId:
+        Ref: AnalyticDB
+      AccountName:
+        Ref: AdbAccountName
+      GroupName:
+        Ref: ADBLakeResourceGroup
 Metadata:
   ALIYUN::ROS::Interface:
     ParameterGroups:
     - Parameters:
         - ZoneId
+      Label:
+        default:
+          en: Network Configuration
+          zh-cn: 网络基础配置
+    - Parameters:
         - DBInstanceClass
         - RdsAccountName
         - RdsAccountPassword
       Label:
         default:
-          en: RDS Configuration
-          zh-cn: RDS配置
+          en: RDS MySQL Configuration
+          zh-cn: RDS MySQL 配置
     - Parameters:
         - AdbAccountName
         - AdbAccountPassword
+        - AdbInteractiveResourceGroupName
       Label:
         default:
-          en: AnalyticDB Configuration
-          zh-cn: AnalyticDB配置
+          en: AnalyticDB MySQL Configuration
+          zh-cn: AnalyticDB MySQL 配置
     Hidden:
       - CommonName
     TemplateTags:
-    - acs:technical-solution:db:OLTP数据库与OLAP数据库实现数据同步
+    - acs:technical-solution:db:无缝集成 MySQL，解锁秒级 OLAP 分析性能极限
+    Outputs:
+      - RDS MySQL的用户名称
+      - RDS MySQL的用户密码
+      - AnalyticDB MySQL的用户名称
+      - AnalyticDB MySQL的用户密码
 Outputs:
-  MySQL_USER:
+  RDS MySQL的用户名称:
     Description:
+      zh-cn: RDS MySQL的用户名称。
+      en: Rds MySQL user name.
+    Label:
       zh-cn: RDS MySQL的用户名称。
       en: Rds MySQL user name.
     Value:
       Ref: RdsAccountName
-  MySQL_PW:
+  RDS MySQL的用户密码:
     Description:
+      zh-cn: RDS MySQL的用户密码。
+      en: Rds MySQL user password.
+    Label:
       zh-cn: RDS MySQL的用户密码。
       en: Rds MySQL user password.
     Value:
       Ref: RdsAccountPassword
     NoEcho: true
-  MySQL_HOST:
+  AnalyticDB MySQL的用户名称:
     Description:
-      zh-cn: RDS内网连接地址。
-      en: Rds Inner Connection address.
-    Value:
-      Fn::GetAtt:
-        - RDS
-        - InnerConnectionString
-  ADB_USER:
-    Description:
+      zh-cn: AnalyticDB MySQL的用户名称。
+      en: AnalyticDB MySQL user name.
+    Label:
       zh-cn: AnalyticDB MySQL的用户名称。
       en: AnalyticDB MySQL user name.
     Value:
       Ref: AdbAccountName
-  ADB_PW:
+  AnalyticDB MySQL的用户密码:
     Description:
+      zh-cn: AnalyticDB MySQL的用户密码。
+      en: AnalyticDB MySQL user password.
+    Label:
       zh-cn: AnalyticDB MySQL的用户密码。
       en: AnalyticDB MySQL user password.
     Value:
       Ref: AdbAccountPassword
     NoEcho: true
-  ADB_HOST:
-    Description:
-      zh-cn: AnalyticDB MySQL内网连接地址。
-      en: AnalyticDB MySQL Inner Connection address.
-    Value:
-      Fn::GetAtt:
-        - AnalyticDB
-        - ConnectionString
+

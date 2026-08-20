@@ -1,7 +1,7 @@
 ROSTemplateFormatVersion: '2015-09-01'
 Description:
   zh-cn: 一键部署VPC环境下的SNAT网关，包括ECS实例绑定EIP，自定义配置资源，如带宽、实例规格等。
-  en: One-click deployment of SNAT gateway in VPC environment, including binding ECS ​​instances to EIPs and custom configuration of resources, such as bandwidth, instance specifications, etc.
+  en: One-click deployment of SNAT gateway in VPC environment, including binding ECS instances to EIPs and custom configuration of resources such as bandwidth and instance specifications.
 Parameters:
   VpcCidrBlock:
     Type: String
@@ -9,9 +9,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>you can use
-        the following IP address ranges and their subnets: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in the CIDR Block form; <br>you can use the following IP address ranges and their subnets: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: VPC的IP地址范围；<br>您可以使用以下IP地址范围及其子网：<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0/16]</font>
     Default: 192.168.0.0/16
@@ -21,7 +19,7 @@ Parameters:
       en: VSwitch CIDR Block
       zh-cn: 交换机子网网段
     Description:
-      en: CIDR Block of created VSwitch,It must belong to itself VPC CIDR Block.
+      en: CIDR Block of created VSwitch, which must belong to the VPC CIDR Block.
       zh-cn: 创建的虚拟交换机的子网，它必须属于自己的VPC网段内
     Default: 192.168.10.0/24
   EIPBandwidth:
@@ -86,11 +84,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -119,8 +113,7 @@ Parameters:
       en: Tag Value
       zh-cn: 标签值
     Description:
-      en: 'ECS label value, 0 to 128 characters long, cannot begin with aliyun and
-        acs: cannot contain http://or https://?'
+      en: "ECS tag value, 0 to 128 characters long, cannot start with 'aliyun' or 'acs:', and cannot contain 'http://' or 'https://'."
       zh-cn: ECS 标签值, 长度为0~128个字符，不能以aliyun和acs:开头，不能包含http://或https://
     Default: DefaultTag
   SecurityGroupName:
@@ -139,7 +132,7 @@ Parameters:
       en: EIP Charge Type
       zh-cn: 弹性公网地址的收费类型
     Description:
-      en: The charge type of EIP, PayByBandwidth；PayByTraffic.
+      en: The charge type of EIP, PayByBandwidth;PayByTraffic.
       zh-cn: 弹性公网地址的收费类型，PayByBandwidth：按带宽付费，PayByTraffic：按流量付费
     Default: PayByTraffic
     AllowedValues:
@@ -147,6 +140,7 @@ Parameters:
     - PayByTraffic
   ECSPassword:
     Type: String
+    NoEcho: true
     Label:
       en: Instance Password
       zh-cn: 实例密码
@@ -159,19 +153,13 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: 'ALIYUN::ECS::Instance::Password'
 Resources:
   EcsVpc:
     Type: ALIYUN::ECS::VPC
     Properties:
       CidrBlock:
         Ref: VpcCidrBlock
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: c9cca9ef-2376-4b3d-9514-a39503b7b52c
   EcsSecurityGroup:
     Type: ALIYUN::ECS::SecurityGroup
     Properties:
@@ -198,9 +186,6 @@ Resources:
         SourceCidrIp: 0.0.0.0/0
       SecurityGroupName:
         Ref: SecurityGroupName
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 5bad1226-6720-4d06-9db7-1bbd922624c9
   EcsVSwitch:
     Type: ALIYUN::ECS::VSwitch
     Properties:
@@ -212,9 +197,6 @@ Resources:
         - VpcId
       CidrBlock:
         Ref: VSwitchCidrBlock
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 94c7596f-72e7-494f-96d8-49f93f4602f6
   ECSSnatGateWay:
     Type: ALIYUN::ECS::InstanceGroup
     Properties:
@@ -284,9 +266,6 @@ Resources:
             - 'ros-notify -d ''{"data" : " docker swarm created"}''
 
               '
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 74f1ee6f-2140-41a3-a17d-c03446aa778e
   ElasticIp:
     Type: ALIYUN::VPC::EIP
     Properties:
@@ -294,9 +273,6 @@ Resources:
         Ref: EIPBandwidth
       InternetChargeType:
         Ref: EIPInternetChargeType
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 65e9281e-afbc-4eb8-8a4d-3a3584d1d9b9
   ElasticIpAssociation:
     Type: ALIYUN::VPC::EIPAssociation
     Properties:
@@ -310,15 +286,9 @@ Resources:
         Fn::GetAtt:
         - ElasticIp
         - AllocationId
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: d69db303-8a3e-4dc3-ab89-57cb2eca1cbb
   RosWaitConditionHandle:
     Type: ALIYUN::ROS::WaitConditionHandle
     Properties: {}
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 3c4cdc4a-8e20-420a-a2b7-43358d0c12b5
   RosWaitCondition:
     Type: ALIYUN::ROS::WaitCondition
     Properties:
@@ -327,9 +297,6 @@ Resources:
         Ref: RosWaitConditionHandle
       Timeout: 600
     DependsOn: ECSSnatGateWay
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: b2e91eb3-3dcd-48b6-870a-877d62334a9b
   VRoute:
     Type: ALIYUN::ECS::Route
     Properties:
@@ -348,9 +315,6 @@ Resources:
         Fn::GetAtt:
         - EcsVpc
         - RouteTableId
-    Metadata:
-      ALIYUN::ROS::Designer:
-        id: 5814af9f-a54e-434f-829c-fefde67daa8a
 Outputs:
   ECSSnatGateWay_INNER_IPS:
     Description: Inner IP address of the ECS instance.
@@ -417,111 +381,134 @@ Metadata:
         default: ECS
     TemplateTags:
     - acs:example:网络:创建SNAT网关和EIP的ECS做为SNAT网关
-  ALIYUN::ROS::Designer:
-    20187cba-9de4-4736-95a6-e51f1f4d931a:
-      source:
-        id: 5814af9f-a54e-434f-829c-fefde67daa8a
-      target:
-        id: 74f1ee6f-2140-41a3-a17d-c03446aa778e
-      z: 1
-    3c4cdc4a-8e20-420a-a2b7-43358d0c12b5:
-      position:
-        x: -21
-        y: 157
-      size:
-        height: 60
-        width: 60
-      z: 0
-    5814af9f-a54e-434f-829c-fefde67daa8a:
-      position:
-        x: 215
-        y: 50
-      size:
-        height: 60
-        width: 60
-      z: 0
-    5bad1226-6720-4d06-9db7-1bbd922624c9:
-      position:
-        x: 215
-        y: 359
-      size:
-        height: 60
-        width: 60
-      z: 1
-    65e49a01-b2d1-4bab-aafd-ea4646e713c4:
-      source:
-        id: 74f1ee6f-2140-41a3-a17d-c03446aa778e
-      target:
-        id: 5bad1226-6720-4d06-9db7-1bbd922624c9
-      z: 1
-    65e9281e-afbc-4eb8-8a4d-3a3584d1d9b9:
-      position:
-        x: 634
-        y: 226
-      size:
-        height: 60
-        width: 60
-      z: 0
-    74f1ee6f-2140-41a3-a17d-c03446aa778e:
-      position:
-        x: 215
-        y: 226
-      size:
-        height: 60
-        width: 60
-      z: 2
-    94c7596f-72e7-494f-96d8-49f93f4602f6:
-      embeds:
-      - 74f1ee6f-2140-41a3-a17d-c03446aa778e
-      position:
-        x: 141
-        y: 182
-      size:
-        height: 157
-        width: 215
-      z: 1
-    9da1b444-cc71-4516-b8bc-2ad5fa6052c7:
-      source:
-        id: d69db303-8a3e-4dc3-ab89-57cb2eca1cbb
-      target:
-        id: 65e9281e-afbc-4eb8-8a4d-3a3584d1d9b9
-      z: 1
-    b2e91eb3-3dcd-48b6-870a-877d62334a9b:
-      position:
-        x: -21
-        y: 311
-      size:
-        height: 60
-        width: 60
-      z: 0
-    c9cca9ef-2376-4b3d-9514-a39503b7b52c:
-      embeds:
-      - 94c7596f-72e7-494f-96d8-49f93f4602f6
-      - 5bad1226-6720-4d06-9db7-1bbd922624c9
-      position:
-        x: 121
-        y: 127
-      size:
-        height: 328
-        width: 281
-      z: 0
-    d634c86d-8694-4321-9f2d-b04ed521c1f1:
-      source:
-        id: d69db303-8a3e-4dc3-ab89-57cb2eca1cbb
-      target:
-        id: 74f1ee6f-2140-41a3-a17d-c03446aa778e
-      z: 1
-    d69db303-8a3e-4dc3-ab89-57cb2eca1cbb:
-      position:
-        x: 438
-        y: 226
-      size:
-        height: 60
-        width: 60
-      z: 0
-    f24a3f86-2c9c-48fb-97ab-b93fe1e9f669:
-      source:
-        id: b2e91eb3-3dcd-48b6-870a-877d62334a9b
-      target:
-        id: 3c4cdc4a-8e20-420a-a2b7-43358d0c12b5
-      z: 1
+    - acs:public_template:Example:vpc-snat
+  ALIYUN::ROS::Composer:
+    133cbd1c:
+      Rect:
+        - 640
+        - 478
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    d07b05c0:
+      Parent: 133cbd1c
+      Rect:
+        - 600
+        - 400
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    13c00e3f:
+      Res:
+        - EcsVpc
+      Parent: d07b05c0
+      Rect:
+        - 500
+        - 270
+        - 80
+        - 200
+        - 3
+        - 0
+    0c7dce68:
+      Res:
+        - ElasticIp
+      Parent: d07b05c0
+      Rect:
+        - 40
+        - 40
+        - 599
+        - 330
+        - 3
+        - 0
+    6d221153:
+      Res:
+        - RosWaitConditionHandle
+      Parent: d07b05c0
+      Rect:
+        - 40
+        - 40
+        - 260
+        - 490
+        - 3
+        - 0
+      Hidden: true
+    3bb5d8ee:
+      Res:
+        - RosWaitCondition
+      Parent: d07b05c0
+      Rect:
+        - 40
+        - 40
+        - 410
+        - 490
+        - 3
+        - 0
+      Hidden: true
+    a4855091:
+      Res:
+        - EcsVSwitch
+      Parent: 13c00e3f
+      Rect:
+        - 400
+        - 200
+        - 160
+        - 250
+        - 4
+        - 0
+    a15eb6e4:
+      Res:
+        - VRoute
+      Parent: 13c00e3f
+      Rect:
+        - 40
+        - 40
+        - 103
+        - 330
+        - 4
+        - 0
+    b496277e:
+      Res:
+        - EcsSecurityGroup
+      Parent: 13c00e3f
+      Rect:
+        - 262
+        - 124
+        - 232
+        - 294
+        - 10
+        - 0
+    c91a46d6:
+      Res:
+        - ECSSnatGateWay
+      Parent: a4855091
+      Rect:
+        - 40
+        - 40
+        - 340
+        - 330
+        - 11
+        - 0
+      Layer:
+        - b496277e
+    1e224ed3:
+      Parent: d07b05c0
+      Edge:
+        - 0c7dce68
+        - c91a46d6
+      Line: 0:0:0:gray:0
+    857a9abd:
+      Parent: d07b05c0
+      Edge:
+        - 3bb5d8ee
+        - 6d221153
+      Line: 0:0:0:gray:0
+    85ce18de:
+      Parent: 13c00e3f
+      Edge:
+        - a15eb6e4
+        - c91a46d6
+      Line: 0:0:0:gray:0

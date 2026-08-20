@@ -12,7 +12,7 @@ Parameters:
       en: VPC ID
       zh-cn: 虚拟专有网络ID
     Description:
-      en: The VSwitch needs to join the VPC ID
+      en: The VSwitch needs to belong to the VPC ID.
       zh-cn: 交换机需要加入的虚拟专有网络ID
     AssociationProperty: ALIYUN::ECS::VPC::VPCId
     MinLength: '5'
@@ -22,7 +22,7 @@ Parameters:
       en: SLB ID
       zh-cn: 负载均衡ID
     Description:
-      en: Need to add ECS for load balancing ID for back-end servers
+      en: Add ECS instances for load balancing backend server IDs
       zh-cn: ECS需要添加为后端服务器的负载均衡ID
     MinLength: '5'
   InstanceId:
@@ -40,13 +40,13 @@ Parameters:
       en: Security Group ID
       zh-cn: 安全组ID
     Description:
-      en: The ECS needs to join the security group ID
+      en: The ECS needs to join the security group with this ID
       zh-cn: ECS需要加入的安全组ID
     MinLength: '5'
   VSw2Zone:
     Type: String
     Label:
-      en: VSwitch 2 Available Zone
+      en: VSwitch 2 Availability Zone
       zh-cn: 交换机2可用区
     Description:
       en: Availability Zone ID, <font color='red'><b>need to maintain a different
@@ -72,19 +72,16 @@ Parameters:
       en: Custom Mirror Name Prefix
       zh-cn: 自定义镜像名称前缀
     Description:
-      en: 'Custom image name prefix, final: Prefix +StackId.'
+      en: 'Custom image name prefix; final name: Prefix + StackId'
       zh-cn: 自定义镜像名称前缀，最终为：前缀+StackId。
     Default: WPImage
   Ecs2GroupInstanceType:
     Type: String
     Label:
-      en: Specifications
+      en: Instance Specifications
       zh-cn: 规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -97,11 +94,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -127,18 +120,14 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: '8'
-    MaxLength: '30'
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
   Ecs2GroupName:
     Type: String
     Label:
-      en: Instance/Host Name
+      en: Instance or Host Name
       zh-cn: 实例名/主机名
     Description:
-      en: 'Instance name/Host name, Default: WP2, display created successfully [wp2-000,
-        wp2-001...]. '
+      en: "Instance or Host Name. Default: WP2. Displayed as created: [wp2-000, wp2-001...]."
       zh-cn: 实例名/主机名，默认：WP2,创建成功显示[WP2-000, WP2-001....]。
     Default: WP2
   Ecs2GroupSystemDiskSize:
@@ -319,3 +308,76 @@ Metadata:
         default: ECS
     TemplateTags:
     - acs:solution:备份&容灾:同地域跨可用区容灾方案2.0-应用业务迁移
+    - acs:public_template:Solution:application-business-migration
+  ALIYUN::ROS::Composer:
+    '18167003':
+      Rect:
+        - 473
+        - 385
+        - 8
+        - 96
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    94db58f2:
+      Parent: '18167003'
+      Rect:
+        - 427
+        - 309
+        - 31
+        - 136
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    '08271368':
+      Res:
+        - CustomImage
+      Parent: 94db58f2
+      Rect:
+        - 40
+        - 40
+        - 64
+        - 283
+        - 3
+        - 0
+    e6fa9d4d:
+      Res:
+        - VpcId
+      Parent: 94db58f2
+      Rect:
+        - 290
+        - 231
+        - 147
+        - 176
+        - 3
+        - 0
+      ResT: ALIYUN::ECS::VPC
+    9884e8ce:
+      Res:
+        - VSw2
+      Parent: e6fa9d4d
+      Rect:
+        - 246
+        - 151
+        - 169
+        - 219
+        - 4
+        - 0
+    40a840bf:
+      Res:
+        - Ecs2Group
+      Parent: 9884e8ce
+      Rect:
+        - 40
+        - 40
+        - 272
+        - 283
+        - 5
+        - 0
+    d442cc21:
+      Parent: 94db58f2
+      Edge:
+        - 40a840bf
+        - '08271368'
+      Line: 0:0:0:gray:0
+

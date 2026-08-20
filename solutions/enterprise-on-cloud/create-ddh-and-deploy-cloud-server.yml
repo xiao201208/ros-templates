@@ -10,9 +10,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>you can use
-        the following IP address ranges: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in the CIDR Block form; <br>you can use the following IP address ranges: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 10.0.0.0/8
@@ -47,10 +45,7 @@ Parameters:
       en: DDH Type
       zh-cn: 规格
     Description:
-      en: 'Please confirm the inventory of this specification under the Availability
-        Zone in the product console，<br>general specifications：<font color=''red''><b>ddh.c5</b></font><br>See
-        Detail: <a href=''https://www.alibabacloud.com/help/zh/doc-detail/68564.htm''
-        target=''_blank''><b><font color=''blue''>Host specifications</font></a></b>'
+      en: "Please confirm the inventory of this specification under the Availability Zone in the product console,<br>general specifications: <font color='red'><b>ddh.c5</b></font><br>See Detail: <a href='https://www.alibabacloud.com/help/zh/doc-detail/68564.htm' target='_blank'><b><font color='blue'>Host specifications</font></a></b>"
       zh-cn: 请在该产品控制台确认此规格在可用区下的库存情况，<br>通用规格：<font color='red'><b>ddh.c5</b></font><br>注：可用区可能不支持通用规格<br>详见：<a
         href='https://help.aliyun.com/document_detail/68564.html' target='_blank'><b><font
         color='blue'>宿主机规格</font></a></b>
@@ -73,12 +68,10 @@ Parameters:
       en: ECS Amount
       zh-cn: 实例数量
     Description:
-      en: 'The number of servers created in combination with the specifications of
-        the host machine, the value range: 1 to 100.'
+      en: "The number of servers created in combination with the host machine's specifications. Value range: 1 to 100."
       zh-cn: 结合宿主机的规格创建服务器的数量，取值范围：1~100。
     ConstraintDescription:
-      en: 'The number of servers created in combination with the specifications of
-        the host machine, the value range: 1 to 100.'
+      en: "The number of servers created in combination with the host machine's specifications. Value range: 1 to 100."
       zh-cn: 结合宿主机的规格创建服务器的数量，取值范围：1~100。
     Default: 1
     MinValue: 1
@@ -100,10 +93,7 @@ Parameters:
       en: Instance Type
       zh-cn: 实例规格
     Description:
-      en: 'Please confirm that an instance of this specification is appropriate under
-        the host;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Please confirm that an instance of this specification is appropriate under the host;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 请确认在该宿主机下适合创建该规格的实例；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -116,11 +106,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -155,10 +141,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
 Resources:
   EcsDedicatedHost:
     Type: ALIYUN::ECS::DedicatedHost
@@ -209,11 +192,6 @@ Resources:
       - IpProtocol: tcp
         NicType: internet
         PortRange: 443/443
-        Priority: 1
-        SourceCidrIp: 0.0.0.0/0
-      - IpProtocol: tcp
-        NicType: internet
-        PortRange: 22/22
         Priority: 1
         SourceCidrIp: 0.0.0.0/0
       SecurityGroupName:
@@ -311,61 +289,88 @@ Metadata:
         default: ECS
     TemplateTags:
     - acs:solution:业务上云:VMware迁移DDH-创建DDH并部署云服务器
-  ALIYUN::ROS::Designer:
-    0dede038-6d47-4788-bdc1-35410496519d:
-      source:
-        id: b79a99b8-b531-476d-ae04-d95986922e07
-      target:
-        id: cdc03921-a7e4-47de-a64b-97af864a3ea0
-      z: 1
-    1a5f1fe2-2f59-4fb2-b31c-cd4f890e4f4b:
-      embeds:
-      - b79a99b8-b531-476d-ae04-d95986922e07
-      position:
-        x: 279
-        y: 72
-      size:
-        height: 162
-        width: 124
-      z: 1
-    3cd0aced-8ece-4126-a94f-523a2e70aea9:
-      position:
-        x: 314
-        y: 277
-      size:
-        height: 60
-        width: 60
-      z: 1
-    4592e1d7-0ede-4611-9d66-7cfd781953f7:
-      embeds:
-      - 1a5f1fe2-2f59-4fb2-b31c-cd4f890e4f4b
-      - 3cd0aced-8ece-4126-a94f-523a2e70aea9
-      position:
-        x: 193
-        y: 51
-      size:
-        height: 323
-        width: 297.0537109375
-      z: 0
-    b79a99b8-b531-476d-ae04-d95986922e07:
-      position:
-        x: 314
-        y: 112
-      size:
-        height: 60
-        width: 60
-      z: 2
-    cdc03921-a7e4-47de-a64b-97af864a3ea0:
-      position:
-        x: 558
-        y: 112
-      size:
-        height: 60
-        width: 60
-      z: 0
-    e07aab87-b3f2-40fb-aaea-212b7b3f0676:
-      source:
-        id: b79a99b8-b531-476d-ae04-d95986922e07
-      target:
-        id: 3cd0aced-8ece-4126-a94f-523a2e70aea9
-      z: 1
+    - acs:public_template:Solution:create-ddh-and-deploy-cloud-server
+  ALIYUN::ROS::Composer:
+    '23766930':
+      Parent: e34cc526
+      Rect:
+        - 521
+        - 409
+        - 79
+        - 73
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    e34cc526:
+      Rect:
+        - 569
+        - 489
+        - 51
+        - 21
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    1ed0a814:
+      Res:
+        - EcsVpc
+      Parent: '23766930'
+      Rect:
+        - 391
+        - 284
+        - 135
+        - 180
+        - 3
+        - 0
+    851c9c63:
+      Res:
+        - EcsDedicatedHost
+      Parent: '23766930'
+      Rect:
+        - 40
+        - 40
+        - 305
+        - 96
+        - 3
+        - 0
+    e0b2c8a9:
+      Res:
+        - EcsVSwitch
+      Parent: 1ed0a814
+      Rect:
+        - 332
+        - 213
+        - 159
+        - 225
+        - 4
+        - 0
+    16c8f32f:
+      Res:
+        - EcsSecurityGroup
+      Parent: 1ed0a814
+      Rect:
+        - 121
+        - 106
+        - 264
+        - 301
+        - 7
+        - 0
+    64188c8a:
+      Res:
+        - EcsInstanceGroup
+      Parent: e0b2c8a9
+      Rect:
+        - 40
+        - 40
+        - 305
+        - 334
+        - 8
+        - 0
+      Layer:
+        - 16c8f32f
+    56cd7897:
+      Parent: '23766930'
+      Edge:
+        - 64188c8a
+        - 851c9c63
+      Line: 0:0:0:gray:0
+

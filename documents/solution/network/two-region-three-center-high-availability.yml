@@ -2,7 +2,7 @@ ROSTemplateFormatVersion: '2015-09-01'
 Transform: Aliyun::Terraform-v1.5
 Description:
   zh-cn: 构建两地三中心的高可用架构，包括两个地域的VPC、ECS、PolarDB集群、ALB负载均衡器以及CEN互联，实现异地多活与数据同步。
-  en: Build a high-availability architecture with three centers in two places, including VPC, ECS, PolarDB cluster, ALB load balancer and CEN interconnection in two regions to achieve multi-activity and data synchronization in different places.
+  en: Build a high-availability architecture with three centers across two regions, including VPC, ECS, PolarDB cluster, ALB load balancer, and CEN interconnection, to achieve multi-active operations and data synchronization across locations.
 Metadata:
   ALIYUN::ROS::Interface:
     ParameterGroups:
@@ -42,6 +42,7 @@ Metadata:
           en: PolarDB Configuration
     TemplateTags:
       - acs:technical-solution:network:两地三中心异地多活网络-tech_solu_42
+      - acs:public_template:Solution:two-region-three-center-high-availability
     ResourcesForParameterConstraints:
       polardb1:
         Type: ALIYUN::POLARDB::DBCluster

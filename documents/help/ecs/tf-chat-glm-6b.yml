@@ -116,4 +116,5 @@ Metadata:
   ALIYUN::ROS::Interface:
     TemplateTags:
     - acs:document-help:ecs:使用AMD CPU实例部署ChatGLM-6B
+    - acs:public_template:Example:tf-chat-glm-6b
 

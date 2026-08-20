@@ -172,9 +172,7 @@ Parameters:
       en: Instance Type
       zh-cn: 实例类型
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>规格详见：<a href='https://help.aliyun.com/document_detail/25378.html'
         target='_blank'><b><font color='blue'>实例规格族</font></a></b>
     AssociationProperty: ALIYUN::ECS::Instance::InstanceType
@@ -225,10 +223,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]'
@@ -251,10 +246,7 @@ Parameters:
       en: Data Disk Type
       zh-cn: 数据盘盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]'
@@ -279,8 +271,7 @@ Parameters:
       en: Retention time of the Snapshot Policy.
       zh-cn: 快照备份策略的保留时间
     Description:
-      en: 'The retention time for automatic snapshots in days. Value range: s1, 65536,
-        -1: Permanently saved..'
+      en: "The retention time for automatic snapshots in days. Value range: 1-65536, -1: Permanently saved."
       zh-cn: 自动快照备份策略的保留时间，单位为天。取值范围：[1, 65536]，-1：永久保存。
     Default: 10
   TimePoint:
@@ -289,10 +280,7 @@ Parameters:
       en: The Point in time at which the Snapshot Policy was created.
       zh-cn: 快照备份策略的创建时间点
     Description:
-      en: 'The creation point in hours of the creation of the automatic snapshot,
-        with a range of values: .0, 23, representing a total of 24 points in time
-        from 00:00 to 23:00. Multiple points in time are available . . . 0, 1, ...
-        23) indicates.'
+      en: "The creation point in hours of the automatic snapshot, with a range of values: 0-23, representing 24 points in time from 00:00 to 23:00. Multiple points in time are available (e.g., 0, 1, ..., 23)."
       zh-cn: 自动快照备份策略的创建时间点，单位为小时，取值范围：[0, 23]，代表 00:00 至 23:00 共 24 个时间点。多个时间点可用
         ["0", "1", … "23"]表示。
     Default:
@@ -303,15 +291,14 @@ Parameters:
       en: The Duplicate Date of the Snapshot Policy.
       zh-cn: 快照备份策略的重复日期
     Description:
-      en: 'The recurring date of the automatic snapshot, in days and the period of
-        the week. Value range: s1, 7, such as 1 for Monday, multiple points in time
-        in a format similar to s1, 2, ... 7 is indicated.'
+      en: "The recurring date of the automatic snapshot, in days and the period of the week. Value range: 1-7, such as 1 for Monday. Multiple dates can be specified in the format 1, 2, ..., 7."
       zh-cn: 自动快照备份策略的重复日期，单位为天，周期为星期。取值范围：[1, 7]，如 1 表示周一，多个时间点用一个格式类似 ["1", "2",
         … "7"] 表示。
     Default:
     - '1'
   Password:
     Type: String
+    NoEcho: true
     Label:
       en: Instance Password
       zh-cn: 实例密码
@@ -324,10 +311,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
 Resources:
   AutoSnapshotPolicy:
     Type: ALIYUN::ECS::AutoSnapshotPolicy
@@ -496,61 +480,102 @@ Metadata:
           zh-cn: ECS 配置（必填）
     TemplateTags:
     - acs:example:弹性计算:批量创建ECS实例(可选已有/新建VPC与按量付费/包年包月模式)
-  ALIYUN::ROS::Designer:
-    37f39842-8c75-49f6-985f-b87e1d19e959:
-      position:
-        x: 110
-        y: -37
-      size:
-        height: 60
-        width: 60
-      z: 1
-    3d97f557-f6c2-475f-bdca-942c45e583b5:
-      position:
-        x: -125
-        y: -37
-      size:
-        height: 60
-        width: 60
-      z: 1
-    7f78105a-849a-452c-be8e-582800fd838c:
-      source:
-        id: 3d97f557-f6c2-475f-bdca-942c45e583b5
-      target:
-        id: 37f39842-8c75-49f6-985f-b87e1d19e959
-      z: 1
-    af7924e8-1d52-4afe-ae95-ba487301da0b:
-      source:
-        id: 3d97f557-f6c2-475f-bdca-942c45e583b5
-      target:
-        id: de0e55c1-4cf9-4647-bbdd-6e1c8deba4cd
-      z: 1
-    cc854ba9-a556-4503-8c21-e52165d2ecde:
-      position:
-        x: -190
-        y: -59
-      size:
-        height: 304
-        width: 429.8799743652344
-      z: 1
-    ccfeb4a0-28d4-4c68-949e-d7d920b5256c:
-      embeds:
-      - de0e55c1-4cf9-4647-bbdd-6e1c8deba4cd
-      - 3d97f557-f6c2-475f-bdca-942c45e583b5
-      - 37f39842-8c75-49f6-985f-b87e1d19e959
-      - cc854ba9-a556-4503-8c21-e52165d2ecde
-      position:
-        x: -265
-        y: -132
-      size:
-        height: 435
-        width: 551.2639770507812
-      z: 0
-    de0e55c1-4cf9-4647-bbdd-6e1c8deba4cd:
-      position:
-        x: -125
-        y: 155
-      size:
-        height: 60
-        width: 60
-      z: 1
+    - acs:public_template:Example:batch-of-ecs-instances
+  ALIYUN::ROS::Composer:
+    6b4491aa:
+      Rect:
+        - 750
+        - 541
+        - -29
+        - 57
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    20c38440:
+      Parent: 6b4491aa
+      Rect:
+        - 683
+        - 482
+        - -9
+        - 100
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    8d90ff24:
+      Res:
+        - AutoSnapshotPolicy
+      Parent: 20c38440
+      Rect:
+        - 40
+        - 40
+        - 289
+        - 141
+        - 3
+        - 0
+    5da2ba64:
+      Res:
+        - VpcId
+      Parent: 20c38440
+      Rect:
+        - 592
+        - 340
+        - 36
+        - 217
+        - 3
+        - 0
+      ResT: ALIYUN::ECS::VPC
+    467b1996:
+      Res:
+        - VSwitchZoneId
+      Parent: 5da2ba64
+      Rect:
+        - 502
+        - 278
+        - 84
+        - 263
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    b2a5bf21:
+      Res:
+        - VSwitchId
+      Parent: 467b1996
+      Rect:
+        - 366
+        - 202
+        - 138
+        - 303
+        - 5
+        - 0
+      ResT: ALIYUN::ECS::VSwitch
+    c88e9ad1:
+      Res:
+        - SecurityGroup
+      Parent: 5da2ba64
+      Rect:
+        - 187
+        - 114
+        - 213
+        - 348
+        - 8
+        - 0
+    81d3c483:
+      Res:
+        - ECSInstances
+      Parent: b2a5bf21
+      Rect:
+        - 40
+        - 40
+        - 289
+        - 382
+        - 9
+        - 0
+      Layer:
+        - c88e9ad1
+    e9e2cf78:
+      Parent: 20c38440
+      Edge:
+        - 81d3c483
+        - 8d90ff24
+      Line: 0:0:0:gray:0
+

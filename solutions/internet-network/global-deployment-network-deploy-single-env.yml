@@ -1,7 +1,7 @@
 ROSTemplateFormatVersion: '2015-09-01'
 Description:
   zh-cn: 搭建单地域在线教育环境，含VPC、ECS、SLB、RDS及Nat Gateway，支持自定义资源配置。
-  en: Build a single-region online education environment, including VPC, ECS, SLB, RDS and Nat Gateway, and support customized resource configuration.
+  en: Build a single-region online education environment including VPC, ECS, SLB, RDS, and NAT Gateway, with support for customized resource configuration.
 Conditions:
   IsCreateManageEnv:
     Fn::Equals:
@@ -11,12 +11,10 @@ Parameters:
   CreateManageEnv:
     Type: Boolean
     Label:
-      en: Create Management Server And Nat Gateway
+      en: Create Management Server and NAT Gateway
       zh-cn: 是否创建管理服务器及Nat网关
     Description:
-      en: '<font color=''blue''><b>Refer to the template architecture diagram for
-        the environment resources</b></font>，<br>note: check: create; Unchecked: not
-        created.'
+      en: "<font color='blue'><b>Refer to the template architecture diagram for the environment resources</b></font>,<br>note: check: create; Unchecked: not created."
       zh-cn: '<font color=''blue''><b>环境资源情况请参考模板架构图</b></font>，<br>注：勾选: 创建；未勾选:
         不创建。'
     Default: false
@@ -26,9 +24,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>You can use
-        the following IP address ranges and their subnets: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in CIDR block format.<br>Use one of the following IP address ranges and their subnets:<br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段或其子网:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 10.0.0.0/16
@@ -81,7 +77,7 @@ Parameters:
       en: EIP Bandwidth
       zh-cn: 弹性公网IP带宽值
     Description:
-      en: 'Elastic Public network IP bandwidth，unit: Mbps.'
+      en: 'Elastic Public network IP bandwidth,unit: Mbps.'
       zh-cn: 弹性公网IP带宽值，单位：Mbps。
     Default: 5
   LoadBalancerSpec:
@@ -108,10 +104,7 @@ Parameters:
       en: Instance Type
       zh-cn: 实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.g5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.g5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.g5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -133,11 +126,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -175,10 +164,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: 'ALIYUN::ECS::Instance::Password'
   DBInstanceEngineAndVersion:
     Type: String
     Label:
@@ -351,11 +337,6 @@ Resources:
       SecurityGroupIngress:
       - IpProtocol: tcp
         NicType: intranet
-        PortRange: 22/22
-        Priority: 1
-        SourceCidrIp: 0.0.0.0/0
-      - IpProtocol: tcp
-        NicType: intranet
         PortRange: 80/80
         Priority: 1
         SourceCidrIp: 0.0.0.0/0
@@ -478,11 +459,6 @@ Resources:
         Priority: 1
         SourceGroupId:
           Ref: EcsSecurityGroup1
-      - IpProtocol: tcp
-        NicType: intranet
-        PortRange: 22/22
-        Priority: 1
-        SourceCidrIp: 0.0.0.0/0
       - IpProtocol: icmp
         NicType: intranet
         PortRange: -1/-1
@@ -754,7 +730,7 @@ Outputs:
       - EipAddress
   VpcId:
     Description:
-      en: Proprietary network instance Id
+      en: Private network instance ID
       zh-cn: 专有网络实例Id。
     Value:
       Fn::GetAtt:
@@ -805,3 +781,4 @@ Metadata:
         default: RDS
     TemplateTags:
     - acs:solution:网络组网:在线教育全球部署网络规划-搭建单个区域资源环境
+    - acs:public_template:Solution:global-deployment-network-deploy-single-env

@@ -13,9 +13,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>you can use
-        the following IP address ranges: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in CIDR notation; <br>you can use the following IP address ranges: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -108,8 +106,7 @@ Parameters:
       en: EIP Billing Method
       zh-cn: 弹性公网IP计费类型
     Description:
-      en: 'Billing method. <br><font color=''blue''><b>Optional values：</b></font><br>[PayByBandwidth:
-        <font color=''green''>Pay-by-bandwidth</font>]<br>[PayByTraffic: <font color=''green''>Pay-by-data-transfer</font>]</a>'
+      en: "Billing method. <br><font color='blue'><b>Optional values: </b></font><br>[PayByBandwidth: <font color='green'>Pay-by-bandwidth</font>]<br>[PayByTraffic: <font color='green'>Pay-by-data-transfer</font>]</a>"
       zh-cn: '计费类型。<br><font color=''blue''><b>可选值：</b></font><br>[PayByBandwidth:
         <font color=''green''>按带宽计费</font>]<br>[PayByTraffic: <font color=''green''>按流量计费</font>]</a>'
     Default: PayByTraffic
@@ -139,13 +136,13 @@ Parameters:
   NumOfNodes:
     Type: Number
     Label:
-      en: Number Of Worker Nodes
+      en: Number of Worker Nodes
       zh-cn: Worker节点数
     Description:
-      en: Number of worker nodes. The range is [0,300].
+      en: Number of worker nodes. The range is [0, 300].
       zh-cn: Worker节点数,范围是[0,300]。
     ConstraintDescription:
-      en: Number of worker nodes. The range is [0,300].
+      en: Number of worker nodes. The range is [0, 300].
       zh-cn: Worker节点数,范围是[0,300]。
     Default: 3
     MinValue: 0
@@ -168,12 +165,7 @@ Parameters:
       en: Master Instance Types
       zh-cn: Master节点实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone, Three ECS instance specifications must be filled in. ECS instance specifications
-        can be repeated,separated by commas. </b></font><br>general specifications：<font
-        color=''red''><b>ecs.c5.large</b></font><br>note: a few zones do not support
-        general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone, Three ECS instance specifications must be filled in. ECS instance specifications can be repeated,separated by commas. </b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格，必须填写3个ECS实例规格，ECS实例规格可以重复,以英文逗号分隔；<br>通用规格：<font
         color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a href='https://help.aliyun.com/document_detail/25378.html'
         target='_blank'><b><font color='blue'>实例规格族</font></a></b>
@@ -184,9 +176,7 @@ Parameters:
       en: Master System Disk Category
       zh-cn: Master节点系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]'
     Default: cloud_ssd
@@ -199,10 +189,10 @@ Parameters:
       en: Master System Disk Size
       zh-cn: Master节点系统盘大小
     Description:
-      en: 'Worker disk system size, range of values: 40-500, units: GB.'
+      en: 'Worker system disk size. Range: 40–500 GB.'
       zh-cn: 工作盘系统磁盘大小, 取值范围：[40, 500], 单位：GB。
     ConstraintDescription:
-      en: 'Worker disk system size, range of values: 40-500, units: GB.'
+      en: 'Worker system disk size. Range: 40–500 GB.'
       zh-cn: 工作盘系统磁盘大小, 取值范围：[40, 500], 单位：GB。
     Default: 120
     MinValue: 40
@@ -213,9 +203,7 @@ Parameters:
       en: Worker System Disk Category
       zh-cn: Worker节点系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]'
     Default: cloud_efficiency
@@ -228,10 +216,10 @@ Parameters:
       en: Worker System Disk Size
       zh-cn: Worker节点系统盘大小
     Description:
-      en: 'Worker disk system disk size, range of values: 40-500, the unit is GiB.'
+      en: 'Worker system disk size, range: 40-500 GiB'
       zh-cn: 工作盘系统磁盘大小，取值范围：[40, 500], 单位是GiB。
     ConstraintDescription:
-      en: 'Worker disk system disk size, range of values: 40-500, the unit is GiB.'
+      en: 'Worker system disk size, range: 40-500 GiB'
       zh-cn: 工作盘系统磁盘大小，取值范围：[40, 500], 单位是GiB。
     Default: 120
     MinValue: 40
@@ -242,12 +230,7 @@ Parameters:
       en: Worker Instance Types
       zh-cn: Worker节点实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone, at least 2 ECS instance specifications must be filled in. ECS instance
-        specifications can be repeated,separated by commas. </b></font><br>general
-        specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note: a few
-        zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone, at least 2 ECS instance specifications must be filled in. ECS instance specifications can be repeated,separated by commas. </b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格，必须填写至少2个ECS实例规格，ECS实例规格可以重复,以英文逗号分隔；<br>通用规格：<font
         color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a href='https://help.aliyun.com/document_detail/25378.html'
         target='_blank'><b><font color='blue'>实例规格族</font></a></b>
@@ -258,8 +241,7 @@ Parameters:
       en: SSH Login
       zh-cn: SSH登录
     Description:
-      en: 'Whether to enable public network SSH login:<br>[check: <font color=''green''>open</font>]<br>[uncheck:
-        <font color=''green''>not open</font>]'
+      en: "Whether to enable public network SSH login:<br>[check: <font color='green'>Open</font>]<br>[uncheck: <font color='green'>Not open</font>]"
       zh-cn: '是否启用公共网络SSH登录:<br>[勾选: <font color=''green''>启用</font>]<br>[不勾选: <font
         color=''green''>不启用</font>]'
     Default: true
@@ -269,15 +251,10 @@ Parameters:
   SnatEntry:
     Type: Boolean
     Label:
-      en: Snat Entry
+      en: SNAT Entry
       zh-cn: 是否为网络配置SNAT
     Description:
-      en: 'Whether to configure SNAT for the network.When a VPC can access the public
-        network environment, set it to false.When an existing VPC cannot access the
-        public network environment:<br>[check: <font color=''green''>SNAT is configured
-        and the public network environment can be accessed at this time</font>]<br>[uncheck:
-        <font color=''green''>it means that SNAT is not configured and the public
-        network environment cannot be accessed at this time</font>]'
+      en: "Whether to configure SNAT for the network. When a VPC can access the public network, set it to false. When an existing VPC cannot access the public network:<br>[check: <font color='green'>SNAT is configured, and the public network can be accessed</font>]<br>[uncheck: <font color='green'>SNAT is not configured, and the public network cannot be accessed</font>]"
       zh-cn: '是否为网络配置SNAT。当VPC可以访问公共网络环境时，将其设置为false。当现有的VPC无法访问公共网络环境时:<br>[勾选: <font
         color=''green''>配置SNAT，此时可以访问公共网络环境</font>]<br>[不勾选: <font color=''green''>则表示没有配置SNAT，此时不能访问公共网络环境</font>]'
     Default: true
@@ -290,7 +267,7 @@ Parameters:
       en: Version
       zh-cn: 版本
     Description:
-      en: 'Value range: 1.12.6-aliyun1, 1.14.8-aliyun1'
+      en: 'Value range: 1.12.6-aliyun1 to 1.14.8-aliyun1'
       zh-cn: 取值范围：1.12.6-aliyun.1，1.14.8-aliyun.1
     Default: 1.12.6-aliyun.1
     AllowedValues:
@@ -302,10 +279,7 @@ Parameters:
       en: Endpoint Public Access
       zh-cn: 是否开启公网APIServer
     Description:
-      en: 'Whether to enable the public network API Server:<br>[check: <font color=''green''>which
-        means that the public network API Server is open</font>]<br>[uncheck: <font
-        color=''green''>the API server on the public network will not be created,
-        only the API server on the private network will be created</font>]'
+      en: "Whether to enable the public network API Server:<br>[check: <font color='green'>The public network API Server is enabled</font>]<br>[uncheck: <font color='green'>Only the private network API Server will be created</font>]"
       zh-cn: '是否启用公共网络API服务器:<br>[勾选: <font color=''green''>表示公共网络API服务器是打开的</font>]<br>[不勾选:
         <font color=''green''>将不创建公共网络上的API服务器，只创建私有网络上的API服务器</font>]'
     Default: true
@@ -580,3 +554,4 @@ Metadata:
         default: Kubernetes
     TemplateTags:
     - acs:solution:容器&微服务:SpringCloud应用托管到ACK服务
+    - acs:public_template:Solution:spring-cloud-hostingack-service

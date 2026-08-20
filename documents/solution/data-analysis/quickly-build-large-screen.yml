@@ -51,7 +51,7 @@ Parameters:
     Type: String
     Description:
       en: >-
-        The password is 8 to 30 characters in length and must contain at least three types: uppercase letters, lowercase letters, digits, and special symbols. The name contains 8 to 32 characters. Special characters include! @ # $% ^ & * () _ + - =
+        The password is 8 to 30 characters in length and must contain at least three types: uppercase letters, lowercase letters, digits, and special symbols. The database name must be 8 to 32 characters in length.
       zh-cn: >-
         数据库账号密码，长度8-30，必须包含三种及以上类型：大写字母、小写字母、数字、特殊符号。长度为8～32位。特殊字符包括! @ # $ % ^ & * () _ + - =
     Label:
@@ -135,5 +135,74 @@ Metadata:
         default: RDS
     TemplateTags:
       - acs:technical-solution:data-analysis:快速搭建企业经营大屏
+      - acs:public_template:Solution:quickly-build-large-screen
     Hidden:
       - CommonName
+  ALIYUN::ROS::Composer:
+    6390a223:
+      Rect:
+        - 560
+        - 480
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    98f8fe9d:
+      Parent: 6390a223
+      Rect:
+        - 520
+        - 410
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    8e2bc783:
+      Res:
+        - Vpc
+      Parent: 98f8fe9d
+      Rect:
+        - 480
+        - 340
+        - 80
+        - 200
+        - 3
+        - 0
+    43b1ffd3:
+      Res:
+        - ZoneId
+      Parent: 8e2bc783
+      Rect:
+        - 440
+        - 270
+        - 100
+        - 250
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    fc983ab2:
+      Res:
+        - VSwitch
+      Parent: 43b1ffd3
+      Rect:
+        - 400
+        - 200
+        - 120
+        - 300
+        - 5
+        - 0
+    51f005e1:
+      Res:
+        - Database
+        - Account
+      Ref:
+        - Account
+      Parent: fc983ab2
+      Rect:
+        - 40
+        - 40
+        - 300
+        - 365
+        - 6
+        - 0

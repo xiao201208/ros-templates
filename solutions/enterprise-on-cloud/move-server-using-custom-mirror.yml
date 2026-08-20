@@ -11,9 +11,7 @@ Parameters:
       en: VPC Network Segment
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>you can use
-        the following IP address ranges: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in CIDR block format. You can use the following IP address ranges:<br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -47,7 +45,7 @@ Parameters:
       en: Number of instances, with values ranging from 1 to 100.
       zh-cn: 实例数量,取值范围：1~100。
     ConstraintDescription:
-      en: 'Valid value: 1 - 100.'
+      en: 'Valid value: 1–100.'
       zh-cn: 取值范围：1~100。
     Default: 1
     MinValue: 1
@@ -58,7 +56,7 @@ Parameters:
       en: Image
       zh-cn: 镜像
     Description:
-      en: The image created by the source server
+      en: The image created from the source server
       zh-cn: 源服务器创建的镜像
   EcsGroupInstanceType:
     Type: String
@@ -66,10 +64,7 @@ Parameters:
       en: Specifications
       zh-cn: 规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -79,10 +74,10 @@ Parameters:
   EcsGroupAllocatePublicIP:
     Type: Boolean
     Label:
-      en: Whether Assign a Public IP
+      en: Assign Public IP
       zh-cn: 是否分配公网Ip
     Description:
-      en: Whether to assign a public ip.
+      en: Whether to assign a public IP.
       zh-cn: 是否分配公网Ip。
     Default: true
   EcsGroupSystemDiskCategory:
@@ -91,11 +86,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -113,10 +104,10 @@ Parameters:
       en: System Disk Space
       zh-cn: 系统盘空间
     Description:
-      en: 'System disk size, range of values: 40-500, units: GB.'
+      en: 'System disk size, range of values: 40–500 GB.'
       zh-cn: 系统盘大小, 取值范围：[40, 500], 单位：GB。
     ConstraintDescription:
-      en: 'Range of values: 40-500, units: GB.'
+      en: 'Range of values: 40–500 GB.'
       zh-cn: 取值范围：[40, 500], 单位：GB。
     Default: 40
     MinValue: 40
@@ -135,10 +126,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
 Resources:
   EcsVpc:
     Type: ALIYUN::ECS::VPC
@@ -249,47 +237,71 @@ Metadata:
         default: ECS
     TemplateTags:
     - acs:solution:业务上云:服务器迁移-使用自定义镜像创建服务器
-  ALIYUN::ROS::Designer:
-    03382861-628e-474b-b74c-67a74c1a9870:
-      position:
-        x: 250
-        y: 130
-      size:
-        height: 60
-        width: 60
-      z: 2
-    1c94cc19-e1a4-4644-8b93-96d7a0e66fd8:
-      embeds:
-      - 03382861-628e-474b-b74c-67a74c1a9870
-      position:
-        x: 212
-        y: 90
-      size:
-        height: 140
-        width: 132
-      z: 1
-    66a75955-a6e4-46db-8bf1-8be20a6c829f:
-      source:
-        id: 03382861-628e-474b-b74c-67a74c1a9870
-      target:
-        id: fe2adbb4-e7bf-400c-9bee-0718863798f0
-      z: 1
-    8b2251ee-8139-4768-b9ab-22d16a44231c:
-      embeds:
-      - 1c94cc19-e1a4-4644-8b93-96d7a0e66fd8
-      - fe2adbb4-e7bf-400c-9bee-0718863798f0
-      position:
-        x: 192
-        y: 50
-      size:
-        height: 215
-        width: 318.0537109375
-      z: 0
-    fe2adbb4-e7bf-400c-9bee-0718863798f0:
-      position:
-        x: 415
-        y: 130
-      size:
-        height: 60
-        width: 60
-      z: 1
+    - acs:public_template:Solution:move-server-using-custom-mirror
+  ALIYUN::ROS::Composer:
+    6fff0b48:
+      Rect:
+        - 369
+        - 413
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    3e01f8ca:
+      Parent: 6fff0b48
+      Rect:
+        - 333
+        - 340
+        - 58
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    b2e4de4f:
+      Res:
+        - EcsVpc
+      Parent: 3e01f8ca
+      Rect:
+        - 254
+        - 266
+        - 95
+        - 200
+        - 3
+        - 0
+    561f7b72:
+      Res:
+        - EcsVSwitch
+      Parent: b2e4de4f
+      Rect:
+        - 184
+        - 190
+        - 130
+        - 250
+        - 4
+        - 0
+    4841ec83:
+      Res:
+        - EcsSecurityGroup
+      Parent: b2e4de4f
+      Rect:
+        - 123
+        - 125
+        - 161
+        - 300
+        - 6
+        - 0
+    02c3fc7e:
+      Res:
+        - EcsInstanceGroup
+      Parent: 561f7b72
+      Rect:
+        - 40
+        - 40
+        - 202
+        - 343
+        - 7
+        - 0
+      Layer:
+        - 4841ec83
+

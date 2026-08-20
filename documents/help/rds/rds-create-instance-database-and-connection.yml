@@ -97,7 +97,7 @@ Parameters:
       en: DB Name
     Description:
       zh-cn: 数据库名称，由小写字母、数字及特殊字符（-_）组成，以字母开头，字母或数字结尾，最多64个字符。
-      en: Database name, consisting of lowercase letters, Numbers, and special characters (-_), starting with letters, ending with letters or Numbers, up to 64 characters.
+      en: Database name, consisting of lowercase letters, numbers, and special characters (-_), starting with a letter, ending with a letter or number, up to 64 characters.
     Default: demodb
   RdsAccountName:
     Type: String
@@ -106,7 +106,7 @@ Parameters:
       en: Account
     Description:
       zh-cn: 2~256个字符,以中文、英文字母开头，可以包含可以包含数字、中文、英文、下划线、短横线。
-      en: 2~256 characters, beginning with Chinese and English letters, can contain can contain Numbers, Chinese, English, underline, dash line.
+      en: 2~256 characters, beginning with English letters, can contain numbers, Chinese, English, underscores, and hyphens.
     Default: demouser
   RdsAccountPwd:
     Type: String
@@ -115,10 +115,10 @@ Parameters:
       en: Account Password
     Description:
       zh-cn: 长度8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*-+=_）。
-      en: 'Length 8-32 characters, can contain size letters, Numbers and special symbols (including:!@ # $% ^ & * - + = _).'
+      en: '8–32 characters, can contain uppercase and lowercase letters, numbers, and special symbols (including: !@#$%^&*-+=_).'
     ConstraintDescription:
       zh-cn: 8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*-+=_）。
-      en: '8-32 characters, can contain size letters, Numbers and special symbols (including:!@ # $% ^ & * - + = _).'
+      en: '8–32 characters, can contain uppercase and lowercase letters, numbers, and special symbols (including: !@#$%^&*-+=_).'
     MinLength: '8'
     MaxLength: '32'
     NoEcho: true
@@ -185,7 +185,7 @@ Outputs:
   PublicConnectionString:
     Description:
       zh-cn: 公网连接命令行。
-      en: Rds Public Connection command line.
+      en: RDS Public Connection command line
     Value:
       Fn::Sub:
         - mysql -h${PublicConnectionString} -u${RdsAccountName} -P${RdsPublicPort} -p
@@ -202,7 +202,7 @@ Outputs:
   RdsPublicConnectionString:
     Description:
       zh-cn: 公网连接地址。
-      en: Rds Public Connection address.
+      en: RDS Public Connection address
     Value:
       Fn::GetAtt:
         - Rds
@@ -218,7 +218,7 @@ Outputs:
   RdsInnerConnectionString:
     Description:
       zh-cn: 内网连接地址。
-      en: Rds Inner Connection address.
+      en: RDS Internal Connection address
     Value:
       Fn::GetAtt:
         - Rds
@@ -226,7 +226,7 @@ Outputs:
   RdsInnerPort:
     Description:
       zh-cn: 数据库实例内网端口
-      en: Inner network port of the database instance
+      en: Internal network port of the database instance
     Value:
       Fn::GetAtt:
         - Rds
@@ -260,3 +260,76 @@ Metadata:
           zh-cn: RDS配置
     TemplateTags:
       - acs:document-help:rds:快速创建RDS MySQL实例并进行基本设置
+      - acs:public_template:Example:rds-create-instance-database-and-connection
+  ALIYUN::ROS::Composer:
+    0c23f750:
+      Rect:
+        - 762
+        - 530
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+      Label: AlibabaCloud
+    9a1a415d:
+      Parent: 0c23f750
+      Rect:
+        - 692
+        - 435
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+      Label: 华东2（上海）
+    aa0630bd:
+      Res:
+        - Vpc
+      Parent: 9a1a415d
+      Rect:
+        - 601
+        - 355
+        - 80
+        - 200
+        - 3
+        - 0
+      Label: 专有网络VPC
+    cec49a53:
+      Res:
+        - VSwitchZoneId
+      Parent: aa0630bd
+      Rect:
+        - 507
+        - 275
+        - 100
+        - 250
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+      Label: 可用区
+    6471902e:
+      Res:
+        - VSwitch
+      Parent: cec49a53
+      Rect:
+        - 400
+        - 200
+        - 120
+        - 300
+        - 5
+        - 0
+      Label: 交换机
+    9d5e59b9:
+      Res:
+        - Rds
+        - RdsAccount
+      Parent: 6471902e
+      Rect:
+        - 40
+        - 40
+        - 300
+        - 368
+        - 6
+        - 0
+      Label: RDS数据库实例

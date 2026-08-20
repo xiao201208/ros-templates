@@ -53,10 +53,7 @@ Parameters:
       en: Instance Type
       zh-cn: 实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -69,11 +66,7 @@ Parameters:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -100,12 +93,12 @@ Parameters:
       en: The Rancher service's etcd persistent data local storage directory.
       zh-cn: Rancher的Etcd持久化数据本地存储目录
     Description:
-      en: 'The Rancher service''s etcd persistent data local storage directory.;<br>The
-        default address: <font color=''red''><b>/opt/rancher</b></font>'
+      en: "The Rancher service's etcd persistent data local storage directory.;<br>The default address: <font color='red'><b>/opt/rancher</b></font>"
       zh-cn: Rancher的Etcd持久化数据本地存储目录；<br>默认地址：<font color='red'><b>/opt/rancher</b></font>
     Default: /opt/rancher
   Password:
     Type: String
+    NoEcho: true
     Label:
       en: Instance Password
       zh-cn: 实例密码
@@ -118,10 +111,7 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: ALIYUN::ECS::Instance::Password
 Resources:
   RancherServer:
     Type: ALIYUN::ECS::InstanceGroup
@@ -248,34 +238,76 @@ Metadata:
           zh-cn: Rancher 配置
     TemplateTags:
     - acs:example:容器:Rancher单机版(已有VPC)
-  ALIYUN::ROS::Designer:
-    11509317-9c81-4f5f-b6dd-95f245e2e081:
-      position:
-        x: -54
-        y: 91
-      size:
-        height: 60
-        width: 60
-      z: 0
-    69de9d16-d3f1-4ecc-8f4a-e26dcd2bfbdb:
-      position:
-        x: 60
-        y: 10
-      size:
-        height: 60
-        width: 60
-      z: 0
-    9c850689-ee70-4f53-a327-6ddb3427890b:
-      source:
-        id: 69de9d16-d3f1-4ecc-8f4a-e26dcd2bfbdb
-      target:
-        id: dbc3f31b-5b01-4f1f-8895-735eeace4591
-      z: 1
-    dbc3f31b-5b01-4f1f-8895-735eeace4591:
-      position:
-        x: 60
-        y: 190
-      size:
-        height: 60
-        width: 60
-      z: 0
+    - acs:public_template:Example:existing-vpc-docker-single-rancher
+  ALIYUN::ROS::Composer:
+    '21366791':
+      Parent: bf46a8e7
+      Rect:
+        - 500
+        - 330
+        - -178
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    bf46a8e7:
+      Rect:
+        - 540
+        - 400
+        - -198
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    6ce1cfd4:
+      Res:
+        - VSwitch
+      Parent: '21366791'
+      Rect:
+        - 296
+        - 198
+        - -98
+        - 200
+        - 3
+        - 0
+      ResT: ALIYUN::ECS::VSwitch
+    ccd38010:
+      Res:
+        - WaitCondition
+      Parent: '21366791'
+      Rect:
+        - 40
+        - 40
+        - 243
+        - 211
+        - 3
+        - 0
+    538556b2:
+      Res:
+        - WaitConditionHandle
+      Parent: '21366791'
+      Rect:
+        - 40
+        - 40
+        - 243
+        - 358
+        - 3
+        - 0
+    0373b5fd:
+      Res:
+        - RancherServer
+      Parent: 6ce1cfd4
+      Rect:
+        - 40
+        - 40
+        - 30
+        - 280
+        - 4
+        - 0
+    4217ea44:
+      Parent: '21366791'
+      Edge:
+        - ccd38010
+        - 538556b2
+      Line: 0:0:0:gray:0
+

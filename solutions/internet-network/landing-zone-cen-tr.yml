@@ -2,7 +2,7 @@ ROSTemplateFormatVersion: '2015-09-01'
 Transform: Aliyun::Terraform-v1.2
 Description:
   zh-cn: 跨账号（1 & 2）在不同地域间通过CEN及Transit Router建立双网络互通，并配置VPC及路由表实现资源共享。
-  en: Cross-accounts (1 & 2) establish dual network interoperability between different regions through CEN and Transit Router, and configure VPC and routing tables to achieve resource sharing.
+  en: Cross-accounts (1 & 2) establish dual-region network interoperability using CEN and Transit Router, and configure VPCs and routing tables to enable resource sharing.
 Metadata:
   ALIYUN::ROS::Interface:
     ParameterGroups:
@@ -61,6 +61,7 @@ Metadata:
           en: ECS InstanceType and Password Configuration
     TemplateTags:
     - acs:integrate:landing_zone:cen_tr
+    - acs:public_template:Solution:landing-zone-cen-tr
 Workspace:
   main.tf: |
     variable "user1_id" {

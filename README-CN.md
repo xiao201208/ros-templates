@@ -15,6 +15,9 @@ ROS 模板的示例和最佳实践。模板分类如下：
 - `solutions`：解决方案，提供面向复杂场景的模板最佳实践。模板同 ROS 控制台[解决方案中心](https://ros.console.aliyun.com/cn-beijing/solutions)。
 - `transform`：基于 [Transform 语法](https://www.alibabacloud.com/help/resource-orchestration-service/latest/template-syntax-transform)的模板，提供面向特定场景的简化模板。
 - `documents`：阿里云文档中涉及的模板。
+    - `help`: 阿里云帮助文档相关的模板。
+    - `solutions`: 阿里云解决方案相关的模板。
+    - `trail`: 阿里云试用教程相关的模板。
 - `compute-nest-best-practice`：[计算巢](https://www.alibabacloud.com/help/computing-nest)最佳实践模板，提供面向计算巢基础和进阶场景的模板。
 
 ## 详细说明
@@ -479,6 +482,7 @@ ROS 模板的示例和最佳实践。模板分类如下：
 | [build-a-dialogue-model-based-on-ChatGLM-and-LangChain.yml](documents/solution/ai/build-a-dialogue-model-based-on-ChatGLM-and-LangChain.yml)                     | 基于 ChatGLM 和 LangChain 搭建对话模型。｜ [解决方案](https://www.aliyun.com/solution/tech-solution/calbadm)        |
 | [build-a-dialogue-model-based-on-Qwen-and-LangChain.yml](documents/solution/ai/build-a-dialogue-model-based-on-Qwen-and-LangChain.yml)                           | 基于通义千问和 LangChain 搭建对话模型。                                                                            |
 | [ack-ai-fine-tuning.yml](documents/solution/ai/ack-ai-fine-tuning.yml)                                                                                           | 使用云原生 AI 套件提交模型微调训练任务与部署 GPU 共享推理服务。 ｜ [解决方案](https://www.aliyun.com/solution/tech-solution/one_gpu) |
+| [AI-Apps-on-Alibaba-Cloud-Bailian.yml](documents/solution/ai/AI-Apps-on-Alibaba-Cloud-Bailian.yml)                                                                                           | 10分钟通过阿里云百炼平台搭建AI应用。  |
 | [exclusive-qa-service.yml](documents/solution/ai/exclusive-qa-service.yml)                                                                                       | 向量检索与通义千问搭建专属问答服务。                                                                                   |
 | [discover-and-reach-high-value-users.yml](documents/solution/ai/discover-and-reach-high-value-users.yml)                                                         | 高价值用户挖掘及触达。                                                                                          |
 | [ComfyUI-by-fc.yml](documents/solution/ai/ComfyUI-by-fc.yml)                                                                                                     | 通过函数计算部署 ComfyUI 以实现一个 AIGC 图像生成系统。                                                                  |
@@ -487,6 +491,8 @@ ROS 模板的示例和最佳实践。模板分类如下：
 | [AnalyticDB-and-Bailian-system.yml](documents/solution/ai/AnalyticDB-and-Bailian-system.yml)                                                                     | AnalyticDB 与百炼搭建智能问答系统。                                                                              |
 | [pai-rec-deploy-recommendation-solution.yml](documents/solution/ai/pai-rec-deploy-recommendation-solution.yml)                                                   | 使用 PAI-Rec 部署推荐方案。                                                                                   |
 | [ecs-ai-face-detection-solution.yml](documents/solution/ai/ecs-ai-face-detection-solution.yml)                                                                   | 基于视觉智能开放平台部署人脸检测与比对解决方案。                                                                             |
+| [Quickstart-Qwen2.5-Omni-with-Baijian.yml](documents/solution/ai/Quickstart-Qwen2.5-Omni-with-Baijian.yml)                                                                   | 通过百炼快速体验 Qwen2.5-Omni 模型。                                                                          |
+| [use-cen-access-to-bailian-service.yml](documents/solution/ai/use-cen-access-to-bailian-service.yml)                                                                   | 通过私有网络安全高效访问百炼服务。                                                                         |
 
 - data-analysis
 
@@ -499,6 +505,9 @@ ROS 模板的示例和最佳实践。模板分类如下：
 | [cloud-native-enterprise-data-lake.yml](./documents/solution/data-analysis/cloud-native-enterprise-data-lake.yml)     | 云原生企业级数据湖。 ｜ [解决方案](https://www.aliyun.com/solution/tech-solution/datalake)                                  |
 | [OLAP-analysis-based-on-Hologres.yml](./documents/solution/data-analysis/OLAP-analysis-based-on-Hologres.yml)         | 基于 Hologres 轻量高性能 OLAP 分析。                                                                                        |
 | [quickly-build-large-screen.yml](./documents/solution/data-analysis/quickly-build-large-screen.yml)                   | 快速搭建企业经营大屏。                                                                                                      |
+| [efficient-storage-and-processing-of-multimedia-data.yml](./documents/solution/data-analysis/efficient-storage-and-processing-of-multimedia-data.yml)                   | 高效存储和处理多媒体数据。                                                                                            |
+| [Rapid-Enterprise-Data-Analysis-Agent.yaml](./documents/solution/data-analysis/Rapid-Enterprise-Data-Analysis-Agent.yaml)                   | 快速构建企业级数据分析 Agent。                                                                                         |
+| [build-agentic-lakehouse-on-starrocks.yml](./documents/solution/data-analysis/build-agentic-lakehouse-on-starrocks.yml)                   | 构建全模态数据的 Agentic Lakehouse。                                                                                         |
 
 - database
 
@@ -513,7 +522,14 @@ ROS 模板的示例和最佳实践。模板分类如下：
 | [data-transmission-from-ECS-to-RDS.yml](documents/solution/database/data-transmission-from-ECS-to-RDS.yml)                             | 网站数据库平滑迁移上云。 ｜ [解决方案](https://www.aliyun.com/solution/tech-solution/smowdttc)                                                |
 | [migrate-database-to-cloud.yml](documents/solution/database/migrate-database-to-cloud.yml)                                             | 自建数据库迁移到云数据库。                                                                                                                |
 | [rag-application.yml](documents/solution/database/rag-application.yml)                                                                 | AnalyticDB 和通义千问构建 RAG 应用。                                                                                                   |
+| [rds-database-agent.yml](documents/solution/database/rds-database-agent.yml)                                                                 | 通过RDS数据库代理实现读写分离。                                                                                                            |
 | [through-RocketMQ-transaction-messages.yml](documents/solution/database/through-RocketMQ-transaction-messages.yml)                     | 通过 RocketMQ 事务消息实现分布式事务。                                                                                                     |
+| [SelectDB-Log-Storage-and-Real-Time-Analytics.yaml](documents/solution/database/SelectDB-Log-Storage-and-Real-Time-Analytics.yaml)                     | 通过RDS数据库代理实现读写分离。                                                                                                            |
+| [Modern-SelectDB-Lakehouse-Platform.yaml](documents/solution/database/Modern-SelectDB-Lakehouse-Platform.yaml)                     | 基于SelectDB低成本、高性能的湖仓一体化架构。                                                                                                         |
+| [Native-SQL-Multimodal-Search.yml](documents/solution/database/Native-SQL-Multimodal-Search.yml)                     | 原生 SQL 轻松实现多模态智能检索。                                                                                                        |
+| [Redis-for-High-Concurrency.yml](documents/solution/database/Redis-for-High-Concurrency.yml)                     | 应对高并发，利用Redis版缓存实现极速响应。                                                                                                        |
+| [migrate-ecs-redis-to-cloud.yml](documents/solution/database/migrate-ecs-redis-to-cloud.yml)                     | 自建 Redis 迁移到云数据库。                                                                                                        |
+| [database-office-security-protection.yml](documents/solution/database/database-office-security-protection.yml)                     | 通过SASE快速实现数据库办公安全防护。                                                                                                        |
 
 - iot
 
@@ -549,6 +565,8 @@ ROS 模板的示例和最佳实践。模板分类如下：
 | [cloud-native-observable-operation-and-maintenance.yml](documents/solution/storage/cloud-native-observable-operation-and-maintenance.yml) | 云原生可观测运维。                                                                                        |
 | [snapshot-optimize.yml](documents/solution/storage/snapshot-optimize.yml)                                                                 | 基于 EBS 部署高性能的 MySQL 服务。 ｜ [解决方案](https://www.aliyun.com/solution/tech-solution/ebs_mysql) |
 | [collect-application-log.yml](documents/solution/storage/collect-application-log.yml)                                                     | 应用业务日志监控与告警。                                                                                  |
+| [deploy-personal-cloud-drive-based-on-nextcloud.yml](documents/solution/storage/deploy-personal-cloud-drive-based-on-nextcloud.yml)                     | 基于Nextcloud部署个人网盘。                                                                                                     |
+| [Tair-for-Multi-Device-IM-Sync.yml](documents/solution/storage/Tair-for-Multi-Device-IM-Sync.yml)                     | Tair（兼容 Redis）实现 IM 多端消息同步。                                                                                                     |
 
 - cdn-and-video-cloud
 
@@ -582,6 +600,7 @@ ROS 模板的示例和最佳实践。模板分类如下：
 | [serverless-high-availability-architecture.yml](documents/solution/high-availability-architecture/serverless-high-availability-architecture.yml) | Serverless 高可用架构。                                                                      |
 | [build-high-performance-flash-sale-system.yaml](documents/solution/high-availability-architecture/build-high-performance-flash-sale-system.yaml) | 构建高性能秒杀系统。                                                                     |
 | [end-to-end-full-link-tracking-and-diagnosis.yaml](documents/solution/high-availability-architecture/end-to-end-full-link-tracking-and-diagnosis.yaml) | 端到端全链路追踪诊断。                                                               |
+| [Real-Time-Cloud-Product-Monitoring-with-Prometheus.yaml](documents/solution/high-availability-architecture/Real-Time-Cloud-Product-Monitoring-with-Prometheus.yaml) | 通过 Prometheus 实现云产品全方位实时监控。                                                               |
 | [optimizing-complex-query-performance.yaml](documents/solution/high-availability-architecture/optimizing-complex-query-performance.yaml) | 电商业务复杂查询性能优化。                                                           |
 
 - ops-on-cloud
@@ -601,31 +620,39 @@ ROS 模板的示例和最佳实践。模板分类如下：
 
 - internet-application-development
 
-| 模板                                                                                                                                                       | 说明                                                                                          |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| [Nginx-access-log-data-archive.yml](documents/solution/internet-application-development/Nginx-access-log-data-archive.yml)                                 | Nginx 访问日志数据归档。 ｜ [解决方案](https://aliyun.com/solution/tech-solution/oss_nginx)   |
-| [video-website-solution.yml](documents/solution/internet-application-development/video-website-solution.yml)                                               | 视频网站的存储与媒体处理方案。 ｜ [解决方案](https://aliyun.com/solution/tech-solution/vsaps) |
-| [log-security-audit-and-compliance-assessment.yaml](documents/solution/internet-application-development/log-security-audit-and-compliance-assessment.yaml) | 日志安全审计与合规性评估。                                                                    |
-| [distributed-task-scheduling.yaml](documents/solution/internet-application-development/distributed-task-scheduling.yaml)                                   | 通过 SchedulerX 实现分布式任务调度。                                                          |
-| [efficiently-build-app-on-the-cloud.yaml](documents/solution/internet-application-development/efficiently-build-app-on-the-cloud.yaml)                     | 移动开发秘籍：云上高效构建 APP。                                                              |
-| [file-processing-on-fc.yaml](documents/solution/internet-application-development/file-processing-on-fc.yaml)                                               | 使用函数计算实现网站的文件处理。                                                              |
-| [process-data-with-lindorm.yaml](documents/solution/internet-application-development/process-data-with-lindorm.yaml)                                       | Lindorm 泛时序数据一站式处理。                                                                |
-| [rapidly-deployment-applets.yaml](documents/solution/internet-application-development/rapidly-deployment-applets.yaml)                                     | 快速开发多平台小程序。                                                                        |
-| [rapidly-enterprise-portal.yaml](documents/solution/internet-application-development/rapidly-enterprise-portal.yaml)                                       | 快速搭建企业门户网站。                                                                        |
-| [serverless-rabbitmq.yaml](documents/solution/internet-application-development/serverless-rabbitmq.yaml)                                                   | 云消息队列 RabbitMQ 版 Serverless 系列优势和实践。                                            |
-| [websites-from-HTTP-to-HTTPS.yaml](documents/solution/internet-application-development/websites-from-HTTP-to-HTTPS.yaml)                                   | 从 HTTP 到 HTTPS 让网站更安全。                                                               |
-| [ES-vector-retrieval-capabilities.yml](documents/solution/internet-application-development/ES-vector-retrieval-capabilities.yml)                           | 使用 Elasticsearch 的向量检索能力进行个性化推荐。                                             |
+| 模板                                                                                                                                                                   | 说明                                                                            |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
+| [Nginx-access-log-data-archive.yml](documents/solution/internet-application-development/Nginx-access-log-data-archive.yml)                                           | Nginx 访问日志数据归档。 ｜ [解决方案](https://aliyun.com/solution/tech-solution/oss_nginx) |
+| [video-website-solution.yml](documents/solution/internet-application-development/video-website-solution.yml)                                                         | 视频网站的存储与媒体处理方案。 ｜ [解决方案](https://aliyun.com/solution/tech-solution/vsaps)     |
+| [log-security-audit-and-compliance-assessment.yaml](documents/solution/internet-application-development/log-security-audit-and-compliance-assessment.yaml)           | 日志安全审计与合规性评估。                                                                 |
+| [distributed-task-scheduling.yaml](documents/solution/internet-application-development/distributed-task-scheduling.yaml)                                             | 通过 SchedulerX 实现分布式任务调度。                                                      |
+| [efficiently-build-app-on-the-cloud.yaml](documents/solution/internet-application-development/efficiently-build-app-on-the-cloud.yaml)                               | 移动开发秘籍：云上高效构建 APP。                                                            |
+| [file-processing-on-fc.yaml](documents/solution/internet-application-development/file-processing-on-fc.yaml)                                                         | 使用函数计算实现网站的文件处理。                                                              |
+| [process-data-with-lindorm.yaml](documents/solution/internet-application-development/process-data-with-lindorm.yaml)                                                 | Lindorm 泛时序数据一站式处理。                                                           |
+| [rapidly-deployment-applets.yaml](documents/solution/internet-application-development/rapidly-deployment-applets.yaml)                                               | 快速开发多平台小程序。                                                                   |
+| [rapidly-enterprise-portal.yaml](documents/solution/internet-application-development/rapidly-enterprise-portal.yaml)                                                 | 快速搭建企业门户网站。                                                                   |
+| [serverless-rabbitmq.yaml](documents/solution/internet-application-development/serverless-rabbitmq.yaml)                                                             | 云消息队列 RabbitMQ 版 Serverless 系列优势和实践。                                          |
+| [websites-from-HTTP-to-HTTPS.yaml](documents/solution/internet-application-development/websites-from-HTTP-to-HTTPS.yaml)                                             | 从 HTTP 到 HTTPS 让网站更安全。                                                        |
+| [ES-vector-retrieval-capabilities.yml](documents/solution/internet-application-development/ES-vector-retrieval-capabilities.yml)                                     | 使用 Elasticsearch 的向量检索能力进行个性化推荐。                                              |
+| [data-protection-against-ransomware-attacks.yml](documents/solution/internet-application-development/data-protection-against-ransomware-attacks.yml)                 | 数据守护:防勒索攻击数据保障。                                                               |
+| [upgrade-the-front-end-separation-architecture.yml](documents/solution/internet-application-development/upgrade-the-front-end-separation-architecture.yml)           | 10分钟完成前后端分离架构升级（ECS版）。                                                        |
+| [deploy-SSL-certificates-to-Nginx-applications.yml](documents/solution/internet-application-development/deploy-SSL-certificates-to-Nginx-applications.yml)           | 部署SSL证书至Nginx应用。                                                              |
+| [deploy-SSL-certificates-to-SpringBoot-applications.yml](documents/solution/internet-application-development/deploy-SSL-certificates-to-SpringBoot-applications.yml) | 部署SSL证书至Spring Boot应用。                                                        |
+| [deploy-SSL-certificates-to-Tomcat-applications.yml](documents/solution/internet-application-development/deploy-SSL-certificates-to-Tomcat-applications.yml)         | 部署SSL证书至Tomcat应用。                                                             |
+| [cloud-site-construction.yml](documents/solution/internet-application-development/cloud-site-construction.yml)                                                       | 云端建站：高效降低网络带宽成本。                                                              |
+| [Run-Dify-on-Serverless.yml](documents/solution/internet-application-development/Run-Dify-on-Serverless.yml)                                                       | 通过Serverless应用引擎部署生产环境 Dify 平台。                                                          |
+| [Elsaticsearch-AI-Maintenance.yml](documents/solution/internet-application-development/Elsaticsearch-AI-Maintenance.yml)                                                       | Elasticsearch 智能运维 AI 助手。                                                         |
 
 - security-and-compliance
 
-| 模板                                                                                                                                                                            | 说明                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| [efficiently-build-a-new-account-with-security-and-compliance.yml](documents/solution/security-and-compliance/efficiently-build-a-new-account-with-security-and-compliance.yml) | 高效构建安全合规的新账号。｜ [解决方案](https://www.aliyun.com/solution/tech-solution/ecosacna)       |
-| [multiple-accounts-support-configuration-auditing.yml](documents/solution/security-and-compliance/multiple-accounts-support-configuration-auditing.yml)                         | 企业多账号配置统一合规审计。｜ [解决方案](https://www.aliyun.com/solution/tech-solution/ucafmac)      |
-| [cloud-firewall-in-multiple-accounts.yml](documents/solution/security-and-compliance/cloud-firewall-in-multiple-accounts.yml)                                                   | 创建 VPC 类型 ECS，并绑定 EIP。 ｜ [解决方案](https://www.aliyun.com/solution/tech-solution/umomaicf) |
-| [enterprise-multi-account-identity-permissions.yml](documents/solution/security-and-compliance/enterprise-multi-account-identity-permissions.yml)                               | 企业多账号身份权限集中管理。 ｜ [解决方案](https://www.aliyun.com/solution/tech-solution/cmomaip)     |
-| [only-approved-cloud-services.yml](documents/solution/security-and-compliance/only-approved-cloud-services.yml)                                                                 | 限制企业仅使用已批准的云服务。                                                                        |
-| [protect-web-applications-with-WAF.yml](documents/solution/security-and-compliance/protect-web-applications-with-WAF.yml)                                                       | 通过 WAF 防护 Web 应用。                                                                              |
+| 模板                                                                                                                                                                            | 说明                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |---------------------------------------------------------------------------------|
+| [efficiently-build-a-new-account-with-security-and-compliance.yml](documents/solution/security-and-compliance/efficiently-build-a-new-account-with-security-and-compliance.yml) | 高效构建安全合规的新账号。｜ [解决方案](https://www.aliyun.com/solution/tech-solution/ecosacna)   |
+| [multiple-accounts-support-configuration-auditing.yml](documents/solution/security-and-compliance/multiple-accounts-support-configuration-auditing.yml)                         | 企业多账号配置统一合规审计。｜ [解决方案](https://www.aliyun.com/solution/tech-solution/ucafmac)   |
+| [cloud-firewall-in-multiple-accounts.yml](documents/solution/security-and-compliance/cloud-firewall-in-multiple-accounts.yml)                                                   | 云防火墙企业多账号统一管理。 ｜ [解决方案](https://www.aliyun.com/solution/tech-solution/umomaicf) |
+| [enterprise-multi-account-identity-permissions.yml](documents/solution/security-and-compliance/enterprise-multi-account-identity-permissions.yml)                               | 企业多账号身份权限集中管理。 ｜ [解决方案](https://www.aliyun.com/solution/tech-solution/cmomaip)  |
+| [only-approved-cloud-services.yml](documents/solution/security-and-compliance/only-approved-cloud-services.yml)                                                                 | 限制企业仅使用已批准的云服务。                                                                 |
+| [protect-web-applications-with-WAF.yml](documents/solution/security-and-compliance/protect-web-applications-with-WAF.yml)                                                       | 通过 WAF 防护 Web 应用。                                                               |
 
   </details>
 

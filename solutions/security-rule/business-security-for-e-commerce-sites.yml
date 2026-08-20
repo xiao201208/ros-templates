@@ -13,9 +13,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>You can use
-        the following IP address ranges: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in the CIDR Block form; <br>You can use the following IP address ranges: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -29,9 +27,7 @@ Parameters:
       en: Master Zone
       zh-cn: 主可用区
     Description:
-      en: 'Availability Zone ID;<br><b>note: <font color=''blue''>before selecting
-        the Available Zone, verify that the Available Zone supports the specification
-        for creating SLB、RDS、ECS resources.</font></b>'
+      en: "Availability Zone ID;<br><b>Note: <font color='blue'>Before selecting the Availability Zone, verify that it supports the specifications for creating SLB, RDS, and ECS resources.</font></b>"
       zh-cn: 可用区ID;<br><b>注： <font color='blue'>选择可用区前请确认该可用区是否支持创建SLB、RDS、ECS资源的规格。</font></b>
     AssociationProperty: ALIYUN::ECS::Instance:ZoneId
   VswCidrBlock:
@@ -50,9 +46,7 @@ Parameters:
       en: Slave Zone
       zh-cn: 备可用区
     Description:
-      en: 'Availability Zone ID,<br><b>note: <font color=''blue''>before selecting
-        the Availability Zone, verify that the available zone supports the specification
-        for creating SLB resources,not the same as Master Zone.</font></b>'
+      en: "Availability Zone ID,<br><b>Note: <font color='blue'>Before selecting the Availability Zone, verify that the available zone supports the specifications for creating SLB resources and is not the same as the Master Zone.</font></b>"
       zh-cn: 可用区ID，<br><b>注： <font color='blue'>选择可用区前请确认该可用区是否支持创建SLB资源的规格,并不同于主可用区。</font></b>
     AssociationProperty: ALIYUN::ECS::Instance:ZoneId
   VswCidrBlock2:
@@ -71,10 +65,7 @@ Parameters:
       en: Instance Type
       zh-cn: 实例规格
     Description:
-      en: 'Fill in the specifications that can be used under the VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.g5.xlarge</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in the specifications that can be used under the VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.g5.xlarge</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.g5.xlarge</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -87,14 +78,7 @@ Parameters:
       en: Application Server Image
       zh-cn: 应用服务镜像
     Description:
-      en: 'Server Instance Image ID. </b><br>[Shanghai：<font color=''green''>m-uf6j125b6mhvg27jo58a</font>]<br>[Hangzhou：<font
-        color=''green''>m-bp1h0ys627i2ke0dx0t1</font>]<br>[Beijing：<font color=''green''>m-2zeir96eip2yw414w1jd</font>]<br>[Qingdao：<font
-        color=''green''>m-m5e81ywnfuk84x1r7v0n</font>]<br>[Shenzhen：<font color=''green''>m-wz98u1criwvafhq3ctfm</font>]<br>[Zhangjiakou：<font
-        color=''green''>m-8vbg3h5yp5ncag0q31lt</font>]<br>[Hohhot：<font color=''green''>m-hp34cnncgeiowbkzpmic</font>]<br>[Hong
-        Kong：<font color=''green''>m-j6c0e5hkfmzk6d8bfss1</font>]<br>[US(Silincon
-        Valley)：<font color=''green''>m-rj981ywnfuk84x1r7v0p</font>]<br>note: for
-        more images available, see detail: <b><a href=''https://marketplace.alibabacloud.com/products?keywords=magento''
-        target=''_blank''><font color=''blue''>Magento Image</font></a></b>'
+      en: "Server Instance Image ID. </b><br>[Shanghai: <font color='green'>m-uf6j125b6mhvg27jo58a</font>]<br>[Hangzhou: <font color='green'>m-bp1h0ys627i2ke0dx0t1</font>]<br>[Beijing: <font color='green'>m-2zeir96eip2yw414w1jd</font>]<br>[Qingdao: <font color='green'>m-m5e81ywnfuk84x1r7v0n</font>]<br>[Shenzhen: <font color='green'>m-wz98u1criwvafhq3ctfm</font>]<br>[Zhangjiakou: <font color='green'>m-8vbg3h5yp5ncag0q31lt</font>]<br>[Hohhot: <font color='green'>m-hp34cnncgeiowbkzpmic</font>]<br>[Hong Kong: <font color='green'>m-j6c0e5hkfmzk6d8bfss1</font>]<br>[US(Silincon Valley): <font color='green'>m-rj981ywnfuk84x1r7v0p</font>]<br>note: for more images available, see detail: <b><a href='https://marketplace.alibabacloud.com/products?keywords=magento' target='_blank'><font color='blue'>Magento Image</font></a></b>"
       zh-cn: 服务器镜像<br>云市场镜像名称：《Magento开源电子商务系统 (LAMP|中文包)》<br><b>参考值：</b><br>[上海：<font
         color='green'>m-uf6j125b6mhvg27jo58a</font>]<br>[杭州：<font color='green'>m-bp1h0ys627i2ke0dx0t1</font>]<br>[北京：<font
         color='green'>m-2zeir96eip2yw414w1jd</font>]<br>[青岛：<font color='green'>m-m5e81ywnfuk84x1r7v0n</font>]<br>[深圳：<font
@@ -108,11 +92,7 @@ Parameters:
       en: Disk Type
       zh-cn: 磁盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -152,18 +132,14 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=| {}[]:;' <>,.? / Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: 'ALIYUN::ECS::Instance::Password'
   LoadBalancerName:
     Type: String
     Label:
       en: Instance Name
       zh-cn: 实例名称
     Description:
-      en: 'Length: 1-80 characters. Can contain Chinese、letters、digits and special
-        characters(''-''、''/''、''.''、''_'').'
+      en: "Length: 1-80 characters. Can contain Chinese characters, letters, digits, and special characters (-, /, ., _)."
       zh-cn: 长度限制为1-80个字符，允许包含中文、字母、数字、'-'、'/'、'.'、'_'这些字符
     Default: slb001
   LoadBalancerSpec:
@@ -197,9 +173,7 @@ Parameters:
       en: Specifications
       zh-cn: 规格
     Description:
-      en: 'Select the instance specification based on the type of database engine
-        and the available area support;<br>see detail: <a href=''https://www.alibabacloud.com/help/doc-detail/26312.html''
-        target=''_blank''><b><font color=''blue''>Instance specification sheet</font></b></a>'
+      en: "Select the instance specification based on the type of database engine and the available area support;<br>see detail: <a href='https://www.alibabacloud.com/help/doc-detail/26312.html' target='_blank'><b><font color='blue'>Instance specification sheet</font></b></a>"
       zh-cn: 根据数据库引擎的类型和可用的区域支持选择实例规格；<br>请参见详细信息：<a href='https://help.aliyun.com/document_detail/26312.html'
         target='_blank'><b><font color='blue'>实例规格表</font></b></a>
     Default: rds.mysql.s2.large
@@ -223,15 +197,11 @@ Parameters:
       en: Password
       zh-cn: 密码
     Description:
-      en: 'The primary account password for the database instance.Large/lowercase
-        letters, Numbers and special characters take up three kinds, and the length
-        is 8-32 bits. Special characters included! @ # $% ^ & * () _ + - ='
+      en: "The primary account password for the database instance. Must include uppercase letters, lowercase letters, numbers, and special characters. Length: 8-32 characters. Special characters allowed: ! @ # $ % ^ & * ( ) _ + - ="
       zh-cn: 数据库实例的主账号密码。大/小写字母、数字、特殊字符占三种，长度8－32位；特殊字符包含!@#$%^&*()_+-=
     AssociationProperty: ALIYUN::RDS::Instance::AccountPassword
     ConstraintDescription:
-      en: 'Large/lowercase letters, Numbers and special characters take up three kinds,
-        and the length is 8-32 bits. Special characters included! @ # $% ^ & * ()
-        _ + - ='
+      en: "Must include uppercase letters, lowercase letters, numbers, and special characters. Length: 8-32 characters. Special characters allowed: ! @ # $ % ^ & * ( ) _ + - ="
       zh-cn: 大/小写字母、数字、特殊字符占三种，长度8－32位；特殊字符包含!@#$%^&*()_+-=
     MinLength: 8
     MaxLength: 32
@@ -252,9 +222,7 @@ Parameters:
       en: Account Type
       zh-cn: 账号类型
     Description:
-      en: '<b>Database account type, <font color=''blue''>AllowedValues: </font></b><br>[Normal:
-        <font color=''green''>Ordinary account</font>]<br>[Super: <font color=''green''>High-privilege
-        account</font>]'
+      en: "<b>Database account type. <font color='blue'>Allowed values:</font></b><br>[Normal: <font color='green'>Ordinary account</font>]<br>[Super: <font color='green'>High-privilege account</font>]"
       zh-cn: '<b>数据库账号类型，<font color=''blue''>可选值：</font></b><br>[Normal: <font color=''green''>普通账号</font>]<br>[Super:
         <font color=''green''>高权限账号</font>]'
     Default: Normal
@@ -291,11 +259,6 @@ Resources:
       VpcId:
         Ref: Vpc
       SecurityGroupIngress:
-      - IpProtocol: tcp
-        Policy: accept
-        PortRange: 22/22
-        Priority: 1
-        SourceCidrIp: 0.0.0.0/0
       - IpProtocol: tcp
         Policy: accept
         PortRange: 3389/3389
@@ -431,25 +394,6 @@ Resources:
       Tags:
         Key: best_practice
         Value: '065'
-  VSwitch2:
-    Type: ALIYUN::ECS::VSwitch
-    Properties:
-      ZoneId:
-        Ref: VSwitchZoneId2
-      VpcId:
-        Ref: Vpc
-      CidrBlock:
-        Ref: VswCidrBlock2
-      VSwitchName:
-        Fn::Join:
-        - '-'
-        - - Stack
-          - Ref: ALIYUN::StackId
-          - Fn::Select:
-            - '2'
-            - Fn::Split:
-              - '-'
-              - Ref: VSwitchZoneId2
 Outputs:
   ECSPublicIP:
     Description: Magento服务器公网IP
@@ -493,3 +437,101 @@ Metadata:
         default: RDS
     TemplateTags:
     - acs:solution:安全&合规:电商网站业务安全
+    - acs:public_template:Solution:business-security-for-e-commerce-sites
+  ALIYUN::ROS::Composer:
+    a9adba74:
+      Rect:
+        - 523
+        - 452
+        - 40
+        - 54
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    0f95f9b3:
+      Parent: a9adba74
+      Rect:
+        - 474
+        - 391
+        - 60
+        - 94
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    2f9c91b3:
+      Res:
+        - Vpc
+      Parent: 0f95f9b3
+      Rect:
+        - 420
+        - 329
+        - 80
+        - 134
+        - 3
+        - 0
+    752efe72:
+      Res:
+        - VSwitch
+      Parent: 2f9c91b3
+      Rect:
+        - 361
+        - 190
+        - 100
+        - 250
+        - 4
+        - 0
+    7da28a74:
+      Res:
+        - SLBLoadBalance
+        - BackendServerAttachment
+        - Listener
+      Parent: 2f9c91b3
+      Rect:
+        - 40
+        - 40
+        - 321
+        - 174
+        - 4
+        - 0
+    04353e0c:
+      Res:
+        - RdsDBInstance
+      Parent: 752efe72
+      Rect:
+        - 40
+        - 40
+        - 173
+        - 330
+        - 5
+        - 0
+    88dc1079:
+      Res:
+        - SecurityGroup
+      Parent: 2f9c91b3
+      Rect:
+        - 104
+        - 110
+        - 289
+        - 295
+        - 8
+        - 0
+    d4d4f8aa:
+      Res:
+        - ECS
+      Parent: 752efe72
+      Rect:
+        - 40
+        - 40
+        - 321
+        - 330
+        - 9
+        - 0
+      Layer:
+        - 88dc1079
+    9404f625:
+      Parent: 2f9c91b3
+      Edge:
+        - 7da28a74
+        - d4d4f8aa
+      Line: 0:0:0:gray:0
+

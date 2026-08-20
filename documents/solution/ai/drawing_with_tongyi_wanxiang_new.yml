@@ -12,7 +12,7 @@ Parameters:
       en: 3 to 63 letters or numbers.
     Description:
       zh-cn: 在浏览器中登录示例应用程序时的用户名。
-      en: Username when logging into the sample application in the browser.
+      en: Username for logging into the sample application in the browser.
     Label:
       zh-cn: 登录用户名
       en: Login Username
@@ -28,6 +28,7 @@ Parameters:
   DemoUserPassword:
     Type: String
     NoEcho: true
+    Confirm: true
     Description:
       en: >-
         Server login password, Length 8-30, must contain three(Capital letters,
@@ -61,8 +62,8 @@ Parameters:
         color='blue'><b>bucket name must be unique,existing one cannot be created again.</b></font>
     MinLength: 3
     Label:
-      zh-cn: OSS BUCKET
-      en: OSS BUCKE
+      zh-cn: OSS BucketT
+      en: OSS Bucket
     AllowedPattern: '^[a-z0-9]+[a-z0-9\-]*[a-z0-9]+$'
     MaxLength: 63
     Type: String
@@ -79,6 +80,7 @@ Parameters:
     Label:
       en: BaiLian API-KEY
       zh-cn: 百炼 API-KEY
+    AssociationProperty: ALIYUN::Bailian::ApiKey::ApiKeyInfo
     Description:
       zh-cn: >-
         开通百炼模型服务，并获得 API-KEY。请参考：
@@ -120,6 +122,7 @@ Parameters:
   InstancePassword:
     Type: String
     NoEcho: true
+    Confirm: true
     Default: null
     Description:
       en: >-
@@ -240,36 +243,42 @@ Resources:
       Sync: true
       Timeout: 3600
       CommandContent:
-        Fn::Sub: |-
-          #!/bin/bash
-          
-          cat << EOF >> ~/.bash_profile
-          export BAILIAN_API_KEY="${BaiLianApiKey}"
-          export OSS_ACCESS_KEY_ID="${AccessKey.AccessKeyId}"
-          export OSS_ACCESS_KEY_SECRET="${AccessKey.AccessKeySecret}"
-          export WANX_DEMO_OSS_BUCKET="${BucketName}"
-          export WANX_DEMO_USERNAME="${DemoUserName}"
-          export WANX_DEMO_PASSWORD="${DemoUserPassword}"
-          export WANX_DEMO_OSS_ENDPOINT="https://oss-${ALIYUN::Region}.aliyuncs.com"
-          export ROS_DEPLOY=true
-          EOF
-          
-          source ~/.bash_profile 
-          curl -fsSL https://help-static-aliyun-doc.aliyuncs.com/install-script/tongyi-wanxiang/install.sh|bash
+        Fn::Sub:
+          - |
+            #!/bin/bash
+            
+            cat << EOF >> ~/.bash_profile
+            export BAILIAN_API_KEY="${ApiKey}"
+            export OSS_ACCESS_KEY_ID="${AccessKey.AccessKeyId}"
+            export OSS_ACCESS_KEY_SECRET="${AccessKey.AccessKeySecret}"
+            export WANX_DEMO_OSS_BUCKET="${BucketName}"
+            export WANX_DEMO_USERNAME="${DemoUserName}"
+            export WANX_DEMO_PASSWORD="${DemoUserPassword}"
+            export WANX_DEMO_OSS_ENDPOINT="https://oss-${ALIYUN::Region}.aliyuncs.com"
+            export ROS_DEPLOY=true
+            EOF
+            
+            source ~/.bash_profile 
+            curl -fsSL https://help-static-aliyun-doc.aliyuncs.com/install-script/tongyi-wanxiang/install.sh|bash
+          - ApiKey:
+              Fn::Jq:
+                - First
+                - .ApiKeyValue
+                - Ref: BaiLianApiKey
 Outputs:
   EcsLoginAddress:
     Description:
-      en: Ecs login address.
+      en: ECS login address.
       zh-cn: ECS登录地址。
     Value:
       Fn::Sub: https://ecs-workbench.aliyun.com/?from=EcsConsole&instanceType=ecs&regionId=${ALIYUN::Region}&instanceId=${EcsInstance}
   Console@DemoUrl:
     Description:
-      en: Experience address.
+      en: Experience URL.
       zh-cn: 体验地址。
     Label:
       zh-cn: 体验地址
-      en: Experience Addresses
+      en: Experience URLs.
     Value:
       Fn::Sub:
         - http://${PublicIp}/wanx-demo
@@ -282,7 +291,7 @@ Outputs:
   Console@DemoUserName:
     Description:
       zh-cn: 在浏览器中登录示例应用程序时的用户名。
-      en: Username when logging into the sample application in the browser.
+      en: Username for logging into the sample application in the browser.
     Label:
       zh-cn: 登录用户名
       en: Login Username
@@ -310,3 +319,172 @@ Metadata:
       - CommonName
     TemplateTags:
       - acs:technical-solution:ai:通义万相的文本绘图与人像美化之旅-tech_solu_128
+      - acs:public_template:Solution:drawing_with_tongyi_wanxiang_new
+  ALIYUN::ROS::Composer:
+    '23220280':
+      Parent: e8d23603
+      Rect:
+        - 40
+        - 40
+        - -8
+        - 442
+        - 3
+        - 0
+      ResT: MODULE::ACS::OOS::Extension
+    8c5f0f94:
+      Rect:
+        - 654
+        - 510
+        - -68
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    e8d23603:
+      Parent: 8c5f0f94
+      Rect:
+        - 597
+        - 433
+        - -48
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    63f1283d:
+      Res:
+        - Vpc
+      Parent: e8d23603
+      Rect:
+        - 358
+        - 356
+        - 72
+        - 200
+        - 3
+        - 0
+    c1091400:
+      Res:
+        - Bucket
+      Parent: e8d23603
+      Rect:
+        - 40
+        - 40
+        - -8
+        - 250
+        - 3
+        - 0
+    3950e0d6:
+      Res:
+        - InstallApp
+      Parent: e8d23603
+      Rect:
+        - 40
+        - 40
+        - -8
+        - 350
+        - 3
+        - 0
+    ef152f1d:
+      Res:
+        - CustomPolicy
+      Parent: e8d23603
+      Rect:
+        - 40
+        - 40
+        - 468
+        - 250
+        - 3
+        - 0
+    c291cf84:
+      Res:
+        - User
+      Parent: e8d23603
+      Rect:
+        - 40
+        - 40
+        - 468
+        - 347
+        - 3
+        - 0
+    458380c2:
+      Res:
+        - AccessKey
+      Parent: e8d23603
+      Rect:
+        - 40
+        - 40
+        - 468
+        - 442
+        - 3
+        - 0
+      Label: AccessKey
+    18401ef3:
+      Res:
+        - ZoneId
+      Parent: 63f1283d
+      Rect:
+        - 317
+        - 289
+        - 92
+        - 250
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    b6b92362:
+      Res:
+        - VSwitch
+      Parent: 18401ef3
+      Rect:
+        - 260
+        - 221
+        - 112
+        - 300
+        - 5
+        - 0
+    9c86f934:
+      Parent: e8d23603
+      Edge:
+        - c291cf84
+        - ef152f1d
+      Line: 0:0:0:gray:0
+    c74292f0:
+      Parent: e8d23603
+      Edge:
+        - 458380c2
+        - c291cf84
+      Line: 0:0:0:gray:0
+    541b6c79:
+      Parent: e8d23603
+      Edge:
+        - '23220280'
+        - 352ee17d
+      Line: 0:0:0:gray:0
+    2645ee1c:
+      Parent: e8d23603
+      Edge:
+        - 3950e0d6
+        - 352ee17d
+      Line: 0:0:0:gray:0
+    20c6183b:
+      Res:
+        - SecurityGroup
+      Parent: 63f1283d
+      Rect:
+        - 141
+        - 133
+        - 167
+        - 349
+        - 13
+        - 0
+    352ee17d:
+      Res:
+        - EcsInstance
+      Parent: b6b92362
+      Rect:
+        - 40
+        - 40
+        - 212
+        - 395
+        - 14
+        - 0
+      Layer:
+        - 20c6183b

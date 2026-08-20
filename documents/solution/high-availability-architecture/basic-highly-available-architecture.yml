@@ -117,13 +117,13 @@ Parameters:
   EnableCDT:
     Type: Boolean
     Label:
-      en: EnableCDT
+      en: Enable CDT
       zh-cn: 是否开通 CDT
     Default: false
 Conditions:
   EnableCDT:
     Fn::Equals:
-      - Ref: EnableCDT
+      - Ref: Enable CDT
       - true
 Resources:
   AutoEnableCDT:
@@ -205,9 +205,6 @@ Resources:
       SecurityGroupName:
         Fn::Sub: ${CommonName}-sg
       SecurityGroupIngress:
-        - PortRange: 22/22
-          SourceCidrIp: 0.0.0.0/0
-          IpProtocol: tcp
         - PortRange: 443/443
           SourceCidrIp: 0.0.0.0/0
           IpProtocol: tcp
@@ -422,7 +419,7 @@ Outputs:
   WebUrl:
     Description:
       zh-cn: Web 访问地址。
-      en: The Addresses of Web.
+      en: Web addresses
     Value:
       'Fn::Sub': 'http://${Alb.DNSName}'
 Metadata:
@@ -742,5 +739,6 @@ Metadata:
             en: Other Configuration
     TemplateTags:
       - acs:technical-solution:high-availability-architecture:云上高可用架构-基础版-tech_solu_133
+      - acs:public_template:Solution:basic-highly-available-architecture
     Hidden:
       - CommonName

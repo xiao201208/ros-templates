@@ -25,13 +25,13 @@ Parameters:
     NoEcho: true
     Type: String
     Description:
-      en: Server login password, Length 8-30, must contain three(Capital letters, lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in)
+      en: "Server login password, 8-30 characters in length, must contain three of: uppercase letters, lowercase letters, numbers, and special symbols (!@#$%^&*()_+-=[]{}|;:,.<>/?~`)"
       zh-cn: 服务器登录密码，长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）
     Label:
       en: ECS Instance Password
       zh-cn: ECS实例密码
     ConstraintDescription:
-      en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers, ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in)
+      en: "8-30 characters in length, must contain three of: uppercase letters, lowercase letters, numbers, and special symbols (!@#$%^&*()_+-=[]{}|;:,.<>/?~`)"
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）
     AssociationProperty: ALIYUN::ECS::Instance::Password
   CommonName:
@@ -68,13 +68,13 @@ Parameters:
     NoEcho: true
     Type: String
     Description:
-      en: 'The password is 8 to 30 characters in length and must contain at least three types: uppercase letters, lowercase letters, digits, and special symbols. The name contains 8 to 32 characters. Special characters include! @ # $% ^ & * () _ + - ='
+      en: 'The password is 8 to 30 characters in length and must contain at least three types: uppercase letters, lowercase letters, digits, and special symbols. The account name is 8 to 32 characters in length and can contain lowercase letters, digits, and underscores (_). It must start with a letter and end with a letter or digit.'
       zh-cn: '数据库账号密码，长度8-30，必须包含三种及以上类型：大写字母、小写字母、数字、特殊符号。长度为8～32位。特殊字符包括! @ # $ % ^ & * () _ + - ='
     Label:
       en: MySQL Instance Password
       zh-cn: MySQL数据库密码
     ConstraintDescription:
-      en: 'Length 8-30, must contain three(Capital letters, lowercase letters, numbers, @ # $% ^ & * () _ + - = Special symbol in)'
+      en: '8-30 characters in length, must contain three of: uppercase letters, lowercase letters, numbers, and special symbols (@#$%^&*()_+-=[]{}|;:,.<>/?~`)'
       zh-cn: '长度8-30，必须包含三项（大写字母、小写字母、数字、特殊符号。长度为8～32位。特殊字符包括! @ # $ % ^ & * () _ + - =）'
     AssociationProperty: ALIYUN::RDS::Instance::AccountPassword
   AppDemoAccountName:
@@ -94,10 +94,10 @@ Parameters:
       en: App demo password
       zh-cn: 登录演示账户的密码
     Description:
-      en: 'The password is 8 to 30 characters in length and must contain at least three types: uppercase letters, lowercase letters, digits, and special symbols. The name contains 8 to 32 characters. Special characters include! @ # $% ^ & * () _ + - ='
+      en: 'The password is 8 to 30 characters in length and must contain at least three types: uppercase letters, lowercase letters, digits, and special symbols. The account name is 8 to 32 characters in length and can contain lowercase letters, digits, and underscores (_). It must start with a letter and end with a letter or digit.'
       zh-cn: '账号密码，长度8-30，必须包含三种及以上类型：大写字母、小写字母、数字、特殊符号。长度为8～32位。特殊字符包括! @ # $ % ^ & * () _ + - ='
     ConstraintDescription:
-      en: 'Length 8-30, must contain three(Capital letters, lowercase letters, numbers, @ # $% ^ & * () _ + - = Special symbol in)'
+      en: '8-30 characters in length, must contain three of: uppercase letters, lowercase letters, numbers, and special symbols (@#$%^&*()_+-=[]{}|;:,.<>/?~`)'
       zh-cn: '长度8-30，必须包含三项（大写字母、小写字母、数字、特殊符号。长度为8～32位。特殊字符包括! @ # $ % ^ & * () _ + - =）'
     AssociationProperty: ALIYUN::RDS::Instance::AccountPassword
 Resources:
@@ -157,9 +157,6 @@ Resources:
       SecurityGroupIngress:
         - PortRange: 80/80
           SourceCidrIp: 0.0.0.0/0
-          IpProtocol: tcp
-        - PortRange: 22/22
-          SourceCidrIp: 47.96.60.0/24,118.31.243.0/24,8.139.112.0/24,8.139.99.192/26
           IpProtocol: tcp
   EcsInstance:
     Type: ALIYUN::ECS::InstanceGroup
@@ -351,10 +348,10 @@ Outputs:
   Console.Url:
     Label:
       zh-cn: Web 访问地址
-      en: The Addresses of Web
+      en: Web Addresses
     Description:
       zh-cn: Web 访问地址。
-      en: The Addresses of Web.
+      en: Web Addresses.
     Value:
       Fn::Sub:
         - http://${ServerAddress}/login
@@ -369,7 +366,7 @@ Outputs:
   EcsLoginAddress:
     Description:
       zh-cn: ECS登录地址。
-      en: Ecs login address.
+      en: ECS Login Address
     Value:
       Fn::Sub:
         - https://ecs-workbench.aliyun.com/?from=EcsConsole&instanceType=ecs&regionId=${Region}&instanceId=${InstanceId}
@@ -413,3 +410,257 @@ Metadata:
       - CommonName
     TemplateTags:
       - acs:technical-solution:ai:通过RocketMQ事务消息实现分布式事务-tech_solu_154
+      - acs:public_template:Solution:through-RocketMQ-transaction-messages
+  ALIYUN::ROS::Composer:
+    6d838b82:
+      Rect:
+        - 1100
+        - 820
+        - 40
+        - 100
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    e70e12ae:
+      Parent: 6d838b82
+      Rect:
+        - 1060
+        - 750
+        - 60
+        - 150
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    380cea80:
+      Res:
+        - Vpc
+      Parent: e70e12ae
+      Rect:
+        - 900
+        - 560
+        - 200
+        - 200
+        - 3
+        - 0
+    74d1cae0:
+      Res:
+        - Topic
+      Parent: e70e12ae
+      Rect:
+        - 40
+        - 40
+        - 925
+        - 800
+        - 3
+        - 0
+    0a3a447a:
+      Res:
+        - ConsumerGroup
+      Parent: e70e12ae
+      Rect:
+        - 40
+        - 40
+        - 700
+        - 800
+        - 3
+        - 0
+    e2247c32:
+      Res:
+        - AutoEnableCDT
+      Parent: e70e12ae
+      Rect:
+        - 40
+        - 40
+        - 200
+        - 780
+        - 3
+        - 0
+      Hidden: true
+    c845988c:
+      Res:
+        - WaitConditionHandle
+      Parent: e70e12ae
+      Rect:
+        - 40
+        - 40
+        - 140
+        - 840
+        - 3
+        - 0
+      Hidden: true
+    288c9ae7:
+      Res:
+        - RosWaitCondition
+      Parent: e70e12ae
+      Rect:
+        - 40
+        - 40
+        - 80
+        - 840
+        - 3
+        - 0
+      Hidden: true
+    9a7c0c7b:
+      Res:
+        - ProductRunCommand
+      Parent: e70e12ae
+      Rect:
+        - 40
+        - 40
+        - 80
+        - 200
+        - 3
+        - 0
+      Hidden: true
+    d3981502:
+      Res:
+        - ConsumerRunCommand
+      Parent: e70e12ae
+      Rect:
+        - 40
+        - 40
+        - 140
+        - 200
+        - 3
+        - 0
+      Hidden: true
+    31dbeb1c:
+      Res:
+        - ZoneId
+      Parent: 380cea80
+      Rect:
+        - 860
+        - 490
+        - 220
+        - 250
+        - 4
+        - 0
+      ResT: Composer::ROSParameter::Zone
+    7ac83909:
+      Res:
+        - VSwitch1
+      Parent: 31dbeb1c
+      Rect:
+        - 400
+        - 200
+        - 240
+        - 300
+        - 5
+        - 0
+    508b73c3:
+      Res:
+        - VSwitch2
+      Parent: 31dbeb1c
+      Rect:
+        - 400
+        - 200
+        - 660
+        - 300
+        - 5
+        - 0
+    72207d1f:
+      Res:
+        - VSwitch3
+      Parent: 31dbeb1c
+      Rect:
+        - 400
+        - 200
+        - 240
+        - 520
+        - 5
+        - 0
+    6a3763eb:
+      Res:
+        - VSwitch4
+      Parent: 31dbeb1c
+      Rect:
+        - 400
+        - 200
+        - 660
+        - 520
+        - 5
+        - 0
+    9f02ae0a:
+      Res:
+        - Database
+        - Account
+      Ref:
+        - Account
+      Parent: 72207d1f
+      Rect:
+        - 40
+        - 40
+        - 454
+        - 600
+        - 6
+        - 0
+    43b374ee:
+      Res:
+        - RocketMQ
+      Parent: 6a3763eb
+      Rect:
+        - 40
+        - 40
+        - 812
+        - 600
+        - 6
+        - 0
+    99f6dd15:
+      Res:
+        - SecurityGroup
+      Parent: 380cea80
+      Rect:
+        - 196
+        - 123
+        - 680
+        - 350
+        - 10
+        - 0
+    1b4f13e9:
+      Parent: 380cea80
+      Edge:
+        - 9f02ae0a
+        - 99f6dd15
+      Line: 0:0:0:gray:0
+    dc35cdea:
+      Parent: e70e12ae
+      Edge:
+        - 74d1cae0
+        - 43b374ee
+      Line: 0:0:0:gray:0
+    1be43e77:
+      Parent: e70e12ae
+      Edge:
+        - 0a3a447a
+        - 43b374ee
+      Line: 0:0:0:gray:0
+    9b0fd9e6:
+      Edge:
+        - 288c9ae7
+        - c845988c
+      Line: 0:0:0:gray:0
+    1c68ba7f:
+      Parent: e70e12ae
+      Edge:
+        - 9a7c0c7b
+        - 7b52a84b
+      Line: 0:0:0:gray:0
+    d74da836:
+      Parent: e70e12ae
+      Edge:
+        - d3981502
+        - 7b52a84b
+      Line: 0:0:0:gray:0
+    7b52a84b:
+      Res:
+        - EcsInstance
+      Parent: 508b73c3
+      Rect:
+        - 40
+        - 40
+        - 758
+        - 380
+        - 11
+        - 0
+      Layer:
+        - 99f6dd15

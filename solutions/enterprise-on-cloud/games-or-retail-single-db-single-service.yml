@@ -39,19 +39,16 @@ Parameters:
       en: CDN Accelerated Domain Prefix
       zh-cn: 加速域名前缀
     Description:
-      en: CDN speeds up the domain prefix of image small files
+      en: CDN accelerates the domain prefix for small image files.
       zh-cn: CDN加速图片小文件的域名前缀。
     Default: default
   CdnDomainScope:
     Type: String
     Label:
-      en: Accelerating Regional
+      en: Acceleration Region
       zh-cn: 加速区域
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[domestic：<font
-        color=''green''>Mainland China alone</font>]<br>[overseas：<font color=''green''>Global
-        (excluding mainland China)</font>]<br>[global：<font color=''green''>global</font>]<br><font
-        color=''blue''></a>'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[domestic: <font color='green'>Mainland China alone</font>]<br>[overseas: <font color='green'>Global (excluding mainland China)</font>]<br>[global: <font color='green'>global</font>]<br><font color='blue'></a>"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[domestic：<font color=''green''>仅中国大陆</font>]<br>[overseas：<font
         color=''green''>全球（不包含中国大陆）</font>]<br>[global：<font color=''green''>全球</font>]<br><font
         color=''blue''></a>'
@@ -66,9 +63,7 @@ Parameters:
       en: VPC CIDR Block
       zh-cn: 专有网络网段
     Description:
-      en: 'The IP address range of the VPC in the CIDR Block form; <br>you can use
-        the following IP address ranges: <br><font color=''green''>[10.0.0.0/8]</font><br><font
-        color=''green''>[172.16.0.0/12]</font><br><font color=''green''>[192.168.0.0/16]</font>'
+      en: "The IP address range of the VPC in the CIDR Block form; <br>you can use the following IP address ranges: <br><font color='green'>[10.0.0.0/8]</font><br><font color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>"
       zh-cn: 专有网络IP地址段范围，<br>您可以使用以下的IP地址段:<br><font color='green'>[10.0.0.0/8]</font><br><font
         color='green'>[172.16.0.0/12]</font><br><font color='green'>[192.168.0.0/16]</font>
     Default: 192.168.0.0/16
@@ -124,8 +119,7 @@ Parameters:
       en: EIP Billing Method
       zh-cn: 弹性公网Ip计费类型
     Description:
-      en: 'Billing method. <br><font color=''blue''><b>Optional values：</b></font><br>[PayByBandwidth:
-        <font color=''green''>Pay-by-bandwidth</font>]<br>[PayByTraffic: <font color=''green''>Pay-by-data-transfer</font>]</a>'
+      en: "Billing method. <br><font color='blue'><b>Optional values: </b></font><br>[PayByBandwidth: <font color='green'>Pay-by-bandwidth</font>]<br>[PayByTraffic: <font color='green'>Pay-by-data-transfer</font>]</a>"
       zh-cn: '计费类型。<br><font color=''blue''><b>可选值：</b></font><br>[PayByBandwidth:
         <font color=''green''>按带宽计费</font>]<br>[PayByTraffic: <font color=''green''>按流量计费</font>]</a>'
     Default: PayByTraffic
@@ -138,8 +132,7 @@ Parameters:
       en: Image
       zh-cn: 镜像
     Description:
-      en: 'Server instance Image ID, see detail: <b><a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><font color=''blue''>Find the mirror</font></a></b>'
+      en: "Server instance Image ID, see detail: <b><a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><font color='blue'>Find the mirror</font></a></b>"
       zh-cn: 服务器镜像，详见：<b><a href='https://help.aliyun.com/document_detail/112977.html'
         target='_blank'><font color='blue'>查找镜像</font></a></b>
     Default: centos_7_06_64
@@ -157,21 +150,14 @@ Parameters:
       en: Length 8-30, must contain three(Capital letters, lowercase letters, numbers,
         ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ Special symbol in).
       zh-cn: 长度8-30，必须包含三项（大写字母、小写字母、数字、 ()`~!@#$%^&*_-+=|{}[]:;'<>,.?/ 中的特殊符号）。
-    AllowedPattern: '[0-9A-Za-z\_\-\&:;''<>,=%`~!@#\(\)\$\^\*\+\|\{\}\[\]\.\?\/]+$'
-    MinLength: 8
-    MaxLength: 30
-    NoEcho: true
+    AssociationProperty: 'ALIYUN::ECS::Instance::Password'
   EcsSystemDiskCategory:
     Type: String
     Label:
       en: System Disk Type
       zh-cn: 系统盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -200,10 +186,7 @@ Parameters:
       en: Core Server Specifications
       zh-cn: 核心服务器规格
     Description:
-      en: 'Fill in specifications that can be used under the existing VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in specifications that can be used under the existing VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写已存在的VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -216,7 +199,7 @@ Parameters:
       en: Core Server System Disk Space
       zh-cn: 核心服务器系统盘空间
     Description:
-      en: 'System disk size, range of values: 40-500, units: GB.'
+      en: 'System disk size, value range: 40–500 GB.'
       zh-cn: 系统盘大小, 取值范围：[40, 500], 单位：GB。
     Default: 40
     MinValue: 40
@@ -238,10 +221,7 @@ Parameters:
       en: Subsystem Server Specifications
       zh-cn: 子系统服务器规格
     Description:
-      en: 'Fill in specifications that can be used under the existing VSwitch availability
-        zone;</b></font><br>general specifications：<font color=''red''><b>ecs.c5.large</b></font><br>note:
-        a few zones do not support general specifications<br>see detail: <a href=''https://www.alibabacloud.com/help/en/doc-detail/25378.html''
-        target=''_blank''><b><font color=''blue''>Instance Specification Family</font></a></b>'
+      en: "Fill in specifications that can be used under the existing VSwitch availability zone;</b></font><br>general specifications: <font color='red'><b>ecs.c5.large</b></font><br>note: a few zones do not support general specifications<br>see detail: <a href='https://www.alibabacloud.com/help/en/doc-detail/25378.html' target='_blank'><b><font color='blue'>Instance Specification Family</font></a></b>"
       zh-cn: 填写已存在的VSwitch可用区下可使用的规格；<br>通用规格：<font color='red'><b>ecs.c5.large</b></font><br>注：可用区可能不支持通用规格<br>规格详见：<a
         href='https://help.aliyun.com/document_detail/25378.html' target='_blank'><b><font
         color='blue'>实例规格族</font></a></b>
@@ -254,7 +234,7 @@ Parameters:
       en: Subsystem Server System Disk Space
       zh-cn: 子系统服务器系统盘空间
     Description:
-      en: 'System disk size, range of values: 40-500, units: GB.'
+      en: 'System disk size, value range: 40–500 GB.'
       zh-cn: 系统盘大小, 取值范围：[40, 500], 单位：GB。
     Default: 40
     MinValue: 40
@@ -265,11 +245,7 @@ Parameters:
       en: Subsystem Server Disk Type
       zh-cn: 子系统服务器数据盘类型
     Description:
-      en: '<font color=''blue''><b>Optional values:</b></font><br>[cloud_efficiency:
-        <font color=''green''>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color=''green''>SSD
-        Cloud Disk</font>]<br>[cloud_essd: <font color=''green''>ESSD Cloud Disk</font>]<br>[cloud:
-        <font color=''green''>Cloud Disk</font>]<br>[ephemeral_ssd: <font color=''green''>Local
-        SSD Cloud Disk</font>]'
+      en: "<font color='blue'><b>Optional values:</b></font><br>[cloud_efficiency: <font color='green'>Efficient Cloud Disk</font>]<br>[cloud_ssd: <font color='green'>SSD Cloud Disk</font>]<br>[cloud_essd: <font color='green'>ESSD Cloud Disk</font>]<br>[cloud: <font color='green'>Cloud Disk</font>]<br>[ephemeral_ssd: <font color='green'>Local SSD Cloud Disk</font>]"
       zh-cn: '<font color=''blue''><b>可选值：</b></font><br>[cloud_efficiency: <font
         color=''green''>高效云盘</font>]<br>[cloud_ssd: <font color=''green''>SSD云盘</font>]<br>[cloud_essd:
         <font color=''green''>ESSD云盘</font>]<br>[cloud: <font color=''green''>普通云盘</font>]<br>[ephemeral_ssd:
@@ -287,7 +263,7 @@ Parameters:
       en: Subsystem Server Disk Space
       zh-cn: 子系统服务器数据盘空间
     Description:
-      en: 'Data disk size, value range: [40, 500].'
+      en: 'Data disk size, value range: [40, 500] GB.'
       zh-cn: '数据盘大小, 取值范围: [40, 500]。'
     Default: 40
     MinValue: 40
@@ -298,9 +274,7 @@ Parameters:
       en: Specifications
       zh-cn: 实例规格
     Description:
-      en: 'Select the instance specification based on the type of database engine
-        and the available area support;<br>see detail: <a href=''https://www.alibabacloud.com/help/doc-detail/26312.htm''
-        target=''_blank''><b><font color=''blue''>Instance specification sheet</font></b></a>'
+      en: "Select the instance specification based on the database engine type and available area support;<br>see details: <a href='https://www.alibabacloud.com/help/doc-detail/26312.htm' target='_blank'><b><font color='blue'>Instance Specification Sheet</font></b></a>"
       zh-cn: 根据数据库引擎的类型和可用的区域支持选择实例规格；<br>请参见详细信息：<a href='https://help.aliyun.com/document_detail/26312.html'
         target='_blank'><b><font color='blue'>实例规格表</font></b></a>
     Default: rds.mysql.s3.large
@@ -317,7 +291,7 @@ Parameters:
       en: Storage Space
       zh-cn: 存储空间
     Description:
-      en: 'Database storage space, units: GB, per 5GB increment, value range: 50-1000.'
+      en: 'Database storage space, units: GB, increments of 5 GB, value range: 50–1000.'
       zh-cn: 数据库存储空间, 单位：GB, 每5GB进行递增，取值范围：50-1000。
     Default: 50
     MinValue: 50
@@ -354,8 +328,7 @@ Parameters:
       en: Account Password
       zh-cn: 账号密码
     Description:
-      en: 'Length 8-32 characters, can contain size letters, Numbers and special symbols
-        (including:!@ # $% ^ & * - + = _).'
+      en: "Length: 8–32 characters. Can contain uppercase and lowercase letters, numbers, and special symbols (including: !@#$%^&*-+=_)."
       zh-cn: 长度8-32个字符,可包含大小字母、数字及特殊符号（包含：!@#$%^&*-+=_）。
     AssociationProperty: ALIYUN::RDS::Instance::AccountPassword
     ConstraintDescription:
@@ -446,7 +419,7 @@ Parameters:
   BucketName:
     Type: String
     Label:
-      en: Bucket Name
+      en: "The name must be 3 to 63 characters in length. It must start and end with a lowercase letter or digit. The name can contain only lowercase letters, digits, and hyphens (-).<br><b>Note: <font color='blue'>A bucket name must be globally unique within OSS. Bucket names cannot be changed after the bucket is created.</b></font>"
       zh-cn: 存储空间名称
     Description:
       en: The name must be 3 to 63 bytes in length, The name must start and end with
@@ -461,11 +434,7 @@ Parameters:
       en: Access Control
       zh-cn: 读写权限
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[private：<font
-        color=''green''>All access to the file requires authentication.</font>]<br>[public-read：<font
-        color=''green''>File writes need to be authenticated；Files can be read anonymously.</font>]<br>[public-read-write：<font
-        color=''green''>Anyone (including anonymous visitors) can perform read and
-        write operators on the files in the bucket.</font>]'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[private: <font color='green'>All access to the file requires authentication.</font>]<br>[public-read: <font color='green'>File writes need to be authenticated;Files can be read anonymously.</font>]<br>[public-read-write: <font color='green'>Anyone (including anonymous visitors) can perform read and write operators on the files in the bucket.</font>]"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[private：<font color=''green''>对文件的所有访问操作需要进行身份验证。</font>]<br>[public-read：<font
         color=''green''>对文件写操作需要进行身份验证；可以对文件进行匿名读。</font>]<br>[public-read-write：<font
         color=''green''>所有人都可以对文件进行读写操作。</font>]'
@@ -480,10 +449,7 @@ Parameters:
       en: Storage Type
       zh-cn: 存储类型
     Description:
-      en: '<font color=''blue''><b>Optional values: </b></font><br>[Standard：<font
-        color=''green''>Standard storage type</font>]<br>[IA：<font color=''green''>Low
-        frequency access storage type</font>]<br>[Archive：<font color=''green''>Archive
-        storage type</font>]'
+      en: "<font color='blue'><b>Optional values: </b></font><br>[Standard: <font color='green'>Standard storage type</font>]<br>[IA: <font color='green'>Low frequency access storage type</font>]<br>[Archive: <font color='green'>Archive storage type</font>]"
       zh-cn: '<font color=''blue''><b>可选值: </b></font><br>[Standard：<font color=''green''>标准存储类型</font>]<br>[IA：<font
         color=''green''>低频访问存储类型</font>]<br>[Archive：<font color=''green''>归档存储类型</font>]'
     Default: Standard
@@ -695,11 +661,6 @@ Resources:
       - IpProtocol: tcp
         NicType: internet
         PortRange: 443/443
-        Priority: 1
-        SourceCidrIp: 0.0.0.0/0
-      - IpProtocol: tcp
-        NicType: internet
-        PortRange: 22/22
         Priority: 1
         SourceCidrIp: 0.0.0.0/0
       SecurityGroupName:
@@ -980,11 +941,6 @@ Resources:
         PortRange: 443/443
         Priority: 1
         SourceCidrIp: 0.0.0.0/0
-      - IpProtocol: tcp
-        NicType: internet
-        PortRange: 22/22
-        Priority: 1
-        SourceCidrIp: 0.0.0.0/0
       SecurityGroupName:
         Fn::Join:
         - '-'
@@ -1171,7 +1127,7 @@ Resources:
 Outputs:
   BucketInternalDomainName:
     Description:
-      en: Storage space public access to the domain name.
+      en: Public access to storage space via the domain name.
       zh-cn: 子系统服务器的实例ID列表。
     Value:
       Fn::GetAtt:
@@ -1219,7 +1175,7 @@ Outputs:
       - PublicIps
   LoadbalancerAddress:
     Description:
-      en: Resilient public network IP(bound SLB).
+      en: Resilient public IP address (bound to SLB).
       zh-cn: 弹性公网IP(已绑定SLB)。
     Value:
       Fn::GetAtt:
@@ -1310,301 +1266,291 @@ Metadata:
         default: OSS
     TemplateTags:
     - acs:solution:业务上云:游戏、零售等行业低成本单库单服上云
-  ALIYUN::ROS::Designer:
-    010d8588-9ce6-4094-8c23-f67270a1db95:
-      position:
-        x: 251
-        y: 130
-      size:
-        height: 60
-        width: 60
-      z: 2
-    059bb8cf-3e7b-4484-a63b-e38b4a85df87:
-      position:
-        x: 251
-        y: 230
-      size:
-        height: 60
-        width: 60
-      z: 2
-    06c0c1d0-7f73-4b71-8a56-c4340b79d582:
-      source:
-        id: a3b451f4-9e32-4272-bf58-e98fa58a6f9e
-      target:
-        id: 15f4fe4c-6b6e-49a6-a127-c0403c05b55b
-      z: 1
-    0e1ebb36-d34f-47ae-8d9d-cf39319ef825:
-      source:
-        id: 523d61d7-c12e-4c00-a41b-8160783730af
-      target:
-        id: 2b46fbe3-eed8-4b1d-a87d-020369db1509
-      z: 1
-    0e7aca8a-f939-4144-bd54-a2455049c927:
-      position:
-        x: 63
-        y: 355
-      size:
-        height: 60
-        width: 60
-      z: 0
-    15f4fe4c-6b6e-49a6-a127-c0403c05b55b:
-      position:
-        x: -41
-        y: 130
-      size:
-        height: 60
-        width: 60
-      z: 0
-    1777e259-7223-4cc0-8b0b-7d631f36e4ea:
-      position:
-        x: 67
-        y: 130
-      size:
-        height: 60
-        width: 60
-      z: 0
-    1885f195-4dde-4735-a1f2-62028ecb0f31:
-      embeds:
-      - dd6d71ce-5b53-4334-99fd-a0781a2c1b1a
-      position:
-        x: 546
-        y: 98
-      size:
-        height: 153
-        width: 132
-      z: 1
-    18aa100e-3495-42cc-a5fd-0c377a8317fc:
-      position:
-        x: 585
-        y: 365
-      size:
-        height: 60
-        width: 60
-      z: 1
-    26b9ebe4-3c57-4ee7-a179-e02c546c7f22:
-      position:
-        x: 759
-        y: 267
-      size:
-        height: 60
-        width: 60
-      z: 0
-    2b46fbe3-eed8-4b1d-a87d-020369db1509:
-      position:
-        x: 908
-        y: 80
-      size:
-        height: 60
-        width: 60
-      z: 0
-    4f04b777-3a40-48d2-8296-438bd7ac741f:
-      source:
-        id: 829b4dc9-26c1-4774-b250-ca7698f32d85
-      target:
-        id: 010d8588-9ce6-4094-8c23-f67270a1db95
-      z: 1
-    517267d1-6ebf-4804-b5b4-f3885e81af39:
-      source:
-        id: aa1d1690-96da-49a7-9a88-2371b3147c9f
-      target:
-        id: 010d8588-9ce6-4094-8c23-f67270a1db95
-      z: 1
-    5174d251-0c09-4726-bc18-2f08c550a888:
-      source:
-        id: 1777e259-7223-4cc0-8b0b-7d631f36e4ea
-      target:
-        id: 15f4fe4c-6b6e-49a6-a127-c0403c05b55b
-      z: 1
-    523d61d7-c12e-4c00-a41b-8160783730af:
-      position:
-        x: 754
-        y: 80
-      size:
-        height: 60
-        width: 60
-      z: 0
-    53609f81-e0aa-4d90-824b-a7079824433a:
-      position:
-        x: -41
-        y: 356
-      size:
-        height: 60
-        width: 60
-      z: 0
-    59444217-2b80-413f-8cab-4d3500729a6c:
-      position:
-        x: 911
-        y: 267
-      size:
-        height: 60
-        width: 60
-      z: 0
-    5a906276-1d7c-47b8-8eef-3b1599d05833:
-      position:
-        x: 62
-        y: 230
-      size:
-        height: 60
-        width: 60
-      z: 0
-    81edb9ed-d3db-4a13-9d06-8533f2d72b75:
-      position:
-        x: -31
-        y: 29
-      size:
-        height: 60
-        width: 60
-      z: 0
-    829b4dc9-26c1-4774-b250-ca7698f32d85:
-      position:
-        x: 65
-        y: 29
-      size:
-        height: 60
-        width: 60
-      z: 0
-    99649900-2306-42b2-80e4-082ee1b85c08:
-      embeds:
-      - acc22ba6-5493-4c34-b6d0-e8f7e06c3471
-      - 1885f195-4dde-4735-a1f2-62028ecb0f31
-      - ffe531d1-90dc-4e67-960c-cf04d53eaf4f
-      - 18aa100e-3495-42cc-a5fd-0c377a8317fc
-      position:
-        x: 194
-        y: 50
-      size:
-        height: 418
-        width: 531.572265625
-      z: 0
-    9f9df2f1-1a1a-430b-b62d-0291818f93e2:
-      position:
-        x: 372
-        y: 176
-      size:
-        height: 60
-        width: 60
-      z: 2
-    a3b451f4-9e32-4272-bf58-e98fa58a6f9e:
-      position:
-        x: -41
-        y: 234
-      size:
-        height: 60
-        width: 60
-      z: 0
-    a9da7355-c014-40de-bf1b-1663ea09b519:
-      source:
-        id: 9f9df2f1-1a1a-430b-b62d-0291818f93e2
-      target:
-        id: ffe531d1-90dc-4e67-960c-cf04d53eaf4f
-      z: 1
-    aa1d1690-96da-49a7-9a88-2371b3147c9f:
-      position:
-        x: 372
-        y: -27
-      size:
-        height: 60
-        width: 60
-      z: 0
-    acc22ba6-5493-4c34-b6d0-e8f7e06c3471:
-      embeds:
-      - 010d8588-9ce6-4094-8c23-f67270a1db95
-      - 9f9df2f1-1a1a-430b-b62d-0291818f93e2
-      - 059bb8cf-3e7b-4484-a63b-e38b4a85df87
-      position:
-        x: 214
-        y: 90
-      size:
-        height: 250
-        width: 256
-      z: 1
-    ba14a597-a00d-4a75-a8c5-c84e43e93c0f:
-      source:
-        id: f19ce542-6dd1-44f1-9813-c12a376d178a
-      target:
-        id: fa61d5de-b37b-43a9-a040-2b803e38477b
-      z: 1
-    dd6d71ce-5b53-4334-99fd-a0781a2c1b1a:
-      position:
-        x: 585
-        y: 139
-      size:
-        height: 60
-        width: 60
-      z: 2
-    dd82c3cc-6a0c-469c-9626-cf2b9ab3c911:
-      source:
-        id: aa1d1690-96da-49a7-9a88-2371b3147c9f
-      target:
-        id: 9f9df2f1-1a1a-430b-b62d-0291818f93e2
-      z: 1
-    dfdc7496-cfb0-4fc0-892b-968fe44510a7:
-      source:
-        id: 5a906276-1d7c-47b8-8eef-3b1599d05833
-      target:
-        id: 059bb8cf-3e7b-4484-a63b-e38b4a85df87
-      z: 1
-    e313bc49-7e38-4154-956a-0f11049cd7e3:
-      position:
-        x: 902
-        y: 363
-      size:
-        height: 60
-        width: 60
-      z: 0
-    e368535e-6c16-4b83-99dc-e38d45b76b9c:
-      source:
-        id: 1777e259-7223-4cc0-8b0b-7d631f36e4ea
-      target:
-        id: 010d8588-9ce6-4094-8c23-f67270a1db95
-      z: 1
-    e434ccb6-d64d-4451-adb2-22394c4fed5b:
-      source:
-        id: 0e7aca8a-f939-4144-bd54-a2455049c927
-      target:
-        id: 059bb8cf-3e7b-4484-a63b-e38b4a85df87
-      z: 1
-    e577d083-578f-4528-a694-b4c01e99bb7a:
-      source:
-        id: 26b9ebe4-3c57-4ee7-a179-e02c546c7f22
-      target:
-        id: 59444217-2b80-413f-8cab-4d3500729a6c
-      z: 1
-    f19ce542-6dd1-44f1-9813-c12a376d178a:
-      position:
-        x: 754
-        y: 169
-      size:
-        height: 60
-        width: 60
-      z: 0
-    fa61d5de-b37b-43a9-a040-2b803e38477b:
-      position:
-        x: 908
-        y: 169
-      size:
-        height: 60
-        width: 60
-      z: 0
-    fa982ad7-1325-4b1a-a69c-c53b604d9590:
-      position:
-        x: 757
-        y: 362
-      size:
-        height: 60
-        width: 60
-      z: 0
-    fda22362-017f-4231-8b54-c2bcb73125ca:
-      source:
-        id: dd6d71ce-5b53-4334-99fd-a0781a2c1b1a
-      target:
-        id: 18aa100e-3495-42cc-a5fd-0c377a8317fc
-      z: 1
-    ffe531d1-90dc-4e67-960c-cf04d53eaf4f:
-      position:
-        x: 372
-        y: 365
-      size:
-        height: 60
-        width: 60
-      z: 1
+    - acs:public_template:Solution:games-or-retail-single-db-single-service
+  ALIYUN::ROS::Composer:
+    fef69d0f:
+      Rect:
+        - 1120
+        - 622
+        - 40
+        - 38
+        - 1
+        - 0
+      ResT: Composer::ROSParameter::AlibabaCloud
+    2c7159d9:
+      Parent: fef69d0f
+      Rect:
+        - 1080
+        - 562
+        - 60
+        - 78
+        - 2
+        - 0
+      ResT: Composer::ROSParameter::Region
+    dd323692:
+      Res:
+        - OssBucket
+      Parent: 2c7159d9
+      Rect:
+        - 40
+        - 40
+        - 140
+        - 266
+        - 3
+        - 0
+    d80971d0:
+      Res:
+        - CdnDomain
+      Parent: 2c7159d9
+      Rect:
+        - 40
+        - 40
+        - 100
+        - 407
+        - 3
+        - 0
+    28c57bf7:
+      Res:
+        - CdnDomainConfig
+      Parent: 2c7159d9
+      Rect:
+        - 40
+        - 40
+        - 180
+        - 407
+        - 3
+        - 0
+    0dcc93b6:
+      Res:
+        - VpcEip
+        - VpcEipBind
+      Parent: 2c7159d9
+      Rect:
+        - 40
+        - 40
+        - 580
+        - 118
+        - 3
+        - 0
+    903b33e4:
+      Res:
+        - EcsVpc
+      Parent: 2c7159d9
+      Rect:
+        - 654
+        - 293
+        - 260
+        - 200
+        - 3
+        - 0
+    bbd18e5f:
+      Res:
+        - RosWaitConditionHandle2
+      Parent: 2c7159d9
+      Rect:
+        - 40
+        - 40
+        - 939
+        - 407
+        - 3
+        - 0
+    6994aecb:
+      Res:
+        - RosWaitCondition2
+      Parent: 2c7159d9
+      Rect:
+        - 40
+        - 40
+        - 939
+        - 226
+        - 3
+        - 0
+    8d3b040a:
+      Res:
+        - EcsCustomImage
+      Parent: 2c7159d9
+      Rect:
+        - 40
+        - 40
+        - 759
+        - 540
+        - 3
+        - 0
+    36cb8150:
+      Res:
+        - RosWaitCondition1
+      Parent: 2c7159d9
+      Rect:
+        - 40
+        - 40
+        - 1035
+        - 226
+        - 3
+        - 0
+    35d2dc11:
+      Res:
+        - RosWaitConditionHandle1
+      Parent: 2c7159d9
+      Rect:
+        - 40
+        - 40
+        - 1035
+        - 407
+        - 3
+        - 0
+    b73acd53:
+      Res:
+        - RamRole
+      Parent: 2c7159d9
+      Rect:
+        - 40
+        - 40
+        - 311
+        - 540
+        - 3
+        - 0
+    52cfe767:
+      Res:
+        - EcsVSwitch1
+      Parent: 903b33e4
+      Rect:
+        - 399
+        - 215
+        - 280
+        - 250
+        - 4
+        - 0
+    3d20822c:
+      Res:
+        - EcsVSwitch2
+      Parent: 903b33e4
+      Rect:
+        - 198
+        - 214
+        - 698
+        - 250
+        - 4
+        - 0
+    b12a14a0:
+      Res:
+        - SlbLoadBalancer
+        - SlbBackendServerAttachment
+        - SlbListener
+      Parent: 52cfe767
+      Rect:
+        - 40
+        - 40
+        - 580
+        - 347
+        - 5
+        - 0
+    c0968e22:
+      Res:
+        - RdsDbInstance
+        - RdsAccount
+        - RdsAccountPrivilege
+      Parent: 52cfe767
+      Rect:
+        - 40
+        - 40
+        - 311
+        - 347
+        - 5
+        - 0
+    4826986a:
+      Res:
+        - EcsSecurityGroup2
+      Parent: 903b33e4
+      Rect:
+        - 117
+        - 133
+        - 720
+        - 300
+        - 10
+        - 0
+    777ef557:
+      Parent: 2c7159d9
+      Edge:
+        - d80971d0
+        - dd323692
+      Line: 0:0:0:gray:0
+    a54868dc:
+      Parent: 2c7159d9
+      Edge:
+        - 28c57bf7
+        - dd323692
+      Line: 0:0:0:gray:0
+    3def2cf2:
+      Parent: 2c7159d9
+      Edge:
+        - 0dcc93b6
+        - b12a14a0
+      Line: 0:0:0:gray:0
+    110ad112:
+      Parent: 52cfe767
+      Edge:
+        - b12a14a0
+        - eef64bf8
+      Line: 0:0:0:gray:0
+    97ea3fe0:
+      Parent: 2c7159d9
+      Edge:
+        - 8d3b040a
+        - a6c643df
+      Line: 0:0:0:gray:0
+    898d849b:
+      Parent: 52cfe767
+      Edge:
+        - eef64bf8
+        - c0968e22
+      Line: 0:0:0:gray:0
+    ecdd95d4:
+      Parent: 2c7159d9
+      Edge:
+        - 36cb8150
+        - 35d2dc11
+      Line: 0:0:0:gray:0
+    5f8c141e:
+      Parent: 2c7159d9
+      Edge:
+        - 6994aecb
+        - bbd18e5f
+      Line: 0:0:0:gray:0
+    a6c643df:
+      Res:
+        - EcsInstanceGroup2
+      Parent: 3d20822c
+      Rect:
+        - 40
+        - 40
+        - 759
+        - 336
+        - 11
+        - 0
+      Layer:
+        - 4826986a
+    c7d53166:
+      Res:
+        - EcsSecurityGroup1
+      Parent: 903b33e4
+      Rect:
+        - 120
+        - 114
+        - 387
+        - 315
+        - 21
+        - 0
+    eef64bf8:
+      Res:
+        - EcsInstanceGroup1
+      Parent: 52cfe767
+      Rect:
+        - 40
+        - 40
+        - 427
+        - 347
+        - 22
+        - 0
+      Layer:
+        - c7d53166
+
